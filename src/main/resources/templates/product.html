@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald&display=swap");
+    .header {
+      position: fixed;
+      z-index: 99999;
+      background-color: #000;
+    }
+    .header {
+      width: 100%;
+      height: 80px;
+      padding: 0 10%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .header h1 a {
+      text-decoration: none;
+      color: white;
+      font-family: abster;
+      transition: 0.5s;
+      display: inline-block;
+      padding: 5px 0;
+      position: relative;
+    }
+    /*가운데서 좌우로 펼쳐지는 라인 에니메이션*/
+
+    .header h1 a:after {
+      background: none repeat scroll 0 0 transparent;
+      bottom: 0;
+      content: "";
+      display: block;
+      height: 2px;
+      left: 50%;
+      position: absolute;
+      background: #ffb000;
+      transition: width 0.3s ease 0s, left 0.3s ease 0s;
+      width: 0;
+    }
+    .header h1 a:hover:after {
+      width: 100%;
+      left: 0;
+    }
+
+    .nav ul li {
+      display: inline-block;
+      margin: 0 10px;
+    }
+
+    .nav ul li a {
+      text-decoration: none;
+      color: white;
+    }
+
+    /*왼쪽에서 오른쪽으로 이동하는 에니메이션*/
+    .nav ul li a {
+      position: relative;
+    }
+    .nav ul li a:after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -10px;
+      width: 0px;
+      height: 2px;
+      margin: 5px 0 0;
+      transition: all 0.3s ease-in-out;
+      transition-duration: 0.3s;
+      opacity: 0;
+      background-color: #ffb000;
+    }
+    .nav ul li a:hover:after {
+      width: 100%;
+      opacity: 1;
+    }
+
+    @media screen and (max-width: 768px) {
+      .header {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 8px 24px;
+        height: 205px;
+        line-height: 30px;
+      }
+      .nav {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+      }
+      .nav ul li {
+        width: 100%;
+        text-align: center;
+      }
+
+      .header__toggleBtn {
+        display: block;
+      }
+      .nav.active {
+        display: flex;
+      }
+    }
+
+    body {
+      width: 100%;
+      height: 100%;
+    }
+
+    .detailPageTitle {
+      font-family: "Oswald", sans-serif;
+      margin: 0 auto;
+      width: 100%;
+      height: 320px;
+      padding-top: 220px;
+      font-size: 2.5rem;
+      text-align: center;
+      z-index: 9;
+      background-color: #232321;
+      display: block;
+      position: relative;
+    }
+    .detailPageTitle h1 {
+      /*line-height: 165px;*/
+      width: 280px;
+      margin: auto;
+      padding-top: 20px;
+    }
+
+    .detailPagelist {
+      width: 60%;
+      margin: auto;
+      overflow: hidden;
+      padding-top: 240px;
+      padding-bottom: 320px;
+    }
+    .images {
+      width: 100%;
+      height: auto;
+    }
+    .images img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      opacity: 1;
+      -webkit-transition: 0.3s ease-in-out;
+      transition: 0.3s ease-in-out;
+    }
+    .images img:hover {
+      opacity: 0.35;
+      -webkit-filter: blur(3px);
+      filter: blur(3px);
+    }
+    @media (min-width: 768px) {
+      .detailPagelist {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 18px;
+        grid-auto-flow: row dense;
+      }
+      .imageFlex {
+        display: grid;
+        row-gap: 20px;
+      }
+    }
+
+    .imagePoster {
+      position: relative;
+    }
+    .imageText {
+      position: absolute;
+      text-align: center;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      opacity: 0;
+      background-color: rgba(0, 0, 0, 0);
+      font-size: 1.3rem;
+      transition: 0.4s;
+    }
+
+    .imagePoster:hover .imageText {
+      color: #fff;
+      opacity: 1;
+    }
+    footer {
+      width: 100%;
+      height: 70px;
+      position: absolute;
+      margin-top: 180px;
+      background-color: #232321;
+    }
+
+    footer p {
+      margin: 0 20px 10px 20px;
+      color: darkgray;
+      float: right;
+    }
+
+    footer p:visited {
+      color: white;
+    }
+
+    footer a {
+      margin-top: 0;
+      margin-bottom: 0;
+      color: white;
+      float: left;
+    }
+  </style>
+  <!DOCTYPE html>
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Document</title>
+      <link rel="stylesheet" href="./css/style.css" />
+    </head>
+
+    <body class="scroll">
+      <div class="header">
+        <div class="logo">
+          <a href="./index.html"
+            ><img src="images/logo.gif" alt="" width="220px"
+          /></a>
+        </div>
+        <div class="nav">
+          <ul>
+            <li><a href="./company.html">COMPANY</a></li>
+            <li><a href="./product.html">PRODUCT</a></li>
+            <li><a href="./marketing.html">MARKETING</a></li>
+            <li><a href="./theater.html">THEATER</a></li>
+            <li><a href="./notice.html">NOTICE</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="detailPageTitle">
+        <h1 style="color: #fff; border-bottom: 8px #ffb000 solid">PRODUCT</h1>
+      </div>
+      <div class="detailPagelist">
+        <div class="images">
+          <div class="imageFlex">
+            <a href="detailPage.html" class="imagePoster"
+              ><img src="./images/비클래스.jpg" />
+              <h3 class="imageText">B클래스</h3></a
+            >
+            <a href="detailPage.html" class="imagePoster"
+              ><img src="./images/비클래스.jpg" />
+              <h3 class="imageText">B클래스</h3></a
+            >
+            <a href="detailPage.html" class="imagePoster"
+              ><img src="./images/줄리엣과 줄리엣.jpg" />
+              <h3 class="imageText">줄리엣과 줄리엣</h3></a
+            >
+          </div>
+        </div>
+        <div class="images">
+          <div class="imageFlex">
+            <a href="detailPage.html" class="imagePoster"
+              ><img src="./images/스푸트니크_포스터.jpg" />
+              <h3 class="imageText">스푸트니크</h3></a
+            >
+            <a href="detailPage.html" class="imagePoster"
+              ><img src="./images/바톤콘서트.jpg" />
+              <h3 class="imageText">바톤콘서트</h3></a
+            >
+            <a href="detailPage.html" class="imagePoster"
+              ><img src="./images/비클래스.jpg" />
+              <h3 class="imageText">B클래스</h3></a
+            >
+          </div>
+        </div>
+        <div class="images">
+          <div class="imageFlex">
+            <a href="detailPage.html" class="imagePoster"
+              ><img src="./images/줄리엣과 줄리엣.jpg" />
+              <h3 class="imageText">줄리엣과 줄리엣</h3></a
+            >
+            <a href="detailPage.html" class="imagePoster"
+              ><img src="./images/스푸트니크_포스터.jpg" />
+              <h3 class="imageText">스푸트니크</h3></a
+            >
+            <a href="detailPage.html" class="imagePoster"
+              ><img src="./images/바톤콘서트.jpg" />
+              <h3 class="imageText">바톤콘서트</h3></a
+            >
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <nav>
+          <a href="#">sns 로고</a>
+          <a href="#">sns 로고</a>
+        </nav>
+        <p>
+          <span>대표 : 조혤E</span>
+          <span>이메일 : hellyeah26@gmail.com</span>
+          <span>Copyright 2022. hellE. All Right Reserved.</span>
+        </p>
+      </footer>
+    </body>
+  </html>
+</html>
