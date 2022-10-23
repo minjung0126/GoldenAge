@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+    <link rel="stylesheet" href="/css/style.css">
+    <style>
+      /* bx 슬라이더를 위한 css 설정입니다 */
+      .bx-wrapper {
+        -moz-box-shadow: none;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+        border: none;
+        max-width: 100%;
+        display: block;
+        left: 50%;
+        transform: translate(-50%);
+      }
+      .bx-wrapper .bx-pager.bx-default-pager a:hover,
+      .bx-wrapper .bx-pager.bx-default-pager a.active,
+      .bx-wrapper .bx-pager.bx-default-pager a:focus {
+        background: gold !important;
+      }
+      .bx-wrapper .bx-pager.bx-default-pager a {
+        background: #fff !important;
+      }
+
+      .detailPagelist {
+        width: 60%;
+        margin: auto;
+        overflow: hidden;
+        padding-top: 250px;
+      }
+      .images {
+        width: 100%;
+        height: auto;
+      }
+    .images img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      opacity: 1;
+      -webkit-transition: .3s ease-in-out;
+      transition: .3s ease-in-out;
+    }
+    .images img:hover{
+    opacity: 0.35;
+    -webkit-filter: blur(3px);
+    filter:  blur(3px);
+    }
+    @media (min-width: 640px) {
+      .detailPagelist {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 18px;
+        grid-auto-flow: row dense;
+      }
+      .imageFlex {
+        display: grid;
+        row-gap: 20px;
+      }
+    }
+
+    .imagePoster{
+      position: relative;
+    }
+    .imageText{
+      position: absolute;
+      text-align: center;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      opacity: 0;
+      background-color: rgba(0, 0, 0, 0);
+      font-size: 1.3rem;
+    }
+
+    .imagePoster:hover .imageText{
+      color: #fff;
+      opacity: 1; 
+    }
+    </style>
+  </head>
+  <body class="scroll">
+    <div class="container">
+      <div class="header">
+        <div class="logo"><a href="#"><img src="/images/logo.gif" alt="" width="220px"></a></div>
+        <div class="nav">
+          <ul>
+            <li><a href="./company.html">COMPANY</a></li>
+            <li><a href="./product.html">PRODUCT</a></li>
+            <li><a href="./marketing.html">MARKETING</a></li>
+            <li><a href="./theater.html">THEATER</a></li>
+            <li><a href="./notice.html">NOTICE</a></li>
+          </ul>
+        </div>
+      <div class="hero">
+      <h2>GOLDEN AGE</h2>
+      <p id="dynamic"><!-- 출력문 나오는 구간 --></p></li>
+        </div>
+      </div>
+    </div>
+    <div class="content">
+      <ul class="bxslider">
+        <li><a href="detailPage.html"><img src="/images/testPicture.PNG" alt=""></a></li>
+        <li><a href="detailPage.html"><img src="/images/testPicture2.PNG" alt=""></a></li>
+      </ul>
+    </div>
+      <div class="detailPagelist">
+        <div class="images">
+          <div class="imageFlex">
+            <a href="detailPage.html" class="imagePoster"
+              ><img src="/images/비클래스.jpg" />
+              <h3 class="imageText">B클래스</h3></a
+            >
+            <a href="detailPage.html" class="imagePoster"
+              ><img src="/images/비클래스.jpg" />
+              <h3 class="imageText">B클래스</h3></a
+            >
+            <a href="detailPage.html" class="imagePoster"
+              ><img src="/images/줄리엣과 줄리엣.jpg" />
+              <h3 class="imageText">줄리엣과 줄리엣</h3></a
+            >
+          </div>
+        </div>
+        <div class="images">
+          <div class="imageFlex">
+            <a href="detailPage.html" class="imagePoster"
+              ><img src="/images/스푸트니크_포스터.jpg" />
+              <h3 class="imageText">스푸트니크</h3></a
+            >
+            <a href="detailPage.html" class="imagePoster"
+              ><img src="/images/바톤콘서트.jpg" />
+              <h3 class="imageText">바톤콘서트</h3></a
+            >
+            <a href="detailPage.html" class="imagePoster"
+              ><img src="/images/비클래스.jpg" />
+              <h3 class="imageText">B클래스</h3></a
+            >
+          </div>
+        </div>
+        <div class="images">
+          <div class="imageFlex">
+            <a href="detailPage.html" class="imagePoster"
+              ><img src="/images/줄리엣과 줄리엣.jpg" />
+              <h3 class="imageText">줄리엣과 줄리엣</h3></a
+            >
+            <a href="detailPage.html" class="imagePoster"
+              ><img src="/images/스푸트니크_포스터.jpg" />
+              <h3 class="imageText">스푸트니크</h3></a
+            >
+            <a href="detailPage.html" class="imagePoster"
+              ><img src="/images/바톤콘서트.jpg" />
+              <h3 class="imageText">바톤콘서트</h3></a
+            >
+          </div>
+        </div>
+      </div>
+      </div>
+
+    <footer>
+      <nav>
+        <a href="#">sns 로고</a>
+        <a href="#">sns 로고</a>
+      </nav>
+      <p>
+        <span>대표 : 조혤E</span>
+        <span>이메일 : hellyeah26@gmail.com</span>
+        <span>Copyright 2022. hellE. All Right Reserved.</span>
+      </p>
+    </footer>
+  </body>
+  <script src="/js/main.js"></script>
+  <script>
+    $(document).ready(function(){
+      $('.bxslider').bxSlider({
+        mode:'vertical',
+        speed:2500,
+        auto:true,
+        controls:false,
+        autoHover: true,
+        infiniteLoop: true,
+        pause: 5000
+      });
+    });
+  </script>
+
+</html>

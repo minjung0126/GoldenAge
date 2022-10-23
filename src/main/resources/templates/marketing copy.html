@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+    <style>
+      .bx-wrapper {
+        -moz-box-shadow: none;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+        border: none;
+        max-width: 100%;
+        display: block;
+        left: 50%;
+        transform: translate(-50%);
+      }
+      .bx-wrapper .bx-pager.bx-default-pager a:hover,
+      .bx-wrapper .bx-pager.bx-default-pager a.active,
+      .bx-wrapper .bx-pager.bx-default-pager a:focus {
+        background: gold !important;
+      }
+      .bx-wrapper .bx-pager.bx-default-pager a {
+        background: #fff !important;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background-color: #000;
+        color: white;
+      }
+
+      /* .container {
+        width: 100%;
+        height: 100vh;
+        background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)),
+          url(../images/KakaoTalk_20221011_230043010.jpg);
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+      } */
+
+      .header {
+        width: 100%;
+        height: 80px;
+        padding: 0 10%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: fixed;
+        z-index: 99999;
+        background-color: #000;
+      }
+
+      .header h1 a {
+        text-decoration: none;
+        color: white;
+        font-family: abster;
+        transition: 0.5s;
+        display: inline-block;
+        padding: 5px 0;
+        position: relative;
+      }
+      /*가운데서 좌우로 펼쳐지는 라인 에니메이션*/
+
+      .header h1 a:after {
+        background: none repeat scroll 0 0 transparent;
+        bottom: 0;
+        content: "";
+        display: block;
+        height: 2px;
+        left: 50%;
+        position: absolute;
+        background: #ffb000;
+        transition: width 0.3s ease 0s, left 0.3s ease 0s;
+        width: 0;
+      }
+      .header h1 a:hover:after {
+        width: 100%;
+        left: 0;
+      }
+
+      .nav ul li {
+        display: inline-block;
+        margin: 0 10px;
+      }
+
+      .nav ul li a {
+        text-decoration: none;
+        color: white;
+      }
+
+      /*왼쪽에서 오른쪽으로 이동하는 에니메이션*/
+      .nav ul li a {
+        position: relative;
+      }
+      .nav ul li a:after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -10px;
+        width: 0px;
+        height: 2px;
+        margin: 5px 0 0;
+        transition: all 0.3s ease-in-out;
+        transition-duration: 0.3s;
+        opacity: 0;
+        background-color: gold;
+      }
+      .nav ul li a:hover:after {
+        width: 100%;
+        opacity: 1;
+      }
+
+      .content {
+        width: 100%;
+        top: 80px;
+        position: relative;
+        padding: 2% 10%;
+        margin-bottom: 100px;
+      }
+
+      .scroll{
+        overflow: overlay;
+      }
+      .scroll::-webkit-scrollbar{
+        width: 0.7vw;
+      }
+      .scroll::-webkit-scrollbar-thumb{
+        background-color: hsla(0, 0%, 42%, 0.2);
+      }
+
+      @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400&display=swap');body {
+        font-family: 'Noto Sans KR', sans-serif;
+      }
+
+      #blog {
+        padding: 100px 0;
+      }
+
+      .btn {
+        padding-left: 25px;
+        padding-right: 25px;
+        border-radius: 50px;
+        text-transform: uppercase;
+      }
+
+      .btn.btn-lg {
+        padding-left: 30px;
+        padding-right: 30px;
+      }
+
+      .btn-warning {
+        background-color: goldenrod !important;
+        border-color: goldenrod !important;
+      }
+
+      .btn-warning:hover {
+        background-color: goldenrod !important;
+        border-color: goldenrod !important;
+      }
+
+      .blog-card {
+        background: #000;
+        margin-bottom: 100px;
+        overflow: hidden;
+      }
+
+      .blog-card .blog-thumbnail {
+        width: 100%;
+  
+      }
+
+      /* .blog-card .thumbnailtxt {
+        height: 510px;
+        position: absolute;
+        text-align: center;
+      }
+
+      .blog-card:hover img {
+        transform: scale(1.1);
+        transition:all 0.5s ease;
+        opacity: 1;
+      }
+
+      .blog-card:hover .thumbnailtxt {
+        opacity: 1;
+        display: none;
+      } */
+
+
+    </style>
+  </head>
+  <body class="scroll">
+    <div class="container-fluid">
+      <div class="header">
+        <div class="logo"><a href="./index.html"><img src="../static/images/logo.gif" alt="" width="220px"></a></div>
+        <div class="nav">
+          <ul>
+            <li><a href="./company.html">COMPANY</a></li>
+            <li><a href="./product.html">PRODUCT</a></li>
+            <li><a href="./marketing.html">MARKETING</a></li>
+            <li><a href="./theater.html">THEATER</a></li>
+            <li><a href="./notice.html">NOTICE</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="content">
+        <!-- <h1 style="color: #fff; border-bottom: 3px gold solid; padding-bottom: 8px;">MD상품</h1> -->
+        <br>
+        <div class="row">
+          <div class="col-lg-3 col-md-6 col-10">
+            <div class="blog-card my-auto">
+              <a href="#" class="justify-content-center d-flex"><img src="../static/images/t1.jpeg" alt="" class="blog-thumbnail"></a>
+            </div>
+          </div>
+          <div class="col-3 align-self-center">
+            <table border="1" width="450px" height="350px">
+              <tr>
+                <td colspan="2"><h3>연극 <비클래스></h3></td>
+              </tr>
+              <tr>
+                <td>일정</td>
+                <td>2022.02.25 ~ 2022.05.15</td>
+              </tr>
+              <tr>
+                <td>장소</td>
+                <td>브릭스 씨어터</td>
+              </tr>
+              <tr>
+                <td>제작</td>
+                <td>골든에이지컴퍼니</td>
+              </tr>
+              <tr>
+                <td>홍보/마케팅</td>
+                <td>탄탄대로</td>
+              </tr>
+            </table>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+    
+    </body>
+
+
+</html>
