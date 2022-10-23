@@ -1,269 +1,378 @@
-<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
-    <style>
-      .bx-wrapper {
-        -moz-box-shadow: none;
-        -webkit-box-shadow: none;
-        box-shadow: none;
-        border: none;
-        max-width: 100%;
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald&display=swap");
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #000;
+    }
+
+    /* .container {
+      width: 100%;
+      height: 100vh;
+      background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)),
+        url(../images/KakaoTalk_20221011_230043010.jpg);
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+    } */
+
+    .header {
+      width: 100%;
+      height: 80px;
+      padding: 0 10%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: fixed;
+      z-index: 99999;
+      background-color: #000;
+    }
+
+    .header h1 a {
+      text-decoration: none;
+      color: white;
+      font-family: abster;
+      transition: 0.5s;
+      display: inline-block;
+      padding: 5px 0;
+      position: relative;
+    }
+    /*가운데서 좌우로 펼쳐지는 라인 에니메이션*/
+
+    .header h1 a:after {
+      background: none repeat scroll 0 0 transparent;
+      bottom: 0;
+      content: "";
+      display: block;
+      height: 2px;
+      left: 50%;
+      position: absolute;
+      background: #ffb000;
+      transition: width 0.3s ease 0s, left 0.3s ease 0s;
+      width: 0;
+    }
+    .header h1 a:hover:after {
+      width: 100%;
+      left: 0;
+    }
+
+    .nav ul li {
+      display: inline-block;
+      margin: 0 10px;
+    }
+
+    .nav ul li a {
+      text-decoration: none;
+      color: white;
+    }
+
+    /*왼쪽에서 오른쪽으로 이동하는 에니메이션*/
+    .nav ul li a {
+      position: relative;
+    }
+    .nav ul li a:after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -10px;
+      width: 0px;
+      height: 2px;
+      margin: 5px 0 0;
+      transition: all 0.3s ease-in-out;
+      transition-duration: 0.3s;
+      opacity: 0;
+      background-color: gold;
+    }
+    .nav ul li a:hover:after {
+      width: 100%;
+      opacity: 1;
+    }
+
+    .content {
+      width: 100%;
+      top: 80px;
+      position: relative;
+      /* padding: 2% 10%; */
+      margin-bottom: 100px;
+    }
+
+    .scroll{
+      overflow: overlay;
+    }
+    .scroll::-webkit-scrollbar{
+      width: 0.7vw;
+    }
+    .scroll::-webkit-scrollbar-thumb{
+      background-color: hsla(0, 0%, 42%, 0.2);
+    }
+
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400&display=swap');body {
+     font-family: 'Noto Sans KR', sans-serif;
+    }
+
+    #blog {
+      padding: 100px 0;
+    }
+
+    .btn {
+      padding-left: 25px;
+      padding-right: 25px;
+      border-radius: 50px;
+      text-transform: uppercase;
+    }
+
+    .btn.btn-lg {
+      padding-left: 30px;
+      padding-right: 30px;
+    }
+
+    .btn-warning {
+      background-color: #ffb000 !important;
+      border-color: #ffb000 !important;
+    }
+
+    .btn-warning:hover {
+      background-color: #ffb000 !important;
+      border-color: #ffb000 !important;
+    }
+
+    .blog-card {
+      width: 100%;
+      height: 100%;
+      background: #000;
+      margin-bottom: 35px;
+      overflow: hidden;
+    }
+
+    /* .blog-card img {
+      opacity: 0.3;
+    } */
+
+    .blog-card .blog-thumbnail {
+      width: 100%;
+      /* height: 500px; */
+    }
+
+    .blog-card .thumbnailtxt {
+      /* height: 141.4%; */
+      position: absolute;
+      text-align: center;
+      opacity: 0;
+    }
+
+    .blog-card:hover img {
+      /* transform: scale(1.1); */
+      transition:all 0.3s ease-in-out;
+      opacity: 0.35;
+      -webkit-filter: blur(3px);
+      filter: blur(3px);
+    }
+
+    .blog-card:hover .thumbnailtxt {
+      opacity: 1;
+      display: none;
+    }
+
+    /* .detailPageTitle {
+    font-family: "Oswald", sans-serif;
+    margin: 0 auto;
+    width: 100%;
+    height: 320px;
+    padding-top: 220px;
+    font-size: 2.5rem;
+    text-align: center;
+    z-index: 9;
+    background-color: #232321;
+    display: block;
+    position: relative;
+  }
+  .detailPageTitle h1 {
+    width: 280px;
+    margin: auto;
+    padding-top: 20px;
+  } */
+    footer{
+      background-color: #232321;
+      padding: 3rem;
+      color: #fff;
+      margin-top: 180px;
+      display: flex;
+      align-items: flex-start;
+    }
+
+    footer #row{
+      display: flex;
+      flex-wrap: wrap;
+      width: 100%;
+    }
+
+    footer #footer_txt{
+      display: inline-block;
+      flex: 1;
+    }
+
+    footer #footer_sns{
+      align-self: center;
+      float: right;
+    }
+
+    footer #footer_sns a{
+      margin-right: 0.25rem;
+      margin-left: 0.25rem;
+      cursor: pointer;
+      color: #232321;
+    }
+
+    @media (max-width: 768px) {
+      footer{
+        background-color: #333;
+        padding: 3rem;
+        color: #fff;
+        margin-top: 180px;
         display: block;
-        left: 50%;
-        transform: translate(-50%);
-      }
-      .bx-wrapper .bx-pager.bx-default-pager a:hover,
-      .bx-wrapper .bx-pager.bx-default-pager a.active,
-      .bx-wrapper .bx-pager.bx-default-pager a:focus {
-        background: gold !important;
-      }
-      .bx-wrapper .bx-pager.bx-default-pager a {
-        background: #fff !important;
+        align-items: flex-start;
       }
 
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
-
-      body {
-        background-color: #000;
-      }
-
-      /* .container {
-        width: 100%;
-        height: 100vh;
-        background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)),
-          url(../images/KakaoTalk_20221011_230043010.jpg);
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-position: center;
-      } */
-
-      .header {
-        width: 100%;
-        height: 80px;
-        padding: 0 10%;
+      footer #row{
         display: flex;
-        justify-content: space-between;
-        align-items: center;
-        position: fixed;
-        z-index: 99999;
-        background-color: #000;
+        flex-wrap: wrap;
       }
 
-      .header h1 a {
-        text-decoration: none;
-        color: white;
-        font-family: abster;
-        transition: 0.5s;
+      footer #footer_txt{
+        width: 100%;
         display: inline-block;
-        padding: 5px 0;
-        position: relative;
+        flex: 1;
       }
-      /*가운데서 좌우로 펼쳐지는 라인 에니메이션*/
 
-      .header h1 a:after {
-        background: none repeat scroll 0 0 transparent;
-        bottom: 0;
-        content: "";
-        display: block;
-        height: 2px;
-        left: 50%;
-        position: absolute;
-        background: #ffb000;
-        transition: width 0.3s ease 0s, left 0.3s ease 0s;
-        width: 0;
-      }
-      .header h1 a:hover:after {
+      footer #footer_sns{
         width: 100%;
-        left: 0;
+        align-self: center;
+        float: right;
+        display: flex;
+        justify-content: flex-end;
       }
 
-      .nav ul li {
-        display: inline-block;
-        margin: 0 10px;
-      }
+    }
 
-      .nav ul li a {
-        text-decoration: none;
-        color: white;
-      }
-
-      /*왼쪽에서 오른쪽으로 이동하는 에니메이션*/
-      .nav ul li a {
-        position: relative;
-      }
-      .nav ul li a:after {
-        content: "";
-        position: absolute;
-        left: 0;
-        bottom: -10px;
-        width: 0px;
-        height: 2px;
-        margin: 5px 0 0;
-        transition: all 0.3s ease-in-out;
-        transition-duration: 0.3s;
-        opacity: 0;
-        background-color: gold;
-      }
-      .nav ul li a:hover:after {
-        width: 100%;
-        opacity: 1;
-      }
-
-      .content {
-        width: 100%;
-        top: 80px;
-        position: relative;
-        padding: 2% 10%;
-        margin-bottom: 100px;
-      }
-
-      .scroll{
-        overflow: overlay;
-      }
-      .scroll::-webkit-scrollbar{
-        width: 0.7vw;
-      }
-      .scroll::-webkit-scrollbar-thumb{
-        background-color: hsla(0, 0%, 42%, 0.2);
-      }
-
-      @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400&display=swap');body {
-        font-family: 'Noto Sans KR', sans-serif;
-      }
-
-      #blog {
-        padding: 100px 0;
-      }
-
-      .btn {
-        padding-left: 25px;
-        padding-right: 25px;
-        border-radius: 50px;
-        text-transform: uppercase;
-      }
-
-      .btn.btn-lg {
-        padding-left: 30px;
-        padding-right: 30px;
-      }
-
-      .btn-warning {
-        background-color: goldenrod !important;
-        border-color: goldenrod !important;
-      }
-
-      .btn-warning:hover {
-        background-color: goldenrod !important;
-        border-color: goldenrod !important;
-      }
-
-      .blog-card {
-        background: #000;
-        margin-bottom: 100px;
-        overflow: hidden;
-      }
-
-      .blog-card img {
-        opacity: 0.3;
-      }
-
-      .blog-card .blog-thumbnail {
-        width: 100%;
-        height: 510px;
-      }
-
-      .blog-card .thumbnailtxt {
-        height: 510px;
-        position: absolute;
-        text-align: center;
-      }
-
-      .blog-card:hover img {
-        transform: scale(1.1);
-        transition:all 0.5s ease;
-        opacity: 1;
-      }
-
-      .blog-card:hover .thumbnailtxt {
-        opacity: 1;
-        display: none;
-      }
-
-
-    </style>
-  </head>
-  <body class="scroll">
-    <div class="container-fluid">
-      <div class="header">
-        <div class="logo"><a href="./index.html"><img src="../static/images/logo.gif" alt="" width="220px"></a></div>
-        <div class="nav">
-          <ul>
-            <li><a href="./company.html">COMPANY</a></li>
-            <li><a href="./product.html">PRODUCT</a></li>
-            <li><a href="./marketing.html">MARKETING</a></li>
-            <li><a href="./theater.html">THEATER</a></li>
-            <li><a href="./notice.html">NOTICE</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="content">
-        <h1 style="color: #fff; border-bottom: 3px gold solid; padding-bottom: 8px;">SHOWS</h1>
-        <br>
-        <div class="row">
-          <div class="col-lg-3 col-md-6 col-10 m-auto">
-            <div class="blog-card">
-              <a href="./marketing_detail.html" class="justify-content-center d-flex"><h5 class="text-white thumbnailtxt p-auto d-flex align-items-center">
-                <b>연극 <헤르츠클란></b></h5><img src="../static/images/p1.jpg" alt="" class="blog-thumbnail">
-              </a>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-6 col-10 m-auto">
-            <div class="blog-card">
-              <a href="./marketing_detail.html" class="justify-content-center d-flex"><h5 class="text-white thumbnailtxt p-auto d-flex align-items-center">
-                <b>연극 <린다와 조이></b></h5><img src="../static/images/p2.jpg" alt="" class="blog-thumbnail">
-              </a>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-6 col-10 m-auto">
-            <div class="blog-card">
-              <a href="./marketing_detail.html" class="justify-content-center d-flex"><h5 class="text-white thumbnailtxt p-auto d-flex align-items-center">
-                <b>음악극 <붉은머리 안></b></h5><img src="../static/images/p3.jpg" alt="" class="blog-thumbnail">
-              </a>
-            </div>
-          </div>
-          <!-- <div class="col-lg-3 col-md-6 col-10 m-auto">
-            <div class="blog-card">
-              <a href="./marketing_detail.html" class="justify-content-center d-flex"><h5 class="text-white thumbnailtxt p-auto d-flex align-items-center"><b>바톤 콘서트</b></h5><img src="images/t4.jpeg" alt="" class="blog-thumbnail"></a>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-6 col-10 m-auto">
-            <div class="blog-card">
-              <a href="./marketing_detail.html" class="justify-content-center d-flex"><h5 class="text-white thumbnailtxt p-auto d-flex align-items-center"><b>씨어터컬렉션 HANBOK</b></h5><img src="images/t5.jpeg" alt="" class="blog-thumbnail"></a>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-6 col-10 m-auto">
-            <div class="blog-card">
-              <a href="./marketing_detail.html" class="justify-content-center d-flex"><h5 class="text-white thumbnailtxt d-flex align-items-center"><b>시니어 연극 <골든에이지></b></h5><img src="images/t6.jpeg" alt="" class="blog-thumbnail"></a>
-            </div>
-          </div> -->
-        </div>
-        <div class="text-center">
-          <a href="#!" class="btn btn-warning btn-lg text-white">View All</a>
-        </div>
+  </style>
+</head>
+<body class="scroll">
+<div class="header">
+  <div class="logo"><a href="./index.html"><img src="images/logo.gif" alt="" width="220px"></a></div>
+  <div class="nav">
+    <ul>
+      <li><a href="./company.html">COMPANY</a></li>
+      <li><a href="./product.html">PRODUCT</a></li>
+      <li><a href="./marketing.html">MARKETING</a></li>
+      <li><a href="./theater.html">THEATER</a></li>
+      <li><a href="./notice.html">NOTICE</a></li>
+    </ul>
+  </div>
+</div>
+<div class="content">
+  <div class="d-flex justify-content-center" style="display: inline;background: #ccc;font-family: 'Oswald', sans-serif !important;height: 240px;background: #232321;padding-top: 170px;">
+    <h1 style="color: #fff;border-bottom: 10px #ffb000 solid;padding-bottom: 8px;font-size: 5rem;font-weight: bold;margin: auto;">MARKETING</h1>
+  </div>
+  <br>
+  <br>
+  <div class="row mt-5 mx-auto" style="padding-left: 20%; padding-right: 20%; padding-top: 9rem">
+    <div class="col-lg-4 col-md-6" style="height: 141.4%;">
+      <div class="blog-card">
+        <a href="./marketing_detail.html" class="justify-content-center d-flex align-items-center"><h5 class="text-white thumbnailtxt p-auto d-flex align-items-center">
+          <b>연극 &lt;헤르츠클란&gt;</b></h5><img src="images/p1.jpg" alt="" class="blog-thumbnail">
+        </a>
       </div>
     </div>
-    </body>
+    <div class="col-lg-4 col-md-6">
+      <div class="blog-card">
+        <a href="./marketing_detail.html" class="justify-content-center d-flex align-items-center"><h5 class="text-white thumbnailtxt p-auto d-flex align-items-center">
+          <b>연극 &lt;린다와 조이&gt;</b></h5><img src="images/p2.jpg" alt="" class="blog-thumbnail">
+        </a>
+      </div>
+    </div>
+    <div class="col-lg-4 col-md-6">
+      <div class="blog-card">
+        <a href="./marketing_detail.html" class="justify-content-center d-flex align-items-center"><h5 class="text-white thumbnailtxt p-auto d-flex align-items-center">
+          <b>음악극 &lt;붉은머리 안&gt;</b></h5><img src="images/p3.jpg" alt="" class="blog-thumbnail">
+        </a>
+      </div>
+    </div>
+    <div class="col-lg-4 col-md-6">
+      <div class="blog-card">
+        <a href="./marketing_detail.html" class="justify-content-center d-flex align-items-center"><h5 class="text-white thumbnailtxt p-auto d-flex align-items-center">
+          <b>바톤 콘서트</b></h5><img src="images/t4.jpeg" alt="" class="blog-thumbnail">
+        </a>
+      </div>
+    </div>
+    <div class="col-lg-4 col-md-6" style="height: 141.4%;">
+      <div class="blog-card">
+        <a href="./marketing_detail.html" class="justify-content-center d-flex align-items-center"><h5 class="text-white thumbnailtxt p-auto d-flex align-items-center">
+          <b>연극 &lt;헤르츠클란&gt;</b></h5><img src="images/p1.jpg" alt="" class="blog-thumbnail">
+        </a>
+      </div>
+    </div>
+    <div class="col-lg-4 col-md-6">
+      <div class="blog-card">
+        <a href="./marketing_detail.html" class="justify-content-center d-flex align-items-center"><h5 class="text-white thumbnailtxt p-auto d-flex align-items-center">
+          <b>연극 &lt;린다와 조이&gt;</b></h5><img src="images/p2.jpg" alt="" class="blog-thumbnail">
+        </a>
+      </div>
+    </div>
+    <div class="col-lg-4 col-md-6">
+      <div class="blog-card">
+        <a href="./marketing_detail.html" class="justify-content-center d-flex align-items-center"><h5 class="text-white thumbnailtxt p-auto d-flex align-items-center">
+          <b>음악극 &lt;붉은머리 안&gt;</b></h5><img src="images/p3.jpg" alt="" class="blog-thumbnail">
+        </a>
+      </div>
+    </div>
+    <div class="col-lg-4 col-md-6">
+      <div class="blog-card">
+        <a href="./marketing_detail.html" class="justify-content-center d-flex align-items-center"><h5 class="text-white thumbnailtxt p-auto d-flex align-items-center">
+          <b>바톤 콘서트</b></h5><img src="images/t4.jpeg" alt="" class="blog-thumbnail">
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="text-center py-5">
+    <a href="#!" class="btn btn-warning btn-lg text-white" style="font-family: 'Oswald', sans-serif; font-weight: bold;">View All</a>
+  </div>
+</div>
+<footer>
+  <div id="row">
+    <div id="footer_txt">
+      (주)골든에이지컴퍼니<br>
+      대표 : ooo | 사업자등록번호 : 111-11-11111<br>
+      주소 : 서울특별시<br>
+      <br>
+      ©2022 GOLDENAGECOMPANY ALL RIGHTS RESERVED.
+    </div>
+    <div id="footer_sns">
+      <a href="https://www.instagram.com/goldenage_company/" target="_blank">
+        <img src="images/instagram.png" alt="" width="40px">
+      </a>
+      <a href="https://www.youtube.com/channel/UC1JmQJPvBqAyojzgWw2DYjQ/featured" target="_blank">
+        <img src="images/youtube.png" alt="" width="40px">
+      </a>
+      <a href="https://twitter.com/goldenage_co" target="_blank">
+        <img src="images/twitter.png" alt="" width="40px">
+      </a>
+    </div>
+  </div>
+</footer>
+</body>
 </html>
