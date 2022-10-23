@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="../static/css/style.css" />
+    <link rel="stylesheet" href="/css/style.css" />
     <script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
   </head>
   <style>
@@ -161,12 +161,15 @@
       width: 420px;
     }
     .infoWrap .info .info-about {
+      font-family: "Oswald", sans-serif;
       margin: auto;
       float: right;
       width: 40%;
-      height: 450px;
-      color: white;
+      height: 400px;
+      color: #fff;
       text-align: left;
+      font-size: 1.4rem;
+      padding-top: 100px;
     }
 
     .allWrap {
@@ -321,7 +324,7 @@
       // 37.5865326, 127.000069
       var mapContainer = document.getElementById("map"), // 지도를 표시할 div
         mapOption = {
-          center: new kakao.maps.LatLng(37.5864425, 126.999548), // 지도의 중심좌표
+          center: new kakao.maps.LatLng(37.5865326, 127.000069), // 지도의 중심좌표
           level: 3, // 지도의 확대 레벨
         };
 
