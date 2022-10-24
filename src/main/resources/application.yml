@@ -25,8 +25,6 @@ spring:
   thymeleaf:
     prefix: classpath:/templates/
     suffix: .html
-    cache: false
-    check-template-location: true
 
 # 파일, 이미지 업로드시 저장될 폴더 설정
   web:

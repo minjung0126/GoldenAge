@@ -2,17 +2,16 @@ package com.goldenage.project.login.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/admin/*")
+@RequestMapping("/admin/**")
 public class login {
 
     @GetMapping("/login")
     public String adminLogin(){
 
-        return "login";
+        return "/admin/login";
     }
 
     @GetMapping("/password")
