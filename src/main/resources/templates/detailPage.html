@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Document</title>
-  <link rel="stylesheet" href="./css/style.css" />
+  <link rel="stylesheet" href="css/style.css"/>
   <script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <style>
@@ -228,7 +229,7 @@
 <body>
 <div class="header">
   <div class="logo">
-    <a href="./index.html"
+    <a href="mainPage.html"
     ><img src="images/logo.gif" alt="" width="220px"
     /></a>
   </div>
@@ -304,17 +305,9 @@
     ></div>
   </div>
 </div>
-<footer style="margin-top: 0">
-  <nav>
-    <a href="#">sns 로고</a>
-    <a href="#">sns 로고</a>
-  </nav>
-  <p>
-    <span>대표 : 조혤E</span>
-    <span>이메일 : hellyeah26@gmail.com</span>
-    <span>Copyright 2022. hellE. All Right Reserved.</span>
-  </p>
-</footer>
+<!-- S: footer -->
+<div th:include="common/footer.html"></div>
+<!-- E: footer -->
 
 <script
         type="text/javascript"
