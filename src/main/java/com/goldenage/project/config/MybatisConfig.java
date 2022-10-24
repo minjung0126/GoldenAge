@@ -10,6 +10,6 @@ import org.springframework.context.annotation.Configuration;
  *
  * */
 @Configuration
-@MapperScan(basePackages = "com.example.goldenage", annotationClass = Mapper.class)
+@MapperScan(basePackages = "com.goldenage.project", annotationClass = Mapper.class)
 public class MybatisConfig {
 }
