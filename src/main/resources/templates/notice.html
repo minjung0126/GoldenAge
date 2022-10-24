@@ -1,16 +1,17 @@
 
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link rel="stylesheet" href="../static/css/style.css" />
-    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-    <!-- CSS only -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-    <style>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <link rel="stylesheet" href="/css/style.css" />
+  <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+  <!-- CSS only -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+  <style>
         .container{
           background-image: none;
           background-color: black;
@@ -20,9 +21,9 @@
           text-align: center;
         }
         .table{
-          border: 1px solid #fff; 
-          border-top: none; 
-          border-left: none; 
+          border: 1px solid #fff;
+          border-top: none;
+          border-left: none;
           border-right: none;
         }
         .thead{
@@ -44,82 +45,109 @@
         color: #000;
         }
         .pagination a:hover:not(.active) {
-          background-color: #eee; 
+          background-color: #eee;
           color: #000;
         }
+        @media (max-width: 768px) {
+          .thead{
+            display: none;
+          }
+          .notionNum{
+            color: red;
+            display:table-cell;
+            vertical-align:middle;
+          }
+          .notionName{
+            color: aqua;
+            display:table-cell;
+            vertical-align:middle;
+          }
+          .notionDay{
+            color: blue;
+            display:table-cell;
+            vertical-align:middle;
+          }
+          .notionTr{
+            height: 100px;
+          }
+          .pagination a {
+            color: #fff;
+            padding: 8px 8px;
+            text-decoration: none;
+          }
+        }
     </style>
-  </head>
-  <body class="scroll" style="background-color: black;">
-    <div class="container">
-      <div class="header">
-        <div class="logo"><a href="./index.html"><img src="../static/images/logo.gif" alt="" width="220px"></a></div>
-        <div class="nav">
-          <ul>
-            <li><a href="./company.html">COMPANY</a></li>
-            <li><a href="./product.html">PRODUCT</a></li>
-            <li><a href="./marketing.html">MARKETING</a></li>
-            <li><a href="./theater.html">THEATER</a></li>
-            <li><a href="./notice.html">NOTICE</a></li>
-          </ul>
-        </div>
-      </div>
-      <!-- S: table -->
-      <div class="main">
-        <h1 class="text-start" style="color: #fff; border-bottom: 3px gold solid; padding-bottom: 8px;">공지사항</h1>
-        <br>
-        <table class="table">
-          <thead class="thead">
-            <tr>
-              <th>번호</th>
-              <th>제목</th>
-              <th>작성자</th>
-              <th>등록일</th>
-            </tr>
-          </thead>
-          <tbody class="tbody">
-            <tr onclick="location.href='notice_view.html'">
-              <td>1</td>
-              <td>제목입니당</td>
-              <td>작성자</td>
-              <td>10/11</td>
-            </tr>
-            <tr onclick="location.href='notice_view.html'">
-              <td>2</td>
-              <td>제목입니당</td>
-              <td>작성자</td>
-              <td>10/12</td>
-            </tr>
-            <tr onclick="location.href='notice_view.html'">
-              <td>3</td>
-              <td>제목입니당</td>
-              <td>작성자</td>
-              <td>10/12</td>
-            </tr>
-            <tr onclick="location.href='notice_view.html'">
-              <td>4</td>
-              <td>제목입니당</td>
-              <td>작성자</td>
-              <td>10/12</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <div style="float: right;">
-        <button class="btn" type="button" style="color:gold; float: right;" onclick="location.href='./notice_insert.html'">작성하기</button>
-      </div>
-      <div class="pagination d-flex justify-content-center">
-        <button type="button" class="mx-2"><img src="../static/images/arrow_l_end.gif" alt=""></button>
-        <button type="button" class="mx-2"><img src="../static/images/arrow_l.gif" alt=""></button>
-        <a href="#">1</a>
-        <a class="active" href="#">2</a>
-        <a href="#">3</a>
-        <a href="#">4</a>
-        <a href="#">5</a>
-        <button type="button" class="mx-2"><img src="../static/images/arrow_r.gif" alt=""></button>
-        <button type="button" class="mx-2"><img src="../static/images/arrow_r_end.gif" alt=""></button>
-      </div>
-    </div><!-- container close -->
-    <!-- JavaScript Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
-  </body>
+</head>
+<body class="scroll" style="background-color: black;">
+<div class="container">
+  <div class="header">
+    <div class="logo"><h3 style="color: #fff;">골든에이지 컴퍼니</h3></div>
+    <div class="nav">
+      <ul>
+        <li><a href="./company.html">COMPANY</a></li>
+        <li><a href="./product.html">PRODUCT</a></li>
+        <li><a href="./marketing.html">MARKETING</a></li>
+        <li><a href="./theater.html">THEATER</a></li>
+        <li><a href="./notice.html">NOTICE</a></li>
+      </ul>
+    </div>
+  </div>
+  <!-- S: table -->
+  <div class="main">
+    <h1 class="text-start" style="color: #fff; border-bottom: 3px gold solid; padding-bottom: 8px;">공지사항</h1>
+    <br>
+    <table class="table">
+      <thead class="thead">
+      <tr>
+        <th>번호</th>
+        <th>제목</th>
+        <th>등록일</th>
+      </tr>
+      </thead>
+      <tbody class="tbody">
+      <tr class="notionTr" onclick="location.href='notice_view.html'">
+        <td class="notionNum">1</td>
+        <td class="notionName">제목입니당</td>
+        <td class="notionDay">10/11</td>
+      </tr>
+      <tr class="notionTr" onclick="location.href='notice_view.html'">
+        <td class="notionNum">2</td>
+        <td class="notionName">제목입니당</td>
+        <td class="notionDay">10/11</td>
+      </tr>
+      <tr class="notionTr" onclick="location.href='notice_view.html'">
+        <td class="notionNum">3</td>
+        <td class="notionName">제목입니당</td>
+        <td class="notionDay">10/11</td>
+      </tr>
+      <tr class="notionTr" onclick="location.href='notice_view.html'">
+        <td class="notionNum">4</td>
+        <td class="notionName">제목입니당</td>
+        <td class="notionDay">10/11</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <div style="float: right;">
+    <button class="btn" type="button" style="color:gold; float: right;" onclick="location.href='./notice_insert.html'">작성하기</button>
+  </div>
+  <div id="paging" class="pagination d-flex justify-content-center">
+    <button type="button" class="mx-2"><img src="images/arrow_l_end.gif" alt=""></button>
+    <button type="button" class="mx-2"><img src="images/arrow_l.gif" alt=""></button>
+    <a href="#">1</a>
+    <a class="active" href="#">2</a>
+    <a href="#">3</a>
+    <a href="#">4</a>
+    <a href="#">5</a>
+    <button type="button" class="mx-2"><img src="images/arrow_r.gif" alt=""></button>
+    <button type="button" class="mx-2"><img src="images/arrow_r_end.gif" alt=""></button>
+  </div>
+</div><!-- container close -->
+
+<!-- S: footer -->
+<div th:replace="common/footer.html"></div>
+<!-- E: footer -->
+<!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+</body>
 </html>

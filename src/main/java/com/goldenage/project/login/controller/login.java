@@ -12,7 +12,7 @@ public class login {
     @GetMapping("/login")
     public String adminLogin(){
 
-        return "/login";
+        return "login";
     }
 
     @GetMapping("/password")
