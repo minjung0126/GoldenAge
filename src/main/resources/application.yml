@@ -26,6 +26,17 @@ spring:
     prefix: classpath:/templates/
     suffix: .html
 
+# 작업 편의를 위해 추가한 devtool. 브라우저 새로 고침으로 정적 리소스 업데이트가 가능합니다.
+  spring:
+    devtools:
+      livereload:
+        enabled: true
+    freemarker:
+      cache: false
+    thymeleaf:
+      cache: false
+
+
 # 파일, 이미지 업로드시 저장될 폴더 설정
   web:
     resources:
