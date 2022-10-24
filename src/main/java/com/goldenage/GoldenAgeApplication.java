@@ -1,4 +1,4 @@
-package com.example.goldenage;
+package com.goldenage;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
