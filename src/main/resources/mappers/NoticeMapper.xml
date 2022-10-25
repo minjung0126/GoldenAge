@@ -28,4 +28,23 @@
              , NOTICE_REGIST_DATE
           FROM NOTICE
     </select>
+
+    <select id="selectNoticeDetail" resultMap="noticeResultMap">
+       SELECT
+              N.NOTICE_NO
+            , N.NOTICE_NAME
+            , N.NOTICE_CONTENT
+            , N.NOTICE_LINK
+            , N.NOTICE_COUNT
+            , NF.NOTICE_ORI_NAME
+         FROM NOTICE N
+         JOIN NOTICE_FILE NF ON (N.NOTICE_NO = NF.NOTICE_NO)
+    </select>
+
+    <select id="selectTotalCount" resultType="_int" parameterType="hashmap">
+        SELECT
+        COUNT(*)
+        FROM NOTICE
+        ORDER BY NOTICE_NO DESC
+    </select>
 </mapper>
