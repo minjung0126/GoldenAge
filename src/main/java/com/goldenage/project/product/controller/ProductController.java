@@ -23,6 +23,11 @@ public class ProductController {
         return "/product/productPage";
     }
 
+    /**
+     * <pre>
+     *     detailPage 조회 메소드
+     * </pre>
+     */
     @GetMapping("/detailPage")
     public String detailPage(){
 
