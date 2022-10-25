@@ -25,7 +25,7 @@
     }
 
     body {
-      background-color: #000;
+      background-color: #282828;
       color: white;
     }
 
@@ -105,7 +105,7 @@
       width: 100%;
       top: 80px;
       position: relative;
-      padding: 2% 10%;
+      padding: 2% 0%;
       margin-bottom: 100px;
     }
 
@@ -125,9 +125,6 @@
     }
 
     .blog-card {
-      background: #000;
-      -webkit-box-shadow: 0 5px 30px -3px rgba(0, 0, 0, 0.16);
-      box-shadow: 0 5px 30px -3px rgba(0, 0, 0, 0.16);
       margin-bottom: 30px;
     }
 
@@ -218,16 +215,15 @@
   </style>
 </head>
 <body class="scroll">
-<div class="container-fluid">
   <div class="header">
-    <div class="logo"><a href="mainPage.html"><img src="images/logo.gif" alt="" width="220px"></a></div>
+    <div class="logo"><a th:href="@{/}"><img src="/images/logo.gif" alt="" width="220px"></a></div>
     <div class="nav">
       <ul>
-        <li><a href="./company.html">COMPANY</a></li>
-        <li><a href="product/productPage.html">PRODUCT</a></li>
-        <li><a href="./marketing.html">MARKETING</a></li>
-        <li><a href="./theater.html">THEATER</a></li>
-        <li><a href="./notice.html">NOTICE</a></li>
+        <li><a href="../company.html">COMPANY</a></li>
+        <li><a th:href="@{/product/productPage}">PRODUCT</a></li>
+        <li><a th:href="@{/marketing/list}">MARKETING</a></li>
+        <li><a href="../theater.html">THEATER</a></li>
+        <li><a href="../notice.html">NOTICE</a></li>
       </ul>
     </div>
   </div>
@@ -235,10 +231,10 @@
     <br>
     <div class="d-flex flex-nowrap justify-content-center my-5">
       <div class="row">
-        <div class="blog-card mx-auto col-lg-7 col-md-5">
-          <img src="images/t1.jpeg" alt="" class="col-12">
+        <div class="blog-card mx-auto col-lg-7 col-md-7 px-5">
+          <img src="/images/t1.jpeg" alt="" class="col-12">
         </div>
-        <table height="300px" class="mx-auto col-lg-7 col-md-5">
+        <table height="300px" class="mx-auto col-lg-7 col-md-7 col-10 px-5" style="margin-bottom: 150px;">
           <tr>
             <td colspan="2"><h2>연극 <비클래스></h2></td>
           </tr>
@@ -262,123 +258,126 @@
       </div>
     </div>
     <div class="my-5">
-      <div class="d-flex justify-content-center" style="font-family: 'Oswald', sans-serif !important;">
-        <h2 class="mt-5" style="color: #fff; border-bottom: 10px #ffb000 solid; padding-bottom: 8px; font-size: 3rem; font-weight: bold;">CAST</h2>
+<!--      <div class="d-flex justify-content-center" style="font-family: 'Oswald', sans-serif !important;">-->
+<!--        <h2 class="mt-5" style="color: #fff; border-bottom: 10px #ffb000 solid; padding-bottom: 8px; font-size: 3rem; font-weight: bold;">CAST</h2>-->
+<!--      </div>-->
+      <div class="d-flex justify-content-center" style="display: inline;background: #ccc;font-family: 'Oswald', sans-serif !important;height: 240px;background: #232321;padding-top: 170px; margin-bottom: 240px;">
+        <h1 style="color: #fff;border-bottom: 10px #ffb000 solid;padding-bottom: 8px;font-size: 5rem;font-weight: bold;margin: auto;">CAST</h1>
       </div>
-      <div class="container my-5">
+      <div class="container my-5 px-5">
         <br>
         <div class="row">
-          <div class="col-md-2">
+          <div class="col-lg-2 col-md-3">
             <div class="blog-card">
-              <img src="images/a1.gif" alt="" class="blog-thumbnail">
+              <img src="/images/a1.gif" alt="" class="blog-thumbnail">
               <div class="blog-container text-center">
                 <h5 class="mt-2"><b>김택상 역</b></h5>
                 <p class="text-muted">최정헌</p>
               </div>
             </div>
           </div>
-          <div class="col-md-2">
+          <div class="col-lg-2 col-md-3">
             <div class="blog-card">
-              <img src="images/a6.gif" alt="" class="blog-thumbnail">
+              <img src="/images/a6.gif" alt="" class="blog-thumbnail">
               <div class="blog-container text-center">
                 <h5 class="mt-2"><b>김택상 역</b></h5>
                 <p class="text-muted">이지현</p>
               </div>
             </div>
           </div>
-          <div class="col-md-2">
+          <div class="col-lg-2 col-md-3">
             <div class="blog-card">
-              <img src="images/a11.gif" alt="" class="blog-thumbnail">
+              <img src="/images/a11.gif" alt="" class="blog-thumbnail">
               <div class="blog-container text-center">
                 <h5 class="mt-2"><b>김택상 역</b></h5>
                 <p class="text-muted">지호림</p>
               </div>
             </div>
           </div>
-          <div class="col-md-2">
+          <div class="col-lg-2 col-md-3">
             <div class="blog-card">
-              <img src="images/a2.gif" alt="" class="blog-thumbnail">
+              <img src="/images/a2.gif" alt="" class="blog-thumbnail">
               <div class="blog-container text-center">
                 <h5 class="mt-2"><b>이수현 역</b></h5>
                 <p class="text-muted">김찬종</p>
               </div>
             </div>
           </div>
-          <div class="col-md-2">
+          <div class="col-lg-2 col-md-3">
             <div class="blog-card">
-              <img src="images/a7.gif" alt="" class="blog-thumbnail">
+              <img src="/images/a7.gif" alt="" class="blog-thumbnail">
               <div class="blog-container text-center">
                 <h5 class="mt-2"><b>이수현 역</b></h5>
                 <p class="text-muted">노태현</p>
               </div>
             </div>
           </div>
-          <div class="col-md-2">
+          <div class="col-lg-2 col-md-3">
             <div class="blog-card">
-              <img src="images/a12.gif" alt="" class="blog-thumbnail">
+              <img src="/images/a12.gif" alt="" class="blog-thumbnail">
               <div class="blog-container text-center">
                 <h5 class="mt-2"><b>이수현 역</b></h5>
                 <p class="text-muted">류찬열</p>
               </div>
             </div>
           </div>
-          <div class="col-md-2">
+          <div class="col-lg-2 col-md-3">
             <div class="blog-card">
-              <img src="images/a3.gif" alt="" class="blog-thumbnail">
+              <img src="/images/a3.gif" alt="" class="blog-thumbnail">
               <div class="blog-container text-center">
                 <h5 class="mt-2"><b>치아키 역</b></h5>
                 <p class="text-muted">한선천</p>
               </div>
             </div>
           </div>
-          <div class="col-md-2">
+          <div class="col-lg-2 col-md-3">
             <div class="blog-card">
-              <img src="images/a8.gif" alt="" class="blog-thumbnail">
+              <img src="/images/a8.gif" alt="" class="blog-thumbnail">
               <div class="blog-container text-center">
                 <h5 class="mt-2"><b>치아키 역</b></h5>
                 <p class="text-muted">강은일</p>
               </div>
             </div>
           </div>
-          <div class="col-md-2">
+          <div class="col-lg-2 col-md-3">
             <div class="blog-card">
-              <img src="images/a4.gif" alt="" class="blog-thumbnail">
+              <img src="/images/a4.gif" alt="" class="blog-thumbnail">
               <div class="blog-container text-center">
                 <h5 class="mt-2"><b>이환 역</b></h5>
                 <p class="text-muted">허영손</p>
               </div>
             </div>
           </div>
-          <div class="col-md-2">
+          <div class="col-lg-2 col-md-3">
             <div class="blog-card">
-              <img src="images/a9.gif" alt="" class="blog-thumbnail">
+              <img src="/images/a9.gif" alt="" class="blog-thumbnail">
               <div class="blog-container text-center">
                 <h5 class="mt-2"><b>이환 역</b></h5>
                 <p class="text-muted">강은빈</p>
               </div>
             </div>
           </div>
-          <div class="col-md-2">
+          <div class="col-lg-2 col-md-3">
             <div class="blog-card">
-              <img src="images/a13.gif" alt="" class="blog-thumbnail">
+              <img src="/images/a13.gif" alt="" class="blog-thumbnail">
               <div class="blog-container text-center">
                 <h5 class="mt-2"><b>이환 역</b></h5>
                 <p class="text-muted">정지우</p>
               </div>
             </div>
           </div>
-          <div class="col-md-2">
+          <div class="col-lg-2 col-md-3">
             <div class="blog-card">
-              <img src="images/a5.gif" alt="" class="blog-thumbnail">
+              <img src="/images/a5.gif" alt="" class="blog-thumbnail">
               <div class="blog-container text-center">
                 <h5 class="mt-2"><b>서정인 역</b></h5>
                 <p class="text-muted">오세미</p>
               </div>
             </div>
           </div>
-          <div class="col-md-2">
+          <div class="col-lg-2 col-md-3">
             <div class="blog-card">
-              <img src="images/a10.gif" alt="" class="blog-thumbnail">
+              <img src="/images/a10.gif" alt="" class="blog-thumbnail">
               <div class="blog-container text-center">
                 <h5 class="mt-2"><b>서정인 역</b></h5>
                 <p class="text-muted">한서희</p>
@@ -387,42 +386,42 @@
           </div>
         </div>
       </div>
-      <div class="d-flex justify-content-center" style="font-family: 'Oswald', sans-serif !important;">
-        <h2 style="color: #fff; border-bottom: 10px #ffb000 solid; padding-bottom: 8px; font-size: 3rem; font-weight: bold;">MD</h2>
+      <div class="d-flex justify-content-center" style="display: inline;background: #ccc;font-family: 'Oswald', sans-serif !important;height: 240px;background: #232321;padding-top: 170px; margin-bottom: 240px;">
+        <h1 style="color: #fff;border-bottom: 10px #ffb000 solid;padding-bottom: 8px;font-size: 5rem;font-weight: bold;margin: auto;">MD</h1>
       </div>
-      <div class="container my-5">
+      <div class="container my-5 px-5">
         <br>
         <div class="row">
-          <div class="col-md-3">
+          <div class="col-lg-3 col-md-6">
             <div class="blog-card">
-              <img src="images/md1.png" alt="" class="blog-thumbnail">
+              <img src="/images/md1.png" alt="" class="blog-thumbnail">
               <div class="blog-container text-center">
                 <h5 class="mt-2"><b>노트</b></h5>
                 <p class="text-muted">10,000원</p>
               </div>
             </div>
           </div>
-          <div class="col-md-3">
+          <div class="col-lg-3 col-md-6">
             <div class="blog-card">
-              <img src="images/md2.png" alt="" class="blog-thumbnail">
+              <img src="/images/md2.png" alt="" class="blog-thumbnail">
               <div class="blog-container text-center">
                 <h5 class="mt-2"><b>파우치</b></h5>
                 <p class="text-muted">10,000원</p>
               </div>
             </div>
           </div>
-          <div class="col-md-3">
+          <div class="col-lg-3 col-md-6">
             <div class="blog-card">
-              <img src="images/md3.png" alt="" class="blog-thumbnail">
+              <img src="/images/md3.png" alt="" class="blog-thumbnail">
               <div class="blog-container text-center">
                 <h5 class="mt-2"><b>그립톡</b></h5>
                 <p class="text-muted">10,000원</p>
               </div>
             </div>
           </div>
-          <div class="col-md-3">
+          <div class="col-lg-3 col-md-6">
             <div class="blog-card">
-              <img src="images/md4.png" alt="" class="blog-thumbnail">
+              <img src="/images/md4.png" alt="" class="blog-thumbnail">
               <div class="blog-container text-center">
                 <h5 class="mt-2"><b>뱃지</b></h5>
                 <p class="text-muted">10,000원</p>
@@ -431,60 +430,60 @@
           </div>
         </div>
       </div>
-      <div class="d-flex justify-content-center" style="font-family: 'Oswald', sans-serif !important;">
-        <h2 style="color: #fff; border-bottom: 10px #ffb000 solid; padding-bottom: 8px; font-size: 3rem; font-weight: bold;">ITEMS</h2>
+      <div class="d-flex justify-content-center" style="display: inline;background: #ccc;font-family: 'Oswald', sans-serif !important;height: 240px;background: #232321;padding-top: 170px; margin-bottom: 240px;">
+        <h1 style="color: #fff;border-bottom: 10px #ffb000 solid;padding-bottom: 8px;font-size: 5rem;font-weight: bold;margin: auto;">ITEMS</h1>
       </div>
-      <div class="container my-5">
+      <div class="container my-5 px-5">
         <br>
         <div class="row">
-          <div class="col-md-3">
+          <div class="col-lg-3 col-md-6">
             <div class="blog-card">
-              <img src="images/md5.png" alt="" class="blog-thumbnail">
+              <img src="/images/md5.png" alt="" class="blog-thumbnail">
               <div class="blog-container text-center">
                 <h5 class="mt-2"><b>스토리북</b></h5>
                 <!-- <p class="text-muted">10,000원</p> -->
               </div>
             </div>
           </div>
-          <div class="col-md-3">
+          <div class="col-lg-3 col-md-6">
             <div class="blog-card">
-              <img src="images/md6.png" alt="" class="blog-thumbnail">
+              <img src="/images/md6.png" alt="" class="blog-thumbnail">
               <div class="blog-container text-center">
                 <h5 class="mt-2"><b>악보</b></h5>
                 <!-- <p class="text-muted">10,000원</p> -->
               </div>
             </div>
           </div>
-          <div class="col-md-3">
+          <div class="col-lg-3 col-md-6">
             <div class="blog-card">
-              <img src="images/md7.png" alt="" class="blog-thumbnail">
+              <img src="/images/md7.png" alt="" class="blog-thumbnail">
               <div class="blog-container text-center">
                 <h5 class="mt-2"><b>프로그램북</b></h5>
                 <!-- <p class="text-muted">10,000원</p> -->
               </div>
             </div>
           </div>
-          <div class="col-md-3">
+          <div class="col-lg-3 col-md-6">
             <div class="blog-card">
-              <img src="images/md8.png" alt="" class="blog-thumbnail">
+              <img src="/images/md8.png" alt="" class="blog-thumbnail">
               <div class="blog-container text-center">
                 <h5 class="mt-2"><b>만우절 기념 A클래스 도장</b></h5>
                 <!-- <p class="text-muted">10,000원</p> -->
               </div>
             </div>
           </div>
-          <div class="col-md-3">
+          <div class="col-lg-3 col-md-6">
             <div class="blog-card">
-              <img src="images/md9.png" alt="" class="blog-thumbnail">
+              <img src="/images/md9.png" alt="" class="blog-thumbnail">
               <div class="blog-container text-center">
                 <h5 class="mt-2"><b>졸업장 & PASS 도장</b></h5>
                 <!-- <p class="text-muted">10,000원</p> -->
               </div>
             </div>
           </div>
-          <div class="col-md-3">
+          <div class="col-lg-3 col-md-6">
             <div class="blog-card">
-              <img src="images/md10.png" alt="" class="blog-thumbnail">
+              <img src="/images/md10.png" alt="" class="blog-thumbnail">
               <div class="blog-container text-center">
                 <h5 class="mt-2"><b>심야 반톡방 이벤트</b></h5>
                 <!-- <p class="text-muted">10,000원</p> -->
@@ -495,7 +494,6 @@
       </div>
     </div>
   </div>
-</div>
 <!-- S: footer -->
 <div th:include="common/footer.html"></div>
 <!-- E: footer -->
