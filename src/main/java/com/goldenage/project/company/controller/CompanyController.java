@@ -5,10 +5,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/company/*")
+@RequestMapping("/company")
 public class CompanyController {
 
-    @GetMapping("/user/view")
+    @GetMapping("/company")
     public String company(){
 
         return "/company";
