@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.goldenage.project.notice.model.dao.NoticeMapper">
+
+    <resultMap id="noticeResultMap" type="NoticeDTO">
+        <id property="noticeNo" column="NOTICE_NO"/>
+        <result property="noticeName" column="NOTICE_NAME"/>
+        <result property="noticeContent" column="NOTICE_CONTENT"/>
+        <result property="noticeRegistDate" column="NOTICE_REGIST_DATE"/>
+        <result property="noticeModifyDate" column="NOTICE_MODIFY_DATE"/>
+        <result property="noticeLink" column="NOTICE_LINK"/>
+        <result property="noticeCount" column="NOTICE_COUNT"/>
+        <collection property="noticeFile" ofType="NoticeFileDTO">
+            <result property="noticeNo" column="NOTICE_NO"/>
+            <result property="noticeFileNum" column="NOTICE_FILE_NUM"/>
+            <result property="noticeOriName" column="NOTICE_ORI_NAME"/>
+            <result property="noticeFileName" column="NOTICE_FILE_NAME"/>
+            <result property="savedPath" column="SAVED_PATH"/>
+        </collection>
+    </resultMap>
+
+    <select id="selectNoticeList" resultMap="noticeResultMap">
+        SELECT
+               NOTICE_NO
+             , NOTICE_NAME
+             , NOTICE_REGIST_DATE
+          FROM NOTICE
+    </select>
+</mapper>

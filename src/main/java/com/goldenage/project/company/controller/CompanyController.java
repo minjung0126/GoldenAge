@@ -16,19 +16,19 @@ import javax.servlet.http.HttpServletRequest;
 @RequestMapping("/company")
 public class CompanyController {
 
-    private final CompanyServiceImpl CompanyService;
+    private final CompanyServiceImpl companyService;
 
     @Autowired
     public CompanyController(CompanyServiceImpl companyService){
 
-        this.CompanyService = companyService;
+        this.companyService = companyService;
     }
 
     // 방문자 회사 뷰 화면
     @GetMapping("/company")
     public ModelAndView company(ModelAndView mv){
 
-        CompanyDTO comInfo = CompanyService.selectComInfo();
+        CompanyDTO comInfo = companyService.selectComInfo();
 
         mv.addObject("comInfo",comInfo);
 
@@ -38,7 +38,7 @@ public class CompanyController {
     @GetMapping("/company_update")
     public ModelAndView companyUpdate(ModelAndView mv){
 
-        CompanyDTO comInfo = CompanyService.selectComInfos();
+        CompanyDTO comInfo = companyService.selectComInfos();
 
         mv.addObject("comInfo",comInfo);
 

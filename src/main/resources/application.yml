@@ -54,7 +54,8 @@ spring:
 mybatis:
   mapper-locations: mappers/**/*.xml
   type-aliases-package: com.goldenage.project.login.model.dto,
-                        com.goldenage.project.company.model.dto
+                        com.goldenage.project.company.model.dto,
+                        com.goldenage.project.notice.model.dto
 
 
 
