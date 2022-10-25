@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -85,7 +85,16 @@
       <li><a href="./marketing.html">MARKETING</a></li>
       <li><a href="./theater.html">THEATER</a></li>
       <li><a href="./notice.html">NOTICE</a></li>
-      <li><a th:href="@{admin/login}">LOGIN</a></li>
+
+      <th:block sec:authorize="isAnonymous()">
+        <li><a th:href="@{/admin/loginPage}">LOGIN</a></li>
+      </th:block>
+
+      <th:block sec:authorize="isAuthenticated()">
+        <li><span sec:authentication="principal.name"></span></li>
+        <li><a th:href="@{/}">LOGOUT</a></li>
+      </th:block>
+
     </ul>
   </div>
 </div>
