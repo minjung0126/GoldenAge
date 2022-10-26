@@ -31,8 +31,14 @@ public class NoticeServiceImpl implements NoticeService{
     @Override
     public NoticeDTO selectNoticeDetail(int noticeNo) {
 
-        NoticeDTO noticeDetail = noticeMapper.selectNoticeDetail(noticeNo);
+        NoticeDTO noticeDetail = null;
 
+        int result = noticeMapper.incrementNoticeCount(noticeNo);
+
+        if(result > 0) {
+
+            noticeDetail = noticeMapper.selectNoticeDetail(noticeNo);
+        }
         return noticeDetail;
 
     }

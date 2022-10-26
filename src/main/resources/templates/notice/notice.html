@@ -49,6 +49,9 @@
           border-left: none;
           border-right: none;
         }
+        .notionTr{
+          height : 30px;
+        }
         .thead{
           color: #fff;
         }
@@ -127,29 +130,42 @@
     </table>
   </div>
   <div>
-    <button class="btn" type="button" style="color:gold; float: right;" onclick="location.href='./notice_insert.html'">작성하기</button>
-  </div>
+    <button class="btn" type="button" style="color:gold; float: right;" th:onclick="'location.href=\'/notice/insert\''">작성하기</button>
+  </div>th:href="@{/product/detailPage}"
   <div id="paging" class="pagination d-flex justify-content-center">
-    <button type="button" class="mx-2"><img src="images/arrow_l_end.gif" alt=""></button>
-    <button type="button" class="mx-2"><img src="images/arrow_l.gif" alt=""></button>
-    <a href="#">1</a>
-    <a class="active" href="#">2</a>
-    <a href="#">3</a>
-    <a href="#">4</a>
-    <a href="#">5</a>
-    <button type="button" class="mx-2"><img src="images/arrow_r.gif" alt=""></button>
-    <button type="button" class="mx-2"><img src="images/arrow_r_end.gif" alt=""></button>
+    <button type="button" class="mx-2"
+            th:onclick="'location.href=\'/notice/notice?currentPage='+ @{${selectCriteria.startPage}} +  '\''"
+            th:disabled="${selectCriteria.pageNo == 1}" >
+      <img src="images/arrow_l_end.gif" alt=""></button>
+    <button type="button" class="mx-2"
+            th:onclick="'location.href=\'/notice/notice?currentPage='+ @{${selectCriteria.pageNo - 1}} +  '\''"
+            th:disabled="${selectCriteria.pageNo == 1}">
+      <img src="images/arrow_l.gif" alt=""></button>
+    <th:block th:each="page : ${#numbers.sequence(selectCriteria.startPage, selectCriteria.endPage)}">
+    <a
+       th:text="${ page }"
+       th:onclick="'location.href=\'/notice/notice?currentPage='+ @{${page}} + '\''"
+       th:disabled="${ selectCriteria.pageNo eq page }"></a>
+    </th:block>
+    <button type="button" class="mx-2"
+            th:onclick="'location.href=\'/notice/notice?currentPage='+ @{${selectCriteria.pageNo + 1}} +  '\''"
+            th:disabled="${selectCriteria.pageNo == selectCriteria.maxPage}">
+      <img src="images/arrow_r.gif" alt=""></button>
+    <button type="button" class="mx-2"
+            th:onclick="'location.href=\'/notice/notice?currentPage='+ @{${selectCriteria.maxPage}} + '\''"
+            th:disabled="${selectCriteria.pageNo == selectCriteria.maxPage}">
+      <img src="images/arrow_r_end.gif" alt=""></button>
   </div>
 </div><!-- container close -->
 <!-- S: footer -->
 <div th:include="common/footer.html"></div>
 <!-- E: footer -->
 <script>
-  if(document.getElementsByTagName("td")) {
-    const $tds = document.getElementsByTagName("td");
-    for (let i = 0; i < $tds.length; i++) {
+  if(document.getElementsByTagName("tr")) {
+    const $trs = document.getElementsByTagName("tr");
+    for (let i = 0; i < $trs.length; i++) {
 
-      $tds[i].onclick = function () {
+      $trs[i].onclick = function () {
         const noticeNo = this.parentNode.children[0].innerText;
         location.href = "/notice/notice_view?noticeNo=" + noticeNo
       }

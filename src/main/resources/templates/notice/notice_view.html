@@ -11,7 +11,7 @@
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <style>
-        .container{background-image: none;background-color: black;}
+        .container{background-image: none;background-color: black; padding-top: 100px;}
         .main{height: auto;text-align: center;}
         .table{color: #fff;}
     </style>
@@ -46,22 +46,20 @@
                 </tr>
                 <tr>
                     <th>본문링크</th>
-                    <td class="align-left">
+                    <td class="align-left" th:url="${ noticeDetail.noticeLink }">
                       뉴스 보러가는 링크 위치
                     </td>
                   </tr>
-                <tr>
+                <tr th:if="${ noticeDetail.noticeFile.noticeOriName != null }">
                   <th>첨부파일</th>
-                  <td class="align-left">
-                    첨부파일입니당
-                  </td>
+                  <td class="align-left"><a th:href="|/uploadFiles/${ noticeDetail.noticeFile.getNoticeFileName() }|" th:text="${ noticeDetail.noticeFile.getNoticeOriName() }" download></a></td>
                 </tr>
               </tbody>
             </table>
             <div style="float: right;">
-                <button class="btn" type="submit" style="color:gold">수정</button>
-                <button class="btn" type="submit" style="color:gold">삭제</button>
-                <button class="btn" type="button" style="color:gold" onclick="location.href='./notice_insert.html'">이전</button>
+                <button class="btn" type="submit" style="color:gold" th:onclick="'location.href=\'/notice/update?noticeNo='+ @{${ noticeDetail.noticeNo }} + '\''">수정</button>
+                <button class="btn" type="submit" style="color:gold" th:onclick="'location.href=\'/notice/delete?noticeNo='+ @{${ noticeDetail.noticeNo }} + '\''">삭제</button>
+                <button class="btn" type="button" style="color:gold" th:onclick="'location.href=\'/notice/notice\''">이전</button>
               </div>
           </div>
       </div>

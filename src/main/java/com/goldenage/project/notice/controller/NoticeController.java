@@ -31,6 +31,7 @@ public class NoticeController {
         this.noticeService = noticeService;
     }
 
+    // 공지사항 리스트
     @GetMapping("/notice")
     public ModelAndView noticeList(ModelAndView mv,  HttpServletRequest request){
 
@@ -48,13 +49,9 @@ public class NoticeController {
         searchMap.put("searchCondition", searchCondition);
         searchMap.put("searchValue", searchValue);
 
-        log.info("[NoticeController] searchMap = " + searchMap);
-
         int totalCount = noticeService.selectTotalCount(searchMap);
 
-        log.info("[NoticeController] totalCount = " + totalCount);
-
-        int limit = 6;
+        int limit = 5;
         int buttonAmount = 5;
 
         SelectCriteria selectCriteria = null;
@@ -74,10 +71,11 @@ public class NoticeController {
         return mv;
     }
 
+    // 공지사항 상세보기
     @GetMapping("/notice_view")
     public ModelAndView noticeDetail(ModelAndView mv, HttpServletRequest request){
 
-        int noticeNo = Integer.parseInt(request.getParameter("noticeNo"));
+        int noticeNo = 2;
 
         log.info("noticeNo 무엇 : " + noticeNo);
         NoticeDTO noticeDetail = noticeService.selectNoticeDetail(noticeNo);
@@ -86,5 +84,12 @@ public class NoticeController {
         mv.setViewName("/notice/notice_view");
 
         return mv;
+    }
+
+    //관리자 공지사항 등록페이지 보기
+    @GetMapping("/insert")
+    public String noticeInsertPage(){
+
+        return "/notice/notice_insert";
     }
 }

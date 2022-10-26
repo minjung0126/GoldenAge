@@ -1,9 +1,15 @@
 package com.goldenage.project.login.model.dao;
 
+import com.goldenage.project.login.model.dto.AdminDTO;
+import com.goldenage.project.login.model.dto.AdminDTOImpl;
+import com.goldenage.project.login.model.dto.AuthDTO;
 import org.apache.ibatis.annotations.Mapper;
-import org.springframework.security.core.userdetails.UserDetails;
+
+import java.util.List;
 
 @Mapper
 public interface AdminMapper {
-    UserDetails getUsername(String username);
+    AdminDTO selectAdminDTO(String username);
+
+    List<AuthDTO> selectAuthDTO();
 }

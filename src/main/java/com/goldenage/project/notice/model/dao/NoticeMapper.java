@@ -14,4 +14,6 @@ public interface NoticeMapper {
     NoticeDTO selectNoticeDetail(int noticeNo);
 
     int selectTotalCount(Map<String, String> searchMap);
+
+    int incrementNoticeCount(int noticeNo);
 }
