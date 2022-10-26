@@ -28,12 +28,8 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-        System.out.println("adminId : " + username);
-
         AdminDTO adminDTO = adminMapper.selectAdminDTO(username);
         List <AuthDTO> authDTO = adminMapper.selectAuthDTO();
-        System.out.println("adminDTO : " + adminDTO);
-        System.out.println("authDTO : " + authDTO);
 
         if(adminDTO == null){
             throw new UsernameNotFoundException("admin not authorized.");
@@ -54,7 +50,8 @@ public class AdminServiceImpl implements AdminService {
 
         AdminDTOImpl admin = new AdminDTOImpl(adminDTO.getAdminId(), adminDTO.getAdminPwd(), authorities);
         admin.setDetails(adminDTO);
-
+        System.out.println("admin : " +authorities);
+        System.out.println("admin : " +admin);
         return admin;
     }
 }
