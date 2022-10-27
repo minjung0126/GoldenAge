@@ -10,17 +10,17 @@ public class AdminDTO {
     private String adminPwd;
     private String adminEmail;
     private int authCode;
-    private List<AuthDTO> authDTO;
-
+    private String authNum;
     public AdminDTO(){}
-    public AdminDTO(int adminNum, String adminName, String adminId, String adminPwd, String adminEmail, int authCode, List<AuthDTO> authDTO) {
+
+    public AdminDTO(int adminNum, String adminName, String adminId, String adminPwd, String adminEmail, int authCode, String authNum) {
         this.adminNum = adminNum;
         this.adminName = adminName;
         this.adminId = adminId;
         this.adminPwd = adminPwd;
         this.adminEmail = adminEmail;
         this.authCode = authCode;
-        this.authDTO = authDTO;
+        this.authNum = authNum;
     }
 
     public int getAdminNum() {
@@ -71,12 +71,12 @@ public class AdminDTO {
         this.authCode = authCode;
     }
 
-    public List<AuthDTO> getAuthDTO() {
-        return authDTO;
+    public String getAuthNum() {
+        return authNum;
     }
 
-    public void setAuthDTO(List<AuthDTO> authDTO) {
-        this.authDTO = authDTO;
+    public void setAuthNum(String authNum) {
+        this.authNum = authNum;
     }
 
     @Override
@@ -88,7 +88,7 @@ public class AdminDTO {
                 ", adminPwd='" + adminPwd + '\'' +
                 ", adminEmail='" + adminEmail + '\'' +
                 ", authCode=" + authCode +
-                ", authDTO=" + authDTO +
+                ", authNum='" + authNum + '\'' +
                 '}';
     }
 }

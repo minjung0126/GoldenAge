@@ -24,12 +24,16 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.2.2'
     implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
-    implementation 'org.projectlombok:lombok:1.18.22'
+    implementation 'org.projectlombok:lombok:1.18.24'
+    implementation 'de.vinado.boot:mail-extensions-dkim-javamail-spring-boot-starter:2.0.0'
+    implementation 'de.vinado.spring:dkim-javamail:1.2.2'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
     runtimeOnly 'mysql:mysql-connector-java'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.security:spring-security-test'
     implementation 'org.springframework.boot:spring-boot-starter-log4j2'
+    implementation group: 'com.sun.mail', name: 'javax.mail', version: '1.6.2'
+    implementation 'org.springframework.boot:spring-boot-starter-mail'
 }
 
 tasks.named('test') {

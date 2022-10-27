@@ -2,7 +2,8 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.goldenage.project.login.model.dao.AdminMapper">
+
+<mapper namespace="com.goldenage.project.email.model.dao.EmailMapper">
     <resultMap id="adminResultMap" type="com.goldenage.project.login.model.dto.AdminDTO">
         <id property="adminNum" column="ADMIN_NUM"/>
         <result property="adminName" column="ADMIN_NAME"/>
@@ -13,17 +14,15 @@
         <result property="authNum" column="AUTH_NUM"/>
     </resultMap>
 
-    <resultMap id="authDTOresultMap" type="com.goldenage.project.login.model.dto.AuthDTO">
-        <id property="authCode" column="AUTH_CODE"/>
-        <result property="authName" column="AUTH_NAME"/>
-    </resultMap>
-
-    <select id="selectAdminDTO" resultMap="adminResultMap">
+    <select id="selectEmail" resultMap="adminResultMap">
         SELECT * FROM ADMIN
-        WHERE ADMIN_ID = #{ adminId }
+        WHERE ADMIN_ID = #{ id }
     </select>
 
-    <select id="selectAuthDTO" resultMap="authDTOresultMap">
-        SELECT  * FROM AUTH_CODE
-    </select>
+    <update id="updateAuthNum">
+        UPDATE ADMIN
+        SET AUTH_NUM = #{ authNum }
+        WHERE ADMIN_ID = #{ id }
+          AND ADMIN_EMAIL = #{ dbEmail  }
+    </update>
 </mapper>
