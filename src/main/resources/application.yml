@@ -42,8 +42,8 @@ spring:
         mail.smtp.auth: true
         mail.smtp.ssl.enable: true
         mail.smtp.ssl.trust: smtp.naver.com
-      username: ybusiness39
-      password: K91KVSCJ7MBC
+      username: intectme
+      password: Tnekaos3!!
 
 
 # 파일, 이미지 업로드시 저장될 폴더 설정
