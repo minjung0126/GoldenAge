@@ -8,4 +8,6 @@ public interface CompanyMapper {
     CompanyDTO selectComInfo();
 
     CompanyDTO selectComInfos();
+
+    int updateComInfo(CompanyDTO company);
 }

@@ -26,4 +26,13 @@
                *
           FROM COMPANY
     </select>
+    <update id="updateComInfo" parameterType="CompanyDTO">
+        UPDATE
+               COMPANY
+           SET ADDRESS = #{ address }
+             , PHONE = #{ phone }
+             , EMAIL = #{ email }
+             , INSTAGRAM = #{ instagram }
+             , TWITTER = #{ twitter }
+    </update>
 </mapper>

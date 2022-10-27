@@ -7,4 +7,6 @@ public interface CompanyService {
     CompanyDTO selectComInfo();
 
     CompanyDTO selectComInfos();
+
+    int updateCompany(CompanyDTO company);
 }

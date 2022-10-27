@@ -30,4 +30,13 @@ public class CompanyServiceImpl implements CompanyService{
 
         return comInfo;
     }
+
+    @Override
+    public int updateCompany(CompanyDTO company) {
+
+        int result = companyMapper.updateComInfo(company);
+
+        return result;
+
+    }
 }
