@@ -38,6 +38,7 @@ public class CompanyController {
         CompanyDTO comInfo = companyService.selectComInfo();
 
         mv.addObject("comInfo",comInfo);
+        mv.setViewName("/company/company");
 
         return mv;
     }
@@ -49,6 +50,7 @@ public class CompanyController {
         CompanyDTO comInfo = companyService.selectComInfos();
 
         mv.addObject("comInfo",comInfo);
+        mv.setViewName("/company/company_update");
 
         return mv;
     }
@@ -58,17 +60,14 @@ public class CompanyController {
                                       , ModelAndView mv
                                       , RedirectAttributes rttr){
 
-        System.out.println("company = " + company);
-        log.info("회사정보 못받아옴? " + company);
+        log.info("회사정보  " + company);
         int result = companyService.updateCompany(company);
-
-        log.info("회사정보 못받아옴? " + result);
 
         if(result > 0){
             rttr.addFlashAttribute("message", "회사정보 수정이 완료되었습니다..");
         }
 
-        mv.setViewName("/company");
+        mv.setViewName("redirect:/company/company");
 
         return mv;
     }

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -129,9 +130,11 @@
       </tbody>
     </table>
   </div>
+  <th:block sec:authorize="isAuthenticated()">
   <div>
     <button class="btn" type="button" style="color:gold; float: right;" th:onclick="'location.href=\'/notice/insert\''">작성하기</button>
-  </div>th:href="@{/product/detailPage}"
+  </div>
+  </th:block>
   <div id="paging" class="pagination d-flex justify-content-center">
     <button type="button" class="mx-2"
             th:onclick="'location.href=\'/notice/notice?currentPage='+ @{${selectCriteria.startPage}} +  '\''"
@@ -160,13 +163,13 @@
 <!-- S: footer -->
 <div th:include="common/footer.html"></div>
 <!-- E: footer -->
-<script>
+<script th:inline="javascript">
   if(document.getElementsByTagName("tr")) {
     const $trs = document.getElementsByTagName("tr");
     for (let i = 0; i < $trs.length; i++) {
 
       $trs[i].onclick = function () {
-        const noticeNo = this.parentNode.children[0].innerText;
+        const noticeNo = this.children[0].innerHTML;
         location.href = "/notice/notice_view?noticeNo=" + noticeNo
       }
     }

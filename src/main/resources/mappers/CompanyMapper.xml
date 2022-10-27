@@ -29,10 +29,22 @@
     <update id="updateComInfo" parameterType="CompanyDTO">
         UPDATE
                COMPANY
-           SET ADDRESS = #{ address }
-             , PHONE = #{ phone }
-             , EMAIL = #{ email }
-             , INSTAGRAM = #{ instagram }
-             , TWITTER = #{ twitter }
+        <trim prefix="SET" prefixOverrides=",">
+            <if test='address != null and address != ""'>
+                ,  ADDRESS =#{ address }
+            </if>
+            <if test='phone != null and phone !=""'>
+                , PHONE = #{ phone }
+            </if>
+            <if test='email != null and email !=""'>
+                , EMAIL = #{ email }
+            </if>
+            <if test='instagram != null and instagram !=""'>
+                , INSTAGRAM = #{ instagram }
+            </if>
+            <if test='twitter != null and twitter !=""'>
+                , TWITTER = #{ twitter }
+            </if>
+        </trim>
     </update>
 </mapper>

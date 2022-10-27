@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -59,9 +60,11 @@
             <a th:href="${ comInfo.instagram }" class="card-link" style="color: #fff;">인스타그램</a>
             <a th:href="${ comInfo.twitter }" class="card-link" style="color: #fff;">트위터</a>
           </div>
+          <th:block sec:authorize="isAuthenticated()">
           <div class="text-center py-2">
             <a href="/company/company_update" class="btn btn-warning btn-lg text-white" style="font-family: 'Oswald', sans-serif; font-weight: bold;">수정하기</a>
           </div>
+          </th:block>
         </div>
       </div><!-- contect close --> 
     </div><!-- container close -->

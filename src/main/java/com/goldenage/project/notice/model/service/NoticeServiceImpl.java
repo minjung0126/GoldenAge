@@ -3,6 +3,8 @@ package com.goldenage.project.notice.model.service;
 import com.goldenage.project.notice.model.dao.NoticeMapper;
 import com.goldenage.project.notice.model.dto.NoticeDTO;
 import com.goldenage.project.paging.SelectCriteria;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +15,8 @@ import java.util.Map;
 public class NoticeServiceImpl implements NoticeService{
 
     private NoticeMapper noticeMapper;
+
+    private final Logger log = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
     public NoticeServiceImpl(NoticeMapper noticeMapper){
@@ -35,10 +39,12 @@ public class NoticeServiceImpl implements NoticeService{
 
         int result = noticeMapper.incrementNoticeCount(noticeNo);
 
+        log.info("값이 오나요 " + result);
         if(result > 0) {
 
             noticeDetail = noticeMapper.selectNoticeDetail(noticeNo);
         }
+        log.info("값이 오나요 " + noticeDetail);
         return noticeDetail;
 
     }

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -27,7 +28,7 @@
             <h3 class="text-start" style="color: #fff; border-bottom: 3px gold solid; padding-bottom: 8px;">공지사항</h3>
 			<br>
       <div class="views">
-        <p style="float: right; color: gold;" th:text="${ noticeDetail.noticeCount }">조회수 : </p>
+        <p style="float: right; color: gold;" th:text="| 조회수 : ${ noticeDetail.noticeCount }|"></p>
         
       </div>
             <table class="table">
@@ -57,8 +58,10 @@
               </tbody>
             </table>
             <div style="float: right;">
+              <th:block sec:authorize="isAuthenticated()">
                 <button class="btn" type="submit" style="color:gold" th:onclick="'location.href=\'/notice/update?noticeNo='+ @{${ noticeDetail.noticeNo }} + '\''">수정</button>
                 <button class="btn" type="submit" style="color:gold" th:onclick="'location.href=\'/notice/delete?noticeNo='+ @{${ noticeDetail.noticeNo }} + '\''">삭제</button>
+              </th:block>
                 <button class="btn" type="button" style="color:gold" th:onclick="'location.href=\'/notice/notice\''">이전</button>
               </div>
           </div>
