@@ -9,10 +9,21 @@
         <result property="adminId" column="ADMIN_ID"/>
         <result property="adminPwd" column="ADMIN_PWD"/>
         <result property="adminEmail" column="ADMIN_EMAIL"/>
+        <result property="authCode" column="AUTH_CODE"/>
+        <collection property="authDTO" resultMap="authDTOresultMap"/>
     </resultMap>
 
-    <select id="getUsername" resultMap="adminResultMap">
+    <resultMap id="authDTOresultMap" type="com.goldenage.project.login.model.dto.AuthDTO">
+        <id property="authCode" column="AUTH_CODE"/>
+        <result property="authName" column="AUTH_NAME"/>
+    </resultMap>
+
+    <select id="selectAdminDTO" resultMap="adminResultMap">
         SELECT * FROM ADMIN
         WHERE ADMIN_ID = #{ adminId }
+    </select>
+
+    <select id="selectAuthDTO" resultMap="authDTOresultMap">
+        SELECT  * FROM AUTH_CODE
     </select>
 </mapper>
