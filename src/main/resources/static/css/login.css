@@ -53,12 +53,13 @@ header {
 #email-submit, #auth-submit {
   width: 18%;
   height: 100%;
-  margin: 0px 0px 0px 3px;
-  padding: 13px 17px 12px 17px;
+  margin: 5px 0px 5px 3px;
+  padding: 11px 14px 11px 14px;
   border-radius: 5px 5px 5px 5px;
   background-color: rgb(255,192,7);
   color: white;
   border: 0px;
+  font-size: 16px;
 }
 
 #login, #fix-pwd {
