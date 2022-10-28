@@ -14,7 +14,6 @@ public class AdminDTOImpl extends User{
     private String adminPwd;
     private String adminEmail;
     private int authCode;
-    private List<AuthDTO> authDTO;
 
     public AdminDTOImpl(String username, String password, Collection<? extends GrantedAuthority> authorities) {
         super(username, password, authorities);
@@ -28,7 +27,6 @@ public class AdminDTOImpl extends User{
         this.adminName = adminDTO.getAdminName();
         this.adminNum = adminDTO.getAdminNum();
         this.adminPwd = adminDTO.getAdminPwd();
-        this.authDTO = adminDTO.getAuthDTO();
     }
 
     public int getAdminNum() {
@@ -79,14 +77,6 @@ public class AdminDTOImpl extends User{
         this.authCode = authCode;
     }
 
-    public List<AuthDTO> getAuthDTO() {
-        return authDTO;
-    }
-
-    public void setAuthDTO(List<AuthDTO> authDTO) {
-        this.authDTO = authDTO;
-    }
-
     @Override
     public String toString() {
         return "AdminDTO{" +
@@ -96,7 +86,6 @@ public class AdminDTOImpl extends User{
                 ", adminPwd='" + adminPwd + '\'' +
                 ", adminEmail='" + adminEmail + '\'' +
                 ", authCode=" + authCode +
-                ", authDTO=" + authDTO +
                 '}';
     }
 

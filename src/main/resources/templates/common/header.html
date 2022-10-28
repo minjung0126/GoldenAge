@@ -110,7 +110,7 @@
 </style>
 <body>
 <div class="header">
-  <div class="logo"><a th:href="@{/}"><img src="/images/KakaoTalk_20221023_151900855.png" alt="" width="220px" style="vertical-align: middle;"></a></div>
+  <div class="logo"><a th:href="@{/}"><img src="/images/logo.png" alt="" width="220px" style="vertical-align: middle;"></a></div>
   <div class="nav">
     <ul style="margin-bottom: 0px;">
 
@@ -123,8 +123,7 @@
         <li><a th:href="@{/admin/loginPage}">LOGIN</a></li>
       </th:block>
       <th:block sec:authorize="isAuthenticated()">
-        <li style="color: white"><span sec:authentication="principal.username"></span>님 환영합니다.</li>
-        <button onclick="location.href='/logout'">로그아웃</button>
+        <li><a onclick="location.href='/logout'" id="logout" class="text-warning">LOGOUT</a></li>
       </th:block>
     </ul>
   </div>

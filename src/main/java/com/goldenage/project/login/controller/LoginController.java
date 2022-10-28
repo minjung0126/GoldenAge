@@ -16,12 +16,6 @@ public class LoginController {
         return "/admin/loginPage";
     }
 
-//    @PostMapping("/main")
-//    public String moveMain(){
-//
-//        return "/";
-//    }
-
     @GetMapping("/password")
     public String findPassword(){
 
