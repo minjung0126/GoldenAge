@@ -1,6 +1,7 @@
 package com.goldenage.project.notice.model.dao;
 
 import com.goldenage.project.notice.model.dto.NoticeDTO;
+import com.goldenage.project.notice.model.dto.NoticeFileDTO;
 import com.goldenage.project.paging.SelectCriteria;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -16,4 +17,8 @@ public interface NoticeMapper {
     int selectTotalCount(Map<String, String> searchMap);
 
     int incrementNoticeCount(int noticeNo);
+
+    int noticeInsert(NoticeDTO notice);
+
+    int noticeFileInsert(NoticeFileDTO noticeFile);
 }

@@ -1,12 +1,15 @@
 package com.goldenage.project.notice.model.service;
 
+import com.goldenage.project.exception.notice.NoticeInsertException;
 import com.goldenage.project.notice.model.dao.NoticeMapper;
 import com.goldenage.project.notice.model.dto.NoticeDTO;
+import com.goldenage.project.notice.model.dto.NoticeFileDTO;
 import com.goldenage.project.paging.SelectCriteria;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Map;
@@ -57,4 +60,29 @@ public class NoticeServiceImpl implements NoticeService{
 
         return result;
     }
+
+    /* 공지사항 등록 */
+    @Override
+    @Transactional
+    public int noticeInsert(NoticeDTO notice) throws NoticeInsertException {
+
+        int result = noticeMapper.noticeInsert(notice);
+
+        if(!(result > 0)) {
+
+            throw new NoticeInsertException("공지사항 등록 실패!");
+        }
+
+        return result;
+    }
+
+    /* 공지사항 파일 등록*/
+    @Override
+    @Transactional
+    public int noticeFileInsert(NoticeFileDTO noticeFile) {
+
+        return noticeMapper.noticeFileInsert(noticeFile);
+    }
+
+
 }

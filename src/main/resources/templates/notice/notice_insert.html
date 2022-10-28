@@ -26,7 +26,7 @@
         <div class="container-fluid" style="margin-top:30px">
             <h3 class="text-start" style="color: #fff; border-bottom: 3px gold solid; padding-bottom: 8px;">공지사항 작성하기</h3>
 			<br>
-          <form th:action="@{/notice/inset}" method="post" enctype="multipart/form-data">
+          <form th:action="@{/notice/insert}" method="post" enctype="multipart/form-data">
             <table class="table">
               <colgroup>
                 <col style="width:170px">
@@ -36,32 +36,32 @@
                 <tr>
                   <th><strong>제목</strong></th>
                   <td>
-                    <input type="text" placeholder="제목을 입력하세요"/>
+                    <input type="text" name="noticeName" placeholder="제목을 입력하세요"/>
                   </td>
                 </tr>
                 <tr>
                   <th>본문</th>
                   <td>
-                    <textarea></textarea>
+                    <textarea name="noticeContent"></textarea>
                   </td>
                 </tr>
                 <tr>
                     <th>본문링크</th>
                     <td>
-                      <input type="url"/>
+                      <input type="url" name="noticeLink"/>
                     </td>
                   </tr>
                 <tr>
                   <th>첨부파일</th>
                   <td>
-                    <input type="file"/>
+                    <input type="file" name="file"/>
                   </td>
                 </tr>
               </tbody>
             </table>
             <div style="float: right;">
                 <button class="btn" type="submit" style="color:gold">등록</button>
-                <button class="btn" type="button" style="color:gold" onclick="location.href='./notice.html'">이전</button>
+                <button class="btn" type="button" style="color:gold" th:onclick="'location.href=\'/notice/notice\''">이전</button>
               </div>
           </form>
           </div>

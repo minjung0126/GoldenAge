@@ -85,6 +85,7 @@
         , NOTICE_REGIST_DATE
         , NOTICE_MODIFY_DATE
         , NOTICE_LINK
+        , NOTICE_COUNT
         )
         VALUES
         (
@@ -94,23 +95,24 @@
         , DATE_FORMAT(now(), '%Y%m%d%H%i%s')
         , NULL
         , #{ noticeLink }
+        , 0
         )
     </insert>
-    <insert id="">
+    <insert id="noticeFileInsert">
         INSERT
         INTO NOTICE_FILE
         (
-          FILE_NO
-        , ORIGIN_NAME
-        , FILE_NAME
+          NOTICE_FILE_NUM
+        , NOTICE_ORI_NAME
+        , NOTICE_FILE_NAME
         , SAVED_PATH
         , NOTICE_NO
         )
         VALUES
         (
-          FILE_NO
-        , #{ originName }
-        , #{ fileName }
+          NOTICE_FILE_NUM
+        , #{ noticeOriName }
+        , #{ noticeFileName }
         , #{ savedPath }
         , #{ noticeNo }
         )
