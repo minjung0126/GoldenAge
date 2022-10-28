@@ -3,11 +3,12 @@
   src: url(font/abster-webfont.woff) format("woff");
 }
 */
-
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald&display=swap");
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+
 }
 
 body {
@@ -33,7 +34,7 @@ body {
   transform: translate(-50%, -50%);
   color: white;
   text-align: center;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-family: "Oswald", sans-serif;
 }
 
 .container .hero h2 {
