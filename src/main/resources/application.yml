@@ -36,7 +36,6 @@ spring:
     thymeleaf:
       cache: false
 
-
 # 파일, 이미지 업로드시 저장될 폴더 설정
   web:
     resources:
@@ -55,6 +54,7 @@ mybatis:
   mapper-locations: mappers/**/*.xml
   type-aliases-package: com.goldenage.project.login.model.dto
 
+#mail
 
 
 
