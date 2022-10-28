@@ -10,4 +10,6 @@ public interface EmailService {
     int updateAuthNum(String id, String dbEmail, String authNum);
 
     AdminDTO matchAuthNum(String id, String email);
+
+    int updatePassword(String id, String pw);
 }

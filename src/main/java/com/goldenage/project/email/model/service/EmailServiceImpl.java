@@ -43,4 +43,13 @@ public class EmailServiceImpl implements EmailService{
 
         return adminDTO;
     }
+
+    @Override
+    @Transactional
+    public int updatePassword(String id, String pw) {
+
+        int result = emailMapper.updatePassword(id, pw);
+
+        return result;
+    }
 }

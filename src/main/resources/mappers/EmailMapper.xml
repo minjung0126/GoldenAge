@@ -16,19 +16,25 @@
 
     <select id="selectEmail" resultMap="adminResultMap">
         SELECT * FROM ADMIN
-        WHERE ADMIN_ID = #{ id }
+         WHERE ADMIN_ID = #{ id }
     </select>
 
     <update id="updateAuthNum">
         UPDATE ADMIN
-        SET AUTH_NUM = #{ authNum }
-        WHERE ADMIN_ID = #{ id }
-          AND ADMIN_EMAIL = #{ dbEmail  }
+           SET AUTH_NUM = #{ authNum }
+         WHERE ADMIN_ID = #{ id }
+           AND ADMIN_EMAIL = #{ dbEmail  }
     </update>
 
     <select id="matchAuthNum" resultMap="adminResultMap">
         SELECT * FROM ADMIN
-        WHERE ADMIN_ID = #{ id }
-          AND ADMIN_EMAIL = #{ email }
+         WHERE ADMIN_ID = #{ id }
+           AND ADMIN_EMAIL = #{ email }
     </select>
+
+    <update id="updatePassword">
+        UPDATE ADMIN
+           SET ADMIN_PWD = #{ pw }
+         WHERE ADMIN_ID = #{ id }
+    </update>
 </mapper>

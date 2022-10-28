@@ -26,4 +26,5 @@
     <select id="selectAuthDTO" resultMap="authDTOresultMap">
         SELECT  * FROM AUTH_CODE
     </select>
+
 </mapper>

@@ -30,7 +30,7 @@ header {
   font-size: 40px;    
   font-weight: bold;
 }
-#id, #password, #login, #password-one, #password-two{
+#id, #password, #login, #password-one, #password-two, #fix-pwd{
   width: 100%;
   height: 100%;
   display: block;
@@ -59,7 +59,7 @@ header {
   border: 0px;
 }
 
-#login {
+#login, #fix-pwd {
   margin-top: 30px;
   background-color: rgb(255,192,7);
   border: none;
@@ -97,3 +97,4 @@ header {
 #dynamic.active::after {
   display: none;
 }
+

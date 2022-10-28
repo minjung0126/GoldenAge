@@ -4,11 +4,10 @@ import com.goldenage.project.email.model.service.EmailService;
 import com.goldenage.project.login.model.dto.AdminDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.mail.MessagingException;
 import java.io.UnsupportedEncodingException;
@@ -22,11 +21,14 @@ public class EmailController {
     private final EmailService emailService;
     private JavaMailSender mailSender;
 
+    private PasswordEncoder passwordEncoder;
+
     @Autowired
-    public EmailController(EmailService emailService, JavaMailSender mailSender){
+    public EmailController(EmailService emailService, JavaMailSender mailSender, PasswordEncoder passwordEncoder){
 
         this.mailSender = mailSender;
         this.emailService = emailService;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @PostMapping("/email")
@@ -129,6 +131,24 @@ public class EmailController {
         resultAjax.put("result", result);
 
         return resultAjax;
+    }
+
+    @PostMapping("/password")
+    public ModelAndView updatePassword(ModelAndView mv, @ModelAttribute AdminDTO adminDTO){
+
+        String id = adminDTO.getAdminId();
+        String pw = passwordEncoder.encode(adminDTO.getAdminPwd());
+
+        int result = emailService.updatePassword(id,pw);
+
+        if(result > 0){
+
+            mv.setViewName("/admin/loginPage");
+        } else {
+
+            mv.setViewName("/common/failure");
+        }
+        return mv;
     }
 }
 
