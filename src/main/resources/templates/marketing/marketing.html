@@ -112,13 +112,13 @@
       margin-bottom: 100px;
     }
 
-    /*.scroll{*/
-    /*  overflow: overlay;*/
-    /*}*/
-    .scroll::-webkit-scrollbar{
+    .scroll {
+      overflow: overlay;
+    }
+    .scroll::-webkit-scrollbar {
       width: 0.7vw;
     }
-    .scroll::-webkit-scrollbar-thumb{
+    .scroll::-webkit-scrollbar-thumb {
       background-color: hsla(0, 0%, 42%, 0.2);
     }
 
@@ -282,59 +282,11 @@
     <br>
     <br>
     <div class="row mt-5 mx-auto" style="padding-left: 20%; padding-right: 20%; padding-top: 9rem">
-      <div class="col-lg-4 col-md-6" style="height: 141.4%;">
+      <div th:each="marketing : ${ marketingList }" class="col-lg-4 col-md-6" style="height: 141.4%;">
         <div class="blog-card">
-          <a href="/marketing/detail" class="justify-content-center d-flex align-items-center"><h5 class="text-white thumbnailtxt p-auto d-flex align-items-center">
-            <b>연극 &lt;헤르츠클란&gt;</b></h5><img src="/images/p1.jpg" alt="" class="blog-thumbnail">
-          </a>
-        </div>
-      </div>
-      <div class="col-lg-4 col-md-6">
-        <div class="blog-card">
-          <a href="/marketing/detail" class="justify-content-center d-flex align-items-center"><h5 class="text-white thumbnailtxt p-auto d-flex align-items-center">
-            <b>연극 &lt;린다와 조이&gt;</b></h5><img src="/images/p2.jpg" alt="" class="blog-thumbnail">
-          </a>
-        </div>
-      </div>
-      <div class="col-lg-4 col-md-6">
-        <div class="blog-card">
-          <a href="/marketing/detail" class="justify-content-center d-flex align-items-center"><h5 class="text-white thumbnailtxt p-auto d-flex align-items-center">
-            <b>음악극 &lt;붉은머리 안&gt;</b></h5><img src="/images/p3.jpg" alt="" class="blog-thumbnail">
-          </a>
-        </div>
-      </div>
-      <div class="col-lg-4 col-md-6">
-        <div class="blog-card">
-          <a href="/marketing/detail" class="justify-content-center d-flex align-items-center"><h5 class="text-white thumbnailtxt p-auto d-flex align-items-center">
-            <b>바톤 콘서트</b></h5><img src="/images/t4.jpeg" alt="" class="blog-thumbnail">
-          </a>
-        </div>
-      </div>
-      <div class="col-lg-4 col-md-6" style="height: 141.4%;">
-        <div class="blog-card">
-          <a href="/marketing/detail" class="justify-content-center d-flex align-items-center"><h5 class="text-white thumbnailtxt p-auto d-flex align-items-center">
-            <b>연극 &lt;헤르츠클란&gt;</b></h5><img src="/images/p1.jpg" alt="" class="blog-thumbnail">
-          </a>
-        </div>
-      </div>
-      <div class="col-lg-4 col-md-6">
-        <div class="blog-card">
-          <a href="/marketing/detail" class="justify-content-center d-flex align-items-center"><h5 class="text-white thumbnailtxt p-auto d-flex align-items-center">
-            <b>연극 &lt;린다와 조이&gt;</b></h5><img src="/images/p2.jpg" alt="" class="blog-thumbnail">
-          </a>
-        </div>
-      </div>
-      <div class="col-lg-4 col-md-6">
-        <div class="blog-card">
-          <a href="/marketing/detail" class="justify-content-center d-flex align-items-center"><h5 class="text-white thumbnailtxt p-auto d-flex align-items-center">
-            <b>음악극 &lt;붉은머리 안&gt;</b></h5><img src="/images/p3.jpg" alt="" class="blog-thumbnail">
-          </a>
-        </div>
-      </div>
-      <div class="col-lg-4 col-md-6">
-        <div class="blog-card">
-          <a href="/marketing/detail" class="justify-content-center d-flex align-items-center"><h5 class="text-white thumbnailtxt p-auto d-flex align-items-center">
-            <b>바톤 콘서트</b></h5><img src="/images/t4.jpeg" alt="" class="blog-thumbnail">
+          <a href="#" class="justify-content-center d-flex align-items-center"><h5 class="text-white thumbnailtxt p-auto d-flex align-items-center">
+            <input type="hidden" id="num" th:value="${ marketing.mkNum }"/>
+            <b th:text="${ marketing.mkName }">연극 &lt;헤르츠클란&gt;</b></h5><img th:src="'/images/marketing/' + ${ marketing.mkFileMain }" src="/images/marketing/p1.jpg" alt="" class="blog-thumbnail">
           </a>
         </div>
       </div>
@@ -343,7 +295,30 @@
       <a href="#!" class="btn btn-warning btn-lg text-white" style="font-family: 'Oswald', sans-serif; font-weight: bold;">View All</a>
     </div>
   </div>
+<script>
+  $(document).ready(function(){
 
+    $(".blog-card img").click(function(){
+
+      let num = $(this).closest('a').find('#num').val();
+
+      // alert(num);
+      let form = document.createElement('form');
+
+      let mkNum = document.createElement('input');
+      mkNum.setAttribute('type', 'hidden');
+      mkNum.setAttribute('name', 'mkNum');
+      mkNum.setAttribute('value', num);
+
+      form.appendChild(mkNum);
+      form.setAttribute('method', 'get');
+      form.setAttribute('action', '/marketing/detail');
+      document.body.appendChild(form);
+      form.submit();
+
+    })
+  })
+</script>
   <!-- S: footer -->
   <div th:include="common/footer.html"></div>
   <!-- E: footer -->

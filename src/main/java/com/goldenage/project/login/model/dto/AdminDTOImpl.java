@@ -1,8 +1,12 @@
 package com.goldenage.project.login.model.dto;
 
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.User;
+
+import java.util.Collection;
 import java.util.List;
 
-public class AdminDTO {
+public class AdminDTOImpl extends User{
 
     private int adminNum;
     private String adminName;
@@ -10,17 +14,19 @@ public class AdminDTO {
     private String adminPwd;
     private String adminEmail;
     private int authCode;
-    private String authNum;
-    public AdminDTO(){}
 
-    public AdminDTO(int adminNum, String adminName, String adminId, String adminPwd, String adminEmail, int authCode, String authNum) {
-        this.adminNum = adminNum;
-        this.adminName = adminName;
-        this.adminId = adminId;
-        this.adminPwd = adminPwd;
-        this.adminEmail = adminEmail;
-        this.authCode = authCode;
-        this.authNum = authNum;
+    public AdminDTOImpl(String username, String password, Collection<? extends GrantedAuthority> authorities) {
+        super(username, password, authorities);
+    }
+
+    public void setDetails(AdminDTO adminDTO) {
+
+        this.adminId = adminDTO.getAdminId();
+        this.authCode = adminDTO.getAuthCode();
+        this.adminEmail = adminDTO.getAdminEmail();
+        this.adminName = adminDTO.getAdminName();
+        this.adminNum = adminDTO.getAdminNum();
+        this.adminPwd = adminDTO.getAdminPwd();
     }
 
     public int getAdminNum() {
@@ -71,14 +77,6 @@ public class AdminDTO {
         this.authCode = authCode;
     }
 
-    public String getAuthNum() {
-        return authNum;
-    }
-
-    public void setAuthNum(String authNum) {
-        this.authNum = authNum;
-    }
-
     @Override
     public String toString() {
         return "AdminDTO{" +
@@ -88,7 +86,8 @@ public class AdminDTO {
                 ", adminPwd='" + adminPwd + '\'' +
                 ", adminEmail='" + adminEmail + '\'' +
                 ", authCode=" + authCode +
-                ", authNum='" + authNum + '\'' +
                 '}';
     }
+
+
 }
