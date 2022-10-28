@@ -46,14 +46,19 @@
   }
 
   .infoWrap .poster {
-    margin: auto;
-    width: 70%;
+    margin: 0 auto;
+    width: 420px;
+    height: 602px;
     color: white;
     text-align: center;
     display: block;
+    background-color: gray;
   }
-  .infoWrap .poster img {
-    width: 65%;
+
+  .poster img,
+  .poster video {
+    width: 100%;
+    height: 100%;
   }
   .infoWrap .info .info-about {
     text-align: center;
@@ -115,12 +120,20 @@
     line-height: 200px;
     color: #ffb000;
   }
+
   .tab-content.current img{
     width: 72%;
   }
 
   .tab-content.mapAPI {
     height: auto;
+  }
+  .tab-content.current input[type="file"] {
+    padding: 10px;
+    color: #ffb000;
+    vertical-align: middle;
+    cursor: pointer;
+    font-size: 1rem;
   }
   /*       */
 </style>
@@ -130,7 +143,7 @@
   <h1 style="color: #fff; border-bottom: 8px #ffb000 solid">PRODUCT</h1>
 </div>
 <div class="infoWrap">
-  <div class="poster"><img src="/images/비클래스.jpg" alt="" /></div>
+  <div class="poster"></div>
   <div class="info">
     <table width="350px" height="270px" class="info-about">
       <tr>
@@ -171,8 +184,8 @@
     <p class="tab-link" data-tab="tab-2">오시는 길</p>
   </div>
   <div id="tab-1" class="tab-content current">
-    <br />
-    <img src="/images/비클래스%20상세페이지.jpg" alt="" />
+    <input type="file" onchange="previewFile()" /><br />
+    <img src="" alt="" class="previewIMG" />
   </div>
   <div id="tab-2" class="tab-content mapAPI">
     contents Area
@@ -192,6 +205,71 @@
 <div th:include="common/footer.html"></div>
 <!-- E: footer -->
 
+<script>
+  $(".poster")
+          .on("dragover", dragOver)
+          .on("dragleave", dragOver)
+          .on("drop", uploadFiles);
+
+  function dragOver(e) {
+    e.stopPropagation();
+    e.preventDefault();
+    if (e.type == "dragover") {
+      $(e.target).css({
+        "background-color": "black",
+      });
+    } else {
+      $(e.target).css({
+        "background-color": "gray",
+      });
+    }
+  }
+
+  function uploadFiles(e) {
+    e.stopPropagation();
+    e.preventDefault();
+    dragOver(e);
+
+    e.dataTransfer = e.originalEvent.dataTransfer;
+    var files = e.target.files || e.dataTransfer.files;
+    if (files.length > 1) {
+      alert("하나만 올려라.");
+      return;
+    }
+    if (files[0].type.match(/image.*/)) {
+      $(e.target).css({
+        "background-image":
+                "url(" + window.URL.createObjectURL(files[0]) + ")",
+        outline: "none",
+        "background-size": "100% 100%",
+      });
+    } else {
+      alert("이미지가 아닙니다.");
+      return;
+    }
+  }
+</script>
+
+<script>
+    function previewFile() {
+    var preview = document.querySelector(".previewIMG");
+    var file = document.querySelector("input[type=file]").files[0];
+    var reader = new FileReader();
+
+    reader.addEventListener(
+    "load",
+    function () {
+    preview.src = reader.result;
+  },
+    false
+    );
+
+    if (file) {
+    reader.readAsDataURL(file);
+  }
+  }
+</script>
+
 <script
         type="text/javascript"
         src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4b99ebb84f885d771b9a0771daf35f8a"
@@ -200,7 +278,7 @@
   // 37.5865326, 127.000069
   var mapContainer = document.getElementById("map"), // 지도를 표시할 div
           mapOption = {
-            center: new kakao.maps.LatLng(37.5864425, 126.999548), // 지도의 중심좌표
+            center: new kakao.maps.LatLng(37.5865326, 127.000069), // 지도의 중심좌표
             level: 3, // 지도의 확대 레벨
           };
 
