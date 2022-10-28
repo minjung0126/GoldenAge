@@ -1,5 +1,7 @@
 body { 
   background-image: url('../images/background.jpg');
+  background-size: auto;
+  background-position: top;
 
 }
 header {
