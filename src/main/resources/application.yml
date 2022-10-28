@@ -35,16 +35,6 @@ spring:
       cache: false
     thymeleaf:
       cache: false
-    mail:
-      host: smtp.naver.com
-      port: 465
-      properties:
-        mail.smtp.auth: true
-        mail.smtp.ssl.enable: true
-        mail.smtp.ssl.trust: smtp.naver.com
-      username: intectme
-      password: Tnekaos3!!
-
 
 # 파일, 이미지 업로드시 저장될 폴더 설정
   web:

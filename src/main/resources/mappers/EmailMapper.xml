@@ -25,4 +25,10 @@
         WHERE ADMIN_ID = #{ id }
           AND ADMIN_EMAIL = #{ dbEmail  }
     </update>
+
+    <select id="matchAuthNum" resultMap="adminResultMap">
+        SELECT * FROM ADMIN
+        WHERE ADMIN_ID = #{ id }
+          AND ADMIN_EMAIL = #{ email }
+    </select>
 </mapper>

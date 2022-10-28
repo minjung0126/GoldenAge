@@ -39,7 +39,7 @@ header {
   border-radius: 5px 5px 5px 5px;
   border: 0px;
 }
-#email, #auth-no{
+#email, #authNum{
   width: 80%;
   height: 100%;
   margin: 5px 0px 5px 0px;
@@ -52,7 +52,7 @@ header {
   width: 18%;
   height: 100%;
   margin: 0px 0px 0px 3px;
-  padding: 11px 17px 11px;
+  padding: 13px 17px 12px 17px;
   border-radius: 5px 5px 5px 5px;
   background-color: rgb(255,192,7);
   color: white;

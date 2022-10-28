@@ -3,24 +3,20 @@ package com.goldenage.project.email.controller;
 import com.goldenage.project.email.model.service.EmailService;
 import com.goldenage.project.login.model.dto.AdminDTO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.mail.MailSender;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 import javax.mail.MessagingException;
 import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 
 @Controller
-@RequestMapping("/email/*")
+@RequestMapping("/submit/*")
 public class EmailController {
 
     private final EmailService emailService;
@@ -28,11 +24,12 @@ public class EmailController {
 
     @Autowired
     public EmailController(EmailService emailService, JavaMailSender mailSender){
-        
+
+        this.mailSender = mailSender;
         this.emailService = emailService;
     }
 
-    @PostMapping("/submit")
+    @PostMapping("/email")
     @ResponseBody
     public Object matchIdEmail(@RequestBody HashMap<String, String> adminMap) throws MessagingException, UnsupportedEncodingException {
 
@@ -57,10 +54,12 @@ public class EmailController {
                 AuthKey authKey = new AuthKey();
                 String authNum = authKey.makeAuthKey();
                 System.out.println("authNum : " + authNum);
+
                 //인증번호 업데이트(id, email 기준)
                 result = emailService.updateAuthNum(id, dbEmail, authNum);
                 System.out.println("result udateAuthNum : " + result);
 
+                //인증메일 발송
                 if(result > 0) {
 
                     MailHandler mailHandler = new MailHandler(mailSender);
@@ -69,7 +68,7 @@ public class EmailController {
                             "<h1>골든에이지 이메일 인증</h1>" +
                                     "<br>골든에이지 비밀번호를 재설정하기 위한 인증 이메일입니다." +
                                     "<br>아래 인증번호를 입력해주세요." +
-                                    "<br>[" + authKey + "]"
+                                    "<br>[" + authNum + "]"
                     );
                     mailHandler.setFrom("intectme@naver.com", "GOLDENAGE");
                     mailHandler.setTo(dbEmail);
@@ -80,7 +79,6 @@ public class EmailController {
 
                 result = 0;
             }
-            //인증번호 메일 전송
 
         } else {
 
@@ -89,8 +87,43 @@ public class EmailController {
 
         System.out.println("result : " + result);
 
-        //인증번호 매치
-        //비밀번호 업데이트
+        Map<String, Object> resultAjax = new HashMap<>();
+        resultAjax.put("result", result);
+
+        return resultAjax;
+    }
+
+    @PostMapping("/authNum")
+    @ResponseBody
+    public Object matchAuthNum(@RequestBody HashMap<String, String> adminMap){
+
+        System.out.println("adminMap" + adminMap);
+
+        String id = adminMap.get("id");
+        String email = adminMap.get("email");
+        String authNum = adminMap.get("authNum");
+
+        AdminDTO adminDTO = emailService.matchAuthNum(id, email);
+
+        int result = 0;
+
+        if(adminDTO != null){
+
+            String dbAuthNum = adminDTO.getAuthNum();
+//            String dbId = adminDTO.getAdminId();
+//            String dbEmail = adminDTO.getAdminEmail();
+
+            if(authNum.equals(dbAuthNum)){
+
+                result = 1;
+
+            } else {
+
+                result = 2;
+            }
+        }
+
+        System.out.println("resuㅣt : " + result);
 
         Map<String, Object> resultAjax = new HashMap<>();
         resultAjax.put("result", result);
@@ -98,3 +131,4 @@ public class EmailController {
         return resultAjax;
     }
 }
+

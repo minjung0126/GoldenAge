@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.HashMap;
+
 @Service
 public class EmailServiceImpl implements EmailService{
 
@@ -32,5 +34,13 @@ public class EmailServiceImpl implements EmailService{
         int result = emailMapper.updateAuthNum(id, dbEmail, authNum);
 
         return result;
+    }
+
+    @Override
+    public AdminDTO matchAuthNum(String id, String email) {
+
+        AdminDTO adminDTO = emailMapper.matchAuthNum(id, email);
+
+        return adminDTO;
     }
 }
