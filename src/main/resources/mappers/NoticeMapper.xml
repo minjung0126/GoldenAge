@@ -96,4 +96,27 @@
         , #{ noticeLink }
         )
     </insert>
+    <insert id="">
+        INSERT
+        INTO NOTICE_FILE
+        (
+          FILE_NO
+        , ORIGIN_NAME
+        , FILE_NAME
+        , SAVED_PATH
+        , NOTICE_NO
+        )
+        VALUES
+        (
+          FILE_NO
+        , #{ originName }
+        , #{ fileName }
+        , #{ savedPath }
+        , #{ noticeNo }
+        )
+        <selectKey keyProperty="noticeNo" order="BEFORE" resultType="_int">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+    </insert>
+
 </mapper>
