@@ -147,6 +147,14 @@ public class NoticeController {
                 e.printStackTrace();
                 new File(filePath + "\\" + noticeFileName + ext).delete();
             }
+        }else if(file.getSize() == 0){
+
+            noticeFile.setNoticeOriName(null);
+            noticeFile.setNoticeFileName(null);
+            noticeFile.setSavedPath(null);
+
+            noticeService.noticeFileInsert(noticeFile);
+
         }
 
         rttr.addFlashAttribute("message", "공지사항 등록 성공!");
