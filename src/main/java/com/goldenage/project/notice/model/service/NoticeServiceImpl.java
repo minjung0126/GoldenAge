@@ -42,12 +42,11 @@ public class NoticeServiceImpl implements NoticeService{
 
         int result = noticeMapper.incrementNoticeCount(noticeNo);
 
-        log.info("값이 오나요 " + result);
         if(result > 0) {
 
             noticeDetail = noticeMapper.selectNoticeDetail(noticeNo);
         }
-        log.info("값이 오나요 " + noticeDetail);
+
         return noticeDetail;
 
     }
@@ -84,5 +83,41 @@ public class NoticeServiceImpl implements NoticeService{
         return noticeMapper.noticeFileInsert(noticeFile);
     }
 
+    @Override
+    @Transactional
+    public int updateNotice(NoticeDTO notice) {
 
+        int result = noticeMapper.updateNotice(notice);
+
+        if(notice.getNoticeFile() != null){
+
+            int deleteFileResult = noticeMapper.delelteNoticeFile(notice.getNoticeFile().getNoticeNo());
+
+            if(deleteFileResult > 0 ){
+
+                NoticeFileDTO noticeFile = notice.getNoticeFile();
+                noticeFile.setNoticeNo(notice.getNoticeFile().getNoticeNo());
+
+                int insertFileResult = noticeMapper.noticeFileInsert(noticeFile);
+            }
+        }
+
+        return  result;
+    }
+
+    //공지사항 파일삭제
+    @Override
+    @Transactional
+    public int delelteNoticeFile(int noticeNo) {
+
+        return noticeMapper.deleteNoticeFile(noticeNo);
+    }
+
+    /* 공지사항 파일 수정 */
+    @Override
+    @Transactional
+    public int updateNoticeFile(NoticeFileDTO noticeFile) {
+
+        return noticeMapper.updateNoticeFile(noticeFile);
+    }
 }

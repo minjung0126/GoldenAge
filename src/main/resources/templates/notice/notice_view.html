@@ -14,7 +14,10 @@
     <style>
         .container{background-image: none;background-color: black; padding-top: 100px;}
         .main{height: auto;text-align: center;}
-        .table{color: #fff;}
+        .table{color: #fff;  background: #232321;}
+        #textArea{
+          height: 500px;
+        }
     </style>
   </head>
   <body class="scroll" style="background-color: black;">
@@ -43,11 +46,12 @@
                 </tr>
                 <tr>
                   <th>본문</th>
-                  <td class="align-left" th:text="${ noticeDetail.noticeContent }"></td>
+                  <td id="textArea" class="align-left" th:text="${ noticeDetail.noticeContent }"></td>
                 </tr>
                 <tr>
                     <th>본문링크</th>
-                    <td class="align-left" th:url="${ noticeDetail.noticeLink }">
+                    <td class="align-left">
+                      <a th:url="${ noticeDetail.noticeLink }"></a>
                     </td>
                   </tr>
                 <tr th:if="${ noticeDetail.noticeFile.noticeOriName != null }">

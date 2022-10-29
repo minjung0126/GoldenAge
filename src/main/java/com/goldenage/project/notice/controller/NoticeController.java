@@ -19,6 +19,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
@@ -100,6 +101,7 @@ public class NoticeController {
         return "notice/notice_insert";
     }
 
+    // 공지사항 작성
     @PostMapping("/insert")
     public String uploadFile(@ModelAttribute NoticeDTO notice
                             , @RequestParam(value="file", required=false) MultipartFile file
@@ -124,28 +126,25 @@ public class NoticeController {
         }
 
         String noticeOriName = "";
-        String ext = "";
-        String noticeFileName = "";
         String savedPath = "";
 
         if(file.getSize() > 0) {
             noticeOriName = file.getOriginalFilename();
-            ext = noticeOriName.substring(noticeOriName.lastIndexOf("."));
-            noticeFileName = UUID.randomUUID().toString().replace("-",  "");
-            savedPath = filePath + "/" + noticeFileName + ext;
+            savedPath = filePath + "/" + noticeOriName;
 
             noticeFile.setNoticeOriName(noticeOriName);
-            noticeFile.setNoticeFileName(noticeFileName + ext);
+            noticeFile.setNoticeFileName(noticeOriName);
             noticeFile.setSavedPath(savedPath);
 
             noticeService.noticeFileInsert(noticeFile);
 
             try {
-                file.transferTo(new File(filePath + "\\" + noticeFileName + ext));
+
+                file.transferTo(new File(filePath + "/" + noticeOriName));
             } catch (IOException e) {
 
                 e.printStackTrace();
-                new File(filePath + "\\" + noticeFileName + ext).delete();
+                new File(filePath + "/" + noticeOriName).delete();
             }
         }else if(file.getSize() == 0){
 
@@ -161,4 +160,90 @@ public class NoticeController {
 
         return "redirect:/notice/notice";
     }
+
+    //공지사항 수정페이지 보기
+    @GetMapping("/update")
+    public ModelAndView noticeUpdate(ModelAndView mv,
+                                     HttpServletRequest request){
+
+        int noticeNo = Integer.parseInt(request.getParameter("noticeNo"));
+
+        NoticeDTO noticeDetail = noticeService.selectNoticeDetail(noticeNo);
+
+        mv.addObject("noticeDetail", noticeDetail);
+        mv.setViewName("/notice/noticeUpdate");
+
+        return mv;
+    }
+
+    //공지사항 수정
+    @PostMapping("/update")
+    public String updateNotice(@ModelAttribute NoticeDTO notice,
+                               @RequestParam int noticeNo,
+                               @RequestParam(value="file", required=false) MultipartFile file,
+                               RedirectAttributes rttr) throws Exception {
+
+        String root = ResourceUtils.getURL("src/main/resources").getPath();
+
+        String filePath = root + "static/uploadFiles";
+
+        log.info("[NoticeController]" + notice);
+        log.info("[NoticeController]" + file);
+
+        File mkdir = new File(filePath);
+        if(!mkdir.exists()) {
+            mkdir.mkdirs();
+        }
+
+        String noticeOriName = "";
+        String savedPath = "";
+
+        int result = noticeService.updateNotice(notice);
+
+        if(file.getSize() > 0) {
+            noticeOriName = file.getOriginalFilename();
+            savedPath = filePath + "/" + noticeOriName;
+
+            NoticeFileDTO noticeFile = new NoticeFileDTO();
+
+            if(result > 0) {
+
+                if(notice.getNoticeFile() != null){
+
+                    int result2 = noticeService.delelteNoticeFile(noticeNo);
+
+                    if(result2 > 0) {
+
+                        noticeFile.setNoticeOriName(noticeOriName);
+                        noticeFile.setNoticeFileName(noticeOriName);
+                        noticeFile.setSavedPath(savedPath);
+
+                        noticeService.updateNoticeFile(noticeFile);
+                    }
+
+                } else {
+
+                    noticeFile.setNoticeOriName(noticeOriName);
+                    noticeFile.setNoticeFileName(noticeOriName);
+                    noticeFile.setSavedPath(savedPath);
+
+                    noticeService.updateNoticeFile(noticeFile);
+                }
+
+            }
+
+            try {
+                file.transferTo(new File(filePath + "/" + noticeOriName));
+            } catch (IOException e) {
+
+                e.printStackTrace();
+                new File(filePath + "/" + noticeOriName).delete();
+            }
+        }
+
+        rttr.addFlashAttribute("message", "공지사항 수정 성공!");
+
+        return "redirect:/notice/notice";
+    }
+
 }

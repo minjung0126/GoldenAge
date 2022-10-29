@@ -23,4 +23,14 @@ public interface NoticeService {
     /* 공지사항 파일 등록*/
     @Transactional
     int noticeFileInsert(NoticeFileDTO noticeFile);
+
+    @Transactional
+    int updateNotice(NoticeDTO notice);
+
+    @Transactional
+    int delelteNoticeFile(int noticeNo);
+
+    /* 공지사항 파일 수정 */
+    @Transactional
+    int updateNoticeFile(NoticeFileDTO noticeFile);
 }
