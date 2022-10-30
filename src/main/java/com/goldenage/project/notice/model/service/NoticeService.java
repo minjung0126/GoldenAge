@@ -1,5 +1,6 @@
 package com.goldenage.project.notice.model.service;
 
+import com.goldenage.project.exception.notice.NoticeDeleteException;
 import com.goldenage.project.exception.notice.NoticeInsertException;
 import com.goldenage.project.notice.model.dto.NoticeDTO;
 import com.goldenage.project.notice.model.dto.NoticeFileDTO;
@@ -33,4 +34,8 @@ public interface NoticeService {
     /* 공지사항 파일 수정 */
     @Transactional
     int updateNoticeFile(NoticeFileDTO noticeFile);
+
+    //공지사항 삭제
+    @Transactional
+    int deleteNotice(int noticeNo) throws NoticeDeleteException;
 }

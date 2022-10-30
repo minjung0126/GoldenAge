@@ -51,7 +51,7 @@
                 <tr>
                     <th>본문링크</th>
                     <td class="align-left">
-                      <a th:url="${ noticeDetail.noticeLink }"></a>
+                      <a th:href="${ noticeDetail.getNoticeLink() }" th:text="${ noticeDetail.getNoticeLink() }"></a>
                     </td>
                   </tr>
                 <tr th:if="${ noticeDetail.noticeFile.noticeOriName != null }">

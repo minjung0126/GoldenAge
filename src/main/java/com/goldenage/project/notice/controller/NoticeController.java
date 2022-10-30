@@ -1,5 +1,6 @@
 package com.goldenage.project.notice.controller;
 
+import com.goldenage.project.exception.notice.NoticeDeleteException;
 import com.goldenage.project.exception.notice.NoticeInsertException;
 import com.goldenage.project.notice.model.dto.NoticeDTO;
 import com.goldenage.project.notice.model.dto.NoticeFileDTO;
@@ -105,7 +106,7 @@ public class NoticeController {
     @PostMapping("/insert")
     public String uploadFile(@ModelAttribute NoticeDTO notice
                             , @RequestParam(value="file", required=false) MultipartFile file
-                            , RedirectAttributes rttr) throws IOException, NoticeInsertException {
+                            , RedirectAttributes rttr) throws Exception{
 
         NoticeFileDTO noticeFile = new NoticeFileDTO();
 
@@ -212,11 +213,13 @@ public class NoticeController {
 
                     int result2 = noticeService.delelteNoticeFile(noticeNo);
 
+
                     if(result2 > 0) {
 
                         noticeFile.setNoticeOriName(noticeOriName);
                         noticeFile.setNoticeFileName(noticeOriName);
                         noticeFile.setSavedPath(savedPath);
+                        noticeFile.setNoticeNo(noticeNo);
 
                         noticeService.updateNoticeFile(noticeFile);
                     }
@@ -226,6 +229,7 @@ public class NoticeController {
                     noticeFile.setNoticeOriName(noticeOriName);
                     noticeFile.setNoticeFileName(noticeOriName);
                     noticeFile.setSavedPath(savedPath);
+                    noticeFile.setNoticeNo(noticeNo);
 
                     noticeService.updateNoticeFile(noticeFile);
                 }
@@ -244,6 +248,19 @@ public class NoticeController {
         rttr.addFlashAttribute("message", "공지사항 수정 성공!");
 
         return "redirect:/notice/notice";
+    }
+
+    @GetMapping("/delete")
+    public String deleteNotice(HttpServletRequest request, RedirectAttributes rttr) throws NoticeDeleteException {
+
+        int noticeNo = Integer.parseInt(request.getParameter("noticeNo"));
+
+        int result = noticeService.deleteNotice(noticeNo);
+
+        rttr.addFlashAttribute("message", "공지사항 삭제 성공!");
+
+        return "redirect:/notice/notice";
+
     }
 
 }

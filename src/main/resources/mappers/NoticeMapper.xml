@@ -21,6 +21,14 @@
         </collection>
     </resultMap>
 
+    <resultMap id="noticeFileResultMap" type="NoticeFileDTO">
+        <id property="noticeFileNum" column="NOTICE_FILE_NUM"/>
+        <result property="noticeNo" column="NOTICE_NO"/>
+        <result property="noticeOriName" column="NOTICE_ORI_NAME"/>
+        <result property="noticeFileName" column="NOTICE_FILE_NAME"/>
+        <result property="savedPath" column="SAVED_PATH"/>
+    </resultMap>
+
     <select id="selectNoticeList" resultMap="noticeResultMap">
         SELECT
         *
@@ -167,4 +175,10 @@
         , #{ noticeNo }
         )
     </update>
+
+    <delete id="deleteNotice" parameterType="NoticeDTO">
+        DELETE
+          FROM NOTICE
+         WHERE NOTICE_NO = #{ noticeNo }
+    </delete>
 </mapper>

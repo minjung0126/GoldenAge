@@ -1,5 +1,6 @@
 package com.goldenage.project.notice.model.service;
 
+import com.goldenage.project.exception.notice.NoticeDeleteException;
 import com.goldenage.project.exception.notice.NoticeInsertException;
 import com.goldenage.project.notice.model.dao.NoticeMapper;
 import com.goldenage.project.notice.model.dto.NoticeDTO;
@@ -119,5 +120,21 @@ public class NoticeServiceImpl implements NoticeService{
     public int updateNoticeFile(NoticeFileDTO noticeFile) {
 
         return noticeMapper.updateNoticeFile(noticeFile);
+    }
+
+    //공지사항 삭제
+    @Override
+    @Transactional
+    public int deleteNotice(int noticeNo) throws NoticeDeleteException {
+
+        int result =  noticeMapper.deleteNoticeFile(noticeNo);
+        int result2 = noticeMapper.deleteNotice(noticeNo);
+
+        if(!(result2 > 0)){
+
+            throw new NoticeDeleteException("공지사항 삭제 실패!");
+        }
+
+        return result;
     }
 }
