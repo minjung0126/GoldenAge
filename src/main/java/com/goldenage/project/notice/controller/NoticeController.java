@@ -112,14 +112,9 @@ public class NoticeController {
 
         int result = noticeService.noticeInsert(notice);
 
-        log.info("[NoticeController]" + notice);
-        log.info("[NoticeController]" + file);
-
         String root = ResourceUtils.getURL("src/main/resources").getPath();
 
         String filePath = root + "static/uploadFiles";
-
-        log.info("루트ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ" + filePath);
 
         File mkdir = new File(filePath);
         if(!mkdir.exists()) {
@@ -127,25 +122,29 @@ public class NoticeController {
         }
 
         String noticeOriName = "";
+        String ext = "";
+        String noticeFileName = "";
         String savedPath = "";
 
         if(file.getSize() > 0) {
             noticeOriName = file.getOriginalFilename();
-            savedPath = filePath + "/" + noticeOriName;
+            ext = noticeOriName.substring(noticeOriName.lastIndexOf("."));
+            noticeFileName = UUID.randomUUID().toString().replace("-",  "");
+            savedPath = filePath + "/" + noticeFileName + ext;
 
             noticeFile.setNoticeOriName(noticeOriName);
-            noticeFile.setNoticeFileName(noticeOriName);
+            noticeFile.setNoticeFileName(noticeFileName + ext);
             noticeFile.setSavedPath(savedPath);
 
             noticeService.noticeFileInsert(noticeFile);
 
             try {
 
-                file.transferTo(new File(filePath + "/" + noticeOriName));
+                file.transferTo(new File(filePath + "/" + noticeFileName + ext));
             } catch (IOException e) {
 
                 e.printStackTrace();
-                new File(filePath + "/" + noticeOriName).delete();
+                new File(filePath + "/" + noticeFileName + ext).delete();
             }
         }else if(file.getSize() == 0){
 
@@ -188,22 +187,23 @@ public class NoticeController {
 
         String filePath = root + "static/uploadFiles";
 
-        log.info("[NoticeController]" + notice);
-        log.info("[NoticeController]" + file);
-
         File mkdir = new File(filePath);
         if(!mkdir.exists()) {
             mkdir.mkdirs();
         }
 
         String noticeOriName = "";
+        String ext = "";
+        String noticeFileName = "";
         String savedPath = "";
 
         int result = noticeService.updateNotice(notice);
 
         if(file.getSize() > 0) {
             noticeOriName = file.getOriginalFilename();
-            savedPath = filePath + "/" + noticeOriName;
+            ext = noticeOriName.substring(noticeOriName.lastIndexOf("."));
+            noticeFileName = UUID.randomUUID().toString().replace("-",  "");
+            savedPath = filePath + "/" + noticeFileName + ext;
 
             NoticeFileDTO noticeFile = new NoticeFileDTO();
 
@@ -217,7 +217,7 @@ public class NoticeController {
                     if(result2 > 0) {
 
                         noticeFile.setNoticeOriName(noticeOriName);
-                        noticeFile.setNoticeFileName(noticeOriName);
+                        noticeFile.setNoticeFileName(noticeFileName);
                         noticeFile.setSavedPath(savedPath);
                         noticeFile.setNoticeNo(noticeNo);
 
@@ -227,7 +227,7 @@ public class NoticeController {
                 } else {
 
                     noticeFile.setNoticeOriName(noticeOriName);
-                    noticeFile.setNoticeFileName(noticeOriName);
+                    noticeFile.setNoticeFileName(noticeFileName);
                     noticeFile.setSavedPath(savedPath);
                     noticeFile.setNoticeNo(noticeNo);
 
@@ -237,11 +237,11 @@ public class NoticeController {
             }
 
             try {
-                file.transferTo(new File(filePath + "/" + noticeOriName));
+                file.transferTo(new File(filePath + "/" + noticeFileName));
             } catch (IOException e) {
 
                 e.printStackTrace();
-                new File(filePath + "/" + noticeOriName).delete();
+                new File(filePath + "/" + noticeFileName).delete();
             }
         }
 

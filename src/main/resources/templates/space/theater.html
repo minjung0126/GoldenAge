@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="en"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="../static/css/style.css" />
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <style>
@@ -15,6 +16,7 @@
       }
       .container{
         background-color: black;
+        padding-top: 100px;
       }
       .main{
         height: 700px;
@@ -42,10 +44,10 @@
     </style>
   </head>
   <body class="scroll" style="background-color: black;">
+  <!-- header -->
+  <div th:replace="common/header"></div>
+  <!-- header end -->
     <div class="container" style="background-color: black;">
-      <!-- header -->
-      <div th:replace="common/header"></div>
-      <!-- header end -->
       <div class="main">
         <div class="title">
           <h1 class="text-start" style="color: #fff; border-bottom: 3px gold solid; padding-bottom: 8px;">로터리 연습실</h1>
@@ -59,10 +61,10 @@
         </div>
         <div class="carousel-inner">
           <div class="carousel-item active">
-            <img src="../static/images/goldenTheater.png" class="d-block w-100" alt="1">
+            <img th:src="@{/images/goldenTheater.png}" class="d-block w-100" alt="1">
           </div>
           <div class="carousel-item">
-            <img src="../static/images/goldenTheater2.jpeg" class="d-block w-100" alt="">
+            <img th:src="@{/images/goldenTheater2.jpeg}" class="d-block w-100" alt="">
           </div>
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
@@ -106,10 +108,15 @@
       </div>
       <br><br>
       <hr>
+      <div style="float: right;">
+        <th:block sec:authorize="isAuthenticated()">
+          <button class="btn" type="submit" style="color:gold" th:onclick="'location.href=\'/space/update'">수정</button>
+        </th:block>
+      </div>
       <div class="contect">
-        <h3 style="color: #fff; border-bottom: 3px gold solid; padding-bottom: 8px;">CONTECT</h3>
-        <a href="https://www.spacecloud.kr/space/37646"><img src="../static/images/spaceCloud.png" style="border-radius: 30px; width: 100px;height: 100px;"></a>
-        <a href="https://otr.co.kr/rent/?vid=13574"><img src="../static/images/otr.jpeg" style="border-radius: 30px; width: 100px;height: 100px;"></a>
+        <h3 style="color: #fff; border-bottom: 3px gold solid; padding-bottom: 8px;">예약가능 사이트</h3>
+        <a href="https://www.spacecloud.kr/space/37646"><img th:src="@{/images/spaceCloud.png}" style="border-radius: 30px; width: 100px;height: 100px;"></a>
+        <a href="https://otr.co.kr/rent/?vid=13574"><img th:src="@{/images/otr.jpeg}" style="border-radius: 30px; width: 100px;height: 100px;"></a>
       </div>
     </div><!-- container close -->
 
