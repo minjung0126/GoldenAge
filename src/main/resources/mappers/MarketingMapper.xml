@@ -74,4 +74,203 @@
         FROM MK_ITEM
         WHERE MK_NUM = #{ mkNum }
     </select>
+
+    <insert id="insertMkInfo">
+        INSERT
+          INTO MARKETING
+        (
+           MK_NAME
+         , MK_START_DATE
+         , MK_END_DATE
+         , MK_PLACE_NAME
+         , MK_PRODUCT
+         , MK_ORI_MAIN
+         , MK_FILE_MAIN
+         , COMPANY_NAME
+        )
+        VALUES
+        (
+           #{ mkName }
+         , #{ mkStartDate }
+         , #{ mkEndDate }
+         , #{ mkPlaceName }
+         , #{ mkProduct }
+         , #{ mkOriMain }
+         , #{ mkFileMain }
+         , #{ companyName }
+        )
+    </insert>
+
+    <update id="updateMkInfo">
+        UPDATE MARKETING
+           SET MK_NAME = #{ mkName }
+             , MK_START_DATE = DATE_FORMAT(#{ mkStartDate }, '%Y%m%d')
+             , MK_END_DATE = DATE_FORMAT(#{ mkEndDate }, '%Y%m%d')
+             , MK_PLACE_NAME = #{ mkPlaceName }
+             , MK_PRODUCT = #{ mkProduct }
+             , MK_ORI_MAIN = #{ mkOriMain }
+             , MK_FILE_MAIN = #{ mkFileMain }
+             , COMPANY_NAME = #{ companyName }
+         WHERE MK_NUM = #{ mkNum }
+    </update>
+
+    <update id="updateMkInfoNoFile">
+        UPDATE MARKETING
+        SET MK_NAME = #{ mkName }
+          , MK_START_DATE = DATE_FORMAT(#{ mkStartDate }, '%Y%m%d')
+          , MK_END_DATE = DATE_FORMAT(#{ mkEndDate }, '%Y%m%d')
+          , MK_PLACE_NAME = #{ mkPlaceName }
+          , MK_PRODUCT = #{ mkProduct }
+          , COMPANY_NAME = #{ companyName }
+        WHERE MK_NUM = #{ mkNum }
+    </update>
+
+    <delete id="deleteMkInfo">
+        DELETE
+          FROM MARKETING
+         WHERE MK_NUM = #{ mkNum }
+    </delete>
+
+    <select id="selectPoster" resultMap="mkPosterResultMap">
+        SELECT
+               *
+          FROM MK_POSTER
+         WHERE P_FILE_NUM = #{ pFileNum }
+    </select>
+
+    <select id="selectMd" resultMap="mkMdResultMap">
+        SELECT
+               *
+          FROM MK_MD
+         WHERE MD_FILE_NUM = #{ mdFileNum }
+    </select>
+
+    <select id="selectItem" resultMap="mkItemResultMap">
+        SELECT
+            *
+        FROM MK_ITEM
+        WHERE ITEM_FILE_NUM = #{ itemFileNum }
+    </select>
+
+    <update id="updateMkPoster">
+        UPDATE MK_POSTER
+           SET P_ORI_NAME = #{ pOriName }
+             , P_FILE_NAME = #{ pFileName }
+             , P_ACT_NAME = #{ pActName }
+             , P_CAST_NAME = #{ pCastName }
+         WHERE P_FILE_NUM = #{ pFileNum }
+    </update>
+
+    <update id="updateMkPosterNoFile">
+        UPDATE MK_POSTER
+           SET P_ACT_NAME = #{ pActName }
+             , P_CAST_NAME = #{ pCastName }
+         WHERE P_FILE_NUM = #{ pFileNum }
+    </update>
+
+    <update id="updateMkMd">
+        UPDATE MK_MD
+           SET MD_ORI_NAME = #{ mdOriName }
+             , MD_FILE_NAME = #{ mdFileName }
+             , MD_NAME = #{ mdName }
+             , MD_PRICE = #{ mdPrice }
+         WHERE MD_FILE_NUM = #{ mdFileNum }
+    </update>
+
+    <update id="updateMkMdNoFile">
+        UPDATE MK_MD
+           SET MD_NAME = #{ mdName }
+             , MD_PRICE = #{ mdPrice }
+         WHERE MD_FILE_NUM = #{ mdFileNum }
+    </update>
+
+    <update id="updateMkItem">
+        UPDATE MK_ITEM
+           SET ITEM_ORI_NAME = #{ itemOriName }
+             , ITEM_FILE_NAME = #{ itemFileName }
+             , ITEM_NAME = #{ itemName }
+         WHERE ITEM_FILE_NUM = #{ itemFileNum }
+    </update>
+
+    <update id="updateMkItemNoFile">
+        UPDATE MK_ITEM
+           SET ITEM_NAME = #{ itemName }
+         WHERE ITEM_FILE_NUM = #{ itemFileNum }
+    </update>
+
+    <insert id="insertMkPoster">
+        INSERT
+          INTO MK_POSTER
+        (
+           MK_NUM
+         , P_ORI_NAME
+         , P_FILE_NAME
+         , P_ACT_NAME
+         , P_CAST_NAME
+        )
+        VALUES
+        (
+           #{ mkNum }
+         , #{ pOriName }
+         , #{ pFileName }
+         , #{ pActName }
+         , #{ pCastName }
+        )
+    </insert>
+
+    <insert id="insertMkMd">
+        INSERT
+        INTO MK_MD
+        (
+           MK_NUM
+         , MD_ORI_NAME
+         , MD_FILE_NAME
+         , MD_NAME
+         , MD_PRICE
+        )
+        VALUES
+        (
+           #{ mkNum }
+         , #{ mdOriName }
+         , #{ mdFileName }
+         , #{ mdName }
+         , #{ mdPrice }
+        )
+    </insert>
+
+    <insert id="insertMkItem">
+        INSERT
+        INTO MK_ITEM
+        (
+           MK_NUM
+         , ITEM_ORI_NAME
+         , ITEM_FILE_NAME
+         , ITEM_NAME
+        )
+        VALUES
+        (
+           #{ mkNum }
+         , #{ itemOriName }
+         , #{ itemFileName }
+         , #{ itemName }
+        )
+    </insert>
+
+    <delete id="deleteMkPoster">
+        DELETE
+        FROM MK_POSTER
+        WHERE P_FILE_NUM = #{ pFileNum }
+    </delete>
+
+    <delete id="deleteMkMd">
+        DELETE
+        FROM MK_MD
+        WHERE MD_FILE_NUM = #{ mdFileNum }
+    </delete>
+
+    <delete id="deleteMkItem">
+        DELETE
+        FROM MK_ITEM
+        WHERE ITEM_FILE_NUM = #{ itemFileNum }
+    </delete>
 </mapper>
