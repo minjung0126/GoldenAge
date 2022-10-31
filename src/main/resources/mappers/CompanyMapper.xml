@@ -13,6 +13,7 @@
         <result property="comRepName" column="COM_REP_NAME"/>
         <result property="instagram" column="INSTAGRAM"/>
         <result property="twitter" column="TWITTER"/>
+        <result property="space" column="SPACE"/>
     </resultMap>
 
     <select id="selectComInfo" resultMap="companyResultMap">
@@ -44,6 +45,9 @@
             </if>
             <if test='twitter != null and twitter !=""'>
                 , TWITTER = #{ twitter }
+            </if>
+            <if test='space != null and space !=""'>
+                , SPACE = #{ space }
             </if>
         </trim>
     </update>

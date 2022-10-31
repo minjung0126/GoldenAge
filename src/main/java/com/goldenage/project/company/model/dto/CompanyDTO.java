@@ -10,11 +10,12 @@ public class CompanyDTO {
     private String comRepName;
     private String instagram;
     private String twitter;
+    private String space;
 
     public CompanyDTO() {
     }
 
-    public CompanyDTO(String companyName, int comRepNum, String phone, String address, String email, String comRepName, String instagram, String twitter) {
+    public CompanyDTO(String companyName, int comRepNum, String phone, String address, String email, String comRepName, String instagram, String twitter, String space) {
         this.companyName = companyName;
         this.comRepNum = comRepNum;
         this.phone = phone;
@@ -23,6 +24,7 @@ public class CompanyDTO {
         this.comRepName = comRepName;
         this.instagram = instagram;
         this.twitter = twitter;
+        this.space = space;
     }
 
     public String getCompanyName() {
@@ -89,6 +91,14 @@ public class CompanyDTO {
         this.twitter = twitter;
     }
 
+    public String getSpace() {
+        return space;
+    }
+
+    public void setSpace(String space) {
+        this.space = space;
+    }
+
     @Override
     public String toString() {
         return "CompanyDTO{" +
@@ -100,6 +110,7 @@ public class CompanyDTO {
                 ", comRepName='" + comRepName + '\'' +
                 ", instagram='" + instagram + '\'' +
                 ", twitter='" + twitter + '\'' +
+                ", space='" + space + '\'' +
                 '}';
     }
 }
