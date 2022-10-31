@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<style>
+  @import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald&display=swap");
+
+  body {
+    width: 100%;
+    height: 100%;
+  }
+
+  .detailPageTitle {
+    font-family: "Oswald", sans-serif;
+    margin: 0 auto;
+    width: 100%;
+    height: 320px;
+    padding-top: 220px;
+    font-size: 2.5rem;
+    text-align: center;
+    position: relative;
+    z-index: 9;
+    background-color: #232321;
+    display: block;
+  }
+  .detailPageTitle h1 {
+    /*line-height: 165px;*/
+    width: 280px;
+    margin: auto;
+    padding-top: 20px;
+  }
+
+  .infoWrap {
+    margin: 0 auto;
+    width: 970px;
+    padding-top: 180px;
+    height: 1350px;
+    padding-bottom: 150px;
+  }
+
+  .infoWrap .poster {
+    margin: 0 auto;
+    width: 420px;
+    height: 602px;
+    color: white;
+    text-align: center;
+    display: block;
+    background-color: gray;
+  }
+
+  .poster img,
+  .poster video {
+    width: 100%;
+    height: 100%;
+  }
+  .infoWrap .info .info-about {
+    text-align: center;
+    font-family: "Oswald", sans-serif;
+    margin: auto;
+    width: 65%;
+    height: 350px;
+    color: #fff;
+    text-align: left;
+    font-size: 1.5rem;
+    padding-top: 60px;
+    padding-left: 100px;
+  }
+
+  .allWrap {
+    padding-bottom: 120px;
+    background-color: #232321;
+    width: 100%;
+    margin: auto;
+    display: block;
+    text-align: center;
+    font-family: "Oswald", sans-serif;
+  }
+  @media (min-width: 768px) {
+    .allWrap {
+      width: 100%;
+      margin: 0 auto;
+    }
+  }
+
+  .tabBox {
+    margin: auto;
+  }
+  .tab-link {
+    width: 25%;
+    display: inline-block;
+    padding: 15px;
+    text-align: center;
+    border: 1px solid darkgray;
+    color: #fff;
+    cursor: pointer;
+    font-size: 1.5rem;
+    position: relative;
+  }
+  .tab-link.current {
+    color: #ffb000;
+    font-weight: 600;
+  }
+  .tab-content {
+    display: none;
+  }
+  .tab-content.current {
+    margin: 0 auto;
+    display: block;
+    width: 70%;
+    height: auto;
+    font-size: 30px;
+    text-align: center;
+    line-height: 200px;
+    color: #ffb000;
+  }
+
+  .tab-content.current img{
+    width: 72%;
+  }
+
+  .tab-content.mapAPI {
+    height: auto;
+  }
+  .tab-content.current input[type="file"] {
+    padding: 10px;
+    color: #ffb000;
+    vertical-align: middle;
+    cursor: pointer;
+    font-size: 1rem;
+  }
+  /*       */
+</style>
+<body class="scroll">
+<div th:include="common/header"></div>
+<div class="detailPageTitle">
+  <h1 style="color: #fff; border-bottom: 8px #ffb000 solid">PRODUCT</h1>
+</div>
+<div class="infoWrap">
+  <div class="poster"></div>
+  <div class="info">
+    <table width="350px" height="270px" class="info-about">
+      <tr>
+        <td>일정</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>장소</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>제작</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>홍보/마케팅</td>
+        <td></td>
+      </tr>
+    </table>
+  </div>
+</div>
+<div class="detailPageTitle" style="height: 0px; padding-top: 150px">
+  <h1
+          style="
+          color: #fff;
+          padding-top: 90px;
+          margin-top: -315px;
+          border-bottom: 8px #ffb000 solid;
+          width: 200px;
+        "
+  >
+    ABOUT
+  </h1>
+</div>
+<div class="allWrap">
+  <div class="tabBox">
+    <p class="tab-link current" data-tab="tab-1">공연 정보</p>
+    <p class="tab-link" data-tab="tab-2">오시는 길</p>
+  </div>
+  <div id="tab-1" class="tab-content current">
+    <input type="file" onchange="previewFile()" /><br />
+    <img src="" alt="" class="previewIMG" />
+  </div>
+  <div id="tab-2" class="tab-content mapAPI">
+    contents Area
+    <div
+            id="map"
+            style="
+            width: 70%;
+            height: 650px;
+            left: 50%;
+            transform: translate(-50%);
+            border-radius: 10px;
+          "
+    ></div>
+  </div>
+</div>
+<!-- S: footer -->
+<div th:include="common/footer.html"></div>
+<!-- E: footer -->
+
+<script>
+  $(".poster")
+          .on("dragover", dragOver)
+          .on("dragleave", dragOver)
+          .on("drop", uploadFiles);
+
+  function dragOver(e) {
+    e.stopPropagation();
+    e.preventDefault();
+    if (e.type == "dragover") {
+      $(e.target).css({
+        "background-color": "black",
+      });
+    } else {
+      $(e.target).css({
+        "background-color": "gray",
+      });
+    }
+  }
+
+  function uploadFiles(e) {
+    e.stopPropagation();
+    e.preventDefault();
+    dragOver(e);
+
+    e.dataTransfer = e.originalEvent.dataTransfer;
+    var files = e.target.files || e.dataTransfer.files;
+    if (files.length > 1) {
+      alert("하나만 올려라.");
+      return;
+    }
+    if (files[0].type.match(/image.*/)) {
+      $(e.target).css({
+        "background-image":
+                "url(" + window.URL.createObjectURL(files[0]) + ")",
+        outline: "none",
+        "background-size": "100% 100%",
+      });
+    } else {
+      alert("이미지가 아닙니다.");
+      return;
+    }
+  }
+</script>
+
+<script>
+    function previewFile() {
+    var preview = document.querySelector(".previewIMG");
+    var file = document.querySelector("input[type=file]").files[0];
+    var reader = new FileReader();
+
+    reader.addEventListener(
+    "load",
+    function () {
+    preview.src = reader.result;
+  },
+    false
+    );
+
+    if (file) {
+    reader.readAsDataURL(file);
+  }
+  }
+</script>
+
+<script
+        type="text/javascript"
+        src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4b99ebb84f885d771b9a0771daf35f8a"
+></script>
+<script>
+  // 37.5865326, 127.000069
+  var mapContainer = document.getElementById("map"), // 지도를 표시할 div
+          mapOption = {
+            center: new kakao.maps.LatLng(37.5865326, 127.000069), // 지도의 중심좌표
+            level: 3, // 지도의 확대 레벨
+          };
+
+  var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+
+  // 마커를 표시할 위치입니다
+  var position = new kakao.maps.LatLng(37.5865326, 127.000069);
+
+  // 마커를 생성합니다
+  var marker = new kakao.maps.Marker({
+    position: position,
+  });
+
+  // 마커를 지도에 표시합니다.
+  marker.setMap(map);
+
+  // 마커에 커서가 오버됐을 때 마커 위에 표시할 인포윈도우를 생성합니다
+  var iwContent = '<div style="padding:5px;">까꿍</div>'; // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+
+  // 인포윈도우를 생성합니다
+  var infowindow = new kakao.maps.InfoWindow({
+    content: iwContent,
+  });
+
+  // 마커에 마우스오버 이벤트를 등록합니다
+  kakao.maps.event.addListener(marker, "mouseover", function () {
+    // 마커에 마우스오버 이벤트가 발생하면 인포윈도우를 마커위에 표시합니다
+    infowindow.open(map, marker);
+  });
+
+  // 마커에 마우스아웃 이벤트를 등록합니다
+  kakao.maps.event.addListener(marker, "mouseout", function () {
+    // 마커에 마우스아웃 이벤트가 발생하면 인포윈도우를 제거합니다
+    infowindow.close();
+  });
+</script>
+
+<script>
+  /** 탭 메뉴 코드*/
+  $(".tab-link").click(function () {
+    var tab_id = $(this).attr("data-tab");
+
+    $(".tab-link").removeClass("current");
+    $(".tab-content").removeClass("current");
+
+    $(this).addClass("current");
+    $("#" + tab_id).addClass("current");
+  });
+</script>
+
+<script>
+  /** 헤더 반응형 토글 */
+
+
+</script>
+</body>
+</html>

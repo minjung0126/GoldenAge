@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <!-- <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"> -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald&display=swap");
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400&display=swap');body {
+      font-family: 'Noto Sans KR', sans-serif;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #282828;
+      color: white;
+    }
+
+    /*.header {*/
+    /*  width: 100%;*/
+    /*  height: 80px;*/
+    /*  padding: 0 10%;*/
+    /*  display: flex;*/
+    /*  justify-content: space-between;*/
+    /*  align-items: center;*/
+    /*  position: fixed;*/
+    /*  z-index: 99999;*/
+    /*  background-color: #000;*/
+    /*}*/
+
+    /*.header h1 a {*/
+    /*  text-decoration: none;*/
+    /*  color: white;*/
+    /*  font-family: abster;*/
+    /*  transition: 0.5s;*/
+    /*  display: inline-block;*/
+    /*  padding: 5px 0;*/
+    /*  position: relative;*/
+    /*}*/
+    /*!*가운데서 좌우로 펼쳐지는 라인 에니메이션*!*/
+
+    /*.header h1 a:after {*/
+    /*  background: none repeat scroll 0 0 transparent;*/
+    /*  bottom: 0;*/
+    /*  content: "";*/
+    /*  display: block;*/
+    /*  height: 2px;*/
+    /*  left: 50%;*/
+    /*  position: absolute;*/
+    /*  background: #ffb000;*/
+    /*  transition: width 0.3s ease 0s, left 0.3s ease 0s;*/
+    /*  width: 0;*/
+    /*}*/
+    /*.header h1 a:hover:after {*/
+    /*  width: 100%;*/
+    /*  left: 0;*/
+    /*}*/
+
+    /*.nav ul li {*/
+    /*  display: inline-block;*/
+    /*  margin: 0 10px;*/
+    /*}*/
+
+    /*.nav ul li a {*/
+    /*  text-decoration: none;*/
+    /*  color: white;*/
+    /*}*/
+
+    /*!*왼쪽에서 오른쪽으로 이동하는 에니메이션*!*/
+    /*.nav ul li a {*/
+    /*  position: relative;*/
+    /*}*/
+    /*.nav ul li a:after {*/
+    /*  content: "";*/
+    /*  position: absolute;*/
+    /*  left: 0;*/
+    /*  bottom: -10px;*/
+    /*  width: 0px;*/
+    /*  height: 2px;*/
+    /*  margin: 5px 0 0;*/
+    /*  transition: all 0.3s ease-in-out;*/
+    /*  transition-duration: 0.3s;*/
+    /*  opacity: 0;*/
+    /*  background-color: gold;*/
+    /*}*/
+    /*.nav ul li a:hover:after {*/
+    /*  width: 100%;*/
+    /*  opacity: 1;*/
+    /*}*/
+
+    .content {
+      width: 100%;
+      top: 80px;
+      position: relative;
+      padding: 2% 0%;
+      margin-bottom: 100px;
+    }
+
+    .scroll {
+      overflow: overlay;
+    }
+    .scroll::-webkit-scrollbar {
+      width: 0.7vw;
+    }
+    .scroll::-webkit-scrollbar-thumb {
+      background-color: hsla(0, 0%, 42%, 0.2);
+    }
+
+
+    #blog {
+      padding: 100px 0;
+    }
+
+    .blog-card {
+      margin-bottom: 30px;
+    }
+
+    .blog-card .blog-thumbnail {
+      width: 100%;
+      height: 220px;
+      -o-object-fit: cover;
+      object-fit: cover;
+    }
+
+    .blog-card .blog-container {
+      padding: 15px;
+    }
+
+    .nav-item a{
+      color: #fff;
+    }
+
+    .nav-link:focus, .nav-link:hover {
+      color: gold;
+      border-bottom: gold solid 3px;
+    }
+
+    footer{
+      background-color: #232321;
+      padding: 3rem;
+      color: #fff;
+      margin-top: 180px;
+      display: flex;
+      align-items: flex-start;
+    }
+
+    footer #row{
+      display: flex;
+      flex-wrap: wrap;
+      width: 100%;
+    }
+
+    footer #footer_txt{
+      display: inline-block;
+      flex: 1;
+    }
+
+    footer #footer_sns{
+      align-self: center;
+      float: right;
+    }
+
+    footer #footer_sns a{
+      margin-right: 0.25rem;
+      margin-left: 0.25rem;
+      cursor: pointer;
+      color: #232321;
+    }
+
+    @media (max-width: 768px) {
+      footer{
+        background-color: #333;
+        padding: 3rem;
+        color: #fff;
+        margin-top: 180px;
+        display: block;
+        align-items: flex-start;
+      }
+
+      footer #row{
+        display: flex;
+        flex-wrap: wrap;
+      }
+
+      footer #footer_txt{
+        width: 100%;
+        display: inline-block;
+        flex: 1;
+      }
+
+      footer #footer_sns{
+        width: 100%;
+        align-self: center;
+        float: right;
+        display: flex;
+        justify-content: flex-end;
+      }
+
+    }
+
+
+  </style>
+</head>
+<body class="scroll">
+  <!-- S: header -->
+  <div th:replace="common/header"></div>
+  <!-- E: header -->
+  <div class="content">
+    <br>
+    <div class="d-flex flex-nowrap justify-content-center my-5" th:each="marketing : ${ marketingDetail }">
+      <div class="row">
+        <div class="blog-card mx-auto col-lg-7 col-md-7 px-5">
+          <img th:src="'/images/marketing/' + ${ marketing.mkFileMain }" src="/images/t1.jpeg" alt="" class="col-12">
+        </div>
+        <table height="300px" class="mx-auto col-lg-7 col-md-7 col-10 px-5" style="margin-bottom: 150px;">
+          <tr>
+            <td colspan="2"><h2 th:text="${ marketing.mkName }">연극 <비클래스></h2></td>
+          </tr>
+          <tr>
+            <th>일정</th>
+            <td th:text="${ marketing.mkStartDate } + ' ~ ' + ${ marketing.mkEndDate }">2022.02.25 ~ 2022.05.15</td>
+          </tr>
+          <tr>
+            <th>장소</th>
+            <td th:text="${ marketing.mkPlaceName }">브릭스 씨어터</td>
+          </tr>
+          <tr>
+            <th>제작</th>
+            <td th:text="${ marketing.mkProduct }">골든에이지컴퍼니</td>
+          </tr>
+          <tr>
+            <th>홍보/마케팅</th>
+            <td th:text="${ marketing.companyName }">탄탄대로</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <div class="my-5">
+<!--      <div class="d-flex justify-content-center" style="font-family: 'Oswald', sans-serif !important;">-->
+<!--        <h2 class="mt-5" style="color: #fff; border-bottom: 10px #ffb000 solid; padding-bottom: 8px; font-size: 3rem; font-weight: bold;">CAST</h2>-->
+<!--      </div>-->
+      <div class="d-flex justify-content-center" style="display: inline;background: #ccc;font-family: 'Oswald', sans-serif !important;height: 240px;background: #232321;padding-top: 170px; margin-bottom: 240px;">
+        <h1 style="color: #fff;border-bottom: 10px #ffb000 solid;padding-bottom: 8px;font-size: 5rem;font-weight: bold;margin: auto;">CAST</h1>
+      </div>
+      <div class="container my-5 px-5">
+        <br>
+        <div class="row">
+          <div class="col-lg-2 col-md-3" th:each="poster : ${ mkPosterList }">
+            <div class="blog-card">
+              <img th:src="'/images/marketing/poster/' + ${ poster.pFileName }" src="/images/marketing/poster/a1.gif" alt="" class="blog-thumbnail">
+              <div class="blog-container text-center">
+                <h5 class="mt-2"><b th:text="${ poster.pCastName }">김택상 역</b></h5>
+                <p class="text-muted" th:text="${ poster.pActName }">최정헌</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="d-flex justify-content-center" style="display: inline;background: #ccc;font-family: 'Oswald', sans-serif !important;height: 240px;background: #232321;padding-top: 170px; margin-bottom: 240px;">
+        <h1 style="color: #fff;border-bottom: 10px #ffb000 solid;padding-bottom: 8px;font-size: 5rem;font-weight: bold;margin: auto;">MD</h1>
+      </div>
+      <div class="container my-5 px-5">
+        <br>
+        <div class="row">
+          <div class="col-lg-3 col-md-6" th:each="md : ${ mkMdList }">
+            <div class="blog-card">
+              <img th:src="'/images/marketing/md/' + ${ md.mdFileName }" src="/images/marketing/md/md1.png" alt="" class="blog-thumbnail">
+              <div class="blog-container text-center">
+                <h5 class="mt-2"><b th:text="${ md.mdName }">노트</b></h5>
+                <p class="text-muted" th:text="|${ #numbers.formatInteger(md.mdPrice, 0, 'COMMA') }원|">10,000원</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="d-flex justify-content-center" style="display: inline;background: #ccc;font-family: 'Oswald', sans-serif !important;height: 240px;background: #232321;padding-top: 170px; margin-bottom: 240px;">
+        <h1 style="color: #fff;border-bottom: 10px #ffb000 solid;padding-bottom: 8px;font-size: 5rem;font-weight: bold;margin: auto;">ITEMS</h1>
+      </div>
+      <div class="container my-5 px-5">
+        <br>
+        <div class="row">
+          <div class="col-lg-3 col-md-6" th:each="item : ${ mkItemList }">
+            <div class="blog-card">
+              <img th:src="'/images/marketing/item/' + ${ item.itemFileName }" src="/images/marketing/item/md5.png" alt="" class="blog-thumbnail">
+              <div class="blog-container text-center">
+                <h5 class="mt-2"><b th:text="${ item.itemName }">스토리북</b></h5>
+                <!-- <p class="text-muted">10,000원</p> -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<!-- S: footer -->
+<div th:include="common/footer.html"></div>
+<!-- E: footer -->
+</body>
+</html>

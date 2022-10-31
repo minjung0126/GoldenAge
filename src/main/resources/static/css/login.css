@@ -1,5 +1,8 @@
 body { 
   background-image: url('../images/background.jpg');
+  background-size: auto;
+  background-position: top;
+
 }
 header {
   display: block;
@@ -29,7 +32,7 @@ header {
   font-size: 40px;    
   font-weight: bold;
 }
-#id, #password, #login, #password-one, #password-two{
+#id, #password, #login, #password-one, #password-two, #fix-pwd{
   width: 100%;
   height: 100%;
   display: block;
@@ -38,7 +41,7 @@ header {
   border-radius: 5px 5px 5px 5px;
   border: 0px;
 }
-#email, #auth-no{
+#email, #authNum{
   width: 80%;
   height: 100%;
   margin: 5px 0px 5px 0px;
@@ -51,14 +54,14 @@ header {
   width: 18%;
   height: 100%;
   margin: 0px 0px 0px 3px;
-  padding: 11px 17px 11px;
+  padding: 13px 17px 12px 17px;
   border-radius: 5px 5px 5px 5px;
   background-color: rgb(255,192,7);
   color: white;
   border: 0px;
 }
 
-#login {
+#login, #fix-pwd {
   margin-top: 30px;
   background-color: rgb(255,192,7);
   border: none;
@@ -96,3 +99,4 @@ header {
 #dynamic.active::after {
   display: none;
 }
+

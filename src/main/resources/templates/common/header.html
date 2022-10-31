@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"
-      xmlns:th="http://www.thymeleaf.org" >
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -27,8 +28,9 @@
     padding: 5px 0;
     position: relative;
   }
-  /*가운데서 좌우로 펼쳐지는 라인 에니메이션*/
 
+
+  /*가운데서 좌우로 펼쳐지는 라인 에니메이션*/
   .header h1 a:after {
     background: none repeat scroll 0 0 transparent;
     bottom: 0;
@@ -49,11 +51,13 @@
   .nav ul li {
     display: inline-block;
     margin: 0 10px;
+    !important;
   }
 
   .nav ul li a {
     text-decoration: none;
     color: white;
+  !important;
   }
 
   /*왼쪽에서 오른쪽으로 이동하는 에니메이션*/
@@ -106,15 +110,20 @@
 </style>
 <body>
 <div class="header">
-  <div class="logo"><a th:href="@{/}"><img src="/images/KakaoTalk_20221023_151900855.png" alt="" width="220px"></a></div>
+  <div class="logo"><a th:href="@{/}"><img src="/images/logo.png" alt="" width="220px" style="vertical-align: middle;"></a></div>
   <div class="nav">
-    <ul>
+    <ul style="margin-bottom: 0px;">
       <li><a href="./company.html">COMPANY</a></li>
       <li><a th:href="@{/product/productPage}">PRODUCT</a></li>
-      <li><a href="./marketing.html">MARKETING</a></li>
+      <li><a th:href="@{/marketing/list}">MARKETING</a></li>
       <li><a href="./theater.html">THEATER</a></li>
       <li><a href="./notice.html">NOTICE</a></li>
-      <li><a th:href="@{/admin/login}">LOGIN</a></li>
+      <th:block sec:authorize="isAnonymous()">
+        <li><a th:href="@{/admin/loginPage}">LOGIN</a></li>
+      </th:block>
+      <th:block sec:authorize="isAuthenticated()">
+        <li><a onclick="location.href='/logout'" id="logout" class="text-warning">LOGOUT</a></li>
+      </th:block>
     </ul>
   </div>
 </div>

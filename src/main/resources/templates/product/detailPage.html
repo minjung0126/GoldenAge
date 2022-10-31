@@ -53,7 +53,7 @@
     display: block;
   }
   .infoWrap .poster img {
-    width: 420px;
+    width: 65%;
   }
   .infoWrap .info .info-about {
     text-align: center;
@@ -115,13 +115,16 @@
     line-height: 200px;
     color: #ffb000;
   }
+  .tab-content.current img{
+    width: 72%;
+  }
 
   .tab-content.mapAPI {
     height: auto;
   }
   /*       */
 </style>
-<body>
+<body class="scroll">
 <div th:include="common/header"></div>
 <div class="detailPageTitle">
   <h1 style="color: #fff; border-bottom: 8px #ffb000 solid">PRODUCT</h1>
