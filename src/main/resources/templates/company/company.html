@@ -17,7 +17,7 @@
         .main img{width: 300px; height: 300px;}
         .main p {color: #fff;}
         .main strong{color: #fff;}
-        .contect{text-align: center; margin-top: 50px;}
+        .contect{text-align: center; margin: 50px;margin-bottom: 50px;}
         .card{background-color: black; border: 1px gold solid;}
         .card-text-ul{list-style: none;}
         .card-text-list{color: #fff;}
@@ -59,6 +59,7 @@
             </p>
             <a th:href="${ comInfo.instagram }" class="card-link" style="color: #fff;">인스타그램</a>
             <a th:href="${ comInfo.twitter }" class="card-link" style="color: #fff;">트위터</a>
+            <a th:href="${ comInfo.space }" class="card-link" style="color: #fff;">연습실예약</a>
           </div>
           <th:block sec:authorize="isAuthenticated()">
           <div class="text-center py-2">
