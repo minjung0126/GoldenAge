@@ -2,104 +2,63 @@ package com.goldenage.project.product.model.dto;
 
 public class ProductFileDTO {
 
-    private int no;
-    private String originName;
-    private String saveName;
-    private String savePath;
-    private String deleteYn;
-    private String thumbnailPath;
-    private int galNo;
-    private String fileType;
+    private int pd_num;
+
+    private int pdFileNum;
+
+    private String pdOriName;
+
+    private String pdFileName;
 
     public ProductFileDTO() {
     }
 
-    public ProductFileDTO(int no, String originName, String saveName, String savePath, String deleteYn, String thumbnailPath, int galNo, String fileType) {
-        this.no = no;
-        this.originName = originName;
-        this.saveName = saveName;
-        this.savePath = savePath;
-        this.deleteYn = deleteYn;
-        this.thumbnailPath = thumbnailPath;
-        this.galNo = galNo;
-        this.fileType = fileType;
+    public ProductFileDTO(int pd_num, int pdFileNum, String pdOriName, String pdFileName) {
+        this.pd_num = pd_num;
+        this.pdFileNum = pdFileNum;
+        this.pdOriName = pdOriName;
+        this.pdFileName = pdFileName;
     }
 
-    public int getNo() {
-        return no;
+    public int getPd_num() {
+        return pd_num;
     }
 
-    public void setNo(int no) {
-        this.no = no;
+    public void setPd_num(int pd_num) {
+        this.pd_num = pd_num;
     }
 
-    public String getOriginName() {
-        return originName;
+    public int getPdFileNum() {
+        return pdFileNum;
     }
 
-    public void setOriginName(String originName) {
-        this.originName = originName;
+    public void setPdFileNum(int pdFileNum) {
+        this.pdFileNum = pdFileNum;
     }
 
-    public String getSaveName() {
-        return saveName;
+    public String getPdOriName() {
+        return pdOriName;
     }
 
-    public void setSaveName(String saveName) {
-        this.saveName = saveName;
+    public void setPdOriName(String pdOriName) {
+        this.pdOriName = pdOriName;
     }
 
-    public String getSavePath() {
-        return savePath;
+    public String getPdFileName() {
+        return pdFileName;
     }
 
-    public void setSavePath(String savePath) {
-        this.savePath = savePath;
-    }
-
-    public String getDeleteYn() {
-        return deleteYn;
-    }
-
-    public void setDeleteYn(String deleteYn) {
-        this.deleteYn = deleteYn;
-    }
-
-    public String getThumbnailPath() {
-        return thumbnailPath;
-    }
-
-    public void setThumbnailPath(String thumbnailPath) {
-        this.thumbnailPath = thumbnailPath;
-    }
-
-    public int getGalNo() {
-        return galNo;
-    }
-
-    public void setGalNo(int galNo) {
-        this.galNo = galNo;
-    }
-
-    public String getFileType() {
-        return fileType;
-    }
-
-    public void setFileType(String fileType) {
-        this.fileType = fileType;
+    public void setPdFileName(String pdFileName) {
+        this.pdFileName = pdFileName;
     }
 
     @Override
     public String toString() {
         return "ProductFileDTO{" +
-                "no=" + no +
-                ", originName='" + originName + '\'' +
-                ", saveName='" + saveName + '\'' +
-                ", savePath='" + savePath + '\'' +
-                ", deleteYn='" + deleteYn + '\'' +
-                ", thumbnailPath='" + thumbnailPath + '\'' +
-                ", galNo=" + galNo +
-                ", fileType='" + fileType + '\'' +
+                "pd_num=" + pd_num +
+                ", pdFileNum=" + pdFileNum +
+                ", pdOriName='" + pdOriName + '\'' +
+                ", pdFileName='" + pdFileName + '\'' +
                 '}';
     }
 }
