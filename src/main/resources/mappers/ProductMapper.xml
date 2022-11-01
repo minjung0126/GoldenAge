@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.goldenage.project.login.model.dao.ProductMapper">
+    <resultMap id="adminResultMap" type="com.goldenage.project.login.model.dto.ProductDTO">
+        <id property="adminNum" column="ADMIN_NUM"/>
+        <result property="adminName" column="ADMIN_NAME"/>
+        <result property="adminId" column="ADMIN_ID"/>
+        <result property="adminPwd" column="ADMIN_PWD"/>
+        <result property="adminEmail" column="ADMIN_EMAIL"/>
+        <result property="authCode" column="AUTH_CODE"/>
+        <result property="authNum" column="AUTH_NUM"/>
+    </resultMap>

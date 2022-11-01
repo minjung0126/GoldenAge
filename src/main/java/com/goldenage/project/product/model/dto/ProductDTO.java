@@ -1,6 +1,7 @@
 package com.goldenage.project.product.model.dto;
 
 import java.util.Date;
+import java.util.List;
 
 public class ProductDTO {
 
@@ -14,10 +15,12 @@ public class ProductDTO {
     private String pd_place_add;
     private String company_name;
 
+    private List<ProductFileDTO> productFileDTO;
+
     public ProductDTO() {
     }
 
-    public ProductDTO(int pd_num, String pd_name, Date pd_start_date, Date pd_end_date, String pd_place_name, String pd_rated, String pd_time, String pd_place_add, String company_name) {
+    public ProductDTO(int pd_num, String pd_name, Date pd_start_date, Date pd_end_date, String pd_place_name, String pd_rated, String pd_time, String pd_place_add, String company_name, List<ProductFileDTO> productFileDTO) {
         this.pd_num = pd_num;
         this.pd_name = pd_name;
         this.pd_start_date = pd_start_date;
@@ -27,6 +30,7 @@ public class ProductDTO {
         this.pd_time = pd_time;
         this.pd_place_add = pd_place_add;
         this.company_name = company_name;
+        this.productFileDTO = productFileDTO;
     }
 
     public int getPd_num() {
@@ -101,9 +105,17 @@ public class ProductDTO {
         this.company_name = company_name;
     }
 
+    public List<ProductFileDTO> getProductFileDTO() {
+        return productFileDTO;
+    }
+
+    public void setProductFileDTO(List<ProductFileDTO> productFileDTO) {
+        this.productFileDTO = productFileDTO;
+    }
+
     @Override
     public String toString() {
-        return "ProductDto{" +
+        return "ProductDTO{" +
                 "pd_num=" + pd_num +
                 ", pd_name='" + pd_name + '\'' +
                 ", pd_start_date=" + pd_start_date +
@@ -113,6 +125,7 @@ public class ProductDTO {
                 ", pd_time='" + pd_time + '\'' +
                 ", pd_place_add='" + pd_place_add + '\'' +
                 ", company_name='" + company_name + '\'' +
+                ", productFileDTO=" + productFileDTO +
                 '}';
     }
 }

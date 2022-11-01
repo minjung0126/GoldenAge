@@ -148,19 +148,19 @@
     <table width="350px" height="270px" class="info-about">
       <tr>
         <td>일정</td>
-        <td>2022.02.25 ~ 2022.05.15</td>
+        <td></td>
       </tr>
       <tr>
         <td>장소</td>
-        <td>브릭스 씨어터</td>
+        <td></td>
       </tr>
       <tr>
         <td>제작</td>
-        <td>골든에이지 컴퍼니</td>
+        <td></td>
       </tr>
       <tr>
         <td>홍보/마케팅</td>
-        <td>탄탄대로</td>
+        <td></td>
       </tr>
     </table>
   </div>
@@ -184,8 +184,10 @@
     <p class="tab-link" data-tab="tab-2">오시는 길</p>
   </div>
   <div id="tab-1" class="tab-content current">
+    <form th:action="@{/product/upload/pic}" method="post" mul>
     <input type="file" onchange="previewFile()" /><br />
     <img src="" alt="" class="previewIMG" />
+    </form>
   </div>
   <div id="tab-2" class="tab-content mapAPI">
     contents Area
