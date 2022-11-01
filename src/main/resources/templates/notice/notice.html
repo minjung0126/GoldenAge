@@ -135,29 +135,25 @@
     <button class="btn" type="button" style="color:gold; float: right;" th:onclick="'location.href=\'/notice/insert\''">작성하기</button>
   </div>
   </th:block>
-  <div id="paging" class="pagination d-flex justify-content-center">
-    <button type="button" class="mx-2"
-            th:onclick="'location.href=\'/notice/notice?currentPage='+ @{${selectCriteria.startPage}} +  '\''"
-            th:disabled="${selectCriteria.pageNo == 1}" >
-      <img src="images/arrow_l_end.gif" alt=""></button>
-    <button type="button" class="mx-2"
-            th:onclick="'location.href=\'/notice/notice?currentPage='+ @{${selectCriteria.pageNo - 1}} +  '\''"
-            th:disabled="${selectCriteria.pageNo == 1}">
-      <img src="images/arrow_l.gif" alt=""></button>
+  <div class="pagination d-flex justify-content-center align-items-center">
+    <img th:src="@{/images/arrow_l_end.gif}" alt="" height="11px" th:onclick="'location.href=\'/notice/notice?currentPage='+ @{${selectCriteria.startPage}} +  '\''"
+         th:disabled="${selectCriteria.pageNo == 1}"
+         style="cursor: pointer;" class="mx-2">
+    <img th:src="@{/images/arrow_l.gif}" alt="" height="11px" th:onclick="'location.href=\'/notice/notice?currentPage='+ @{${selectCriteria.pageNo - 1}} +  '\''"
+         th:disabled="${selectCriteria.pageNo == 1}"
+         style="cursor: pointer;" class="mx-2">
     <th:block th:each="page : ${#numbers.sequence(selectCriteria.startPage, selectCriteria.endPage)}">
-    <a
-       th:text="${ page }"
-       th:onclick="'location.href=\'/notice/notice?currentPage='+ @{${page}} + '\''"
-       th:disabled="${ selectCriteria.pageNo eq page }"></a>
+      <a th:text="${ page }"
+         th:onclick="'location.href=\'/notice/notice?currentPage='+ @{${page}} + '\''"
+         th:disabled="${ selectCriteria.pageNo eq page }"
+      ></a>
     </th:block>
-    <button type="button" class="mx-2"
-            th:onclick="'location.href=\'/notice/notice?currentPage='+ @{${selectCriteria.pageNo + 1}} +  '\''"
-            th:disabled="${selectCriteria.pageNo == selectCriteria.maxPage}">
-      <img src="images/arrow_r.gif" alt=""></button>
-    <button type="button" class="mx-2"
-            th:onclick="'location.href=\'/notice/notice?currentPage='+ @{${selectCriteria.maxPage}} + '\''"
-            th:disabled="${selectCriteria.pageNo == selectCriteria.maxPage}">
-      <img src="images/arrow_r_end.gif" alt=""></button>
+    <img th:src="@{/images/arrow_r.gif}" alt="" height="11px" th:onclick="'location.href=\'/notice/notice?currentPage='+ @{${selectCriteria.pageNo + 1}} +  '\''"
+         th:disabled="${selectCriteria.pageNo == selectCriteria.maxPage}"
+         style="cursor: pointer;" class="mx-2">
+    <img th:src="@{/images/arrow_r_end.gif}" alt="" height="11px" th:onclick="'location.href=\'/notice/notice?currentPage='+ @{${selectCriteria.maxPage}} + '\''"
+         th:disabled="${selectCriteria.pageNo == selectCriteria.maxPage}"
+         style="cursor: pointer;" class="mx-2">
   </div>
 </div><!-- container close -->
 <!-- S: footer -->

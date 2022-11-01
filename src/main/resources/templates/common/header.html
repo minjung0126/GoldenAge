@@ -115,13 +115,11 @@
 
   @media (max-width: 910px) {
     #nav-bar{
-      display: none;
       position: absolute;
       top: 80px;
       background-color: black;
       border-radius: 0px 0px 5px 5px;
       width: 100%;
-      text-align: center;
       padding: 20px;
       right: 0px;
       text-align: right;
@@ -160,9 +158,13 @@
       width: auto;
     }
   }
+  @media (min-width: 911px) {
 
+    #nav-bar {
+      display: block;
+    }
+  }
 </style>
-<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 
 <body>
 <div class="header">
@@ -192,6 +194,15 @@
 <script>
   $("#nav-toggle").click(function (){
     $("#nav-bar").slideToggle(300);
+  });
+
+  $( window ).resize(function (){
+
+    let windowWidth = $( window ).width();
+
+    if( windowWidth > 911){
+      $("#nav-bar").css('display', 'block');
+    }
   });
 </script>
 </html>

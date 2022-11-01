@@ -19,4 +19,42 @@ public interface MarketingMapper {
     List<MkMdDTO> selectAllMd(String mkNum);
 
     List<MkItemDTO> selectAllItem(String mkNum);
+
+    int insertMkInfo(MarketingDTO marketing);
+
+    int updateMkInfo(MarketingDTO marketing);
+
+    int updateMkInfoNoFile(MarketingDTO marketing);
+
+    int deleteMkInfo(String mkNum);
+
+    MkPosterDTO selectPoster(String pFileNum);
+
+    MkMdDTO selectMd(String mdFileNum);
+
+    MkItemDTO selectItem(String itemFileNum);
+
+    int updateMkPoster(MkPosterDTO mkPoster);
+
+    int updateMkPosterNoFile(MkPosterDTO mkPoster);
+
+    int updateMkMd(MkMdDTO mkMd);
+
+    int updateMkMdNoFile(MkMdDTO mkMd);
+
+    int updateMkItem(MkItemDTO mkItem);
+
+    int updateMkItemNoFile(MkItemDTO mkItem);
+
+    int insertMkPoster(MkPosterDTO mkPoster);
+
+    int insertMkMd(MkMdDTO mkMd);
+
+    int insertMkItem(MkItemDTO mkItem);
+
+    int deleteMkPoster(int pFileNum);
+
+    int deleteMkMd(int mdFileNum);
+
+    int deleteMkItem(int itemFileNum);
 }
