@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -34,7 +34,7 @@
       margin: auto;
       overflow: hidden;
       padding-top: 240px;
-      padding-bottom: 320px;
+      padding-bottom: 220px;
     }
     .images {
       width: 100%;
@@ -85,12 +85,31 @@
       color: #fff;
       opacity: 1;
     }
+
+    .adminInsertPageBTN{
+      text-align: center;
+    }
+
+    .button{
+      padding: 7px 40px;
+      color: #fff;
+      border: 1.5px solid darkgray;
+      cursor: pointer;
+      font-size: 1.2rem;
+      background: none;
+      transition: 0.2s;
+    }
+    .button:hover{
+      transform: scale(1.1);
+    }
+
   </style>
     <body class="scroll">
         <div th:replace="common/header"></div>
       <div class="detailPageTitle">
         <h1 style="color: #fff; border-bottom: 8px #ffb000 solid">PRODUCT</h1>
       </div>
+        </div>
       <div class="detailPagelist">
         <div class="images">
           <div class="imageFlex">
@@ -98,13 +117,9 @@
               ><img src="/images/비클래스.jpg" />
               <h3 class="imageText">B클래스</h3></a
             >
-            <a th:href="@{/product/adminDetailPage}" class="imagePoster"
-              ><img src="/images/비클래스.jpg" />
-              <h3 class="imageText">B클래스</h3></a
-            >
-            <a href="detailPage.html" class="imagePoster"
-              ><img src="/images/줄리엣과%20줄리엣.jpg" />
-              <h3 class="imageText">줄리엣과 줄리엣</h3></a
+            <a th:href="@{/product/detailPage}" class="imagePoster"
+            ><img src="/images/바톤콘서트.jpg" />
+              <h3 class="imageText">바톤콘서트</h3></a
             >
           </div>
         </div>
@@ -114,14 +129,6 @@
               ><img src="/images/스푸트니크_포스터.jpg" />
               <h3 class="imageText">스푸트니크</h3></a
             >
-            <a th:href="@{/product/detailPage}" class="imagePoster"
-              ><img src="/images/바톤콘서트.jpg" />
-              <h3 class="imageText">바톤콘서트</h3></a
-            >
-            <a th:href="@{/product/detailPage}" class="imagePoster"
-              ><img src="/images/비클래스.jpg" />
-              <h3 class="imageText">B클래스</h3></a
-            >
           </div>
         </div>
         <div class="images">
@@ -130,21 +137,16 @@
               ><img src="/images/줄리엣과%20줄리엣.jpg" />
               <h3 class="imageText">줄리엣과 줄리엣</h3></a
             >
-            <a th:href="@{product/detailPage}" class="imagePoster"
-              ><img src="/images/스푸트니크_포스터.jpg" />
-              <h3 class="imageText">스푸트니크</h3></a
-            >
-            <a th:href="@{product/detailPage}" class="imagePoster"
-              ><img src="/images/바톤콘서트.jpg" />
-              <h3 class="imageText">바톤콘서트</h3></a
-            >
           </div>
         </div>
-      </div>
-
+        </div>
+        <div class="adminInsertPageBTN">
+          <th:block sec:authorize="hasRole('ROLE_ADMIN')">
+            <button class="button" onclick="location.href='/product/adminDetailPage'">등록하기</button>
+          </th:block>
+        </div>
       <!-- S: footer -->
       <div th:include="/common/footer.html"></div>
       <!-- E: footer -->
     </body>
   </html>
-</html>

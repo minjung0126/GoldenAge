@@ -184,8 +184,10 @@
     <p class="tab-link" data-tab="tab-2">오시는 길</p>
   </div>
   <div id="tab-1" class="tab-content current">
+    <form th:action="@{/product/upload/pic}" method="post" mul>
     <input type="file" onchange="previewFile()" /><br />
     <img src="" alt="" class="previewIMG" />
+    </form>
   </div>
   <div id="tab-2" class="tab-content mapAPI">
     contents Area
