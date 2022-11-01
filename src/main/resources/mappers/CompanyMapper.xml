@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.goldenage.project.company.model.dao.CompanyMapper">
+
+    <resultMap id="companyResultMap" type="CompanyDTO">
+        <id property="companyName" column="COMPANY_NAME"/>
+        <result property="comRepNum" column="COM_REP_NUM"/>
+        <result property="phone" column="PHONE"/>
+        <result property="address" column="ADDRESS"/>
+        <result property="email" column="EMAIL"/>
+        <result property="comRepName" column="COM_REP_NAME"/>
+        <result property="instagram" column="INSTAGRAM"/>
+        <result property="twitter" column="TWITTER"/>
+        <result property="space" column="SPACE"/>
+    </resultMap>
+
+    <select id="selectComInfo" resultMap="companyResultMap">
+        SELECT
+               *
+          FROM COMPANY
+    </select>
+
+    <select id="selectComInfos" resultMap="companyResultMap">
+        SELECT
+               *
+          FROM COMPANY
+    </select>
+    <update id="updateComInfo" parameterType="CompanyDTO">
+        UPDATE
+               COMPANY
+        <trim prefix="SET" prefixOverrides=",">
+            <if test='address != null and address != ""'>
+                ,  ADDRESS =#{ address }
+            </if>
+            <if test='phone != null and phone !=""'>
+                , PHONE = #{ phone }
+            </if>
+            <if test='email != null and email !=""'>
+                , EMAIL = #{ email }
+            </if>
+            <if test='instagram != null and instagram !=""'>
+                , INSTAGRAM = #{ instagram }
+            </if>
+            <if test='twitter != null and twitter !=""'>
+                , TWITTER = #{ twitter }
+            </if>
+            <if test='space != null and space !=""'>
+                , SPACE = #{ space }
+            </if>
+        </trim>
+    </update>
+</mapper>

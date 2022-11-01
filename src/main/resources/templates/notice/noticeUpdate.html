@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <style>
+        .container{background-image: none;background-color: black; padding-top: 100px;}
+        .main{height: auto;text-align: center;}
+        .table{color: #fff; background: #232321;}
+    </style>
+</head>
+<body class="scroll" style="background-color: black;">
+<!-- header -->
+<div th:replace="common/header"></div>
+<!-- header end -->
+<div class="container">
+    <!-- S: table -->
+    <div class="main">
+        <div class="container-fluid" style="margin-top:30px">
+            <h3 class="text-start" style="color: #fff; border-bottom: 3px gold solid; padding-bottom: 8px;">공지사항 수정</h3>
+            <br>
+            <form th:action="@{/notice/update}" method="post" enctype="multipart/form-data">
+            <table class="table">
+                <colgroup>
+                    <col style="width:170px">
+                    <col>
+                </colgroup>
+                <tbody>
+                <input type="hidden" name="noticeNo" th:value="${ noticeDetail.noticeNo }">
+                <input type="hidden" name="noticeOriName" th:value="${ noticeDetail.noticeFile}">
+                <tr>
+                    <th><strong>제목</strong></th>
+                    <td>
+                        <input class="align-left" type="text" name="noticeName" style="width: 100%;" th:placeholder="${ noticeDetail.noticeName }"/>
+                    </td>
+                </tr>
+                <tr>
+                    <th>본문</th>
+                    <td class="align-left">
+                        <textarea name="noticeContent" style="width: 100%; height: 500px;" th:placeholder="${ noticeDetail.noticeContent }"></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <th>본문링크</th>
+                    <td class="align-left">
+                        <input type="url" name="noticeLink" style="width: 100%;" th:placeholder="${ noticeDetail.noticeLink }"/>
+                    </td>
+                </tr>
+                    <th>첨부파일</th>
+                    <td class="align-left">
+                        <input type="file" name="file" th:text="| 이전파일 : ${ noticeDetail.noticeFile.getNoticeOriName() }|">
+                    </td>
+                </tbody>
+            </table>
+            <div style="float: right;">
+                <button class="btn" type="submit" style="color:gold" >수정</button>
+                <button class="btn" type="button" style="color:gold" th:onclick="'location.href=\'/notice/notice_view?noticeNo='+ @{${ noticeDetail.noticeNo }} + '\''">이전</button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div><!-- container close -->
+<!-- S: footer -->
+<div th:include="common/footer.html"></div>
+<!-- E: footer -->
+<!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+</body>
+</html>

@@ -4,21 +4,27 @@ public class CompanyDTO {
 
     private String companyName;
     private int comRepNum;
-    private int phone;
+    private String phone;
     private String address;
     private String email;
     private String comRepName;
+    private String instagram;
+    private String twitter;
+    private String space;
 
     public CompanyDTO() {
     }
 
-    public CompanyDTO(String companyName, int comRepNum, int phone, String address, String email, String comRepName) {
+    public CompanyDTO(String companyName, int comRepNum, String phone, String address, String email, String comRepName, String instagram, String twitter, String space) {
         this.companyName = companyName;
         this.comRepNum = comRepNum;
         this.phone = phone;
         this.address = address;
         this.email = email;
         this.comRepName = comRepName;
+        this.instagram = instagram;
+        this.twitter = twitter;
+        this.space = space;
     }
 
     public String getCompanyName() {
@@ -37,11 +43,11 @@ public class CompanyDTO {
         this.comRepNum = comRepNum;
     }
 
-    public int getPhone() {
+    public String getPhone() {
         return phone;
     }
 
-    public void setPhone(int phone) {
+    public void setPhone(String phone) {
         this.phone = phone;
     }
 
@@ -69,15 +75,42 @@ public class CompanyDTO {
         this.comRepName = comRepName;
     }
 
+    public String getInstagram() {
+        return instagram;
+    }
+
+    public void setInstagram(String instagram) {
+        this.instagram = instagram;
+    }
+
+    public String getTwitter() {
+        return twitter;
+    }
+
+    public void setTwitter(String twitter) {
+        this.twitter = twitter;
+    }
+
+    public String getSpace() {
+        return space;
+    }
+
+    public void setSpace(String space) {
+        this.space = space;
+    }
+
     @Override
     public String toString() {
         return "CompanyDTO{" +
                 "companyName='" + companyName + '\'' +
                 ", comRepNum=" + comRepNum +
-                ", phone=" + phone +
+                ", phone='" + phone + '\'' +
                 ", address='" + address + '\'' +
                 ", email='" + email + '\'' +
                 ", comRepName='" + comRepName + '\'' +
+                ", instagram='" + instagram + '\'' +
+                ", twitter='" + twitter + '\'' +
+                ", space='" + space + '\'' +
                 '}';
     }
 }

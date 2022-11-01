@@ -1,16 +1,35 @@
-
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link rel="stylesheet" href="../static/css/style.css" />
-    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-    <!-- CSS only -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-    <style>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <link rel="stylesheet" th:href="@{/css/style.css}"/>
+  <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+  <!-- CSS only -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+  <style>
+        .detailPageTitle {
+          font-family: "Oswald", sans-serif;
+          margin: 0 auto;
+          width: 100%;
+          height: 320px;
+          padding-top: 220px;
+          font-size: 2.5rem;
+          text-align: center;
+          z-index: 9;
+          display: block;
+          position: relative;
+        }
+        .detailPageTitle h1 {
+          /*line-height: 165px;*/
+          width: 280px;
+          margin: auto;
+          padding-top: 20px;
+        }
         .container{
           background-image: none;
           background-color: black;
@@ -20,10 +39,19 @@
           text-align: center;
         }
         .table{
-          border: 1px solid #fff; 
-          border-top: none; 
-          border-left: none; 
+          width: 80%;
+          margin: auto;
+          overflow: hidden;
+          padding-top: 240px;
+          padding-bottom: 320px;
+          margin-top: 50px;
+          border: 1px solid #fff;
+          border-top: none;
+          border-left: none;
           border-right: none;
+        }
+        .notionTr{
+          height : 30px;
         }
         .thead{
           color: #fff;
@@ -32,6 +60,7 @@
           color: #fff;
         }
         .pagination {
+          margin-top: 100px;
         display: inline-block;
         }
         .pagination a {
@@ -44,82 +73,109 @@
         color: #000;
         }
         .pagination a:hover:not(.active) {
-          background-color: #eee; 
+          background-color: #eee;
           color: #000;
         }
+        @media (max-width: 768px) {
+          .thead{
+            display: none;
+          }
+          .notionNum{
+            display:table-cell;
+            vertical-align:middle;
+          }
+          .notionName{
+            display:table-cell;
+            vertical-align:middle;
+          }
+          .notionDay{
+            display:table-cell;
+            vertical-align:middle;
+          }
+          .notionTr{
+            height: 100px;
+          }
+          .pagination a {
+            color: #fff;
+            padding: 8px 8px;
+            text-decoration: none;
+          }
+        }
     </style>
-  </head>
-  <body class="scroll" style="background-color: black;">
-    <div class="container">
-      <div class="header">
-        <div class="logo"><a href="mainPage.html"><img src="../static/images/logo.gif" alt="" width="220px"></a></div>
-        <div class="nav">
-          <ul>
-            <li><a href="./company.html">COMPANY</a></li>
-            <li><a href="product/productPage.html">PRODUCT</a></li>
-            <li><a href="./marketing.html">MARKETING</a></li>
-            <li><a href="./theater.html">THEATER</a></li>
-            <li><a href="./notice.html">NOTICE</a></li>
-          </ul>
-        </div>
-      </div>
-      <!-- S: table -->
-      <div class="main">
-        <h1 class="text-start" style="color: #fff; border-bottom: 3px gold solid; padding-bottom: 8px;">공지사항</h1>
-        <br>
-        <table class="table">
-          <thead class="thead">
-            <tr>
-              <th>번호</th>
-              <th>제목</th>
-              <th>작성자</th>
-              <th>등록일</th>
-            </tr>
-          </thead>
-          <tbody class="tbody">
-            <tr onclick="location.href='notice_view.html'">
-              <td>1</td>
-              <td>제목입니당</td>
-              <td>작성자</td>
-              <td>10/11</td>
-            </tr>
-            <tr onclick="location.href='notice_view.html'">
-              <td>2</td>
-              <td>제목입니당</td>
-              <td>작성자</td>
-              <td>10/12</td>
-            </tr>
-            <tr onclick="location.href='notice_view.html'">
-              <td>3</td>
-              <td>제목입니당</td>
-              <td>작성자</td>
-              <td>10/12</td>
-            </tr>
-            <tr onclick="location.href='notice_view.html'">
-              <td>4</td>
-              <td>제목입니당</td>
-              <td>작성자</td>
-              <td>10/12</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <div style="float: right;">
-        <button class="btn" type="button" style="color:gold; float: right;" onclick="location.href='./notice_insert.html'">작성하기</button>
-      </div>
-      <div class="pagination d-flex justify-content-center">
-        <button type="button" class="mx-2"><img src="../static/images/arrow_l_end.gif" alt=""></button>
-        <button type="button" class="mx-2"><img src="../static/images/arrow_l.gif" alt=""></button>
-        <a href="#">1</a>
-        <a class="active" href="#">2</a>
-        <a href="#">3</a>
-        <a href="#">4</a>
-        <a href="#">5</a>
-        <button type="button" class="mx-2"><img src="../static/images/arrow_r.gif" alt=""></button>
-        <button type="button" class="mx-2"><img src="../static/images/arrow_r_end.gif" alt=""></button>
-      </div>
-    </div><!-- container close -->
-    <!-- JavaScript Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
-  </body>
+</head>
+<body class="scroll" style="background-color: black;">
+<!-- header -->
+<div th:replace="common/header"></div>
+<!-- header end -->
+<div class="container">
+  <!-- S: table -->
+  <div class="main">
+    <div class="detailPageTitle">
+      <h1 style="color: #fff; border-bottom: 8px #ffb000 solid">NOTICE</h1>
+    </div>
+    <table class="table">
+      <thead class="thead">
+      <tr>
+        <th>번호</th>
+        <th>제목</th>
+        <th>등록일</th>
+      </tr>
+      </thead>
+      <tbody class="tbody">
+      <tr th:each="list : ${ noticeList }" class="notionTr">
+        <td class="notionNum" th:text="${ list.noticeNo }"></td>
+        <td class="notionName" th:text="${ list.noticeName }"></td>
+        <td class="notionDay" th:text="${ list.noticeRegistDate }"></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <th:block sec:authorize="isAuthenticated()">
+  <div>
+    <button class="btn" type="button" style="color:gold; float: right;" th:onclick="'location.href=\'/notice/insert\''">작성하기</button>
+  </div>
+  </th:block>
+  <div id="paging" class="pagination d-flex justify-content-center">
+    <button type="button" class="mx-2"
+            th:onclick="'location.href=\'/notice/notice?currentPage='+ @{${selectCriteria.startPage}} +  '\''"
+            th:disabled="${selectCriteria.pageNo == 1}" >
+      <img src="images/arrow_l_end.gif" alt=""></button>
+    <button type="button" class="mx-2"
+            th:onclick="'location.href=\'/notice/notice?currentPage='+ @{${selectCriteria.pageNo - 1}} +  '\''"
+            th:disabled="${selectCriteria.pageNo == 1}">
+      <img src="images/arrow_l.gif" alt=""></button>
+    <th:block th:each="page : ${#numbers.sequence(selectCriteria.startPage, selectCriteria.endPage)}">
+    <a
+       th:text="${ page }"
+       th:onclick="'location.href=\'/notice/notice?currentPage='+ @{${page}} + '\''"
+       th:disabled="${ selectCriteria.pageNo eq page }"></a>
+    </th:block>
+    <button type="button" class="mx-2"
+            th:onclick="'location.href=\'/notice/notice?currentPage='+ @{${selectCriteria.pageNo + 1}} +  '\''"
+            th:disabled="${selectCriteria.pageNo == selectCriteria.maxPage}">
+      <img src="images/arrow_r.gif" alt=""></button>
+    <button type="button" class="mx-2"
+            th:onclick="'location.href=\'/notice/notice?currentPage='+ @{${selectCriteria.maxPage}} + '\''"
+            th:disabled="${selectCriteria.pageNo == selectCriteria.maxPage}">
+      <img src="images/arrow_r_end.gif" alt=""></button>
+  </div>
+</div><!-- container close -->
+<!-- S: footer -->
+<div th:include="common/footer.html"></div>
+<!-- E: footer -->
+<script th:inline="javascript">
+  if(document.getElementsByTagName("tr")) {
+    const $trs = document.getElementsByTagName("tr");
+    for (let i = 0; i < $trs.length; i++) {
+
+      $trs[i].onclick = function () {
+        const noticeNo = this.children[0].innerHTML;
+        location.href = "/notice/notice_view?noticeNo=" + noticeNo
+      }
+    }
+  }
+</script>
+<!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+</body>
 </html>
