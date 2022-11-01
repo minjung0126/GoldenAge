@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="ko"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -29,81 +30,8 @@
       color: white;
     }
 
-    /*.header {*/
-    /*  width: 100%;*/
-    /*  height: 80px;*/
-    /*  padding: 0 10%;*/
-    /*  display: flex;*/
-    /*  justify-content: space-between;*/
-    /*  align-items: center;*/
-    /*  position: fixed;*/
-    /*  z-index: 99999;*/
-    /*  background-color: #000;*/
-    /*}*/
-
-    /*.header h1 a {*/
-    /*  text-decoration: none;*/
-    /*  color: white;*/
-    /*  font-family: abster;*/
-    /*  transition: 0.5s;*/
-    /*  display: inline-block;*/
-    /*  padding: 5px 0;*/
-    /*  position: relative;*/
-    /*}*/
-    /*!*가운데서 좌우로 펼쳐지는 라인 에니메이션*!*/
-
-    /*.header h1 a:after {*/
-    /*  background: none repeat scroll 0 0 transparent;*/
-    /*  bottom: 0;*/
-    /*  content: "";*/
-    /*  display: block;*/
-    /*  height: 2px;*/
-    /*  left: 50%;*/
-    /*  position: absolute;*/
-    /*  background: #ffb000;*/
-    /*  transition: width 0.3s ease 0s, left 0.3s ease 0s;*/
-    /*  width: 0;*/
-    /*}*/
-    /*.header h1 a:hover:after {*/
-    /*  width: 100%;*/
-    /*  left: 0;*/
-    /*}*/
-
-    /*.nav ul li {*/
-    /*  display: inline-block;*/
-    /*  margin: 0 10px;*/
-    /*}*/
-
-    /*.nav ul li a {*/
-    /*  text-decoration: none;*/
-    /*  color: white;*/
-    /*}*/
-
-    /*!*왼쪽에서 오른쪽으로 이동하는 에니메이션*!*/
-    /*.nav ul li a {*/
-    /*  position: relative;*/
-    /*}*/
-    /*.nav ul li a:after {*/
-    /*  content: "";*/
-    /*  position: absolute;*/
-    /*  left: 0;*/
-    /*  bottom: -10px;*/
-    /*  width: 0px;*/
-    /*  height: 2px;*/
-    /*  margin: 5px 0 0;*/
-    /*  transition: all 0.3s ease-in-out;*/
-    /*  transition-duration: 0.3s;*/
-    /*  opacity: 0;*/
-    /*  background-color: gold;*/
-    /*}*/
-    /*.nav ul li a:hover:after {*/
-    /*  width: 100%;*/
-    /*  opacity: 1;*/
-    /*}*/
-
     .content {
       width: 100%;
-      top: 80px;
       position: relative;
       padding: 2% 0%;
       margin-bottom: 100px;
@@ -220,12 +148,15 @@
   <!-- E: header -->
   <div class="content">
     <br>
+    <div class="d-flex justify-content-center" style="display: inline; background: #ccc; font-family: 'Oswald', sans-serif !important;height: 240px; background: #232321; padding-top: 170px; margin-bottom: 240px;">
+      <h1 style="color: #fff;border-bottom: 10px #ffb000 solid;padding-bottom: 8px;font-size: 5rem;font-weight: bold;margin: auto;">MARKETING</h1>
+    </div>
     <div class="d-flex flex-nowrap justify-content-center my-5" th:each="marketing : ${ marketingDetail }">
-      <div class="row">
-        <div class="blog-card mx-auto col-lg-7 col-md-7 px-5">
-          <img th:src="'/images/marketing/' + ${ marketing.mkFileMain }" src="/images/t1.jpeg" alt="" class="col-12">
+      <div class="col-lg-6">
+        <div class="blog-card mx-auto col-lg-5 col-md-7">
+            <img th:src="'/images/marketing/' + ${ marketing.mkFileMain }" src="/images/marketing/p1.jpg" alt="" style="width: 100%">
         </div>
-        <table height="300px" class="mx-auto col-lg-7 col-md-7 col-10 px-5" style="margin-bottom: 150px;">
+        <table height="300px" class="mx-auto col-lg-5 col-md-7 col-10 px-5" style="margin-bottom: 80px;">
           <tr>
             <td colspan="2"><h2 th:text="${ marketing.mkName }">연극 <비클래스></h2></td>
           </tr>
@@ -246,12 +177,17 @@
             <td th:text="${ marketing.companyName }">탄탄대로</td>
           </tr>
         </table>
+        <div class="d-flex justify-content-center mt-5 mb-5" th:block sec:authorize="isAuthenticated()">
+          <div class="border px-5 py-2 mx-2" style="display: inline; cursor: pointer">
+            <form action="/marketing/detail/modify" method="get" id="form_mk">
+              <input type="hidden" th:value="${ marketingDetail.mkNum }" name="mkNum">
+              <a href="#" onclick="document.getElementById('form_mk').submit();" style="text-decoration: none;" class="text-white fs-5">수정하기</a>
+            </form>
+          </div>
+        </div>
       </div>
     </div>
     <div class="my-5">
-<!--      <div class="d-flex justify-content-center" style="font-family: 'Oswald', sans-serif !important;">-->
-<!--        <h2 class="mt-5" style="color: #fff; border-bottom: 10px #ffb000 solid; padding-bottom: 8px; font-size: 3rem; font-weight: bold;">CAST</h2>-->
-<!--      </div>-->
       <div class="d-flex justify-content-center" style="display: inline;background: #ccc;font-family: 'Oswald', sans-serif !important;height: 240px;background: #232321;padding-top: 170px; margin-bottom: 240px;">
         <h1 style="color: #fff;border-bottom: 10px #ffb000 solid;padding-bottom: 8px;font-size: 5rem;font-weight: bold;margin: auto;">CAST</h1>
       </div>
