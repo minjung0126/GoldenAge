@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -8,6 +9,8 @@
   <title>Document</title>
   <link rel="stylesheet" href="/css/style.css" type="text/css">
   <script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <style>
   @import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald&display=swap");
@@ -123,35 +126,49 @@
     height: auto;
   }
   /*       */
+
 </style>
 <body class="scroll">
 <div th:include="common/header"></div>
-<div class="detailPageTitle">
-  <h1 style="color: #fff; border-bottom: 8px #ffb000 solid">PRODUCT</h1>
-</div>
-<div class="infoWrap">
-  <div class="poster"><img src="/images/비클래스.jpg" alt="" /></div>
-  <div class="info">
-    <table width="350px" height="270px" class="info-about">
-      <tr>
-        <td>일정</td>
-        <td>2022.02.25 ~ 2022.05.15</td>
-      </tr>
-      <tr>
-        <td>장소</td>
-        <td>브릭스 씨어터</td>
-      </tr>
-      <tr>
-        <td>제작</td>
-        <td>골든에이지 컴퍼니</td>
-      </tr>
-      <tr>
-        <td>홍보/마케팅</td>
-        <td>탄탄대로</td>
-      </tr>
-    </table>
+<div class="content">
+  <br>
+  <div class="d-flex justify-content-center" style="display: inline; background: #ccc; font-family: 'Oswald', sans-serif !important;height: 240px; background: #232321; padding-top: 170px; margin-bottom: 240px;">
+    <h1 style="color: #fff;border-bottom: 10px #ffb000 solid;padding-bottom: 8px;font-size: 5rem;font-weight: bold;margin: auto;">PRODUCT</h1>
   </div>
-</div>
+  <div class="d-flex flex-nowrap justify-content-center my-5" th:each="product : ${ productDetail }">
+    <div class="col-lg-6">
+      <div class="blog-card mx-auto col-lg-5 col-md-7">
+        <img th:src="'/images/product/' + ${ product.pd_File_Main }" src="/images/비클래스.jpg" alt="" style="width: 100%">
+      </div>
+      <table height="300px" class="mx-auto col-lg-5 col-md-7 col-10 px-5" style="margin-bottom: 80px;">
+        <tr>
+          <td colspan="2"><h2 th:text="${ product.pd_name }">비클래스</h2></td>
+        </tr>
+        <tr>
+          <th>일정</th>
+          <td th:text="${ product.pd_start_date } + ' ~ ' + ${ product.pd_end_date }">2022.02.25 ~ 2022.05.15</td>
+        </tr>
+        <tr>
+          <th>장소</th>
+          <td th:text="${ product.pd_place_name }">브릭스 씨어터</td>
+        </tr>
+        <tr>
+          <th>관람등급</th>
+          <td th:text="${ product.pd_rated }">전체관람가</td>
+        </tr>
+        <tr>
+          <th>관람시간</th>
+          <td th:text="${ product.pd_time }">120분</td>
+        </tr>
+        <tr>
+          <th>공연장 주소</th>
+          <td th:text="${ product.pd_place_add }">골든에이지컴퍼니</td>
+        </tr>
+        <tr>
+          <th>홍보/마케팅</th>
+          <td th:text="${ product.company_name }">탄탄대로</td>
+        </tr>
+      </table>
 <div class="detailPageTitle" style="height: 0px; padding-top: 150px">
   <h1
           style="

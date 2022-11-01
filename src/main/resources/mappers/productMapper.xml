@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.goldenage.project.product.model.dao.ProductMapper">
+    <resultMap id="productResultMap" type="com.goldenage.project.product.model.dto.ProductDTO">
+        <id property="pd_num" column="PD_NUM"/>
+        <result property="pd_name" column="PD_NAME"/>
+        <result property="pd_start_date" column="PD_START_DATE"/>
+        <result property="pd_end_date" column="PD_END_DATE"/>
+        <result property="pd_place_name" column="PD_PLACE_NAME"/>
+        <result property="pd_rated" column="PD_RATED"/>
+        <result property="pd_time" column="PD_TIME"/>
+        <result property="pd_place_add" column="PD_PLACE_ADD"/>
+        <result property="pd_Ori_Main" column="PD_ORI_MAIN"/>
+        <result property="pd_File_Main" column="PD_FILE_MAIN"/>
+        <result property="company_name" column="COMPANY_NAME"/>
+    </resultMap>
+
+    <resultMap id="productfileDTOResultMap" type="com.goldenage.project.product.model.dto.ProductFileDTO">
+        <id property="pdFileNum" column="PD_FILE_NUM"/>
+        <result property="pd_num" column="PD_NUM"/>
+        <result property="pdOriName" column="PD_ORI_NAME"/>
+        <result property="pdFileName" column="PD_FILE_NAME"/>
+    </resultMap>
+
+    <select id="selectAllProduct" resultMap="productResultMap">
+        SELECT
+            *
+        FROM PRODUCT
+    </select>
+<!--  selectOneProduct  -->
+    <select id="selectOneProduct" resultMap="productResultMap">
+      SELECT
+                *
+        FROM PRODUCT
+       WHERE PD_NUM = #{ pd_num }
+    </select>
+
+
+    <insert id="insertPdInfo">
+        INSERT
+        INTO PRODUCT
+        (
+          PD_NAME
+        , PD_START_DATE
+        , PD_END_DATE
+        , PD_PLACE_NAME
+        , PD_RATED
+        , PD_TIME
+        , PD_PLACE_ADD
+        , PD_ORI_MAIN
+        , PD_FILE_MAIN
+        , COMPANY_NAME
+        )
+        VALUES
+        (
+          #{ pd_name }
+        , #{ pd_start_date }
+        , #{ pd_end_date }
+        , #{ pd_place_name }
+        , #{ pd_rated }
+        , #{ pd_time }
+        , #{ pd_place_add }
+        , #{ pd_Ori_Main }
+        , #{ pd_File_Main }
+        , #{ company_name }
+        )
+    </insert>
+</mapper>

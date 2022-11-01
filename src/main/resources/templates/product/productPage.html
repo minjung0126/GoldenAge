@@ -283,11 +283,11 @@
   <br>
   <br>
   <div class="row mt-5 mx-auto" style="padding-left: 20%; padding-right: 20%; padding-top: 9rem">
-    <div th:each="marketing : ${ marketingList }" class="col-lg-4 col-md-6" style="height: 141.4%;">
+    <div th:each="productDTO : ${ productDTOList }" class="col-lg-4 col-md-6" style="height: 141.4%;">
       <div class="blog-card">
         <a href="#" class="justify-content-center d-flex align-items-center"><h5 class="text-white thumbnailtxt p-auto d-flex align-items-center">
-          <input type="hidden" id="num" th:value="${ marketing.mkNum }"/>
-          <b th:text="${ marketing.mkName }"> &lt;헤르츠클란&gt;</b></h5><img th:src="'/images/marketing/' + ${ marketing.mkFileMain }" src="/images/marketing/p1.jpg" alt="" class="blog-thumbnail">
+          <input type="hidden" id="num" th:value="${ productDTO.pd_num }"/>
+          <b th:text="${ productDTO.pd_name }"> &lt;비클래스&gt;</b></h5><img th:src="'/images/product/' + ${ productDTO.pd_File_Main }" src="/images/비클래스.jpg" alt="" class="blog-thumbnail">
         </a>
       </div>
     </div>
@@ -295,7 +295,7 @@
 
   <div class="d-flex justify-content-center mt-5" th:block sec:authorize="isAuthenticated()">
     <div class="border px-5 py-2" style="display: inline; cursor: pointer">
-      <a href="/marketing/detail/regist" style="text-decoration: none;" class="text-white fs-5">등록하기</a>
+      <a href="/product/product_detail/regist" style="text-decoration: none;" class="text-white fs-5">등록하기</a>
     </div>
   </div>
 
@@ -312,12 +312,12 @@
 
       let mkNum = document.createElement('input');
       mkNum.setAttribute('type', 'hidden');
-      mkNum.setAttribute('name', 'mkNum');
+      mkNum.setAttribute('name', 'pd_num');
       mkNum.setAttribute('value', num);
 
       form.appendChild(mkNum);
       form.setAttribute('method', 'get');
-      form.setAttribute('action', '/marketing/detail');
+      form.setAttribute('action', '/product/detailPage');
       document.body.appendChild(form);
       form.submit();
 

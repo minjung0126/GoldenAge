@@ -49,7 +49,7 @@ public class ProductController {
 
         List<ProductDTO> productDTOList = productService.selectAllProduct();
 
-        mv.addObject("productList", productDTOList);
+        mv.addObject("productDTOList", productDTOList);
         mv.setViewName("/product/productPage");
 
         return mv;
@@ -77,8 +77,15 @@ public class ProductController {
         return mv;
     }
 
-    @PostMapping("/detailPage/regist")
-    public String productDetail(@ModelAttribute ProductDTO productDTO, @RequestParam(value = "file", required = false) MultipartFile file, RedirectAttributes rttr) throws Exception {
+    @GetMapping("/product_detail/regist")
+    public ModelAndView productDetailInsert(ModelAndView mv, HttpServletRequest request){
+
+        mv.setViewName("/product/product_detail_new");
+        return mv;
+    }
+
+    @PostMapping("/product_detail/regist")
+    public String productDetailInsert(@ModelAttribute ProductDTO productDTO, @RequestParam(value = "file", required = false) MultipartFile file, RedirectAttributes rttr) throws Exception {
 
         log.info("테스트용 : " + productDTO);
         log.info("사진 테스트 : " + file);

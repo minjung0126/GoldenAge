@@ -1,14 +1,13 @@
 package com.goldenage.project.product.model.dto;
 
-import java.util.Date;
-import java.util.List;
+import java.sql.Date;
 
 public class ProductDTO {
 
     private int pd_num;
     private String pd_name;
-    private Date pd_start_date;
-    private Date pd_end_date;
+    private java.sql.Date pd_start_date;
+    private java.sql.Date pd_end_date;
     private String pd_place_name;
     private String pd_rated;
     private String pd_time;

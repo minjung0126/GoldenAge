@@ -8,14 +8,12 @@ import java.util.List;
 
 @Mapper
 public interface ProductMapper {
-
-    int productRegist(ProductDTO productDTO);
-
-    int productFileRegist(ProductFileDTO productFileDTO);
-
+    
     List<ProductDTO> selectAllProduct();
 
     ProductDTO selectOneProduct(String pd_num);
 
     List<ProductFileDTO> selectAllProductDetail(String pd_num);
+
+    int insertPdInfo(ProductDTO productDTO);
 }
