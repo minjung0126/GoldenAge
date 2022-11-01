@@ -5,6 +5,7 @@ import com.goldenage.project.product.model.dto.ProductDTO;
 import com.goldenage.project.product.model.dto.ProductFileDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.File;
@@ -19,30 +20,53 @@ public class ProductServiceImpl implements ProductService {
 
     private final Logger log = LoggerFactory.getLogger(this.getClass());
 
-    private ProductMapper productMapper;
+    private final ProductMapper productMapper;
+
+    @Autowired
+    public ProductServiceImpl(ProductMapper productMapper){
+
+        this.productMapper = productMapper;
+    }
 
 
-    public void productRegist(ProductDTO productDTO){
+    /**
+     * <pre>
+     *     productPage 갤러리형 리스트 조회
+     * </pre>
+     * */
+    public List<ProductDTO> selectAllProduct() {
 
-        int result = 0;
-        // product 테이블 insert
-        int productResult = productMapper.productRegist(productDTO);
+        List<ProductDTO> productDTOList = productMapper.selectAllProduct();
+        return productDTOList;
+    }
 
-        List<ProductFileDTO> productFile = productDTO.getProductFileDTO();
+    /**
+     * <pre>
+     *     productDetail 페이지 조회
+     * </pre>
+     * */
+    public ProductDTO selectOneProduct(String pd_num) {
 
-        // 파일에 productNo 넣기
-        for(int i = 0; i < productFile.size(); i++){
-            productFile.get(i).setGalNo(productDTO.getPd_num());
-            log.info("pd_num 값 가져오는지 확인 : " + productFile.get(i));
-        }
+        ProductDTO productDTO = productMapper.selectOneProduct(pd_num);
+        return productDTO;
+    }
 
-        // productFile Insert
-        int productFileResult = 0;
-        for(int i = 0; i < productFile.size(); i++){
-            productResult += productMapper.productFileRegist(productFile.get(i));
-            log.info("확인합니다");
-        }
+    /**
+     * <pre>
+     *     productDetail 페이지 생성
+     * </pre>
+     * */
+    public List<ProductFileDTO> selectAllProductDetail(String pd_num) {
 
+        List<ProductFileDTO> productFileDTOList = productMapper.selectAllProductDetail(pd_num);
+        return productFileDTOList;
+    }
 
+    /**
+     * <pre>
+     *     productDetail 페이지 생성
+     * </pre>
+     * */
+    public void insertPdInfo(ProductDTO productDTO) {
     }
 }
