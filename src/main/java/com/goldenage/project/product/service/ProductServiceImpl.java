@@ -20,4 +20,8 @@ public class ProductServiceImpl implements ProductService {
     public void productRegist(ProductDTO productDTO){
 
     }
+
+    public void productDelete(ProductDTO productDTO){
+
+    }
 }

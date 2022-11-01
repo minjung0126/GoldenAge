@@ -186,5 +186,21 @@ public class ProductController {
 
     }
 
+    /**
+     * <pre>
+     *     product 삭제 요청 메소드
+     * </pre>
+     * */
+    @GetMapping("/product/delete")
+    public String productDelete(@ModelAttribute ProductDTO productDTO, HttpServletRequest request){
+
+        int no = Integer.parseInt(request.getParameter("no"));
+
+        productService.productDelete(productDTO);
+
+        return "redirect:/product/productPage";
+
+    }
+
 }
 
