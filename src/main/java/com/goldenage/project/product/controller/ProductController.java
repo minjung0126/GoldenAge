@@ -2,7 +2,7 @@ package com.goldenage.project.product.controller;
 
 import com.goldenage.project.product.model.dto.ProductDTO;
 
-import com.goldenage.project.product.model.dto.ProductFileDTO;
+import com.goldenage.project.product.model.dto.ProductDetailDTO;
 import com.goldenage.project.product.service.ProductServiceImpl;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,23 +67,25 @@ public class ProductController {
         log.info("pd_num : " + pd_num);
 
         ProductDTO productDetail = productService.selectOneProduct(pd_num);
-        List<ProductFileDTO> productFileDTOList = productService.selectAllProductDetail(pd_num);
+        List<ProductDetailDTO> productDetailDTOList = productService.selectAllProductDetail(pd_num);
 
         mv.addObject("productDetail", productDetail);
-        mv.addObject("productFileList", productFileDTOList);
+        mv.addObject("productDetailDTOList", productDetailDTOList);
 
         mv.setViewName("/product/detailPage");
 
         return mv;
     }
 
+    // 게시물 등록 get
     @GetMapping("/product_detail/regist")
-    public ModelAndView productDetailInsert(ModelAndView mv, HttpServletRequest request){
+    public ModelAndView productDetailInsert(ModelAndView mv, HttpServletRequest request) {
 
         mv.setViewName("/product/product_detail_new");
         return mv;
     }
 
+    // 게시물 등록 post
     @PostMapping("/product_detail/regist")
     public String productDetailInsert(@ModelAttribute ProductDTO productDTO, @RequestParam(value = "file", required = false) MultipartFile file, RedirectAttributes rttr) throws Exception {
 
@@ -115,7 +117,6 @@ public class ProductController {
 
             log.info("다시 출력 : " + productDTO);
 
-            // 공연 등록
             productService.insertPdInfo(productDTO);
 
             try {
@@ -130,6 +131,86 @@ public class ProductController {
 
         return "redirect:/product/productPage";
 
+    }
+
+    // 상세페이지 수정 get
+    @GetMapping("/detailPage/update")
+    public ModelAndView productDetailPageUpdate(ModelAndView mv, HttpServletRequest request, @RequestParam(value = "pd_num", required = false) String pd_num) {
+
+        ProductDTO productDetail = productService.selectOneProduct(pd_num);
+        List<ProductDetailDTO> productDetailDTOList = productService.selectAllProductDetail(pd_num);
+
+        mv.addObject("productDetail", productDetail);
+        mv.addObject("productDetailDTOList", productDetailDTOList);
+
+        mv.setViewName("/product/detailPage_update");
+
+        return mv;
+
+    }
+
+    // 상세페이지 수정 post
+    @PostMapping("/detailPage/update")
+    public String productDetailPageUpdate(@ModelAttribute ProductDTO productDTO, @RequestParam(value = "pd_num", required = false) String pd_num, @RequestParam(value = "file", required = false) MultipartFile file, RedirectAttributes rttr) throws Exception {
+
+        log.info("ProductDTO : " + productDTO);
+        log.info("파일 번호 : " + pd_num);
+        log.info("ProductDetailDTO : " + file);
+
+        String root = ResourceUtils.getURL("src/main/resources").getPath();
+
+        String filePath = root + "static/images/product";
+
+        log.info("root ---------------- " + filePath);
+
+        File mkdir = new File(filePath);
+        if (!mkdir.exists()) {
+            mkdir.mkdirs();
+        }
+
+        String originFileName = "";
+        String ext = "";
+        String changeName = "";
+
+        productDTO.setPd_num(Integer.parseInt(pd_num));
+        productService.updateProductInfoNoFile(productDTO);
+
+        if (file.getSize() > 0) {
+            originFileName = file.getOriginalFilename();
+            ext = originFileName.substring(originFileName.lastIndexOf("."));
+            changeName = UUID.randomUUID().toString().replace("-", "");
+
+            productDTO.setPd_Ori_Main(originFileName);
+            productDTO.setPd_File_Main(changeName + ext);
+
+            log.info("다시 출력 : " + productDTO);
+
+            productService.updateProductInfo(productDTO);
+
+            try {
+                file.transferTo(new File(filePath + "\\" + changeName + ext));
+            } catch (IOException e) {
+                e.printStackTrace();
+                new File(filePath + "\\" + changeName + ext).delete();
+            }
+
+        }
+            rttr.addFlashAttribute("message", "수정 성공!");
+            rttr.addFlashAttribute("check", "success");
+
+            return "redirect:/product/productPage";
+
+    }
+
+    // product 페이지 삭제
+    @GetMapping("/detailPage/delete")
+    public String productDetailDelete(@RequestParam(value="pd_num", required = false) String pd_num, RedirectAttributes rttr) throws Exception{
+
+        productService.deleteProductInfo(pd_num);
+
+        rttr.addFlashAttribute("message", "삭제 성공");
+
+        return "redirect:/product/productPage";
     }
 
 

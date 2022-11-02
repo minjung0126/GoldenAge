@@ -17,29 +17,36 @@
         <result property="company_name" column="COMPANY_NAME"/>
     </resultMap>
 
-    <resultMap id="productfileDTOResultMap" type="com.goldenage.project.product.model.dto.ProductFileDTO">
-        <id property="pdFileNum" column="PD_FILE_NUM"/>
+    <resultMap id="productDetailResultMap" type="com.goldenage.project.product.model.dto.ProductDetailDTO">
+        <id property="detail_file_num" column="DETAIL_FILE_NUM"/>
         <result property="pd_num" column="PD_NUM"/>
-        <result property="pdOriName" column="PD_ORI_NAME"/>
-        <result property="pdFileName" column="PD_FILE_NAME"/>
+        <result property="detail_ori_name" column="DETAIL_ORI_NAME"/>
+        <result property="detail_file_name" column="DETAIL_FILE_NAME"/>
     </resultMap>
 
     <select id="selectAllProduct" resultMap="productResultMap">
         SELECT
-            *
-        FROM PRODUCT
+               *
+          FROM PRODUCT
     </select>
-<!--  selectOneProduct  -->
+
+    <!--  selectOneProduct  -->
     <select id="selectOneProduct" resultMap="productResultMap">
       SELECT
-                *
+             *
         FROM PRODUCT
        WHERE PD_NUM = #{ pd_num }
     </select>
 
+    <select id="selectAllProductDetail" resultMap="productDetailResultMap">
+        SELECT
+              *
+         FROM PRODUCT_DETAIL
+        WHERE PD_NUM = #{ pd_num }
+    </select>
 
     <insert id="insertPdInfo">
-        INSERT
+      INSERT
         INTO PRODUCT
         (
           PD_NAME
@@ -67,4 +74,40 @@
         , #{ company_name }
         )
     </insert>
+    
+    <update id="updateProductInfo">
+        UPDATE PRODUCT
+           SET PD_NAME = #{ pd_name }
+             , PD_START_DATE = DATE_FORMAT(#{ pd_start_date }, '%Y%m%d')
+             , PD_END_DATE = DATE_FORMAT(#{ pd_end_date }, '%Y%m%d')
+             , PD_PLACE_NAME = #{ pd_place_name }
+             , PD_RATED = #{ pd_rated }
+             , PD_TIME = #{ pd_time }
+             , PD_PLACE_ADD = #{ pd_place_add }
+             , PD_ORI_MAIN = #{ pd_Ori_Main }
+             , PD_FILE_MAIN = #{ pd_File_Main }
+             , COMPANY_NAME = #{ company_name }
+         WHERE PD_NUM = #{ pd_num }
+    </update>
+
+    <update id="updateProductInfoNoFile">
+     UPDATE PRODUCT
+        SET PD_NAME = #{ pd_name }
+          , PD_START_DATE = DATE_FORMAT(#{ pd_start_date }, '%Y%m%d')
+          , PD_END_DATE = DATE_FORMAT(#{ pd_end_date }, '%Y%m%d')
+          , PD_PLACE_NAME = #{ pd_place_name }
+          , PD_RATED = #{ pd_rated }
+          , PD_TIME = #{ pd_time }
+          , PD_PLACE_ADD = #{ pd_place_add }
+          , COMPANY_NAME = #{ company_name }
+      WHERE PD_NUM = #{ pd_num }
+    </update>
+
+    <delete id="deleteProductInfo">
+        DELETE
+          FROM PRODUCT
+         WHERE PD_NUM = #{ pd_num }
+    </delete>
+
+
 </mapper>

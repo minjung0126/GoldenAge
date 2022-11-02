@@ -15,4 +15,13 @@ public interface ProductService {
 
     @Transactional
     int insertPdInfo(ProductDTO productDTO) throws PdException;
+
+    @Transactional
+    int updateProductInfoNoFile(ProductDTO productDTO) throws PdException;
+
+    @Transactional
+    int updateProductInfo(ProductDTO productDTO) throws PdException;
+
+    @Transactional
+    int deleteProductInfo(String pd_num) throws PdException;
 }

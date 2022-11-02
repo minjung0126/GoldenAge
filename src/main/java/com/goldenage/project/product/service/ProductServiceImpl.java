@@ -3,7 +3,7 @@ package com.goldenage.project.product.service;
 import com.goldenage.project.product.exception.PdException;
 import com.goldenage.project.product.model.dao.ProductMapper;
 import com.goldenage.project.product.model.dto.ProductDTO;
-import com.goldenage.project.product.model.dto.ProductFileDTO;
+import com.goldenage.project.product.model.dto.ProductDetailDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,10 +54,10 @@ public class ProductServiceImpl implements ProductService {
      *     productDetail 페이지 상세 이미지조회
      * </pre>
      * */
-    public List<ProductFileDTO> selectAllProductDetail(String pd_num) {
+    public List<ProductDetailDTO> selectAllProductDetail(String pd_num) {
 
-        List<ProductFileDTO> productFileDTOList = productMapper.selectAllProductDetail(pd_num);
-        return productFileDTOList;
+        List<ProductDetailDTO> productDetailDTOList = productMapper.selectAllProductDetail(pd_num);
+        return productDetailDTOList;
     }
 
     /**
@@ -78,7 +78,43 @@ public class ProductServiceImpl implements ProductService {
         return result;
     }
 
-    public void productDelete(ProductDTO productDTO){
 
+    @Override
+    @Transactional
+    public int updateProductInfoNoFile(ProductDTO productDTO) throws PdException{
+
+        int result = productMapper.updateProductInfoNoFile(productDTO);
+
+        if(!(result > 0)){
+            throw new PdException("수정 실패");
+        }
+
+        return result;
+    }
+
+    @Override
+    @Transactional
+    public int updateProductInfo(ProductDTO productDTO) throws PdException {
+
+        int result = productMapper.updateProductInfo(productDTO);
+
+        if(!(result > 0)){
+            throw new PdException("수정 실패");
+        }
+
+        return result;
+
+    }
+
+    @Override
+    @Transactional
+    public int deleteProductInfo(String pd_num) throws PdException{
+        int result = productMapper.deleteProductInfo(pd_num);
+
+        if(!(result > 0)){
+            throw new PdException("삭제 실패");
+        }
+
+        return result;
     }
 }
