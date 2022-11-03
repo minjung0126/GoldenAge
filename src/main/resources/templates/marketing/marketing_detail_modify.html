@@ -8,10 +8,13 @@
     <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- datepicker js & css -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
     <script>
         let check = '[[${ check }]]';
 
@@ -26,25 +29,20 @@
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400&display=swap');body {
             font-family: 'Noto Sans KR', sans-serif;
         }
-
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
         body {
             background-color: #282828;
-            color: white;
         }
-
         .content {
             width: 100%;
             position: relative;
             padding: 2% 0%;
             margin-bottom: 100px;
         }
-
         .scroll {
             overflow: overlay;
         }
@@ -54,352 +52,239 @@
         .scroll::-webkit-scrollbar-thumb {
             background-color: hsla(0, 0%, 42%, 0.2);
         }
-
-
-        #blog {
-            padding: 100px 0;
-        }
-
         .blog-card {
             margin-bottom: 30px;
         }
-
         .blog-card .blog-thumbnail {
             width: 100%;
             height: 220px;
             -o-object-fit: cover;
             object-fit: cover;
         }
-
         .blog-card .blog-container {
             padding: 15px;
         }
-
-        .nav-item a{
-            color: #fff;
-        }
-
-        /*table td .form-control{*/
-        /*    border-radius: 0;*/
-        /*    align-self: center;*/
-        /*}*/
-
-        .nav-link:focus, .nav-link:hover {
-            color: gold;
-            border-bottom: gold solid 3px;
-        }
-
-        footer{
-            background-color: #232321;
-            padding: 3rem;
-            color: #fff;
-            margin-top: 180px;
-            display: flex;
-            align-items: flex-start;
-        }
-
-        footer #row{
-            display: flex;
-            flex-wrap: wrap;
-            width: 100%;
-        }
-
-        footer #footer_txt{
-            display: inline-block;
-            flex: 1;
-        }
-
-        footer #footer_sns{
-            align-self: center;
-            float: right;
-        }
-
-        footer #footer_sns a{
-            margin-right: 0.25rem;
-            margin-left: 0.25rem;
-            cursor: pointer;
-            color: #232321;
-        }
-
-        @media (max-width: 768px) {
-            footer{
-                background-color: #333;
-                padding: 3rem;
-                color: #fff;
-                margin-top: 180px;
-                display: block;
-                align-items: flex-start;
-            }
-
-            footer #row{
-                display: flex;
-                flex-wrap: wrap;
-            }
-
-            footer #footer_txt{
-                width: 100%;
-                display: inline-block;
-                flex: 1;
-            }
-
-            footer #footer_sns{
-                width: 100%;
-                align-self: center;
-                float: right;
-                display: flex;
-                justify-content: flex-end;
-            }
-
-        }
-
-
     </style>
 </head>
 <body class="scroll">
-<!-- S: header -->
-<div th:replace="common/header"></div>
-<!-- E: header -->
-<div class="content">
-    <br>
-    <form method="post" action="/marketing/detail/modify" enctype="multipart/form-data" class="" id="frm">
-    <div class="d-flex justify-content-center" style="display: inline; background: #ccc; font-family: 'Oswald', sans-serif !important;height: 240px; background: #232321; padding-top: 170px; margin-bottom: 240px;">
-        <h1 style="color: #fff;border-bottom: 10px #ffb000 solid;padding-bottom: 8px;font-size: 5rem;font-weight: bold;margin: auto;">MARKETING</h1>
-    </div>
-    <div class="d-flex flex-nowrap justify-content-center m-5">
-            <div class="col-lg-6">
-                <div class="col-12 mb-3 d-flex justify-content-center">
-                    <div class="d-flex justify-content-center flex-wrap align-content-center" style="width:400px; height: 530px; border-radius: 5px;">
-                        <label class="input-file-button-regist" for="input-file-regist" style="margin-bottom: 0;">
-<!--                            <i class="fa fa-file-image-o fa-5x" aria-hidden="true" style="cursor: pointer; color: #ccc;"></i>-->
-                            <img th:src="'/images/marketing/' + ${ marketingDetail.mkFileMain }" id="View" class="rounded" style="cursor: pointer" src="#" width="400px" height="530px">
-                        </label>
-                        <input class="form-control" type="file" id="input-file-regist" name="file" style="display:none;">
+    <!-- S: header -->
+    <div th:replace="common/header"></div>
+    <!-- E: header -->
+    <div class="content">
+        <br>
+        <form method="post" action="/marketing/detail/modify" enctype="multipart/form-data" class="" id="frm">
+            <div class="d-flex justify-content-center" style="display: inline; background: #ccc; font-family: 'Oswald', sans-serif !important;height: 240px; background: #232321; padding-top: 170px; margin-bottom: 240px;">
+                <h1 style="color: #fff;border-bottom: 10px #ffb000 solid;padding-bottom: 8px;font-size: 5rem;font-weight: bold;margin: auto;">MARKETING</h1>
+            </div>
+            <div class="d-flex flex-nowrap justify-content-center m-5">
+                <div class="col-lg-8">
+                    <div class="col-12 mb-3 d-flex justify-content-center">
+                        <div class="d-flex justify-content-center flex-wrap align-content-center" style="width:400px; height: 530px; border-radius: 5px;">
+                            <label class="input-file-button-regist" for="input-file-regist" style="margin-bottom: 0;">
+                                <img th:src="'/images/marketing/' + ${ marketingDetail.mkFileMain }" id="View" class="rounded" style="cursor: pointer" src="#" width="400px" height="530px">
+                            </label>
+                            <input class="form-control" type="file" id="input-file-regist" name="file" style="display:none;">
+                        </div>
                     </div>
-                </div>
-                <!--            <div class="blog-card mx-auto col-lg-5 col-md-7">-->
-                <!--                <img src="/images/marketing/p1.jpg" alt="" style="width: 100%">-->
-                <!--            </div>-->
-                <div class="d-flex justify-content-center mt-5">
-                    <table height="350px" class="mx-auto col-lg-5 col-md-10 col-9 px-5" style="margin-bottom: 80px; font-family: 'Oswald'; font-size: 1.2rem;">
-                        <tr>
-                            <td>
-                                <div class="form-group mb-3">
-                                    <input type="hidden" class="mkNum" id="mkNum" name="mkNum" th:value="${ marketingDetail.mkNum }">
-                                    <label class="mb-2">공연</label>
-                                    <input type="text" class="form-control mkName" name="mkName" id="mkName" th:value="${ marketingDetail.mkName }" required>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="form-group mb-3">
-                                    <label class="mb-2">일정</label>
-                                    <div class="input-group">
-                                        <input type="date" class="form-control mkStartDate" name="mkStartDate" id="mkStartDate" th:value="${ marketingDetail.mkStartDate }" required style="border-radius: 5px">
-                                        <button class="btn btn-light" type="button col-2" disabled style="background: #282828; border-color: #282828; color: #fff;">~</button>
-                                        <input type="date" class="form-control mkEndDate" name="mkEndDate" id="mkEndDate" th:value="${ marketingDetail.mkEndDate }" required style="border-radius: 5px">
+                    <div class="d-flex justify-content-center mt-5">
+                        <table width="400px" height="350px" class="mx-auto px-5" style="margin-bottom: 80px; font-family: 'Oswald'; font-size: 1.2rem; color: #fff;">
+                            <tr>
+                                <td>
+                                    <div class="form-group mb-3">
+                                        <input type="hidden" class="mkNum" id="mkNum" name="mkNum" th:value="${ marketingDetail.mkNum }">
+                                        <label class="mb-2">공연</label>
+                                        <input type="text" class="form-control mkName" name="mkName" id="mkName" th:value="${ marketingDetail.mkName }" required>
                                     </div>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="form-group mb-3">
-                                    <label class="mb-2">장소</label>
-                                    <input type="text" class="form-control mkPlaceName" name="mkPlaceName" id="mkPlaceName" th:value="${ marketingDetail.mkPlaceName }" required>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="form-group mb-3">
-                                    <label class="mb-2">제작</label>
-                                    <input type="text" class="form-control mkProduct" name="mkProduct" id="mkProduct" th:value="${ marketingDetail.mkProduct }" required>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="form-group mb-3">
-                                    <label class="mb-2">홍보/마케팅</label>
-                                    <input type="text" class="form-control companyName" name="companyName" id="companyName" th:value="${ marketingDetail.companyName }" required>
-                                </div>
-                            </td>
-                        </tr>
-                    </table>
-                </div>
-                <div class="d-flex justify-content-center mb-5">
-                    <div class="border px-5 py-2 mx-2" style="display: inline; cursor: pointer">
-                        <a href="#" onclick="document.getElementById('frm').submit();" style="text-decoration: none;" class="text-white fs-5">수정</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="form-group mb-3">
+                                        <label class="mb-2">일정</label>
+                                        <div id="reportrange" class="form-control" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 100%;">
+                                            <i class="fa fa-calendar"></i>
+                                            <span class="date" style="margin-left: 7px;"></span>
+                                            <input type="hidden" id="mkStartDate" name="mkStartDate" th:value="${ marketingDetail.mkStartDate }">
+                                            <input type="hidden" id="mkEndDate" name="mkEndDate" th:value="${ marketingDetail.mkEndDate }">
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="form-group mb-3">
+                                        <label class="mb-2">장소</label>
+                                        <input type="text" class="form-control mkPlaceName" name="mkPlaceName" id="mkPlaceName" th:value="${ marketingDetail.mkPlaceName }" required>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="form-group mb-3">
+                                        <label class="mb-2">제작</label>
+                                        <input type="text" class="form-control mkProduct" name="mkProduct" id="mkProduct" th:value="${ marketingDetail.mkProduct }" required>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="form-group mb-3">
+                                        <label class="mb-2">홍보/마케팅</label>
+                                        <input type="text" class="form-control companyName" name="companyName" id="companyName" th:value="${ marketingDetail.companyName }" required>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
                     </div>
-                    <div class="border px-5 py-2 mx-2" style="display: inline; cursor: pointer">
-                        <a href="#" onclick="onClickDelete()" style="text-decoration: none;" class="text-white fs-5">삭제</a>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    <div class="my-5">
-        <div class="d-flex justify-content-center" style="display: inline;background: #ccc;font-family: 'Oswald', sans-serif !important;height: 240px;background: #232321;padding-top: 170px; margin-bottom: 240px;">
-            <h1 style="color: #fff;border-bottom: 10px #ffb000 solid;padding-bottom: 8px;font-size: 5rem;font-weight: bold;margin: auto;">CAST</h1>
-        </div>
-        <div class="container my-5 px-5">
-            <br>
-            <div class="row">
-                <div class="col-lg-2 col-md-3" th:each="mkPoster: ${ mkPosterList }">
-                    <div class="blog-card">
-                        <input type="hidden" th:value="${ mkPoster.pFileNum }" name="pFileNum" id="pFileNum" class="pFileNum">
-                        <img th:src="'/images/marketing/poster/' + ${ mkPoster.pFileName }" src="/images/marketing/poster/a1.gif" th:id="${ mkPoster.pFileNum }" alt="" class="blog-thumbnail cast" style="cursor: pointer" onclick="openWindow('cast', (this.id))">
-                        <div class="blog-container text-center">
-                            <h5 class="mt-2"><b th:text="${ mkPoster.pCastName }">김택상 역</b></h5>
-                            <p class="text-muted" th:text="${ mkPoster.pActName }">최정헌</p>
+                    <div class="d-flex justify-content-center mb-5">
+                        <div class="border px-5 py-2 mx-2" style="display: inline; cursor: pointer">
+                            <a href="#" onclick="onClickModify()" style="text-decoration: none;" class="text-white fs-5">수정</a>
+                        </div>
+                        <div class="border px-5 py-2 mx-2" style="display: inline; cursor: pointer">
+                            <a href="#" onclick="onClickDelete()" style="text-decoration: none;" class="text-white fs-5">삭제</a>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-2 col-md-3">
-                    <div class="blog-card">
-                        <img src="/images/marketing/plus.png" alt="" class="blog-thumbnail cast-new" style="cursor: pointer" th:id="${ marketingDetail.mkNum }" onclick="openWindow('cast-new', (this.id))">
-                    </div>
-                </div>
             </div>
-        </div>
-        <div class="d-flex justify-content-center" style="display: inline;background: #ccc;font-family: 'Oswald', sans-serif !important;height: 240px;background: #232321;padding-top: 170px; margin-bottom: 240px;">
-            <h1 style="color: #fff;border-bottom: 10px #ffb000 solid;padding-bottom: 8px;font-size: 5rem;font-weight: bold;margin: auto;">MD</h1>
-        </div>
-        <div class="container my-5 px-5">
-            <br>
-            <div class="row">
-                <div class="col-lg-3 col-md-6" th:each="mkMd : ${ mkMdList }">
-                    <div class="blog-card">
-                        <input type="hidden" th:value="${ mkMd.mdFileNum }" name="mdFileNum" id="mdFileNum" class="mdFileNum">
-                        <img th:src="'/images/marketing/md/' + ${ mkMd.mdFileName }" src="/images/marketing/md/md1.png" th:id="${ mkMd.mdFileNum }" alt="" class="blog-thumbnail md" style="cursor: pointer" onclick="openWindow('md', (this.id))">
-                        <div class="blog-container text-center">
-                            <h5 class="mt-2"><b th:text="${ mkMd.mdName }">노트</b></h5>
-                            <p class="text-muted" th:text="|${ #numbers.formatInteger(mkMd.mdPrice, 0, 'COMMA') }원|">10,000원</p>
+            <div class="my-5" style="color: #fff;">
+                <div class="d-flex justify-content-center" style="display: inline;background: #ccc;font-family: 'Oswald', sans-serif !important;height: 240px;background: #232321;padding-top: 170px; margin-bottom: 240px;">
+                    <h1 style="color: #fff;border-bottom: 10px #ffb000 solid;padding-bottom: 8px;font-size: 5rem;font-weight: bold;margin: auto;">CAST</h1>
+                </div>
+                <div class="container my-5 px-5">
+                    <br>
+                    <div class="row">
+                        <div class="col-lg-2 col-md-3" th:each="mkPoster: ${ mkPosterList }">
+                            <div class="blog-card">
+                                <input type="hidden" th:value="${ mkPoster.pFileNum }" name="pFileNum" id="pFileNum" class="pFileNum">
+                                <img th:src="'/images/marketing/poster/' + ${ mkPoster.pFileName }" src="/images/marketing/poster/a1.gif" th:id="${ mkPoster.pFileNum }" alt="" class="blog-thumbnail cast" style="cursor: pointer" onclick="openWindow('cast', (this.id))">
+                                <div class="blog-container text-center">
+                                    <h5 class="mt-2"><b th:text="${ mkPoster.pCastName }">김택상 역</b></h5>
+                                    <p class="text-muted" th:text="${ mkPoster.pActName }">최정헌</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-md-3">
+                            <div class="blog-card">
+                                <img src="/images/marketing/plus.png" alt="" class="blog-thumbnail cast-new" style="cursor: pointer" th:id="${ marketingDetail.mkNum }" onclick="openWindow('cast-new', (this.id))">
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="blog-card">
-                        <img src="/images/marketing/plus.png" alt="" class="blog-thumbnail md-new" style="cursor: pointer" th:id="${ marketingDetail.mkNum }" onclick="openWindow('md-new', (this.id))">
-                    </div>
+                <div class="d-flex justify-content-center" style="display: inline;background: #ccc;font-family: 'Oswald', sans-serif !important;height: 240px;background: #232321;padding-top: 170px; margin-bottom: 240px;">
+                    <h1 style="color: #fff;border-bottom: 10px #ffb000 solid;padding-bottom: 8px;font-size: 5rem;font-weight: bold;margin: auto;">MD</h1>
                 </div>
-            </div>
-        </div>
-        <div class="d-flex justify-content-center" style="display: inline;background: #ccc;font-family: 'Oswald', sans-serif !important;height: 240px;background: #232321;padding-top: 170px; margin-bottom: 240px;">
-            <h1 style="color: #fff;border-bottom: 10px #ffb000 solid;padding-bottom: 8px;font-size: 5rem;font-weight: bold;margin: auto;">ITEMS</h1>
-        </div>
-        <div class="container my-5 px-5">
-            <br>
-            <div class="row">
-                <div class="col-lg-3 col-md-6" th:each="mkItem : ${ mkItemList }">
-                    <div class="blog-card">
-                        <input type="hidden" th:value="${ mkItem.itemFileNum }" name="itemFileNum" id="itemFileNum" class="itemFileNum">
-                        <img th:src="'/images/marketing/item/' + ${ mkItem.itemFileName }" src="/images/marketing/item/md5.png" th:id="${ mkItem.itemFileNum }" alt="" class="blog-thumbnail item" style="cursor: pointer" onclick="openWindow('item', (this.id))">
-                        <div class="blog-container text-center">
-                            <h5 class="mt-2"><b th:text="${ mkItem.itemName }">스토리북</b></h5>
+                <div class="container my-5 px-5">
+                    <br>
+                    <div class="row">
+                        <div class="col-lg-3 col-md-6" th:each="mkMd : ${ mkMdList }">
+                            <div class="blog-card">
+                                <input type="hidden" th:value="${ mkMd.mdFileNum }" name="mdFileNum" id="mdFileNum" class="mdFileNum">
+                                <img th:src="'/images/marketing/md/' + ${ mkMd.mdFileName }" src="/images/marketing/md/md1.png" th:id="${ mkMd.mdFileNum }" alt="" class="blog-thumbnail md" style="cursor: pointer" onclick="openWindow('md', (this.id))">
+                                <div class="blog-container text-center">
+                                    <h5 class="mt-2"><b th:text="${ mkMd.mdName }">노트</b></h5>
+                                    <p class="text-muted" th:text="|${ #numbers.formatInteger(mkMd.mdPrice, 0, 'COMMA') }원|">10,000원</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6">
+                            <div class="blog-card">
+                                <img src="/images/marketing/plus.png" alt="" class="blog-thumbnail md-new" style="cursor: pointer" th:id="${ marketingDetail.mkNum }" onclick="openWindow('md-new', (this.id))">
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="blog-card">
-                        <img src="/images/marketing/plus.png" alt="" class="blog-thumbnail item-new" style="cursor: pointer" th:id="${ marketingDetail.mkNum }" onclick="openWindow('item-new', (this.id))">
+                <div class="d-flex justify-content-center" style="display: inline;background: #ccc;font-family: 'Oswald', sans-serif !important;height: 240px;background: #232321;padding-top: 170px; margin-bottom: 240px;">
+                    <h1 style="color: #fff;border-bottom: 10px #ffb000 solid;padding-bottom: 8px;font-size: 5rem;font-weight: bold;margin: auto;">ITEMS</h1>
+                </div>
+                <div class="container my-5 px-5">
+                    <br>
+                    <div class="row">
+                        <div class="col-lg-3 col-md-6" th:each="mkItem : ${ mkItemList }">
+                            <div class="blog-card">
+                                <input type="hidden" th:value="${ mkItem.itemFileNum }" name="itemFileNum" id="itemFileNum" class="itemFileNum">
+                                <img th:src="'/images/marketing/item/' + ${ mkItem.itemFileName }" src="/images/marketing/item/md5.png" th:id="${ mkItem.itemFileNum }" alt="" class="blog-thumbnail item" style="cursor: pointer" onclick="openWindow('item', (this.id))">
+                                <div class="blog-container text-center">
+                                    <h5 class="mt-2"><b th:text="${ mkItem.itemName }">스토리북</b></h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6">
+                            <div class="blog-card">
+                                <img src="/images/marketing/plus.png" alt="" class="blog-thumbnail item-new" style="cursor: pointer" th:id="${ marketingDetail.mkNum }" onclick="openWindow('item-new', (this.id))">
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-<!--        <div class="d-flex justify-content-center mt-5">-->
-<!--            <div class="border px-5 py-2 mx-2" style="display: inline; cursor: pointer">-->
-<!--                <a href="#" onclick="document.getElementById('frm').submit();" style="text-decoration: none;" class="text-white fs-5">수정</a>-->
-<!--            </div>-->
-<!--            <div class="border px-5 py-2 mx-2" style="display: inline; cursor: pointer">-->
-<!--                <a href="/marketing/list" style="text-decoration: none;" class="text-white fs-5">닫기</a>-->
-<!--            </div>-->
-<!--        </div>-->
+        </form>
     </div>
+    <form action="/marketing/detail/delete" method="get" id="form_mk_d">
+        <input type="hidden" th:value="${ marketingDetail.mkNum }" name="mkNum">
     </form>
-</div>
-<form action="/marketing/detail/delete" method="get" id="form_mk_d">
-    <input type="hidden" th:value="${ marketingDetail.mkNum }" name="mkNum">
-</form>
-<!-- S: footer -->
-<div th:include="common/footer.html"></div>
-<!-- E: footer -->
-<script>
-    $(function() {
-        $("#input-file-regist").on('change', function(){
-            readURL(this);
+    <!-- S: footer -->
+    <div th:include="common/footer.html"></div>
+    <!-- E: footer -->
+    <script th:src="@{/js/marketingModifyDetail.js}"></script>
+    <script>
+        $(function() {
 
-            function readURL(input) {
-                if (input.files && input.files[0]) {
-                    var reader = new FileReader();
-                    reader.onload = function (e) {
-                        $('.input-file-button-regist #View').attr('src', e.target.result);
-                        $('.input-file-button-regist #View').removeClass('d-none');
-                        $('.input-file-button-regist .fa').remove();
-                    }
-                    reader.readAsDataURL(input.files[0]);
-                }
+            var start = document.getElementById('mkStartDate').value;
+            var end = document.getElementById('mkEndDate').value;
+            $('#reportrange span').html(start + ' ~ ' + end);
+
+            function cb(start, end) {
+                $('#reportrange span').html(start.format('YYYY-MM-DD') + ' ~ ' + end.format('YYYY-MM-DD'));
+                $('#reportrange #mkStartDate').val(start.format('YYYY-MM-DD'));
+                $('#reportrange #mkEndDate').val(end.format('YYYY-MM-DD'));
             }
+
+            $('#reportrange').daterangepicker({
+                showDropdowns: true,
+                minYear: 2010,
+                "autoApply": true,
+                autoUpdateInput: false,
+                "linkedCalendars": false,
+                "locale": {
+                    "format": "YYYY/MM/DD",
+                    "separator": " ~ ",
+                    "applyLabel": "확인",
+                    "cancelLabel": "취소",
+                    "fromLabel": "From",
+                    "toLabel": "To",
+                    "customRangeLabel": "Custom",
+                    "weekLabel": "W",
+                    "daysOfWeek": [
+                        "일",
+                        "월",
+                        "화",
+                        "수",
+                        "목",
+                        "금",
+                        "토"
+                    ],
+                    "monthNames": [
+                        "1월",
+                        "2월",
+                        "3월",
+                        "4월",
+                        "5월",
+                        "6월",
+                        "7월",
+                        "8월",
+                        "9월",
+                        "10월",
+                        "11월",
+                        "12월"
+                    ],
+                    "firstDay": 7
+                },
+                startDate: start,
+                endDate: end,
+            }, cb);
+
+            cb(start, end);
+
         });
-    });
-</script>
-<script>
-    // 아이템 수정, 등록
-    function openWindow(str, num) {
-
-        //창 크기 지정
-        var width = 700;
-        var height = 650;
-
-        //pc화면기준 가운데 정렬
-        var left = (window.screen.width / 2) - (width/2);
-        var top = (window.screen.height / 4);
-
-        //윈도우 속성 지정
-        var windowStatus = 'width='+width+', height='+height+', left='+left+', top='+top+', scrollbars=yes, status=yes, resizable=yes, titlebar=yes';
-
-        let url;
-
-        //연결하고싶은url
-        if(str == "cast-new"){
-            url = "/marketing/detail/new/cast?mkNum=" + num;
-        } else if(str == "md-new"){
-            url = "/marketing/detail/new/md?mkNum=" + num;
-        } else if(str == "item-new"){
-            url = "/marketing/detail/new/item?mkNum=" + num;
-        } else if(str == "cast"){
-            url = "/marketing/detail/modify/cast?pFileNum=" + num;
-        } else if(str == "md"){
-            url = "/marketing/detail/modify/md?mdFileNum=" + num;
-        } else if(str == "item"){
-            url = "/marketing/detail/modify/item?itemFileNum=" + num;
-        }
-
-        //등록된 url 및 window 속성 기준으로 팝업창을 연다.
-        window.open(url, "등록", windowStatus);
-    };
-
-    $(document).ready(function(){
-
-
-    });
-</script>
-<script>
-    <!-- 게시글 삭제 -->
-    function onClickDelete(){
-
-        let msg = confirm('삭제하시겠습니까?');
-
-        if(msg == true){
-            let msg2 = confirm('해당 게시물을 삭제합니다.');
-
-            if(msg2 == true){
-                document.getElementById('form_mk_d').submit();
-            }
-        }
-
-    }
-</script>
+    </script>
 </body>
 </html>
