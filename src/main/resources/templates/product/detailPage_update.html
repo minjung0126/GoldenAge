@@ -246,7 +246,27 @@
                 </div>
             </div>
         </div>
-
+        <div class="my-5">
+            <div class="d-flex justify-content-center" style="display: inline;background: #ccc;font-family: 'Oswald', sans-serif !important;height: 240px;background: #232321;padding-top: 170px; margin-bottom: 240px;">
+                <h1 style="color: #fff;border-bottom: 10px #ffb000 solid;padding-bottom: 8px;font-size: 5rem;font-weight: bold;margin: auto;">ABOUT</h1>
+            </div>
+            <div class="container my-5 px-5">
+                <br>
+                <div class="row justify-content-center">
+                    <div class="col-lg-2 col-md-3" th:each="productDetailDTOList: ${ productDetailDTOList }">
+                        <div class="blog-card">
+                            <input type="hidden" th:value="${ productDetailDTOList.detail_file_num }" name="detail_file_num" id="detail_file_num" class="pFileNum">
+                            <img th:src="'/images/product/poster/' + ${ productDetailDTOList.detail_file_name }" src="/images/product/poster/" th:id="${ productDetailDTOList.detail_file_num }" alt="" class="blog-thumbnail cast" style="cursor: pointer" onclick="openWindow('cast', (this.id))">
+                        </div>
+                    </div>
+                </div>
+                    <div class="col-lg-2 col-md-3">
+                        <div class="blog-card">
+                            <img src="/images/marketing/plus.png" alt="" class="blog-thumbnail cast-new" style="cursor: pointer" th:id="${ productDetail.pd_num }" onclick="openWindow('cast-new', (this.id))">
+                        </div>
+                    </div>
+                </div>
+            </div>
     </form>
 </div>
 <form action="/product/detailPage/delete" method="get" id="form_mk_d">
@@ -255,6 +275,15 @@
 <!-- S: footer -->
 <div th:include="common/footer.html"></div>
 <!-- E: footer -->
+<script>
+    let check = '[[${ check }]]';
+
+    if(check){
+        alert('[[${ message }]]');
+        opener.location.reload();
+        window.close();
+    }
+</script>
 <script>
     $(function() {
         $("#input-file-regist").on('change', function(){
@@ -289,6 +318,39 @@
         }
 
     }
+</script>
+<script>
+    // 아이템 수정, 등록
+    function openWindow(str, num) {
+
+        //창 크기 지정
+        var width = 700;
+        var height = 750;
+
+        //pc화면기준 가운데 정렬
+        var left = (window.screen.width / 2) - (width/2);
+        var top = (window.screen.height / 4);
+
+        //윈도우 속성 지정
+        var windowStatus = 'width='+width+', height='+height+', left='+left+', top='+top+', scrollbars=yes, status=yes, resizable=yes, titlebar=yes';
+
+        let url;
+
+        //연결하고싶은url
+        if(str == "cast-new"){
+            url = "/product/detailPage/new/productPoster?pd_num=" + num;
+        } else if(str == "cast"){
+            url = "/product/detailPage/update/poster?detail_file_num=" + num;
+        }
+
+        //등록된 url 및 window 속성 기준으로 팝업창을 연다.
+        window.open(url, "등록", windowStatus);
+    };
+
+    $(document).ready(function(){
+
+
+    });
 </script>
 </body>
 </html>
