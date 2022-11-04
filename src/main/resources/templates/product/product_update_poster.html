@@ -222,9 +222,13 @@
       <label class="input-file-button-regist" for="input-file-regist" style="margin-bottom: 0;">
         <!--                        <i class="fa fa-file-image-o fa-5x" aria-hidden="true" style="cursor: pointer; color: #ccc;"></i>-->
         <img id="View" class="rounded" src="#" th:src="'/images/product/poster/' + ${ productDetailDTO.detail_file_name }" width="200px" height="265px">
+        <input type="hidden" name="detail_file_num" th:value="${productDetailDTO.detail_file_num}">
+        <input type="hidden" name="pd_num" th:value="${productDetailDTO.pd_num}">
       </label>
       <input class="form-control" type="file" id="input-file-regist" name="file" style="display:none;">
+<!--      <input type="hidden" class="num" id="detail_file_num" name="detail_file_num" th:value="${ productDetailDTO.detail_file_num }>-->
     </div>
+
   </div>
 <!--  <div class="col-5 mx-auto mt-3">-->
 <!--    <div class="form-group">-->
