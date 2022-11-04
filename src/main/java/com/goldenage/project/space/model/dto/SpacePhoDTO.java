@@ -2,7 +2,7 @@ package com.goldenage.project.space.model.dto;
 
 public class SpacePhoDTO {
 
-    private String spaceName; //연습실이름
+    private int spaceNum; //연습실번호
     private int spaceFileNum; //연습실사진번호
     private String spaceOriName; //원본파일명
     private String spaceFileName; //바뀐파일명
@@ -10,19 +10,19 @@ public class SpacePhoDTO {
     public SpacePhoDTO() {
     }
 
-    public SpacePhoDTO(String spaceName, int spaceFileNum, String spaceOriName, String spaceFileName) {
-        this.spaceName = spaceName;
+    public SpacePhoDTO(int spaceNum, int spaceFileNum, String spaceOriName, String spaceFileName) {
+        this.spaceNum = spaceNum;
         this.spaceFileNum = spaceFileNum;
         this.spaceOriName = spaceOriName;
         this.spaceFileName = spaceFileName;
     }
 
-    public String getSpaceName() {
-        return spaceName;
+    public int getSpaceNum() {
+        return spaceNum;
     }
 
-    public void setSpaceName(String spaceName) {
-        this.spaceName = spaceName;
+    public void setSpaceNum(int spaceNum) {
+        this.spaceNum = spaceNum;
     }
 
     public int getSpaceFileNum() {
@@ -52,7 +52,7 @@ public class SpacePhoDTO {
     @Override
     public String toString() {
         return "SpacePhoDTO{" +
-                "spaceName='" + spaceName + '\'' +
+                "spaceNum=" + spaceNum +
                 ", spaceFileNum=" + spaceFileNum +
                 ", spaceOriName='" + spaceOriName + '\'' +
                 ", spaceFileName='" + spaceFileName + '\'' +
