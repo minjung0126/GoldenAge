@@ -118,13 +118,11 @@
 
   @media (max-width: 910px) {
     #nav-bar{
-      display: none;
       position: absolute;
       top: 80px;
       background-color: black;
       border-radius: 0px 0px 5px 5px;
       width: 100%;
-      text-align: center;
       padding: 20px;
       right: 0px;
       text-align: right;
@@ -163,7 +161,12 @@
       width: auto;
     }
   }
+  @media (min-width: 911px) {
 
+    #nav-bar {
+      display: block;
+    }
+  }
 </style>
 
 <body>
@@ -175,6 +178,7 @@
       <li><a th:href="@{/product/productPage}">PRODUCT</a></li>
       <li><a th:href="@{/marketing/list}">MARKETING</a></li>
       <li><a th:href="@{/space/theater}">SPACE</a></li>
+      <li><a th:href="@{/space/spaceList}">SPACEList</a></li>
       <li><a th:href="@{/notice/notice}">NOTICE</a></li>
       <th:block sec:authorize="isAnonymous()">
         <li><a th:href="@{/admin/loginPage}">LOGIN</a></li>
@@ -194,6 +198,15 @@
 <script>
   $("#nav-toggle").click(function (){
     $("#nav-bar").slideToggle(300);
+  });
+
+  $( window ).resize(function (){
+
+    let windowWidth = $( window ).width();
+
+    if( windowWidth > 911){
+      $("#nav-bar").css('display', 'block');
+    }
   });
 </script>
 </html>

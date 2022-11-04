@@ -208,6 +208,7 @@
 <!-- E: footer -->
 
 <script>
+/** 드래그 앤 드랍 포스터 이미지 */
   $(".poster")
           .on("dragover", dragOver)
           .on("dragleave", dragOver)
@@ -253,6 +254,7 @@
 </script>
 
 <script>
+  /** 파일 업로드 이미지 */
     function previewFile() {
     var preview = document.querySelector(".previewIMG");
     var file = document.querySelector("input[type=file]").files[0];

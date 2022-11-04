@@ -10,7 +10,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+
     <style>
+
       /* bx 슬라이더를 위한 css 설정입니다 */
       .bx-wrapper {
         -moz-box-shadow: none;
@@ -101,52 +103,19 @@
         <li><a href="product/detailPage.html"><img src="/images/testPicture.PNG" alt=""></a></li>
         <li><a href="product/detailPage.html"><img src="/images/testPicture2.PNG" alt=""></a></li>
       </ul>
+
+      <div class="row mt-5 mx-auto" style="padding-left: 20%; padding-right: 20%; padding-top: 9rem">
+        <div th:each="productDTO : ${ productDTOList }" class="col-lg-4 col-md-6" style="height: 141.4%;">
+          <div class="blog-card">
+            <a href="#" class="justify-content-center d-flex align-items-center"><h5 class="text-white thumbnailtxt p-auto d-flex align-items-center">
+              <input type="hidden" id="num" th:value="${ productDTO.pd_num }"/>
+              <b th:text="${ productDTO.pd_name }"> &lt;비클래스&gt;</b></h5><img th:src="'/images/product/' + ${ productDTO.pd_File_Main }" src="/images/비클래스.jpg" alt="" class="blog-thumbnail">
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
-      <div class="detailPagelist">
-        <div class="images">
-          <div class="imageFlex">
-            <a th:href="@{product/detailPage}" class="imagePoster"
-              ><img src="/images/비클래스.jpg" />
-              <h3 class="imageText">B클래스</h3></a>
-            <a href="product/detailPage.html" class="imagePoster"
-              ><img src="/images/비클래스.jpg" />
-              <h3 class="imageText">B클래스</h3></a>
-            <a href="product/detailPage.html" class="imagePoster"
-              ><img src="/images/줄리엣과 줄리엣.jpg" />
-              <h3 class="imageText">줄리엣과 줄리엣</h3></a>
-          </div>
-        </div>
-        <div class="images">
-          <div class="imageFlex">
-            <a href="product/detailPage.html" class="imagePoster"
-              ><img src="/images/스푸트니크_포스터.jpg" />
-              <h3 class="imageText">스푸트니크</h3></a>
-            <a href="product/detailPage.html" class="imagePoster"
-              ><img src="/images/바톤콘서트.jpg" />
-              <h3 class="imageText">바톤콘서트</h3></a>
-            <a href="product/detailPage.html" class="imagePoster"
-              ><img src="/images/비클래스.jpg" />
-              <h3 class="imageText">B클래스</h3></a>
-          </div>
-        </div>
-        <div class="images">
-          <div class="imageFlex">
-            <a href="product/detailPage.html" class="imagePoster"
-              ><img src="/images/줄리엣과 줄리엣.jpg" />
-              <h3 class="imageText">줄리엣과 줄리엣</h3></a
-            >
-            <a href="product/detailPage.html" class="imagePoster"
-              ><img src="/images/스푸트니크_포스터.jpg" />
-              <h3 class="imageText">스푸트니크</h3></a
-            >
-            <a href="product/detailPage.html" class="imagePoster"
-              ><img src="/images/바톤콘서트.jpg" />
-              <h3 class="imageText">바톤콘서트</h3></a
-            >
-          </div>
-        </div>
-      </div>
-      </div>
+    </div>
 
     <!-- S: footer -->
     <div th:include="common/footer.html"></div>

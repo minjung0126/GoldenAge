@@ -1,93 +1,73 @@
 <!DOCTYPE html>
 <html lang="en"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Document</title>
-  <link rel="stylesheet" href="/css/style.css" type="text/css">
-  <script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
-</head>
-<style>
-  @import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald&display=swap");
-
-  body {
-    width: 100%;
-    height: 100%;
-  }
-
-  .detailPageTitle {
-    font-family: "Oswald", sans-serif;
-    margin: 0 auto;
-    width: 100%;
-    height: 320px;
-    padding-top: 220px;
-    font-size: 2.5rem;
-    text-align: center;
-    position: relative;
-    z-index: 9;
-    background-color: #232321;
-    display: block;
-  }
-  .detailPageTitle h1 {
-    /*line-height: 165px;*/
-    width: 280px;
-    margin: auto;
-    padding-top: 20px;
-  }
-
-  .infoWrap {
-    margin: 0 auto;
-    width: 970px;
-    padding-top: 180px;
-    height: 1350px;
-    padding-bottom: 150px;
-  }
-
-  .infoWrap .poster {
-    margin: auto;
-    width: 70%;
-    color: white;
-    text-align: center;
-    display: block;
-  }
-  .infoWrap .poster img {
-    width: 65%;
-  }
-  .infoWrap .info .info-about {
-    text-align: center;
-    font-family: "Oswald", sans-serif;
-    margin: auto;
-    width: 65%;
-    height: 350px;
-    color: #fff;
-    text-align: left;
-    font-size: 1.5rem;
-    padding-top: 60px;
-    padding-left: 100px;
-  }
-
-  .allWrap {
-    padding-bottom: 120px;
-    background-color: #232321;
-    width: 100%;
-    margin: auto;
-    display: block;
-    text-align: center;
-    font-family: "Oswald", sans-serif;
-  }
-  @media (min-width: 768px) {
-    .allWrap {
-      width: 100%;
-      margin: 0 auto;
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald&display=swap");
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400&display=swap');body {
+      font-family: 'Noto Sans KR', sans-serif;
     }
-  }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #282828;
+      color: white;
+    }
+
+    .content {
+      width: 100%;
+      position: relative;
+      padding: 2% 0%;
+      margin-bottom: 100px;
+    }
+
+    .scroll {
+      overflow: overlay;
+    }
+    .scroll::-webkit-scrollbar {
+      width: 0.7vw;
+    }
+    .scroll::-webkit-scrollbar-thumb {
+      background-color: hsla(0, 0%, 42%, 0.2);
+    }
+
+    .allWrap {
+      padding-bottom: 120px;
+      background-color: #232321;
+      width: 100%;
+      margin: auto;
+      display: block;
+      text-align: center;
+      font-family: "Oswald", sans-serif;
+    }
+    @media (min-width: 768px) {
+      .allWrap {
+        width: 100%;
+        margin: 0 auto;
+      }
+    }
 
   .tabBox {
-    margin: auto;
+    margin: 0 auto;
   }
   .tab-link {
+    margin: 0 auto;
     width: 25%;
     display: inline-block;
     padding: 15px;
@@ -123,136 +103,140 @@
     height: auto;
   }
   /*       */
+
 </style>
 <body class="scroll">
 <div th:include="common/header"></div>
-<div class="detailPageTitle">
-  <h1 style="color: #fff; border-bottom: 8px #ffb000 solid">PRODUCT</h1>
-</div>
-<div class="infoWrap">
-  <div class="poster"><img src="/images/비클래스.jpg" alt="" /></div>
-  <div class="info">
-    <table width="350px" height="270px" class="info-about">
-      <tr>
-        <td>일정</td>
-        <td>2022.02.25 ~ 2022.05.15</td>
-      </tr>
-      <tr>
-        <td>장소</td>
-        <td>브릭스 씨어터</td>
-      </tr>
-      <tr>
-        <td>제작</td>
-        <td>골든에이지 컴퍼니</td>
-      </tr>
-      <tr>
-        <td>홍보/마케팅</td>
-        <td>탄탄대로</td>
-      </tr>
-    </table>
+<div class="content">
+  <br>
+  <div class="d-flex justify-content-center" style="display: inline; background: #ccc; font-family: 'Oswald', sans-serif !important;height: 240px; background: #232321; padding-top: 170px; margin-bottom: 190px;">
+    <h1 style="color: #fff;border-bottom: 10px #ffb000 solid;padding-bottom: 8px;font-size: 5rem;font-weight: bold;margin: auto;">PRODUCT</h1>
   </div>
-</div>
-<div class="detailPageTitle" style="height: 0px; padding-top: 150px">
-  <h1
-          style="
-          color: #fff;
-          padding-top: 90px;
-          margin-top: -315px;
-          border-bottom: 8px #ffb000 solid;
-          width: 200px;
-        "
-  >
-    ABOUT
-  </h1>
-</div>
-<div class="allWrap">
-  <div class="tabBox">
-    <p class="tab-link current" data-tab="tab-1">공연 정보</p>
-    <p class="tab-link" data-tab="tab-2">오시는 길</p>
+  <div class="d-flex flex-nowrap justify-content-center my-5" th:each="product : ${ productDetail }">
+    <div class="col-lg-6">
+      <div class="blog-card mx-auto col-lg-5 col-md-7">
+        <img th:src="'/images/product/' + ${ productDetail.pd_File_Main }" src="/images/비클래스.jpg" alt="" style="width: 100%">
+      </div>
+      <table height="300px" class="mx-auto col-lg-5 col-md-7 col-10 px-5" style="margin-bottom: 80px;">
+        <tr>
+<!--          <td colspan="2"><h2 th:text="${ product.pd_name }">비클래스</h2></td>-->
+        </tr>
+        <tr>
+          <th>일정</th>
+          <td th:text="${ productDetail.pd_start_date } + ' ~ ' + ${ productDetail.pd_end_date }">2022.02.25 ~ 2022.05.15</td>
+        </tr>
+        <tr>
+          <th>장소</th>
+          <td th:text="${ productDetail.pd_place_name }">브릭스 씨어터</td>
+        </tr>
+        <tr>
+          <th>관람등급</th>
+          <td th:text="${ productDetail.pd_rated }">전체관람가</td>
+        </tr>
+        <tr>
+          <th>관람시간</th>
+          <td th:text="${ productDetail.pd_time }">120분</td>
+        </tr>
+        <tr>
+          <th>공연장 주소</th>
+          <td th:text="${ productDetail.pd_place_add }" id="address">골든에이지컴퍼니</td>
+        </tr>
+        <tr>
+          <th>홍보/마케팅</th>
+          <td th:text="${ productDetail.company_name }">탄탄대로</td>
+        </tr>
+      </table>
+      <div class="d-flex justify-content-center mt-5 mb-5" th:block sec:authorize="isAuthenticated()">
+        <div class="border px-5 py-2 mx-2" style="display: inline; cursor: pointer">
+          <form action="/product/detailPage/update" method="get" id="form_mk">
+            <input type="hidden" th:value="${ productDetail.pd_num }" name="pd_num">
+            <a href="#" onclick="document.getElementById('form_mk').submit();" style="text-decoration: none;" class="text-white fs-5">수정하기</a>
+          </form>
+        </div>
+      </div>
+    </div>
   </div>
-  <div id="tab-1" class="tab-content current">
-    <br />
-    <img src="/images/비클래스%20상세페이지.jpg" alt="" />
+  <div class="my-5">
+    <div class="d-flex justify-content-center" style="display: inline;background: #ccc;font-family: 'Oswald', sans-serif !important;height: 240px;background: #232321;padding-top: 170px;">
+      <h1 style="color: #fff;border-bottom: 10px #ffb000 solid;padding-bottom: 8px;font-size: 5rem;font-weight: bold;margin: auto;">ABOUT</h1>
+    </div>
   </div>
-  <div id="tab-2" class="tab-content mapAPI">
-    contents Area
-    <div
-            id="map"
-            style="
-            width: 70%;
-            height: 650px;
-            left: 50%;
-            transform: translate(-50%);
-            border-radius: 10px;
-          "
-    ></div>
-  </div>
+    <div class="container my-5 px-5">
+        <br>
+        <div class="row justify-content-center">
+            <div class="col-lg-2 col-md-3" th:each="productDetailDTOList : ${ productDetailDTOList }">
+                <div class="blog-card">
+                    <img th:src="'/images/product/poster/' + ${ productDetailDTOList.detail_file_name }" alt="" class="blog-thumbnail">
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
+    <div id="map" style="width: 50%;height: 450px;left: 50%;transform: translate(-50%);border-radius: 5px;"></div>
+
+
 <!-- S: footer -->
 <div th:include="common/footer.html"></div>
 <!-- E: footer -->
 
-<script
-        type="text/javascript"
-        src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4b99ebb84f885d771b9a0771daf35f8a"
-></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4b99ebb84f885d771b9a0771daf35f8a&libraries=services"></script>
 <script>
-  // 37.5865326, 127.000069
-  var mapContainer = document.getElementById("map"), // 지도를 표시할 div
-          mapOption = {
-            center: new kakao.maps.LatLng(37.5864425, 126.999548), // 지도의 중심좌표
-            level: 3, // 지도의 확대 레벨
-          };
 
-  var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+    var mapContainer = document.getElementById('map'), // 지도를 표시할 div
+        mapOption = {
+            center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+            level: 3 // 지도의 확대 레벨
+        };
 
-  // 마커를 표시할 위치입니다
-  var position = new kakao.maps.LatLng(37.5865326, 127.000069);
+    // const search = location.search;
+    // const params = new URLSearchParams(search);
+    // const addressCode = params.get('pd_place_add');
+    //
 
-  // 마커를 생성합니다
-  var marker = new kakao.maps.Marker({
-    position: position,
-  });
+    let addressCode = document.getElementById('address').innerText;
+    console.log(addressCode);
 
-  // 마커를 지도에 표시합니다.
-  marker.setMap(map);
+    // let addressCode = document.getElementById('address');
+    // console.log(addressCode);
 
-  // 마커에 커서가 오버됐을 때 마커 위에 표시할 인포윈도우를 생성합니다
-  var iwContent = '<div style="padding:5px;">까꿍</div>'; // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+    //var address = '서울시 용산구 우사단로 10길 72';
 
-  // 인포윈도우를 생성합니다
-  var infowindow = new kakao.maps.InfoWindow({
-    content: iwContent,
-  });
+    // 지도를 생성합니다
+    var map = new kakao.maps.Map(mapContainer, mapOption);
 
-  // 마커에 마우스오버 이벤트를 등록합니다
-  kakao.maps.event.addListener(marker, "mouseover", function () {
-    // 마커에 마우스오버 이벤트가 발생하면 인포윈도우를 마커위에 표시합니다
-    infowindow.open(map, marker);
-  });
+    // 일반 지도와 스카이뷰로 지도 타입을 전환할 수 있는 지도타입 컨트롤을 생성합니다
+    var mapTypeControl = new kakao.maps.MapTypeControl();
 
-  // 마커에 마우스아웃 이벤트를 등록합니다
-  kakao.maps.event.addListener(marker, "mouseout", function () {
-    // 마커에 마우스아웃 이벤트가 발생하면 인포윈도우를 제거합니다
-    infowindow.close();
-  });
-</script>
+    // 지도에 컨트롤을 추가해야 지도위에 표시됩니다
+    // kakao.maps.ControlPosition은 컨트롤이 표시될 위치를 정의하는데 TOPRIGHT는 오른쪽 위를 의미합니다
+    map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
 
-<script>
-  /** 탭 메뉴 코드*/
-  $(".tab-link").click(function () {
-    var tab_id = $(this).attr("data-tab");
+    // 지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성합니다
+    var zoomControl = new kakao.maps.ZoomControl();
+    map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
 
-    $(".tab-link").removeClass("current");
-    $(".tab-content").removeClass("current");
+    // 주소-좌표 변환 객체를 생성합니다
+    var geocoder = new kakao.maps.services.Geocoder();
 
-    $(this).addClass("current");
-    $("#" + tab_id).addClass("current");
-  });
-</script>
+    // 주소로 좌표를 검색합니다
+    geocoder.addressSearch( addressCode, function(result, status) {
 
-<script>
-  /** 헤더 반응형 토글 */
+        // 정상적으로 검색이 완료됐으면
+        if (status === kakao.maps.services.Status.OK) {
+
+            var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+
+            // 결과값으로 받은 위치를 마커로 표시합니다
+            var marker = new kakao.maps.Marker({
+                map: map,
+                position: coords
+            });
+
+            // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+            map.setCenter(coords);
+        }
+    });
 
 
 </script>

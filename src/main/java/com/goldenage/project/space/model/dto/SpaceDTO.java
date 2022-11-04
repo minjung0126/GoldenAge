@@ -1,26 +1,38 @@
 package com.goldenage.project.space.model.dto;
 
+import java.util.List;
+
 public class SpaceDTO {
 
+    private int spaceNum; //고유숫자
     private String spaceName; //연습실명
     private String spaceAdd; //연습실 주소
+    private String spaceContent; //연습실 소개
     private String spaceWidth; //연습실 크기
     private String spaceTime; //영업시간
-    private String spaceHDay; //휴무일
-    private int spacePrice; //연습실 대여비
-    private SpacePhoDTO photo; //연습실사진
+    private String spaceLink; //연습실예약사이트
+    private List<SpacePhoDTO> photo; //연습실사진
 
     public SpaceDTO() {
     }
 
-    public SpaceDTO(String spaceName, String spaceAdd, String spaceWidth, String spaceTime, String spaceHDay, int spacePrice, SpacePhoDTO photo) {
+    public SpaceDTO(int spaceNum, String spaceName, String spaceAdd, String spaceContent, String spaceWidth, String spaceTime, String spaceLink, List<SpacePhoDTO> photo) {
+        this.spaceNum = spaceNum;
         this.spaceName = spaceName;
         this.spaceAdd = spaceAdd;
+        this.spaceContent = spaceContent;
         this.spaceWidth = spaceWidth;
         this.spaceTime = spaceTime;
-        this.spaceHDay = spaceHDay;
-        this.spacePrice = spacePrice;
+        this.spaceLink = spaceLink;
         this.photo = photo;
+    }
+
+    public int getSpaceNum() {
+        return spaceNum;
+    }
+
+    public void setSpaceNum(int spaceNum) {
+        this.spaceNum = spaceNum;
     }
 
     public String getSpaceName() {
@@ -39,6 +51,14 @@ public class SpaceDTO {
         this.spaceAdd = spaceAdd;
     }
 
+    public String getSpaceContent() {
+        return spaceContent;
+    }
+
+    public void setSpaceContent(String spaceContent) {
+        this.spaceContent = spaceContent;
+    }
+
     public String getSpaceWidth() {
         return spaceWidth;
     }
@@ -55,39 +75,32 @@ public class SpaceDTO {
         this.spaceTime = spaceTime;
     }
 
-    public String getSpaceHDay() {
-        return spaceHDay;
+    public String getSpaceLink() {
+        return spaceLink;
     }
 
-    public void setSpaceHDay(String spaceHDay) {
-        this.spaceHDay = spaceHDay;
+    public void setSpaceLink(String spaceLink) {
+        this.spaceLink = spaceLink;
     }
 
-    public int getSpacePrice() {
-        return spacePrice;
-    }
-
-    public void setSpacePrice(int spacePrice) {
-        this.spacePrice = spacePrice;
-    }
-
-    public SpacePhoDTO getPhoto() {
+    public List<SpacePhoDTO> getPhoto() {
         return photo;
     }
 
-    public void setPhoto(SpacePhoDTO photo) {
+    public void setPhoto(List<SpacePhoDTO> photo) {
         this.photo = photo;
     }
 
     @Override
     public String toString() {
         return "SpaceDTO{" +
-                "spaceName='" + spaceName + '\'' +
+                "spaceNum=" + spaceNum +
+                ", spaceName='" + spaceName + '\'' +
                 ", spaceAdd='" + spaceAdd + '\'' +
+                ", spaceContent='" + spaceContent + '\'' +
                 ", spaceWidth='" + spaceWidth + '\'' +
                 ", spaceTime='" + spaceTime + '\'' +
-                ", spaceHDay='" + spaceHDay + '\'' +
-                ", spacePrice=" + spacePrice +
+                ", spaceLink='" + spaceLink + '\'' +
                 ", photo=" + photo +
                 '}';
     }
