@@ -166,11 +166,12 @@
         <div class="row justify-content-center">
             <div class="col-lg-2 col-md-3" th:each="productDetailDTOList : ${ productDetailDTOList }">
                 <div class="blog-card">
-                    <img th:src="'/images/marketing/poster/' + ${ productDetailDTOList.detail_file_name }" alt="" class="blog-thumbnail">
+                    <img th:src="'/images/product/poster/' + ${ productDetailDTOList.detail_file_name }" alt="" class="blog-thumbnail">
                 </div>
             </div>
         </div>
     </div>
+</div>
 
     <div id="map" style="width: 50%;height: 450px;left: 50%;transform: translate(-50%);border-radius: 5px;"></div>
 
@@ -192,11 +193,12 @@
     // const params = new URLSearchParams(search);
     // const addressCode = params.get('pd_place_add');
     //
-    // document.getElementById('address').value = addressCode;
-    // console.log(addressCode);
 
-    let addressCode = document.getElementById('address');
+    let addressCode = document.getElementById('address').innerText;
     console.log(addressCode);
+
+    // let addressCode = document.getElementById('address');
+    // console.log(addressCode);
 
     //var address = '서울시 용산구 우사단로 10길 72';
 
