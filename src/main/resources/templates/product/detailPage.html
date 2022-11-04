@@ -170,7 +170,7 @@
       <div id="tab-1" class="tab-content current">
           <br />
             <div th:each=" productDetail : ${ productDetailDTOList }">
-                <img th:src="'/images/product/poster/' + ${ productDetail.detail_file_name }" src="/images/product/poster/a1.gif" alt="" class="blog-thumbnail">
+                <img th:src="'/images/product' + ${ productDetail.detail_file_name }" src="/images/product/poster/a1.gif" alt="" class="blog-thumbnail">
             </div>
       </div>
         <div id="tab-2" class="tab-content mapAPI">
