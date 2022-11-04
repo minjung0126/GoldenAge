@@ -1,48 +1,176 @@
 package com.goldenage.project.product.service;
 
+import com.goldenage.project.product.exception.PdException;
 import com.goldenage.project.product.model.dao.ProductMapper;
 import com.goldenage.project.product.model.dto.ProductDTO;
-import com.goldenage.project.product.model.dto.ProductFileDTO;
+import com.goldenage.project.product.model.dto.ProductDetailDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.io.File;
-import java.nio.file.Paths;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
-import java.util.UUID;
 
 @Service
 public class ProductServiceImpl implements ProductService {
 
     private final Logger log = LoggerFactory.getLogger(this.getClass());
 
-    private ProductMapper productMapper;
+    private final ProductMapper productMapper;
+
+    @Autowired
+    public ProductServiceImpl(ProductMapper productMapper){
+
+        this.productMapper = productMapper;
+    }
 
 
-    public void productRegist(ProductDTO productDTO){
+    /**
+     * <pre>
+     *     productPage 갤러리형 리스트 조회
+     * </pre>
+     * */
+    @Override
+    public List<ProductDTO> selectAllProduct() {
 
-        int result = 0;
-        // product 테이블 insert
-        int productResult = productMapper.productRegist(productDTO);
+        List<ProductDTO> productDTOList = productMapper.selectAllProduct();
+        return productDTOList;
+    }
 
-        List<ProductFileDTO> productFile = productDTO.getProductFileDTO();
+    /**
+     * <pre>
+     *     productDetail 페이지 조회
+     * </pre>
+     * */
+    public ProductDTO selectOneProduct(String pd_num) {
 
-        // 파일에 productNo 넣기
-        for(int i = 0; i < productFile.size(); i++){
-            productFile.get(i).setGalNo(productDTO.getPd_num());
-            log.info("pd_num 값 가져오는지 확인 : " + productFile.get(i));
+        ProductDTO productDTO = productMapper.selectOneProduct(pd_num);
+        return productDTO;
+    }
+
+    /**
+     * <pre>
+     *     productDetail 페이지 상세 이미지조회
+     * </pre>
+     * */
+    public List<ProductDetailDTO> selectAllProductDetail(String pd_num) {
+
+        List<ProductDetailDTO> productDetailDTOList = productMapper.selectAllProductDetail(pd_num);
+        return productDetailDTOList;
+    }
+
+    /**
+     * <pre>
+     *     productDetail 페이지 생성
+     * </pre>
+     * */
+    @Override
+    @Transactional
+    public int insertPdInfo(ProductDTO productDTO) throws PdException {
+
+        int result = productMapper.insertPdInfo(productDTO);
+
+        if(!(result > 0)){
+            throw new PdException("등록 실패");
         }
 
-        // productFile Insert
-        int productFileResult = 0;
-        for(int i = 0; i < productFile.size(); i++){
-            productResult += productMapper.productFileRegist(productFile.get(i));
-            log.info("확인합니다");
+        return result;
+    }
+
+
+    @Override
+    @Transactional
+    public int updateProductInfoNoFile(ProductDTO productDTO) throws PdException{
+
+        int result = productMapper.updateProductInfoNoFile(productDTO);
+
+        if(!(result > 0)){
+            throw new PdException("수정 실패");
         }
 
+        return result;
+    }
 
+    @Override
+    @Transactional
+    public int updateProductInfo(ProductDTO productDTO) throws PdException {
+
+        int result = productMapper.updateProductInfo(productDTO);
+
+        if(!(result > 0)){
+            throw new PdException("수정 실패");
+        }
+
+        return result;
+
+    }
+
+    @Override
+    @Transactional
+    public int deleteProductInfo(String pd_num) throws PdException{
+        int result = productMapper.deleteProductInfo(pd_num);
+
+        if(!(result > 0)){
+            throw new PdException("삭제 실패");
+        }
+
+        return result;
+    }
+    @Override
+    @Transactional
+    public int insertPdPoster(ProductDetailDTO productDetailDTO) throws PdException {
+
+        int result = productMapper.insertPdPoster(productDetailDTO);
+
+        if(!(result > 0)){
+            throw new PdException("등록 실패");
+        }
+
+        return result;
+    }
+    @Override
+    @Transactional
+    public int deleteProductPoster(int detail_file_num) throws PdException{
+
+        int result = productMapper.deleteProductPoster(detail_file_num);
+
+        if(!(result > 0 )){
+            throw new PdException("삭제 실패");
+        }
+
+        return result;
+    }
+
+    @Override
+    public ProductDetailDTO selectProductPoster(String detail_file_num) {
+
+        ProductDetailDTO productDetailDTO = productMapper.selectProductPoster(detail_file_num);
+        return productDetailDTO;
+    }
+
+    @Override
+    @Transactional
+    public int updateProductPosterNoFile(ProductDetailDTO productDetailDTO) throws PdException {
+
+        int result = productMapper.updateProductPosterNoFile(productDetailDTO);
+
+        if(!(result > 0)){
+            throw new PdException("수정 실패");
+
+        }
+        return result;
+    }
+
+    @Override
+    @Transactional
+    public int updateProductPoster(ProductDetailDTO productDetailDTO) throws PdException {
+        int result = productMapper.updateProductPoster(productDetailDTO);
+
+        if(!(result > 0)){
+            throw new PdException("수정 실패");
+
+        }
+        return result;
     }
 }
