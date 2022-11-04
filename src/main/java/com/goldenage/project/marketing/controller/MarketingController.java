@@ -120,6 +120,8 @@ public class MarketingController {
             marketingService.insertMkInfo(marketing);
         }
 
+        rttr.addFlashAttribute("message", "게시물이 등록되었습니다.");
+        rttr.addFlashAttribute("check", "success");
 
         return "redirect:/marketing/list";
     }
@@ -369,7 +371,7 @@ public class MarketingController {
             }
         }
 
-        rttr.addFlashAttribute("message", "수정 성공!");
+        rttr.addFlashAttribute("message", "게시물이 수정되었습니다.");
         rttr.addFlashAttribute("check", "success");
 
         return "redirect:/marketing/list";
@@ -380,7 +382,8 @@ public class MarketingController {
 
         marketingService.deleteMkInfo(mkNum);
 
-        rttr.addFlashAttribute("message", "삭제 성공");
+        rttr.addFlashAttribute("message", "게시물이 삭제되었습니다.");
+        rttr.addFlashAttribute("check", "success");
 
         return "redirect:/marketing/list";
     }

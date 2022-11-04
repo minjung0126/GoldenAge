@@ -15,98 +15,15 @@
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400&display=swap');body {
             font-family: 'Noto Sans KR', sans-serif;
         }
-
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
         body {
             background-color: #282828;
             color: white;
         }
-
-        /*.header {*/
-        /*  width: 100%;*/
-        /*  height: 80px;*/
-        /*  padding: 0 10%;*/
-        /*  display: flex;*/
-        /*  justify-content: space-between;*/
-        /*  align-items: center;*/
-        /*  position: fixed;*/
-        /*  z-index: 99999;*/
-        /*  background-color: #000;*/
-        /*}*/
-
-        /*.header h1 a {*/
-        /*  text-decoration: none;*/
-        /*  color: white;*/
-        /*  font-family: abster;*/
-        /*  transition: 0.5s;*/
-        /*  display: inline-block;*/
-        /*  padding: 5px 0;*/
-        /*  position: relative;*/
-        /*}*/
-        /*!*가운데서 좌우로 펼쳐지는 라인 에니메이션*!*/
-
-        /*.header h1 a:after {*/
-        /*  background: none repeat scroll 0 0 transparent;*/
-        /*  bottom: 0;*/
-        /*  content: "";*/
-        /*  display: block;*/
-        /*  height: 2px;*/
-        /*  left: 50%;*/
-        /*  position: absolute;*/
-        /*  background: #ffb000;*/
-        /*  transition: width 0.3s ease 0s, left 0.3s ease 0s;*/
-        /*  width: 0;*/
-        /*}*/
-        /*.header h1 a:hover:after {*/
-        /*  width: 100%;*/
-        /*  left: 0;*/
-        /*}*/
-
-        /*.nav ul li {*/
-        /*  display: inline-block;*/
-        /*  margin: 0 10px;*/
-        /*}*/
-
-        /*.nav ul li a {*/
-        /*  text-decoration: none;*/
-        /*  color: white;*/
-        /*}*/
-
-        /*!*왼쪽에서 오른쪽으로 이동하는 에니메이션*!*/
-        /*.nav ul li a {*/
-        /*  position: relative;*/
-        /*}*/
-        /*.nav ul li a:after {*/
-        /*  content: "";*/
-        /*  position: absolute;*/
-        /*  left: 0;*/
-        /*  bottom: -10px;*/
-        /*  width: 0px;*/
-        /*  height: 2px;*/
-        /*  margin: 5px 0 0;*/
-        /*  transition: all 0.3s ease-in-out;*/
-        /*  transition-duration: 0.3s;*/
-        /*  opacity: 0;*/
-        /*  background-color: gold;*/
-        /*}*/
-        /*.nav ul li a:hover:after {*/
-        /*  width: 100%;*/
-        /*  opacity: 1;*/
-        /*}*/
-
-        .content {
-            width: 100%;
-            top: 80px;
-            position: relative;
-            padding: 2% 0%;
-            margin-bottom: 100px;
-        }
-
         .scroll {
             overflow: overlay;
         }
@@ -116,112 +33,14 @@
         .scroll::-webkit-scrollbar-thumb {
             background-color: hsla(0, 0%, 42%, 0.2);
         }
-
-
-        #blog {
-            padding: 100px 0;
-        }
-
-        .blog-card {
-            margin-bottom: 30px;
-        }
-
-        .blog-card .blog-thumbnail {
-            width: 100%;
-            height: 220px;
-            -o-object-fit: cover;
-            object-fit: cover;
-        }
-
-        .blog-card .blog-container {
-            padding: 15px;
-        }
-
-        .nav-item a{
-            color: #fff;
-        }
-
-        .nav-link:focus, .nav-link:hover {
-            color: gold;
-            border-bottom: gold solid 3px;
-        }
-
-        footer{
-            background-color: #232321;
-            padding: 3rem;
-            color: #fff;
-            margin-top: 180px;
-            display: flex;
-            align-items: flex-start;
-        }
-
-        footer #row{
-            display: flex;
-            flex-wrap: wrap;
-            width: 100%;
-        }
-
-        footer #footer_txt{
-            display: inline-block;
-            flex: 1;
-        }
-
-        footer #footer_sns{
-            align-self: center;
-            float: right;
-        }
-
-        footer #footer_sns a{
-            margin-right: 0.25rem;
-            margin-left: 0.25rem;
-            cursor: pointer;
-            color: #232321;
-        }
-
-        @media (max-width: 768px) {
-            footer{
-                background-color: #333;
-                padding: 3rem;
-                color: #fff;
-                margin-top: 180px;
-                display: block;
-                align-items: flex-start;
-            }
-
-            footer #row{
-                display: flex;
-                flex-wrap: wrap;
-            }
-
-            footer #footer_txt{
-                width: 100%;
-                display: inline-block;
-                flex: 1;
-            }
-
-            footer #footer_sns{
-                width: 100%;
-                align-self: center;
-                float: right;
-                display: flex;
-                justify-content: flex-end;
-            }
-
-        }
-
-
     </style>
 </head>
 <body class="scroll p-5 mt-5">
-<!--    <div class="d-flex justify-content-center mb-5" style="display: inline;font-family: 'Noto Sans KR', sans-serif !important;">-->
-<!--        <h1 style="color: #fff;border-bottom: 10px #ffb000 solid;padding-bottom: 8px;font-size: 3rem;font-weight: bold;margin: auto;">배우 등록</h1>-->
-<!--    </div>-->
     <form method="post" id="form_modify" action="/marketing/detail/modify/md" enctype="multipart/form-data" class="">
         <div class="col-12 mb-3 d-flex justify-content-center">
             <div class="d-flex justify-content-center flex-wrap align-content-center" style="width:300px; height: 220px; border-radius: 5px;">
                 <label class="input-file-button-regist" for="input-file-regist" style="margin-bottom: 0;">
-    <!--                <i class="fa fa-file-image-o fa-5x" aria-hidden="true" style="cursor: pointer; color: #ccc;"></i>-->
-                    <img id="View" class="rounded" th:src="'/images/marketing/md/' + ${ md.mdFileName }" src="#" width="300px" height="220px" style="object-fit: cover; -o-object-fit: cover">
+                    <img id="View" class="rounded" th:src="'/images/marketing/md/' + ${ md.mdFileName }" src="#" width="300px" height="220px" style="cursor: pointer; object-fit: cover; -o-object-fit: cover;">
                 </label>
                 <input class="form-control" type="file" id="input-file-regist" name="file" style="display:none;">
             </div>
@@ -232,7 +51,6 @@
                 <input type="text" class="form-control mdName" name="mdName" id="mdName" value="" th:value="${ md.mdName }" required>
             </div>
         </div>
-
         <div class="col-6 mx-auto mt-2">
             <div class="form-group">
                 <label class="mb-2">가격</label>
@@ -251,51 +69,5 @@
         <input type="hidden" class="mdFileNum" name="mdFileNum" th:value="${ md.mdFileNum }">
     </form>
 </body>
-<script>
-    <!-- 파일 이미지 -->
-    $(function() {
-        $("#input-file-regist").on('change', function(){
-            readURL(this);
-
-            function readURL(input) {
-                if (input.files && input.files[0]) {
-                    var reader = new FileReader();
-                    reader.onload = function (e) {
-                        $('.input-file-button-regist #View').attr('src', e.target.result);
-                        $('.input-file-button-regist #View').removeClass('d-none');
-                        $('.input-file-button-regist .fa').remove();
-                    }
-                    reader.readAsDataURL(input.files[0]);
-                }
-            }
-        });
-    });
-
-    <!-- 버튼 -->
-    $("#btnModify").on('click', function (){
-
-        let msg = confirm('수정하시겠습니까?');
-
-        if(msg == true){
-            $("#form_modify").submit();
-        } else{
-
-        }
-    });
-
-    $("#btnDelete").on('click', function (){
-
-        let msg = confirm('삭제하시겠습니까?');
-
-        if(msg == true){
-            let msg2 = confirm('해당 항목을 삭제합니다.');
-            if(msg2 == true){
-
-                $("#form_delete").submit();
-            }
-        } else{
-
-        }
-    });
-</script>
+<script th:src="@{/js/marketingModifyFile.js}"></script>
 </html>

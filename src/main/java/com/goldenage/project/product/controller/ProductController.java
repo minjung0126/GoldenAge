@@ -69,6 +69,10 @@ public class ProductController {
         ProductDTO productDetail = productService.selectOneProduct(pd_num);
         List<ProductDetailDTO> productDetailDTOList = productService.selectAllProductDetail(pd_num);
 
+        for(ProductDetailDTO pd : productDetailDTOList){
+            System.out.println(pd);
+        }
+
         mv.addObject("productDetail", productDetail);
         mv.addObject("productDetailDTOList", productDetailDTOList);
 
@@ -278,6 +282,7 @@ public class ProductController {
 
     @PostMapping("/detailPage/update/poster")
     public String productDetailUpdatePoster(@ModelAttribute ProductDetailDTO productDetailDTO, @RequestParam(value = "detail_file_num", required = false) String detail_file_num, @RequestParam(value = "file", required = false) MultipartFile file, RedirectAttributes rttr) throws Exception{
+        log.info("pd_num : " + productDetailDTO.getPd_num());
 
         int pd_num = productDetailDTO.getPd_num();
 

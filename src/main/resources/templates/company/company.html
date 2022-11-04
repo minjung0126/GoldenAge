@@ -12,62 +12,129 @@
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <style>
-        .container{background-image: none;background-color: black;}
-        .main{text-align: center; padding-top: 180px}
-        .main img{width: 300px; height: 300px;}
-        .main p {color: #fff;}
-        .main strong{color: #fff;}
-        .contect{text-align: center; margin: 50px;margin-bottom: 50px;}
-        .card{background-color: black; border: 1px gold solid;}
-        .card-text-ul{list-style: none;}
-        .card-text-list{color: #fff;}
+        @media (max-width: 1024px){
+            .main{
+                flex: 0 0 auto;
+                width: 100%;
+                padding: 0 50px;
+            }
+            .mainImg{
+                flex: 0 0 auto;
+                width: 70%;
+            }
+            .contact{
+                padding: 150px 30px !important;
+            }
+            .contactTxt{
+                padding: 0 30px !important;
+            }
+            #map{
+                margin: 0 40px !important;
+            }
+        }
+        @media (max-width: 768px) {
+            h1{
+                font-size: 4rem !important;
+            }
+            .title{
+                padding-top: 190px !important;
+            }
+            .content{
+                margin-top: 100px !important;
+                padding: 150px 0 0 0 !important;
+            }
+            .main{
+                font-size: 0.9rem !important;
+                line-height: 20px !important;
+                letter-spacing: -0.07em !important;
+                padding: 0 30px !important;
+            }
+            .main strong{
+                font-size: 1rem !important;
+                line-height: 30px !important;
+            }
+            .contact{
+                padding: 150px 10px !important;
+            }
+            #map{
+                height: 290px !important;
+                margin: 0 30px;
+            }
+        }
+        @media (max-width: 425px) {
+            .contactTxt{
+                margin-bottom: 100px;
+            }
+        }
+        .main{text-align: left; font-family: 'Oswald'; line-height: 35px; font-size: 1.3rem; color: #fff; letter-spacing: -0.05em; font-weight: 400;}
+        .main strong{color: #fff; font-size: 1.5rem; line-height: 80px; font-weight: bold;}
+        footer{margin:0 !important;}
     </style>
   </head>
-  <body class="scroll" style="background-color: black;">
+  <body class="scroll" style="background-color: #282828;">
   <!-- header -->
   <div th:replace="common/header"></div>
   <!-- header end -->
-  <div class="container">
-      <div class="main">
-        <img th:src="@{/images/gol2.jpg}">
-        <br>
-        <p>자신만의 고유한 색을 지닌 여러 사람의 협업이 조화를 이룰 때,</p>
-        <p>비로소 작품은 예술이 된다</p>
-        <br>
-        <p>골든에이지컴퍼니는 다양성과 개성이 존중받고,</p>
-        <p>관객들의 삶에 맞닿아 교감할 수 있는 작품을 지향하며</p>
-        <br>
-        <p>2021 <바톤콘서트>, 연극 <줄리엣과 줄리엣>, 2022 연극 <비클래스>를 시작으로</p>
-        <p>그간 쌓인 히스토리 보다는 앞으로 쌓아갈 히스토리가 더 많은 시점에서,</p>
-        <br>
-        <p>우리가 만들어갈 작품들이 재미와 진정성을 토대로</p>
-        <p>관객들로 하여금 "자신"을 찾아가는 여정에 공감과 위로를 건넬 수 있는 조력자가 되길 바랍니다.</p>
-        <br>
-        <strong>" 당신의 찬란하게 빛나는 순간을 함께 할 , GOLDENAGE COMPANY. "</strong>
+
+  <div class="container-fluid px-0">
+      <div class="title d-flex justify-content-center" style="display: inline;background: #232321; font-family: 'Oswald', sans-serif !important;height: 240px; padding-top: 170px; top:80px; position: relative;">
+          <h1 style="color: #fff;border-bottom: 10px #ffb000 solid;padding-bottom: 8px;font-size: 5rem;font-weight: bold;margin: auto;">COMPANY</h1>
       </div>
-      <div class="contect">
-        <div class="card" style="width: 27rem; margin: auto;">
-          <div class="card-body">
-            <h5 class="card-title" style="color: #fff;">골든에이지</h5>
-            <h6 class="card-subtitle mb-2 text-muted" style="color: #fff;">골든에이지 컨퍼니는 어디에 있나요</h6>
-            <p class="card-text" style="color: #fff;">
-              <ul class="card-text-ul">
-                <li class="card-text-list" th:text="${ comInfo.address }"></li>
-                <li class="card-text-list" th:text="${ comInfo.phone }"></li>
-                <li class="card-text-list" th:text="${ comInfo.email }"></li>
-              </ul>
-            </p>
-            <a th:href="${ comInfo.instagram }" class="card-link" style="color: #fff;">인스타그램</a>
-            <a th:href="${ comInfo.twitter }" class="card-link" style="color: #fff;">트위터</a>
-            <a th:href="${ comInfo.space }" class="card-link" style="color: #fff;">연습실예약</a>
+      <div class="content row mx-0 d-flex justify-content-center align-items-center" style="margin-top: 180px; padding: 150px 0 90px 0;">
+          <div class="main col-lg-6 col-md-7 col-12">
+              <p>자신만의 고유한 색을 지닌 여러 사람의 협업이 조화를 이룰 때,</p>
+              <p>비로소 작품은 예술이 된다.</p>
+              <br>
+              <p>골든에이지컴퍼니는 다양성과 개성이 존중받고,</p>
+              <p>관객들의 삶에 맞닿아 교감할 수 있는 작품을 지향하며</p>
+              <br>
+              <p>2021 <바톤콘서트>, 연극 <줄리엣과 줄리엣>, 2022 연극 <비클래스>를 시작으로</p>
+              <p>그간 쌓인 히스토리 보다는 앞으로 쌓아갈 히스토리가 더 많은 시점에서,</p>
+              <br>
+              <p>우리가 만들어갈 작품들이 재미와 진정성을 토대로</p>
+              <p>관객들로 하여금 "자신"을 찾아가는 여정에 공감과 위로를 건넬 수 있는 조력자가 되길 바랍니다.</p>
+              <br><br>
+              <strong>" 당신의 찬란하게 빛나는 순간을 함께 할 , GOLDENAGE COMPANY. "</strong>
           </div>
-          <th:block sec:authorize="isAuthenticated()">
-          <div class="text-center py-2">
-            <a href="/company/company_update" class="btn btn-warning btn-lg text-white" style="font-family: 'Oswald', sans-serif; font-weight: bold;">수정하기</a>
+          <div class="mainImg col-lg-4 col-md-5 col-12 d-flex align-items-center">
+              <img th:src="@{/images/golden.png}" width="100%">
           </div>
-          </th:block>
+      </div>
+      <div class="title d-flex justify-content-center" style="display: inline;background: #282828; font-family: 'Oswald', sans-serif !important;height: 240px; padding-top: 170px;">
+          <h1 style="color: #fff;border-bottom: 10px #ffb000 solid;padding-bottom: 8px;font-size: 5rem;font-weight: bold;margin: auto;">CONTACT US</h1>
+      </div>
+      <div class="contact row mx-0 d-flex align-items-center" style="background: #232321; padding: 280px 200px;">
+        <div class="contactTxt col-lg-4 col-md-6 col-12 p-4" style="color: #fff; font-family: 'Noto Sans KR, sans-serif';">
+            <div class="col">
+                <b class="fs-5" style="font-weight: bold">주소</b>
+                <p th:text="${ comInfo.address }"></p>
+            </div>
+            <div class="col">
+                <b class="fs-5" style="font-weight: bold">전화</b>
+                <p th:text="${ comInfo.phone }"></p>
+            </div>
+            <div class="col">
+                <b class="fs-5" style="font-weight: bold">이메일</b>
+                <p th:text="${ comInfo.email }"></p>
+            </div>
+            <div class="col">
+                <b class="fs-5" style="font-weight: bold">SNS</b>
+                <p>
+                    <a th:href="${ comInfo.instagram }" style="color: #fff;">인스타그램</a>
+                    <b>|</b>
+                    <a th:href="${ comInfo.twitter }" style="color: #fff;">트위터</a>
+                    <b>|</b>
+                    <a th:href="${ comInfo.space }" style="color: #fff;">연습실예약</a>
+                </p>
+            </div>
+            <div class="d-flex justify-content-start mt-5 col" th:block sec:authorize="isAuthenticated()">
+                <div class="border px-5 py-2" style="display: inline; cursor: pointer">
+                    <a href="/company/company_update" style="text-decoration: none;" class="text-white fs-5">수정하기</a>
+                </div>
+            </div>
         </div>
-      </div><!-- contect close --> 
+        <div id="map" class="p-5 col" style="width: 60%; height: 480px;"></div>
+      </div>
     </div><!-- container close -->
 
     <!-- S: footer -->
@@ -75,6 +142,8 @@
     <!-- E: footer -->
 
     <!-- JavaScript Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4b99ebb84f885d771b9a0771daf35f8a"></script>
+  <script th:src="@{/js/companyMap.js}"></script>
   </body>
 </html>

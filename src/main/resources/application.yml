@@ -55,7 +55,8 @@ mybatis:
   type-aliases-package: com.goldenage.project.login.model.dto,
                         com.goldenage.project.company.model.dto,
                         com.goldenage.project.notice.model.dto,
-                        com.goldenage.project.marketing.model.dto
+                        com.goldenage.project.marketing.model.dto,
+                        com.goldenage.project.space.model.dto
 
 #mail
 
