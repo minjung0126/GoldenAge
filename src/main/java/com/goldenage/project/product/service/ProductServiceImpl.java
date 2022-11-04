@@ -117,4 +117,60 @@ public class ProductServiceImpl implements ProductService {
 
         return result;
     }
+    @Override
+    @Transactional
+    public int insertPdPoster(ProductDetailDTO productDetailDTO) throws PdException {
+
+        int result = productMapper.insertPdPoster(productDetailDTO);
+
+        if(!(result > 0)){
+            throw new PdException("등록 실패");
+        }
+
+        return result;
+    }
+    @Override
+    @Transactional
+    public int deleteProductPoster(int detail_file_num) throws PdException{
+
+        int result = productMapper.deleteProductPoster(detail_file_num);
+
+        if(!(result > 0 )){
+            throw new PdException("삭제 실패");
+        }
+
+        return result;
+    }
+
+    @Override
+    public ProductDetailDTO selectProductPoster(String detail_file_num) {
+
+        ProductDetailDTO productDetailDTO = productMapper.selectProductPoster(detail_file_num);
+        return productDetailDTO;
+    }
+
+    @Override
+    @Transactional
+    public int updateProductPosterNoFile(ProductDetailDTO productDetailDTO) throws PdException {
+
+        int result = productMapper.updateProductPosterNoFile(productDetailDTO);
+
+        if(!(result > 0)){
+            throw new PdException("수정 실패");
+
+        }
+        return result;
+    }
+
+    @Override
+    @Transactional
+    public int updateProductPoster(ProductDetailDTO productDetailDTO) throws PdException {
+        int result = productMapper.updateProductPoster(productDetailDTO);
+
+        if(!(result > 0)){
+            throw new PdException("수정 실패");
+
+        }
+        return result;
+    }
 }

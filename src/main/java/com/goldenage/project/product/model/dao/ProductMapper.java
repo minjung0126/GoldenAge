@@ -23,4 +23,14 @@ public interface ProductMapper {
     int updateProductInfo(ProductDTO productDTO);
 
     int deleteProductInfo(String pd_num);
+
+    int insertPdPoster(ProductDetailDTO productDetailDTO);
+
+    int deleteProductPoster(int detail_file_num);
+
+    ProductDetailDTO selectProductPoster(String detail_file_num);
+
+    int updateProductPosterNoFile(ProductDetailDTO productDetailDTO);
+
+    int updateProductPoster(ProductDetailDTO productDetailDTO);
 }

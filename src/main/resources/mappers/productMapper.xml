@@ -45,6 +45,28 @@
         WHERE PD_NUM = #{ pd_num }
     </select>
 
+    <select id="selectProductPoster" resultMap="productDetailResultMap">
+        SELECT
+               *
+          FROM PRODUCT_DETAIL
+         WHERE DETAIL_FILE_NUM = #{ detail_file_num }
+    </select>
+
+    <update id="updateProductPosterNoFile">
+        UPDATE PRODUCT_DETAIL
+           SET DETAIL_FILE_NUM = #{ detail_file_num }
+             , DETAIL_FILE_NAME = #{ detail_file_name }
+         WHERE DETAIL_FILE_NUM = #{ detail_file_num }
+    </update>
+
+    <update id="updateProductPoster">
+        UPDATE PRODUCT_DETAIL
+           SET DETAIL_FILE_NUM = #{ detail_file_num }
+             , DETAIL_ORI_NAME = #{ detail_ori_name }
+             , DETAIL_FILE_NAME = #{ detail_file_name }
+         WHERE DETAIL_FILE_NUM = #{ detail_file_num }
+    </update>
+
     <insert id="insertPdInfo">
       INSERT
         INTO PRODUCT
@@ -72,6 +94,27 @@
         , #{ pd_Ori_Main }
         , #{ pd_File_Main }
         , #{ company_name }
+        )
+    </insert>
+
+<!--    <id property="detail_file_num" column="DETAIL_FILE_NUM"/>-->
+<!--    <result property="pd_num" column="PD_NUM"/>-->
+<!--    <result property="detail_ori_name" column="DETAIL_ORI_NAME"/>-->
+<!--    <result property="detail_file_name" column="DETAIL_FILE_NAME"/>-->
+
+    <insert id="insertPdPoster">
+      INSERT
+        INTO PRODUCT_DETAIL
+        (
+           PD_NUM
+         , DETAIL_ORI_NAME
+         , DETAIL_FILE_NAME
+        )
+        VALUES
+        (
+          #{ pd_num }
+        , #{ detail_ori_name }
+        , #{ detail_file_name }
         )
     </insert>
     
@@ -109,5 +152,10 @@
          WHERE PD_NUM = #{ pd_num }
     </delete>
 
+    <delete id="deleteProductPoster">
+        DELETE
+          FROM PRODUCT_DETAIL
+         WHERE DETAIL_FILE_NUM = #{ detail_file_num }
+    </delete>
 
 </mapper>

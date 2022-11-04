@@ -61,9 +61,9 @@ public class ProductController {
      * </pre>
      */
     @GetMapping("/detailPage")
-    public ModelAndView productDetail(ModelAndView mv, HttpServletRequest request, @RequestParam(value = "pd_num", required = false) String pd_num) {
+    public ModelAndView productDetail(ModelAndView mv, HttpServletRequest request
+            , @RequestParam(value = "pd_num", required = false) String pd_num) {
 
-        String num = request.getParameter("pd_num");
         log.info("pd_num : " + pd_num);
 
         ProductDTO productDetail = productService.selectOneProduct(pd_num);
@@ -202,6 +202,136 @@ public class ProductController {
 
     }
 
+    @GetMapping("/detailPage/new/productPoster")
+    public ModelAndView productDetailNewPoster(@ModelAttribute ProductDetailDTO productDetailDTO, ModelAndView mv, HttpServletRequest request){
+
+        mv.setViewName("/product/product_new_poster");
+        return mv;
+    }
+
+    @PostMapping("/detailPage/new/productPoster")
+    public String productDetailNewPoster(@RequestParam(value = "num", required = false) String pd_num, @ModelAttribute ProductDetailDTO productDetailDTO, @RequestParam(value = "file", required = false) MultipartFile file, RedirectAttributes rttr) throws Exception{
+
+        log.info(pd_num);
+        productDetailDTO.setPd_num(Integer.parseInt(pd_num));
+
+        log.info("여기까진 왔냐?");
+
+        log.info("테스트용 : " + productDetailDTO);
+        log.info("사진 테스트 : " + file);
+
+        String root = ResourceUtils.getURL("src/main/resources").getPath();
+
+        String filePath = root + "static/images/product/poster";
+
+        log.info("root --------------- " + filePath);
+
+        File mkdir = new File(filePath);
+        if(!mkdir.exists()){
+            mkdir.mkdir();
+        }
+
+        String originFileName = "";
+        String ext = "";
+        String changeName = "";
+
+        if(file.getSize() > 0) {
+            originFileName = file.getOriginalFilename();
+            ext = originFileName.substring(originFileName.lastIndexOf("."));
+            changeName = UUID.randomUUID().toString().replace("-",  "");
+
+            productDetailDTO.setDetail_ori_name(originFileName);
+            productDetailDTO.setDetail_file_name(changeName + ext);
+
+            log.info("다시 출력 : " + productDetailDTO);
+
+            productService.insertPdPoster(productDetailDTO);
+
+            try {
+                file.transferTo(new File(filePath + "\\" + changeName + ext));
+            } catch (IOException e){
+                e.printStackTrace();
+                new File(filePath + "\\" + changeName + ext).delete();
+            }
+            } else {
+            productService.insertPdPoster(productDetailDTO);
+        }
+
+        rttr.addFlashAttribute("message", "등록 성공");
+        rttr.addFlashAttribute("check", "success");
+
+        return "redirect:/product/detailPage/update?pd_num=" + pd_num;
+
+    }
+
+    @GetMapping("/detailPage/update/poster")
+    public ModelAndView productDetailUpdatePoster(ModelAndView mv, @RequestParam(value = "detail_file_num", required = false) String detail_file_num, RedirectAttributes rttr){
+
+        ProductDetailDTO productDetailDTO = productService.selectProductPoster(detail_file_num);
+        log.info("detail_file_num : " + detail_file_num);
+        mv.addObject("productDetailDTO", productDetailDTO);
+        mv.setViewName("/product/product_update_poster");
+        
+        log.info("여기까지 왔니");
+        return mv;
+    }
+
+    @PostMapping("/detailPage/update/poster")
+    public String productDetailUpdatePoster(@ModelAttribute ProductDetailDTO productDetailDTO, @RequestParam(value = "detail_file_num", required = false) String detail_file_num, @RequestParam(value = "file", required = false) MultipartFile file, RedirectAttributes rttr) throws Exception{
+
+        int pd_num = productDetailDTO.getPd_num();
+
+        log.info("productDetailDTO " + productDetailDTO);
+        log.info("아이템 넘버 : " + detail_file_num);
+        log.info("productDetailDTO file : " + file);
+
+        String root = ResourceUtils.getURL("src/main/resources").getPath();
+
+        String filePath = root + "static/images/product/poster";
+
+        log.info("루트 ------------- " + filePath);
+
+        File mkdir = new File(filePath);
+        if(!mkdir.exists()) {
+            mkdir.mkdirs();
+        }
+
+        String originFileName = "";
+        String ext = "";
+        String changeName = "";
+
+        productDetailDTO.setDetail_file_num(Integer.parseInt(detail_file_num));
+        productService.updateProductPosterNoFile(productDetailDTO);
+
+        if(file.getSize() > 0) {
+            originFileName = file.getOriginalFilename();
+            ext = originFileName.substring(originFileName.lastIndexOf("."));
+            changeName = UUID.randomUUID().toString().replace("-", "");
+
+            productDetailDTO.setDetail_ori_name(originFileName);
+            productDetailDTO.setDetail_file_name(changeName + ext);
+
+            productService.updateProductPoster(productDetailDTO);
+
+            try {
+                file.transferTo(new File(filePath + "\\" + changeName + ext));
+            } catch (IOException e) {
+
+                e.printStackTrace();
+                new File(filePath + "\\" + changeName + ext).delete();
+            }
+        }
+
+        rttr.addFlashAttribute("message", "수정 성공!");
+        rttr.addFlashAttribute("check", "success");
+
+        return "redirect:/product/product_update_poster?pd_num=" + pd_num;
+
+
+
+    }
+
+
     // product 페이지 삭제
     @GetMapping("/detailPage/delete")
     public String productDetailDelete(@RequestParam(value="pd_num", required = false) String pd_num, RedirectAttributes rttr) throws Exception{
@@ -213,6 +343,21 @@ public class ProductController {
         return "redirect:/product/productPage";
     }
 
+    // detailPage_update 에서 상세페이지 삭제
+    @GetMapping("/detailPage/delete/poster")
+    public String productDeletePoster(@ModelAttribute ProductDetailDTO productDetailDTO, RedirectAttributes rttr) throws Exception{
+
+        int pd_num = productDetailDTO.getPd_num();
+        int detail_file_num = productDetailDTO.getDetail_file_num();
+
+        productService.deleteProductPoster(detail_file_num);
+
+        rttr.addFlashAttribute("message", "삭제 성공");
+        rttr.addFlashAttribute("check", "success");
+
+        return "redirect:/product/detailPage/update?pd_num=" + pd_num;
+
+    }
 
 }
 
