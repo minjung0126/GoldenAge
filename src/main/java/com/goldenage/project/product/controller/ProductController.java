@@ -300,11 +300,13 @@ public class ProductController {
         if(!mkdir.exists()) {
             mkdir.mkdirs();
         }
+        log.info("여기까지 왔니0");
 
         String originFileName = "";
         String ext = "";
         String changeName = "";
 
+        log.info("여기까지 왔니1");
         productDetailDTO.setDetail_file_num(Integer.parseInt(detail_file_num));
         productService.updateProductPosterNoFile(productDetailDTO);
 
@@ -318,6 +320,7 @@ public class ProductController {
 
             productService.updateProductPoster(productDetailDTO);
 
+            log.info("여기까지 왔니2");
             try {
                 file.transferTo(new File(filePath + "\\" + changeName + ext));
             } catch (IOException e) {
@@ -326,11 +329,12 @@ public class ProductController {
                 new File(filePath + "\\" + changeName + ext).delete();
             }
         }
+        log.info("여기까지 왔니3");
 
         rttr.addFlashAttribute("message", "수정 성공!");
         rttr.addFlashAttribute("check", "success");
 
-        return "redirect:/product/product_update_poster?detail_file_num=" + pd_num;
+        return "redirect:/product/detailPage/update?pd_num=" + pd_num;
 
 
 
