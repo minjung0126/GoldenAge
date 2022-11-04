@@ -27,43 +27,45 @@ xmlns:th="http://www.thymeleaf.org">
 <div class="container">
   <div class="contect">
     <h3 style="border-bottom: 2px #ffb000 solid; opacity: 1;">연습실 추가하기</h3>
+    <form th:action="@{/space/spaceInsert}" method="post" enctype="multipart/form-data">
     <table class="row mt-7 mx-auto" style="padding-left: 20%; padding-right: 20%; padding-top: 1rem; padding-bottom: 1rem; background-color: #fff;">
       <tr>
         <th>이름</th>
-        <td><input type="text" placeholder="이름"></td>
+        <td><input name="spaceName" type="text" placeholder="이름"></td>
       </tr>
       <tr>
         <th>주소</th>
-        <td><input type="text" placeholder="주소"></td>
+        <td><input name="spaceAdd" type="text" placeholder="주소"></td>
       </tr>
       <tr>
         <th>공간넓이</th>
-        <td><input type="text" placeholder="공간넓이"></td>
+        <td><input name="spaceWidth" type="text" placeholder="공간넓이"></td>
       </tr>
       <tr>
         <th>이용시간</th>
-        <td><input type="text" placeholder="이용시간"></td>
+        <td><input name="spaceTime" type="text" placeholder="이용시간"></td>
       </tr>
       <tr>
         <th>연습실소개</th>
-        <td><textarea placeholder="공간소개"></textarea></td>
+        <td><textarea name="spaceContent" placeholder="공간소개"></textarea></td>
       </tr>
       <tr>
         <th>예약링크</th>
-        <td><input type="text" placeholder="예약링크"></td>
+        <td><input name="spaceLink" type="text" placeholder="예약링크"></td>
       </tr>
       <tr>
         <th>사진</th>
-        <td><input type="file" multiple></td>
+        <td><input name="multiFiles" type="file" multiple></td>
       </tr>
     </table>
     <div>
       <div class="d-flex justify-content-center mt-5">
         <div class="border px-5 py-2" style="display: inline; cursor: pointer">
-          <a href="#" style="text-decoration: none;" class="text-white fs-5">등록하기</a>
+          <button type="submit" class="text-white fs-5">등록하기</button>
         </div>
       </div>
     </div>
+    </form>
   </div><!-- contect close -->
 </div><!-- container close -->
 <!-- S: footer -->
