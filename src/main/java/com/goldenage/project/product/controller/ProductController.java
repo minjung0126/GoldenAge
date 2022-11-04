@@ -210,7 +210,7 @@ public class ProductController {
     }
 
     @PostMapping("/detailPage/new/productPoster")
-    public String productDetailNewPoster(@RequestParam(value = "num", required = false) String pd_num, @ModelAttribute ProductDetailDTO productDetailDTO, @RequestParam(value = "file", required = false) MultipartFile file, RedirectAttributes rttr) throws Exception{
+    public String productDetailNewPoster(@RequestParam(value="num", required = false) String pd_num, @ModelAttribute ProductDetailDTO productDetailDTO, @RequestParam(value = "file", required = false) MultipartFile file, RedirectAttributes rttr) throws Exception{
 
         log.info(pd_num);
         productDetailDTO.setPd_num(Integer.parseInt(pd_num));
