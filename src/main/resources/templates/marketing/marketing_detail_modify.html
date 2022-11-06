@@ -67,228 +67,228 @@
     </style>
 </head>
 <body class="scroll">
-    <!-- S: header -->
-    <div th:replace="common/header"></div>
-    <!-- E: header -->
-    <div class="content">
-        <br>
-        <form method="post" action="/marketing/detail/modify" enctype="multipart/form-data" class="" id="frm">
-            <div class="d-flex justify-content-center" style="display: inline; background: #ccc; font-family: 'Oswald', sans-serif !important;height: 240px; background: #232321; padding-top: 170px; margin-bottom: 240px;">
-                <h1 style="color: #fff;border-bottom: 10px #ffb000 solid;padding-bottom: 8px;font-size: 5rem;font-weight: bold;margin: auto;">MARKETING</h1>
+<!-- S: header -->
+<div th:replace="common/header"></div>
+<!-- E: header -->
+<div class="content">
+    <br>
+    <form method="post" action="/marketing/detail/modify" enctype="multipart/form-data" class="" id="frm">
+        <div class="d-flex justify-content-center" style="display: inline; background: #ccc; font-family: 'Oswald', sans-serif !important;height: 240px; background: #232321; padding-top: 170px; margin-bottom: 240px;">
+            <h1 style="color: #fff;border-bottom: 10px #ffb000 solid;padding-bottom: 8px;font-size: 5rem;font-weight: bold;margin: auto;">MARKETING</h1>
+        </div>
+        <div class="d-flex flex-nowrap justify-content-center m-5">
+            <div class="col-lg-8">
+                <div class="col-12 mb-3 d-flex justify-content-center">
+                    <div class="d-flex justify-content-center flex-wrap align-content-center" style="width:400px; height: 530px; border-radius: 5px;">
+                        <label class="input-file-button-regist" for="input-file-regist" style="margin-bottom: 0;">
+                            <img th:src="'/images/marketing/' + ${ marketingDetail.mkFileMain }" id="View" class="rounded" style="cursor: pointer" src="#" width="400px" height="530px">
+                        </label>
+                        <input class="form-control" type="file" id="input-file-regist" name="file" style="display:none;">
+                    </div>
+                </div>
+                <div class="d-flex justify-content-center mt-5">
+                    <table width="400px" height="350px" class="mx-auto px-5" style="margin-bottom: 80px; font-family: 'Oswald'; font-size: 1.2rem; color: #fff;">
+                        <tr>
+                            <td>
+                                <div class="form-group mb-3">
+                                    <input type="hidden" class="mkNum" id="mkNum" name="mkNum" th:value="${ marketingDetail.mkNum }">
+                                    <label class="mb-2">공연</label>
+                                    <input type="text" class="form-control mkName" name="mkName" id="mkName" th:value="${ marketingDetail.mkName }" required oninput="inputClick(this.id)">
+                                    <div class="invalid-feedback">필수 정보입니다.</div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="form-group mb-3">
+                                    <label class="mb-2">일정</label>
+                                    <div id="reportrange" class="form-control" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 100%;">
+                                        <i class="fa fa-calendar"></i>
+                                        <span class="date" style="margin-left: 7px;"></span>
+                                        <input type="hidden" id="mkStartDate" name="mkStartDate" th:value="${ marketingDetail.mkStartDate }">
+                                        <input type="hidden" id="mkEndDate" name="mkEndDate" th:value="${ marketingDetail.mkEndDate }">
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="form-group mb-3">
+                                    <label class="mb-2">장소</label>
+                                    <input type="text" class="form-control mkPlaceName" name="mkPlaceName" id="mkPlaceName" th:value="${ marketingDetail.mkPlaceName }" required oninput="inputClick(this.id)">
+                                    <div class="invalid-feedback">필수 정보입니다.</div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="form-group mb-3">
+                                    <label class="mb-2">제작</label>
+                                    <input type="text" class="form-control mkProduct" name="mkProduct" id="mkProduct" th:value="${ marketingDetail.mkProduct }" required oninput="inputClick(this.id)">
+                                    <div class="invalid-feedback">필수 정보입니다.</div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="form-group mb-3">
+                                    <label class="mb-2">홍보/마케팅</label>
+                                    <input type="text" class="form-control companyName" name="companyName" id="companyName" th:value="${ marketingDetail.companyName }" required oninput="inputClick(this.id)">
+                                    <div class="invalid-feedback">필수 정보입니다.</div>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="d-flex justify-content-center mb-5">
+                    <div class="border px-5 py-2 mx-2" style="display: inline; cursor: pointer">
+                        <a href="#" onclick="return onClickModify()" style="text-decoration: none;" class="text-white fs-5">수정</a>
+                    </div>
+                    <div class="border px-5 py-2 mx-2" style="display: inline; cursor: pointer">
+                        <a href="#" onclick="onClickDelete()" style="text-decoration: none;" class="text-white fs-5">삭제</a>
+                    </div>
+                </div>
             </div>
-            <div class="d-flex flex-nowrap justify-content-center m-5">
-                <div class="col-lg-8">
-                    <div class="col-12 mb-3 d-flex justify-content-center">
-                        <div class="d-flex justify-content-center flex-wrap align-content-center" style="width:400px; height: 530px; border-radius: 5px;">
-                            <label class="input-file-button-regist" for="input-file-regist" style="margin-bottom: 0;">
-                                <img th:src="'/images/marketing/' + ${ marketingDetail.mkFileMain }" id="View" class="rounded" style="cursor: pointer" src="#" width="400px" height="530px">
-                            </label>
-                            <input class="form-control" type="file" id="input-file-regist" name="file" style="display:none;">
-                        </div>
-                    </div>
-                    <div class="d-flex justify-content-center mt-5">
-                        <table width="400px" height="350px" class="mx-auto px-5" style="margin-bottom: 80px; font-family: 'Oswald'; font-size: 1.2rem; color: #fff;">
-                            <tr>
-                                <td>
-                                    <div class="form-group mb-3">
-                                        <input type="hidden" class="mkNum" id="mkNum" name="mkNum" th:value="${ marketingDetail.mkNum }">
-                                        <label class="mb-2">공연</label>
-                                        <input type="text" class="form-control mkName" name="mkName" id="mkName" th:value="${ marketingDetail.mkName }" required oninput="inputClick(this.id)">
-                                        <div class="invalid-feedback">필수 정보입니다.</div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="form-group mb-3">
-                                        <label class="mb-2">일정</label>
-                                        <div id="reportrange" class="form-control" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 100%;">
-                                            <i class="fa fa-calendar"></i>
-                                            <span class="date" style="margin-left: 7px;"></span>
-                                            <input type="hidden" id="mkStartDate" name="mkStartDate" th:value="${ marketingDetail.mkStartDate }">
-                                            <input type="hidden" id="mkEndDate" name="mkEndDate" th:value="${ marketingDetail.mkEndDate }">
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="form-group mb-3">
-                                        <label class="mb-2">장소</label>
-                                        <input type="text" class="form-control mkPlaceName" name="mkPlaceName" id="mkPlaceName" th:value="${ marketingDetail.mkPlaceName }" required oninput="inputClick(this.id)">
-                                        <div class="invalid-feedback">필수 정보입니다.</div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="form-group mb-3">
-                                        <label class="mb-2">제작</label>
-                                        <input type="text" class="form-control mkProduct" name="mkProduct" id="mkProduct" th:value="${ marketingDetail.mkProduct }" required oninput="inputClick(this.id)">
-                                        <div class="invalid-feedback">필수 정보입니다.</div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="form-group mb-3">
-                                        <label class="mb-2">홍보/마케팅</label>
-                                        <input type="text" class="form-control companyName" name="companyName" id="companyName" th:value="${ marketingDetail.companyName }" required oninput="inputClick(this.id)">
-                                        <div class="invalid-feedback">필수 정보입니다.</div>
-                                    </div>
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-                    <div class="d-flex justify-content-center mb-5">
-                        <div class="border px-5 py-2 mx-2" style="display: inline; cursor: pointer">
-                            <a href="#" onclick="return onClickModify()" style="text-decoration: none;" class="text-white fs-5">수정</a>
-                        </div>
-                        <div class="border px-5 py-2 mx-2" style="display: inline; cursor: pointer">
-                            <a href="#" onclick="onClickDelete()" style="text-decoration: none;" class="text-white fs-5">삭제</a>
-                        </div>
-                    </div>
-                </div>
+        </div>
+        <div class="my-5" style="color: #fff;">
+            <div class="d-flex justify-content-center" style="display: inline;background: #ccc;font-family: 'Oswald', sans-serif !important;height: 240px;background: #232321;padding-top: 170px; margin-bottom: 240px;">
+                <h1 style="color: #fff;border-bottom: 10px #ffb000 solid;padding-bottom: 8px;font-size: 5rem;font-weight: bold;margin: auto;">CAST</h1>
             </div>
-            <div class="my-5" style="color: #fff;">
-                <div class="d-flex justify-content-center" style="display: inline;background: #ccc;font-family: 'Oswald', sans-serif !important;height: 240px;background: #232321;padding-top: 170px; margin-bottom: 240px;">
-                    <h1 style="color: #fff;border-bottom: 10px #ffb000 solid;padding-bottom: 8px;font-size: 5rem;font-weight: bold;margin: auto;">CAST</h1>
-                </div>
-                <div class="container my-5 px-5">
-                    <br>
-                    <div class="row">
-                        <div class="col-lg-2 col-md-3" th:each="mkPoster: ${ mkPosterList }">
-                            <div class="blog-card">
-                                <input type="hidden" th:value="${ mkPoster.pFileNum }" name="pFileNum" id="pFileNum" class="pFileNum">
-                                <img th:src="'/images/marketing/poster/' + ${ mkPoster.pFileName }" src="/images/marketing/poster/a1.gif" th:id="${ mkPoster.pFileNum }" alt="" class="blog-thumbnail cast" style="cursor: pointer" onclick="openWindow('cast', (this.id))">
-                                <div class="blog-container text-center">
-                                    <h5 class="mt-2"><b th:text="${ mkPoster.pCastName }">김택상 역</b></h5>
-                                    <p class="text-muted" th:text="${ mkPoster.pActName }">최정헌</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-2 col-md-3">
-                            <div class="blog-card">
-                                <img src="/images/marketing/plus.png" alt="" class="blog-thumbnail cast-new" style="cursor: pointer" th:id="${ marketingDetail.mkNum }" onclick="openWindow('cast-new', (this.id))">
+            <div class="container my-5 px-5">
+                <br>
+                <div class="row">
+                    <div class="col-lg-2 col-md-3" th:each="mkPoster: ${ mkPosterList }">
+                        <div class="blog-card">
+                            <input type="hidden" th:value="${ mkPoster.pFileNum }" name="pFileNum" id="pFileNum" class="pFileNum">
+                            <img th:src="'/images/marketing/poster/' + ${ mkPoster.pFileName }" src="/images/marketing/poster/a1.gif" th:id="${ mkPoster.pFileNum }" alt="" class="blog-thumbnail cast" style="cursor: pointer" onclick="openWindow('cast', (this.id))">
+                            <div class="blog-container text-center">
+                                <h5 class="mt-2"><b th:text="${ mkPoster.pCastName }">김택상 역</b></h5>
+                                <p class="text-muted" th:text="${ mkPoster.pActName }">최정헌</p>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="d-flex justify-content-center" style="display: inline;background: #ccc;font-family: 'Oswald', sans-serif !important;height: 240px;background: #232321;padding-top: 170px; margin-bottom: 240px;">
-                    <h1 style="color: #fff;border-bottom: 10px #ffb000 solid;padding-bottom: 8px;font-size: 5rem;font-weight: bold;margin: auto;">MD</h1>
-                </div>
-                <div class="container my-5 px-5">
-                    <br>
-                    <div class="row">
-                        <div class="col-lg-3 col-md-6" th:each="mkMd : ${ mkMdList }">
-                            <div class="blog-card">
-                                <input type="hidden" th:value="${ mkMd.mdFileNum }" name="mdFileNum" id="mdFileNum" class="mdFileNum">
-                                <img th:src="'/images/marketing/md/' + ${ mkMd.mdFileName }" src="/images/marketing/md/md1.png" th:id="${ mkMd.mdFileNum }" alt="" class="blog-thumbnail md" style="cursor: pointer" onclick="openWindow('md', (this.id))">
-                                <div class="blog-container text-center">
-                                    <h5 class="mt-2"><b th:text="${ mkMd.mdName }">노트</b></h5>
-                                    <p class="text-muted" th:text="|${ #numbers.formatInteger(mkMd.mdPrice, 0, 'COMMA') }원|">10,000원</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-6">
-                            <div class="blog-card">
-                                <img src="/images/marketing/plus.png" alt="" class="blog-thumbnail md-new" style="cursor: pointer" th:id="${ marketingDetail.mkNum }" onclick="openWindow('md-new', (this.id))">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="d-flex justify-content-center" style="display: inline;background: #ccc;font-family: 'Oswald', sans-serif !important;height: 240px;background: #232321;padding-top: 170px; margin-bottom: 240px;">
-                    <h1 style="color: #fff;border-bottom: 10px #ffb000 solid;padding-bottom: 8px;font-size: 5rem;font-weight: bold;margin: auto;">ITEMS</h1>
-                </div>
-                <div class="container my-5 px-5">
-                    <br>
-                    <div class="row">
-                        <div class="col-lg-3 col-md-6" th:each="mkItem : ${ mkItemList }">
-                            <div class="blog-card">
-                                <input type="hidden" th:value="${ mkItem.itemFileNum }" name="itemFileNum" id="itemFileNum" class="itemFileNum">
-                                <img th:src="'/images/marketing/item/' + ${ mkItem.itemFileName }" src="/images/marketing/item/md5.png" th:id="${ mkItem.itemFileNum }" alt="" class="blog-thumbnail item" style="cursor: pointer" onclick="openWindow('item', (this.id))">
-                                <div class="blog-container text-center">
-                                    <h5 class="mt-2"><b th:text="${ mkItem.itemName }">스토리북</b></h5>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-6">
-                            <div class="blog-card">
-                                <img src="/images/marketing/plus.png" alt="" class="blog-thumbnail item-new" style="cursor: pointer" th:id="${ marketingDetail.mkNum }" onclick="openWindow('item-new', (this.id))">
-                            </div>
+                    <div class="col-lg-2 col-md-3">
+                        <div class="blog-card">
+                            <img src="/images/marketing/plus.png" alt="" class="blog-thumbnail cast-new" style="cursor: pointer" th:id="${ marketingDetail.mkNum }" onclick="openWindow('cast-new', (this.id))">
                         </div>
                     </div>
                 </div>
             </div>
-        </form>
-    </div>
-    <form action="/marketing/detail/delete" method="get" id="form_mk_d">
-        <input type="hidden" th:value="${ marketingDetail.mkNum }" name="mkNum">
+            <div class="d-flex justify-content-center" style="display: inline;background: #ccc;font-family: 'Oswald', sans-serif !important;height: 240px;background: #232321;padding-top: 170px; margin-bottom: 240px;">
+                <h1 style="color: #fff;border-bottom: 10px #ffb000 solid;padding-bottom: 8px;font-size: 5rem;font-weight: bold;margin: auto;">MD</h1>
+            </div>
+            <div class="container my-5 px-5">
+                <br>
+                <div class="row">
+                    <div class="col-lg-3 col-md-6" th:each="mkMd : ${ mkMdList }">
+                        <div class="blog-card">
+                            <input type="hidden" th:value="${ mkMd.mdFileNum }" name="mdFileNum" id="mdFileNum" class="mdFileNum">
+                            <img th:src="'/images/marketing/md/' + ${ mkMd.mdFileName }" src="/images/marketing/md/md1.png" th:id="${ mkMd.mdFileNum }" alt="" class="blog-thumbnail md" style="cursor: pointer" onclick="openWindow('md', (this.id))">
+                            <div class="blog-container text-center">
+                                <h5 class="mt-2"><b th:text="${ mkMd.mdName }">노트</b></h5>
+                                <p class="text-muted" th:text="|${ #numbers.formatInteger(mkMd.mdPrice, 0, 'COMMA') }원|">10,000원</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="blog-card">
+                            <img src="/images/marketing/plus.png" alt="" class="blog-thumbnail md-new" style="cursor: pointer" th:id="${ marketingDetail.mkNum }" onclick="openWindow('md-new', (this.id))">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex justify-content-center" style="display: inline;background: #ccc;font-family: 'Oswald', sans-serif !important;height: 240px;background: #232321;padding-top: 170px; margin-bottom: 240px;">
+                <h1 style="color: #fff;border-bottom: 10px #ffb000 solid;padding-bottom: 8px;font-size: 5rem;font-weight: bold;margin: auto;">ITEMS</h1>
+            </div>
+            <div class="container my-5 px-5">
+                <br>
+                <div class="row">
+                    <div class="col-lg-3 col-md-6" th:each="mkItem : ${ mkItemList }">
+                        <div class="blog-card">
+                            <input type="hidden" th:value="${ mkItem.itemFileNum }" name="itemFileNum" id="itemFileNum" class="itemFileNum">
+                            <img th:src="'/images/marketing/item/' + ${ mkItem.itemFileName }" src="/images/marketing/item/md5.png" th:id="${ mkItem.itemFileNum }" alt="" class="blog-thumbnail item" style="cursor: pointer" onclick="openWindow('item', (this.id))">
+                            <div class="blog-container text-center">
+                                <h5 class="mt-2"><b th:text="${ mkItem.itemName }">스토리북</b></h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="blog-card">
+                            <img src="/images/marketing/plus.png" alt="" class="blog-thumbnail item-new" style="cursor: pointer" th:id="${ marketingDetail.mkNum }" onclick="openWindow('item-new', (this.id))">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </form>
-    <!-- S: footer -->
-    <div th:include="common/footer.html"></div>
-    <!-- E: footer -->
-    <script th:src="@{/js/marketingModifyDetail.js}"></script>
-    <script>
-        $(function() {
+</div>
+<form action="/marketing/detail/delete" method="get" id="form_mk_d">
+    <input type="hidden" th:value="${ marketingDetail.mkNum }" name="mkNum">
+</form>
+<!-- S: footer -->
+<div th:include="common/footer.html"></div>
+<!-- E: footer -->
+<script th:src="@{/js/marketingModifyDetail.js}"></script>
+<script>
+    $(function() {
 
-            var start = document.getElementById('mkStartDate').value;
-            var end = document.getElementById('mkEndDate').value;
-            $('#reportrange span').html(start + ' ~ ' + end);
+        var start = document.getElementById('mkStartDate').value;
+        var end = document.getElementById('mkEndDate').value;
+        $('#reportrange span').html(start + ' ~ ' + end);
 
-            function cb(start, end) {
-                $('#reportrange span').html(start.format('YYYY-MM-DD') + ' ~ ' + end.format('YYYY-MM-DD'));
-                $('#reportrange #mkStartDate').val(start.format('YYYY-MM-DD'));
-                $('#reportrange #mkEndDate').val(end.format('YYYY-MM-DD'));
-            }
+        function cb(start, end) {
+            $('#reportrange span').html(start.format('YYYY-MM-DD') + ' ~ ' + end.format('YYYY-MM-DD'));
+            $('#reportrange #mkStartDate').val(start.format('YYYY-MM-DD'));
+            $('#reportrange #mkEndDate').val(end.format('YYYY-MM-DD'));
+        }
 
-            $('#reportrange').daterangepicker({
-                showDropdowns: true,
-                minYear: 2010,
-                "autoApply": true,
-                autoUpdateInput: false,
-                "linkedCalendars": false,
-                "locale": {
-                    "format": "YYYY/MM/DD",
-                    "separator": " ~ ",
-                    "applyLabel": "확인",
-                    "cancelLabel": "취소",
-                    "fromLabel": "From",
-                    "toLabel": "To",
-                    "customRangeLabel": "Custom",
-                    "weekLabel": "W",
-                    "daysOfWeek": [
-                        "일",
-                        "월",
-                        "화",
-                        "수",
-                        "목",
-                        "금",
-                        "토"
-                    ],
-                    "monthNames": [
-                        "1월",
-                        "2월",
-                        "3월",
-                        "4월",
-                        "5월",
-                        "6월",
-                        "7월",
-                        "8월",
-                        "9월",
-                        "10월",
-                        "11월",
-                        "12월"
-                    ],
-                    "firstDay": 7
-                },
-                startDate: start,
-                endDate: end,
-            }, cb);
+        $('#reportrange').daterangepicker({
+            showDropdowns: true,
+            minYear: 2010,
+            "autoApply": true,
+            autoUpdateInput: false,
+            "linkedCalendars": false,
+            "locale": {
+                "format": "YYYY/MM/DD",
+                "separator": " ~ ",
+                "applyLabel": "확인",
+                "cancelLabel": "취소",
+                "fromLabel": "From",
+                "toLabel": "To",
+                "customRangeLabel": "Custom",
+                "weekLabel": "W",
+                "daysOfWeek": [
+                    "일",
+                    "월",
+                    "화",
+                    "수",
+                    "목",
+                    "금",
+                    "토"
+                ],
+                "monthNames": [
+                    "1월",
+                    "2월",
+                    "3월",
+                    "4월",
+                    "5월",
+                    "6월",
+                    "7월",
+                    "8월",
+                    "9월",
+                    "10월",
+                    "11월",
+                    "12월"
+                ],
+                "firstDay": 7
+            },
+            startDate: start,
+            endDate: end,
+        }, cb);
 
-            cb(start, end);
+        cb(start, end);
 
-        });
-    </script>
+    });
+</script>
 </body>
 </html>

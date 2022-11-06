@@ -160,8 +160,8 @@
 <div th:include="common/footer.html"></div>
 <!-- E: footer -->
 <script th:inline="javascript">
-  if(document.getElementsByTagName("tr")) {
-    const $trs = document.getElementsByTagName("tr");
+  if(document.getElementsByClassName("notionTr")) {
+    const $trs = document.getElementsByClassName("notionTr");
     for (let i = 0; i < $trs.length; i++) {
 
       $trs[i].onclick = function () {
