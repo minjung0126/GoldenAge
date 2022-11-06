@@ -180,7 +180,7 @@ public class MarketingController {
             marketingService.insertMkPoster(mkPoster);
         }
 
-        rttr.addFlashAttribute("message", "등록 성공!");
+        rttr.addFlashAttribute("message", "등록이 완료되었습니다.");
         rttr.addFlashAttribute("check", "success");
 
         return "redirect:/marketing/detail/modify?mkNum=" + mkNum;
@@ -242,7 +242,7 @@ public class MarketingController {
             marketingService.insertMkMd(mkMd);
         }
 
-        rttr.addFlashAttribute("message", "등록 성공!");
+        rttr.addFlashAttribute("message", "등록이 완료되었습니다.");
         rttr.addFlashAttribute("check", "success");
 
         return "redirect:/marketing/detail/modify?mkNum=" + mkNum;
@@ -303,7 +303,7 @@ public class MarketingController {
             marketingService.insertMkItem(mkItem);
         }
 
-        rttr.addFlashAttribute("message", "등록 성공!");
+        rttr.addFlashAttribute("message", "등록이 완료되었습니다.");
         rttr.addFlashAttribute("check", "success");
 
         return "redirect:/marketing/detail/modify?mkNum=" + mkNum;
@@ -443,7 +443,7 @@ public class MarketingController {
             }
         }
 
-        rttr.addFlashAttribute("message", "수정 성공!");
+        rttr.addFlashAttribute("message", "수정이 완료되었습니다.");
         rttr.addFlashAttribute("check", "success");
 
         return "redirect:/marketing/detail/modify?mkNum=" + mkNum;
@@ -505,7 +505,7 @@ public class MarketingController {
             }
         }
 
-        rttr.addFlashAttribute("message", "수정 성공!");
+        rttr.addFlashAttribute("message", "수정이 완료되었습니다.");
         rttr.addFlashAttribute("check", "success");
 
         return "redirect:/marketing/detail/modify?mkNum=" + mkNum;
@@ -567,7 +567,7 @@ public class MarketingController {
             }
         }
 
-        rttr.addFlashAttribute("message", "수정 성공!");
+        rttr.addFlashAttribute("message", "수정이 완료되었습니다.");
         rttr.addFlashAttribute("check", "success");
 
         return "redirect:/marketing/detail/modify?mkNum=" + mkNum;
@@ -581,7 +581,7 @@ public class MarketingController {
 
         marketingService.deleteMkPoster(pFileNum);
 
-        rttr.addFlashAttribute("message", "삭제 성공");
+        rttr.addFlashAttribute("message", "삭제가 완료되었습니다.");
         rttr.addFlashAttribute("check", "success");
 
         return "redirect:/marketing/detail/modify?mkNum=" + mkNum;
@@ -595,7 +595,7 @@ public class MarketingController {
 
         marketingService.deleteMkMd(mdFileNum);
 
-        rttr.addFlashAttribute("message", "삭제 성공");
+        rttr.addFlashAttribute("message", "삭제가 완료되었습니다.");
         rttr.addFlashAttribute("check", "success");
 
         return "redirect:/marketing/detail/modify?mkNum=" + mkNum;
@@ -609,7 +609,7 @@ public class MarketingController {
 
         marketingService.deleteMkItem(itemFileNum);
 
-        rttr.addFlashAttribute("message", "삭제 성공");
+        rttr.addFlashAttribute("message", "삭제가 완료되었습니다.");
         rttr.addFlashAttribute("check", "success");
 
         return "redirect:/marketing/detail/modify?mkNum=" + mkNum;
