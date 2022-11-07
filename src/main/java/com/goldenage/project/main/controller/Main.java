@@ -26,18 +26,18 @@ public class Main {
     }
 
 
+   // @GetMapping("/")
+   // public String moveMain(){
+
+   //     return "/index";
+   // }
+
     @GetMapping("/")
-    public String moveMain(){
-
-        return "/index";
-    }
-
-    @GetMapping("/mainPage")
     public ModelAndView mainProductPageList(HttpServletRequest request, ModelAndView mv){
 
         List<ProductDTO> productDTOList = productService.selectAllProduct();
         mv.addObject("productDTOList", productDTOList);
-        mv.setViewName("/mainPage");
+        mv.setViewName("/index");
 
         return mv;
 

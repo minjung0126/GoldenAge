@@ -13,6 +13,10 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
   <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+
+    <!-- top button -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Merriweather:400,900,900i" rel="stylesheet">
   <style>
     @import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald&display=swap");
     @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400&display=swap');body {
@@ -47,62 +51,97 @@
       background-color: hsla(0, 0%, 42%, 0.2);
     }
 
-    .allWrap {
-      padding-bottom: 120px;
-      background-color: #232321;
-      width: 100%;
-      margin: auto;
-      display: block;
-      text-align: center;
-      font-family: "Oswald", sans-serif;
+    @media (max-width: 1440px) {
+        table{
+            width: max-content !important;
+            font-size: 1.4rem !important;
+        }
+
+        th{
+            width: 150px;
+        }
     }
-    @media (min-width: 768px) {
-      .allWrap {
-        width: 100%;
-        margin: 0 auto;
-      }
+    @media (max-width: 1024px) {
+        .mainPoster{
+            flex: 0 0 auto !important;
+            /*width: 58.3% !important;*/
+        }
+        table{
+            width: 360px !important;
+            font-size: 1.35rem !important;
+        }
+    }
+    @media (max-width: 768px) {
+        .mainPoster{
+            flex: 0 0 auto !important;
+            /*width: 75% !important;*/
+        }
+        table{
+            font-size: 1.2rem !important;
+            width: 300px !important;
+            height: 280px !important;
+        }
+        .title h1{
+            font-size: 4rem !important;
+        }
+        .title{
+            padding-top: 190px !important;
+        }
+    }
+    @media (max-width: 425px) {
+        .mainPoster{
+            flex: 0 0 auto !important;
+            /*width: 85% !important;*/
+        }
+        table{
+            font-size: 1.1rem !important;
+            height: 200px !important;
+            width: 250px;
+        }
+        th{
+            width: 110px;
+        }
     }
 
-  .tabBox {
-    margin: 0 auto;
-  }
-  .tab-link {
-    margin: 0 auto;
-    width: 25%;
-    display: inline-block;
-    padding: 15px;
-    text-align: center;
-    border: 1px solid darkgray;
-    color: #fff;
-    cursor: pointer;
-    font-size: 1.5rem;
-    position: relative;
-  }
-  .tab-link.current {
-    color: #ffb000;
-    font-weight: 600;
-  }
-  .tab-content {
-    display: none;
-  }
-  .tab-content.current {
-    margin: 0 auto;
-    display: block;
-    width: 70%;
-    height: auto;
-    font-size: 30px;
-    text-align: center;
-    line-height: 200px;
-    color: #ffb000;
-  }
-  .tab-content.current img{
-    width: 72%;
-  }
+    #button {
+        display: inline-block;
+        background-color: #ffb000;
+        width: 50px;
+        height: 50px;
+        text-align: center;
+        border-radius: 4px;
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        transition: background-color .3s,
+        opacity .5s, visibility .5s;
+        opacity: 0;
+        visibility: hidden;
+        z-index: 1000;
 
-  .tab-content.mapAPI {
-    height: auto;
-  }
-  /*       */
+    }
+    #button::after {
+        content: "\f077";
+        font-family: FontAwesome;
+        font-weight: normal;
+        font-style: normal;
+        font-size: 2em;
+        line-height: 50px;
+        color: #fff;
+
+    }
+    #button:hover {
+        cursor: pointer;
+        background-color: #ffb000;
+
+    }
+    #button:active {
+        background-color: #ffb000;
+    }
+    #button.show {
+        opacity: 1;
+        visibility: visible;
+    }
 
 </style>
 <body class="scroll">
@@ -113,11 +152,11 @@
     <h1 style="color: #fff;border-bottom: 10px #ffb000 solid;padding-bottom: 8px;font-size: 5rem;font-weight: bold;margin: auto;">PRODUCT</h1>
   </div>
   <div class="d-flex flex-nowrap justify-content-center my-5" th:each="product : ${ productDetail }">
-    <div class="col-lg-6">
-      <div class="blog-card mx-auto col-lg-5 col-md-7">
+    <div class="col-lg-10 col-md-7 col-10">
+      <div class="mainPoster blog-card mx-auto col-lg-5 col-md-8">
         <img th:src="'/images/product/' + ${ productDetail.pd_File_Main }" src="/images/비클래스.jpg" alt="" style="width: 100%">
       </div>
-      <table height="300px" class="mx-auto col-lg-5 col-md-7 col-10 px-5" style="margin-bottom: 80px;">
+      <table height="480px" class="mx-auto col-lg-5 col-md-9 col-10 px-5" style="margin-top: 50px; margin-bottom: 80px; font-size: 1.5rem; font-family: 'Oswald', sans-serif;">
         <tr>
 <!--          <td colspan="2"><h2 th:text="${ product.pd_name }">비클래스</h2></td>-->
         </tr>
@@ -145,6 +184,10 @@
           <th>홍보/마케팅</th>
           <td th:text="${ productDetail.company_name }">탄탄대로</td>
         </tr>
+        <tr>
+          <th>공연 예매처</th>
+          <td><a th:href="@{${productDetail.pd_ticketing}}" target="_blank">[[${productDetail.pd_ticketing}]]</a></td>
+        </tr>
       </table>
       <div class="d-flex justify-content-center mt-5 mb-5" th:block sec:authorize="isAuthenticated()">
         <div class="border px-5 py-2 mx-2" style="display: inline; cursor: pointer">
@@ -163,9 +206,9 @@
   </div>
     <div class="container my-5 px-5">
         <br>
-        <div class="row justify-content-center">
-            <div class="col-lg-2 col-md-3" th:each="productDetailDTOList : ${ productDetailDTOList }">
-                <div class="blog-card">
+        <div class="d-flex justify-content-center" style="padding-top: 150px;">
+            <div class="" th:each="productDetailDTOList : ${ productDetailDTOList }">
+                <div class="">
                     <img th:src="'/images/product/poster/' + ${ productDetailDTOList.detail_file_name }" alt="" class="blog-thumbnail">
                 </div>
             </div>
@@ -175,6 +218,25 @@
 
     <div id="map" style="width: 50%;height: 450px;left: 50%;transform: translate(-50%);border-radius: 5px;"></div>
 
+<a id="button" style="color: #ffb000;"></a>
+
+<script>
+    /** Top button */
+    let btn = $('#button');
+
+    $(window).scroll(function() {
+        if ($(window).scrollTop() > 300) {
+            btn.addClass('show');
+        } else {
+            btn.removeClass('show');
+        }
+    });
+
+    btn.on('click', function(e) {
+        e.preventDefault();
+        $('html, body').animate({scrollTop:0}, '300');
+    });
+</script>
 
 <!-- S: footer -->
 <div th:include="common/footer.html"></div>
