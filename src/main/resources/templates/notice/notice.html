@@ -122,7 +122,7 @@
       </tr>
       </thead>
       <tbody class="tbody">
-      <tr th:each="list : ${ noticeList }" class="notionTr">
+      <tr th:each="list : ${ noticeList }" class="notionTr" id="tr">
         <td class="notionNum" th:text="${ list.noticeNo }"></td>
         <td class="notionName" th:text="${ list.noticeName }"></td>
         <td class="notionDay" th:text="${ list.noticeRegistDate }"></td>
@@ -160,12 +160,12 @@
 <div th:include="common/footer.html"></div>
 <!-- E: footer -->
 <script th:inline="javascript">
-  if(document.getElementsByTagName("tr")) {
-    const $trs = document.getElementsByTagName("tr");
+  if(document.getElementById("tr")) {
+    const $trs = document.getElementById("tr");
     for (let i = 0; i < $trs.length; i++) {
 
       $trs[i].onclick = function () {
-        const noticeNo = this.children[0].innerHTML;
+        const noticeNo = this.children[0].innerText;
         location.href = "/notice/notice_view?noticeNo=" + noticeNo
       }
     }
