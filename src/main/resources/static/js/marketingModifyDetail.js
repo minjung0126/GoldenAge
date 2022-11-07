@@ -55,12 +55,47 @@ function openWindow(str, num) {
 <!-- 게시글 수정 -->
 function onClickModify(){
 
+    if(document.getElementById('mkName').value==''){
+        document.getElementById('mkName').focus();
+        $('#mkName').next().css('display', 'block');
+        return false;
+    }
+    if(document.getElementById('mkPlaceName').value==''){
+        document.getElementById('mkPlaceName').focus();
+        $('#mkPlaceName').next().css('display', 'block');
+        return false;
+    }
+    if(document.getElementById('mkProduct').value==''){
+        document.getElementById('mkProduct').focus();
+        $('#mkProduct').next().css('display', 'block');
+        return false;
+    }
+    if(document.getElementById('companyName').value==''){
+        document.getElementById('companyName').focus();
+        $('#companyName').next().css('display', 'block');
+        return false;
+    }
+
     let msg = confirm('게시물을 수정하시겠습니까?');
 
     if(msg == true){
-        document.getElementById('frm').submit();
-    }
 
+        document.getElementById('frm').submit();
+    } else {
+        return false;
+    }
+}
+
+<!-- input 입력 시 알림창  -->
+function inputClick(input){
+
+    if($('#' + input).val().trim()==''){
+        $('#' + input).next().css('display', 'block');
+        $('#' + input).val('');
+    }
+    if(!($('#' + input).val().trim()=='')){
+        $('#' + input).next().css('display', 'none');
+    }
 }
 
 <!-- 게시글 삭제 -->

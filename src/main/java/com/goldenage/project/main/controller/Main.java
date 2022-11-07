@@ -36,6 +36,10 @@ public class Main {
     public ModelAndView mainProductPageList(HttpServletRequest request, ModelAndView mv){
 
         List<ProductDTO> productDTOList = productService.selectAllProduct();
+
+        for (ProductDTO pro : productDTOList){
+            System.out.println("pro: " + pro);
+        }
         mv.addObject("productDTOList", productDTOList);
         mv.setViewName("/mainPage");
 

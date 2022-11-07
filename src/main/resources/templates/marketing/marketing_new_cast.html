@@ -49,18 +49,20 @@
         <div class="col-5 mx-auto mt-3">
             <div class="form-group">
                 <label class="mb-2">배역명</label>
-                <input type="text" class="form-control pCastName" name="pCastName" id="pCastName" value="" required th:required="true">
+                <input type="text" class="form-control pCastName" name="pCastName" id="pCastName" value="" required oninput="inputClick(this.id)">
+                <div class="invalid-feedback">필수 정보입니다.</div>
             </div>
         </div>
         <div class="col-5 mx-auto mt-3">
             <div class="form-group">
                 <label class="mb-2">배우명</label>
-                <input type="text" class="form-control pActName" name="pActName" id="pActName" value="" required>
+                <input type="text" class="form-control pActName" name="pActName" id="pActName" value="" required oninput="inputClick(this.id)">
+                <div class="invalid-feedback">필수 정보입니다.</div>
                 <input type="hidden" class="num" id="num" name="num">
             </div>
         </div>
         <div class="mt-4 mb-2 d-flex justify-content-center">
-            <button class="btn btn-warning me-2" id="btnRegist" type="button" style="background: #ffb000; border-color: #ffb000; color: #fff;">등록</button>
+            <button class="btn btn-warning me-2" id="btnRegistCast" type="button" style="background: #ffb000; border-color: #ffb000; color: #fff;">등록</button>
              <button class="btn btn-light ms-2" onclick="window.close();">닫기</button>
         </div>
     </form>

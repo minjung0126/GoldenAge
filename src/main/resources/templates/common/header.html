@@ -109,14 +109,11 @@
   /*    display: flex;*/
   /*  }*/
   /*}*/
-  #nav-bar {
-    display: block;
-  }
   #nav-toggle{
     display: none;
   }
 
-  @media (max-width: 910px) {
+  @media (max-width: 911px) {
     #nav-bar{
       position: absolute;
       top: 80px;
@@ -126,6 +123,7 @@
       padding: 20px;
       right: 0px;
       text-align: right;
+      display: none;
     }
     #nav-toggle{
       display: block;
@@ -159,12 +157,6 @@
       border-radius: 0px 0px 5px 5px;
       background-color: black;
       width: auto;
-    }
-  }
-  @media (min-width: 911px) {
-
-    #nav-bar {
-      display: block;
     }
   }
 </style>
@@ -206,6 +198,9 @@
 
     if( windowWidth > 911){
       $("#nav-bar").css('display', 'block');
+    }
+    if( windowWidth < 911){
+      $("#nav-bar").css('display', 'none');
     }
   });
 </script>

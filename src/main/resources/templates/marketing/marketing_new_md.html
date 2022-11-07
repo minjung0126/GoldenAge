@@ -49,18 +49,20 @@
         <div class="col-6 mx-auto mt-2">
             <div class="form-group">
                 <label class="mb-2">상품명</label>
-                <input type="text" class="form-control mdName" name="mdName" id="mdName" value="" required>
+                <input type="text" class="form-control mdName" name="mdName" id="mdName" value="" required oninput="inputClick(this.id)">
+                <div class="invalid-feedback">필수 정보입니다.</div>
             </div>
         </div>
         <div class="col-6 mx-auto mt-2">
             <div class="form-group">
                 <label class="mb-2">가격</label>
-                <input type="text" class="form-control mdPrice" name="mdPrice" id="mdPrice" value="" required>
+                <input type="text" class="form-control mdPrice" name="mdPrice" id="mdPrice" value="" required oninput="inputClick(this.id)">
+                <div class="invalid-feedback">필수 정보입니다.</div>
                 <input type="hidden" class="num" id="num" name="num">
             </div>
         </div>
         <div class="mt-5 mb-2 d-flex justify-content-center">
-            <button class="btn btn-warning me-2" id="btnRegist" type="button" style="background: #ffb000; border-color: #ffb000; color: #fff;">등록</button>
+            <button class="btn btn-warning me-2" id="btnRegistMd" type="button" style="background: #ffb000; border-color: #ffb000; color: #fff;">등록</button>
             <button class="btn btn-light ms-2" onclick="window.close();">닫기</button>
         </div>
     </form>

@@ -27,37 +27,22 @@
         .detailPageTitle h1 {
           /*line-height: 165px;*/
           width: 280px;
-          margin: auto;
+          padding-left: 20px;
           padding-top: 20px;
+          color: gold;
+          text-align: left;
         }
         .container{
           background-image: none;
           background-color: black;
+          height: 100%;
         }
         .main{
           height: auto;
           text-align: center;
         }
-        .table{
-          width: 80%;
-          margin: auto;
-          overflow: hidden;
-          padding-top: 240px;
-          padding-bottom: 320px;
-          margin-top: 50px;
-          border: 1px solid #fff;
-          border-top: none;
-          border-left: none;
-          border-right: none;
-        }
         .notionTr{
           height : 30px;
-        }
-        .thead{
-          color: #fff;
-        }
-        .tbody{
-          color: #fff;
         }
         .pagination {
           margin-top: 100px;
@@ -77,21 +62,6 @@
           color: #000;
         }
         @media (max-width: 768px) {
-          .thead{
-            display: none;
-          }
-          .notionNum{
-            display:table-cell;
-            vertical-align:middle;
-          }
-          .notionName{
-            display:table-cell;
-            vertical-align:middle;
-          }
-          .notionDay{
-            display:table-cell;
-            vertical-align:middle;
-          }
           .notionTr{
             height: 100px;
           }
@@ -107,34 +77,30 @@
 <!-- header -->
 <div th:replace="common/header"></div>
 <!-- header end -->
-<div class="container">
+<div class="container" style="max-width: 1680px">
   <!-- S: table -->
   <div class="main">
-    <div class="detailPageTitle">
-      <h1 style="color: #fff; border-bottom: 8px #ffb000 solid">NOTICE</h1>
+    <div class="detailPageTitle" style="margin-bottom: 10px; border-bottom: 1px solid white;">
+      <h1>NOTICE</h1>
     </div>
-    <table class="table">
-      <thead class="thead">
-      <tr>
-        <th>번호</th>
-        <th>제목</th>
-        <th>등록일</th>
-      </tr>
-      </thead>
-      <tbody class="tbody">
-      <tr th:each="list : ${ noticeList }" class="notionTr" id="tr">
-        <td class="notionNum" th:text="${ list.noticeNo }"></td>
-        <td class="notionName" th:text="${ list.noticeName }"></td>
-        <td class="notionDay" th:text="${ list.noticeRegistDate }"></td>
-      </tr>
-      </tbody>
-    </table>
+      <div th:each="list : ${ noticeList }" class="notionTr text-white" style="text-align: left;height: 100%;display: block; padding: 1em; border-bottom: 1px solid white;">
+        <div style="padding-bottom: 1em; font-size: 1.5em;" th:text="${ list.noticeName }"></div>
+          <ul style="list-style: none; padding-left: 0px; padding-bottom: 1em;" class="">
+            <li style="float:left; margin-right: 1em;">
+              <span style="margin-right: 0.5em;">글 번호</span>
+              <span th:text="${ list.noticeNo }"></span>
+            </li>
+            <li style="float:left; margin-right: 1em;">
+              <span style="margin-right: 0.5em;">작성일</span>
+              <span th:text="${ list.noticeRegistDate }">작성일</span>
+            </li>
+            <li style="float:left; ">
+              <span style="margin-right: 0.5em;">조회수</span>
+              <span></span>
+            </li>
+          </ul>
+      </div>
   </div>
-  <th:block sec:authorize="isAuthenticated()">
-  <div>
-    <button class="btn" type="button" style="color:gold; float: right;" th:onclick="'location.href=\'/notice/insert\''">작성하기</button>
-  </div>
-  </th:block>
   <div class="pagination d-flex justify-content-center align-items-center">
     <img th:src="@{/images/arrow_l_end.gif}" alt="" height="11px" th:onclick="'location.href=\'/notice/notice?currentPage='+ @{${selectCriteria.startPage}} +  '\''"
          th:disabled="${selectCriteria.pageNo == 1}"
@@ -155,17 +121,22 @@
          th:disabled="${selectCriteria.pageNo == selectCriteria.maxPage}"
          style="cursor: pointer;" class="mx-2">
   </div>
+  <th:block sec:authorize="isAuthenticated()">
+    <div style="text-align: center; padding: 20px;">
+      <button class="btn" type="button" style="color:white; padding: 8px 25px 8px 25px; border: solid 1px white; border-radius: 3px; font-size: 1.5em;" th:onclick="'location.href=\'/notice/insert\''">작성하기</button>
+    </div>
+  </th:block>
 </div><!-- container close -->
 <!-- S: footer -->
 <div th:include="common/footer.html"></div>
 <!-- E: footer -->
 <script th:inline="javascript">
-  if(document.getElementById("tr")) {
-    const $trs = document.getElementById("tr");
+  if(document.getElementsByClassName("notionTr")) {
+    const $trs = document.getElementsByClassName("notionTr");
     for (let i = 0; i < $trs.length; i++) {
 
       $trs[i].onclick = function () {
-        const noticeNo = this.children[0].innerText;
+        const noticeNo = this.children[1].children[0].children[1].innerText;
         location.href = "/notice/notice_view?noticeNo=" + noticeNo
       }
     }

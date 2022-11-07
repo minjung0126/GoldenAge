@@ -49,13 +49,14 @@
             <div class="col-6 mx-auto mt-2">
                 <div class="form-group">
                     <label class="mb-2">아이템명</label>
-                    <input type="text" class="form-control itemName" id="itemName" name="itemName" th:value="${ item.itemName }" value="" required>
+                    <input type="text" class="form-control itemName" id="itemName" name="itemName" th:value="${ item.itemName }" value="" required oninput="inputClick(this.id)">
+                    <div class="invalid-feedback">필수 정보입니다.</div>
                     <input type="hidden" class="mkNum" id="mkNum" name="mkNum" th:value="${ item.mkNum }">
                     <input type="hidden" class="itemFileNum" id="itemFileNum" name="itemFileNum" th:value="${ item.itemFileNum }">
                 </div>
             </div>
             <div class="mt-4 mb-2 d-flex justify-content-center">
-                <button class="btn btn-warning me-2" id="btnModify" type="button" style="background: #ffb000; border-color: #ffb000; color: #fff;">수정</button>
+                <button class="btn btn-warning me-2" id="btnModifyItem" type="button" style="background: #ffb000; border-color: #ffb000; color: #fff;">수정</button>
                 <button class="btn btn-light ms-2" id="btnDelete" type="button">삭제</button>
             </div>
         </form>
