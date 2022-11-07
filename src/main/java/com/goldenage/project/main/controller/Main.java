@@ -1,5 +1,7 @@
 package com.goldenage.project.main.controller;
 
+import com.goldenage.project.marketing.model.dto.MarketingDTO;
+import com.goldenage.project.marketing.model.service.MarketingServiceImpl;
 import com.goldenage.project.product.model.dto.ProductDTO;
 import com.goldenage.project.product.service.ProductServiceImpl;
 import org.slf4j.Logger;
@@ -20,10 +22,14 @@ public class Main {
     private final Logger log = LoggerFactory.getLogger(this.getClass());
     private final ProductServiceImpl productService;
 
+    private final MarketingServiceImpl marketingService;
+
     @Autowired
-    public Main(ProductServiceImpl productService) {
+    public Main(ProductServiceImpl productService, MarketingServiceImpl marketingService) {
         this.productService = productService;
+        this.marketingService = marketingService;
     }
+
 
 
    // @GetMapping("/")
@@ -36,7 +42,9 @@ public class Main {
     public ModelAndView mainProductPageList(HttpServletRequest request, ModelAndView mv){
 
         List<ProductDTO> productDTOList = productService.selectAllProduct();
+        List<MarketingDTO> marketingList = marketingService.selectAllMarketing();
         mv.addObject("productDTOList", productDTOList);
+        mv.addObject("marketingList", marketingList);
         mv.setViewName("/index");
 
         return mv;
