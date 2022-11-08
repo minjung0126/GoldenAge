@@ -16,7 +16,6 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Controller
-@RequestMapping("/")
 public class Main {
 
     private final Logger log = LoggerFactory.getLogger(this.getClass());
