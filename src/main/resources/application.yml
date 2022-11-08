@@ -22,9 +22,9 @@ spring:
       max-request-size: 120MB
 
   # 타임리프 설정
-  thymeleaf:
-    prefix: classpath:/templates/
-    suffix: .html
+#  thymeleaf:
+#    prefix: classpath:/templates/
+#    suffix: .html
 
   # 작업 편의를 위해 추가한 devtool. 브라우저 새로 고침으로 정적 리소스 업데이트가 가능합니다.
   spring:
