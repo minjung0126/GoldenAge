@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Controller
-@RequestMapping("/*")
+@RequestMapping("/")
 public class Main {
 
     private final Logger log = LoggerFactory.getLogger(this.getClass());
@@ -40,6 +40,7 @@ public class Main {
 
     @GetMapping("/")
     public ModelAndView mainProductPageList(HttpServletRequest request, ModelAndView mv){
+        System.out.println("index : 인덱스왓니");
 
         List<ProductDTO> productDTOList = productService.selectAllProduct();
         List<MarketingDTO> marketingList = marketingService.selectAllMarketing();
