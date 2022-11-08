@@ -336,8 +336,6 @@ public class ProductController {
 
         return "redirect:/product/detailPage/update?pd_num=" + pd_num;
 
-
-
     }
 
 

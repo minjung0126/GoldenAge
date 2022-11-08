@@ -33,6 +33,55 @@
         FROM SPACE
     </select>
 
+    <insert id="insertSpace">
+        INSERT
+        INTO SPACE
+        (
+          SPACE_NUM
+        , SPACE_NAME
+        , SPACE_ADD
+        , SPACE_CONTENT
+        , SPACE_WIDTH
+        , SPACE_TIME
+        , SPACE_LINK
+        )
+        VALUES
+        (
+          SPACE_NUM
+        , #{ spaceName }
+        , #{ spaceAdd }
+        , #{ spaceContent }
+        , #{ spaceWidth }
+        , #{ spaceTime }
+        , #{ spaceLink }
+        )
+    </insert>
+
+    <insert id="insertSpacePhoto">
+        INSERT
+        INTO SPACE_FILE
+        (
+          SPACE_FILE_NUM
+        , SPACE_ORI_NAME
+        , SPACE_FILE_NAME
+        , SPACE_NUM
+        )
+        VALUES
+        (
+          SPACE_FILE_NUM
+        , #{ spaceOriName }
+        , #{ spaceFileName }
+        , #{ spaceNum }
+        )
+        <selectKey keyProperty="spaceNum" order="BEFORE" resultType="_int">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+    </insert>
+
+    <select id="selectNum" resultType="string">
+        SELECT LAST_INSERT_ID() AS SPACE_NUM
+    </select>
+
     <delete id="deleteSpaceFile">
         DELETE
           FROM SPACE_FILE

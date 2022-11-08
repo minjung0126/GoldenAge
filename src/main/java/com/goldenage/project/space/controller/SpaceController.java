@@ -3,19 +3,23 @@ package com.goldenage.project.space.controller;
 import com.goldenage.project.exception.notice.NoticeDeleteException;
 import com.goldenage.project.exception.space.SpaceDeleteException;
 import com.goldenage.project.space.model.dto.SpaceDTO;
+import com.goldenage.project.space.model.dto.SpacePhoDTO;
 import com.goldenage.project.space.model.service.SpaceServiceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.util.ResourceUtils;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.List;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.*;
 
 @Controller
 @RequestMapping("/space/*")
@@ -52,6 +56,81 @@ public class SpaceController {
         return "space/spaceInsert";
     }
 
+    //관리자 연습실 추가하기
+    @PostMapping("/spaceInsert")
+    public String insertSpace(@ModelAttribute SpaceDTO space
+            , @RequestParam(value="multiFiles", required = false) List<MultipartFile> multiFiles
+            , RedirectAttributes rttr) throws Exception {
+
+        SpacePhoDTO spacePho = new SpacePhoDTO();
+
+        int result = spaceService.insertSpace(space);
+
+        if(result> 0){
+
+            space.setSpaceNum(Integer.parseInt(spaceService.selectNum()));
+
+            log.info("num 을 알려줘 " + space.getSpaceNum());
+        }
+
+        String root = ResourceUtils.getURL("src/main/resources").getPath();
+
+        String filePath = root + "static/images/space";
+
+        File mkdir = new File(filePath);
+        if(!mkdir.exists()) {
+            mkdir.mkdirs();
+        }
+
+        if(multiFiles.size() > 0){
+            List<Map<String,String>> files = new ArrayList<>();
+            for(int i = 0; i < multiFiles.size(); i++) {
+
+                String spaceOriName = "";
+                String ext = "";
+                String spaceFileName = "";
+
+                spaceOriName = multiFiles.get(i).getOriginalFilename();
+                ext = spaceOriName.substring(spaceOriName.lastIndexOf("."));
+                spaceFileName = UUID.randomUUID().toString().replace("-", "") + ext;
+
+                Map<String, String> file = new HashMap<>();
+                file.put("spaceOriName", spaceOriName);
+                file.put("spaceFileName", spaceFileName);
+
+                files.add(file);
+                spaceService.insertSpacePho(files);
+            }
+
+                try {
+
+                    for (int j = 0; j < multiFiles.size(); j++) {
+
+                        Map<String, String> pho = files.get(j);
+                        multiFiles.get(j).transferTo(new File(filePath + "/" + pho.get("spaceFileName")));
+                    }
+                } catch (IOException e) {
+
+                    for (int j = 0; j < multiFiles.size(); j++) {
+
+                        Map<String, String> pho = files.get(j);
+                        new File(filePath + "/" + pho.get("spaceFileName")).delete();
+                    }
+                }
+        }else if(multiFiles.size() == 0){
+
+            spacePho.setSpaceFileName(null);
+            spacePho.setSpaceOriName(null);
+
+            spaceService.insertSpacePho((List<Map<String, String>>) spacePho);
+
+        }
+        rttr.addFlashAttribute("message", "연습실 등록 성공!");
+
+        return "redirect:/space/spaceList";
+
+    }
+
     //연습실 삭제
     @GetMapping("/delete")
     public String spaceDelete(HttpServletRequest request, RedirectAttributes rttr) throws SpaceDeleteException {
@@ -71,3 +150,4 @@ public class SpaceController {
         return "space/theater";
     }
 }
+

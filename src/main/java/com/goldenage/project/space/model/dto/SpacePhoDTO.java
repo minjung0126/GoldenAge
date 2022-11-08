@@ -2,7 +2,7 @@ package com.goldenage.project.space.model.dto;
 
 public class SpacePhoDTO {
 
-    private int spaceNum; //연습실번호
+    private int spaceNum; //연습실고유번호
     private int spaceFileNum; //연습실사진번호
     private String spaceOriName; //원본파일명
     private String spaceFileName; //바뀐파일명
