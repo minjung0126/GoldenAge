@@ -78,7 +78,7 @@
         </selectKey>
     </insert>
 
-    <select id="selectNum" resultMap="spaceResultMap">
+    <select id="selectNum" resultType="string">
         SELECT LAST_INSERT_ID() AS SPACE_NUM
     </select>
 

@@ -25,12 +25,12 @@ public class Main {
         this.productService = productService;
     }
 
-
-    @GetMapping("/")
-    public String moveMain(){
-
-        return "/index";
-    }
+//
+//    @GetMapping("/")
+//    public String moveMain(){
+//
+//        return "/index";
+//    }
 
     @GetMapping("/mainPage")
     public ModelAndView mainProductPageList(HttpServletRequest request, ModelAndView mv){
