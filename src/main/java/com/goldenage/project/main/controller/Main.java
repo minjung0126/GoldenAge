@@ -34,7 +34,7 @@ public class Main {
    //     return "/index";
    // }
 
-    @GetMapping({"/", "mainPage"})
+    @GetMapping({"mainPage"})
     public ModelAndView mainProductPageList(HttpServletRequest request, ModelAndView mv){
         System.out.println("index : 인덱스왓니");
 
