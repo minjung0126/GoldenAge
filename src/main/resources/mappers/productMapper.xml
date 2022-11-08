@@ -15,6 +15,8 @@
         <result property="pd_Ori_Main" column="PD_ORI_MAIN"/>
         <result property="pd_File_Main" column="PD_FILE_MAIN"/>
         <result property="company_name" column="COMPANY_NAME"/>
+        <result property="pd_ticketing" column="PD_TICKETING"/>
+
     </resultMap>
 
     <resultMap id="productDetailResultMap" type="com.goldenage.project.product.model.dto.ProductDetailDTO">
@@ -81,6 +83,7 @@
         , PD_ORI_MAIN
         , PD_FILE_MAIN
         , COMPANY_NAME
+        , PD_TICKETING
         )
         VALUES
         (
@@ -94,6 +97,7 @@
         , #{ pd_Ori_Main }
         , #{ pd_File_Main }
         , #{ company_name }
+        , #{ pd_ticketing }
         )
     </insert>
 
@@ -130,6 +134,7 @@
              , PD_ORI_MAIN = #{ pd_Ori_Main }
              , PD_FILE_MAIN = #{ pd_File_Main }
              , COMPANY_NAME = #{ company_name }
+             , PD_TICKETING = #{ pd_ticketing }
          WHERE PD_NUM = #{ pd_num }
     </update>
 
@@ -143,6 +148,7 @@
           , PD_TIME = #{ pd_time }
           , PD_PLACE_ADD = #{ pd_place_add }
           , COMPANY_NAME = #{ company_name }
+          , PD_TICKETING = #{ pd_ticketing }
       WHERE PD_NUM = #{ pd_num }
     </update>
 

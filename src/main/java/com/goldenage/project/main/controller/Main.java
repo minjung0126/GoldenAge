@@ -1,5 +1,7 @@
 package com.goldenage.project.main.controller;
 
+import com.goldenage.project.marketing.model.dto.MarketingDTO;
+import com.goldenage.project.marketing.model.service.MarketingServiceImpl;
 import com.goldenage.project.product.model.dto.ProductDTO;
 import com.goldenage.project.product.service.ProductServiceImpl;
 import org.slf4j.Logger;
@@ -14,34 +16,34 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Controller
-@RequestMapping("/")
 public class Main {
 
     private final Logger log = LoggerFactory.getLogger(this.getClass());
     private final ProductServiceImpl productService;
 
+    private final MarketingServiceImpl marketingService;
+
     @Autowired
-    public Main(ProductServiceImpl productService) {
+    public Main(ProductServiceImpl productService, MarketingServiceImpl marketingService) {
         this.productService = productService;
+        this.marketingService = marketingService;
     }
 
-//
-//    @GetMapping("/")
-//    public String moveMain(){
-//
-//        return "/index";
-//    }
+   // @GetMapping("/")
+   // public String moveMain(){
+
+   //     return "/index";
+   // }
 
     @GetMapping("/mainPage")
     public ModelAndView mainProductPageList(HttpServletRequest request, ModelAndView mv){
+        System.out.println("index : 인덱스왓니");
 
         List<ProductDTO> productDTOList = productService.selectAllProduct();
-
-        for (ProductDTO pro : productDTOList){
-            System.out.println("pro: " + pro);
-        }
+        List<MarketingDTO> marketingList = marketingService.selectAllMarketing();
         mv.addObject("productDTOList", productDTOList);
-        mv.setViewName("/mainPage");
+        mv.addObject("marketingList", marketingList);
+        mv.setViewName("index");
 
         return mv;
 

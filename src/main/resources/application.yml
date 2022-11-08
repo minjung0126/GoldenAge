@@ -15,18 +15,18 @@ spring:
     username: hell
     password: Dlisvip5739!
 
-#파일 업로드 시 첨부파일 크기 지정
+  #파일 업로드 시 첨부파일 크기 지정
   servlet:
     multipart:
       max-file-size: 120MB
       max-request-size: 120MB
 
-# 타임리프 설정
+  # 타임리프 설정
   thymeleaf:
     prefix: classpath:/templates/
     suffix: .html
 
-# 작업 편의를 위해 추가한 devtool. 브라우저 새로 고침으로 정적 리소스 업데이트가 가능합니다.
+  # 작업 편의를 위해 추가한 devtool. 브라우저 새로 고침으로 정적 리소스 업데이트가 가능합니다.
   spring:
     devtools:
       livereload:
@@ -36,7 +36,7 @@ spring:
     thymeleaf:
       cache: false
 
-# 파일, 이미지 업로드시 저장될 폴더 설정
+  # 파일, 이미지 업로드시 저장될 폴더 설정
   web:
     resources:
       static-locations: classpath:/upload/
@@ -53,10 +53,10 @@ spring:
 mybatis:
   mapper-locations: mappers/**/*.xml
   type-aliases-package: com.goldenage.project.login.model.dto,
-                        com.goldenage.project.company.model.dto,
-                        com.goldenage.project.notice.model.dto,
-                        com.goldenage.project.marketing.model.dto,
-                        com.goldenage.project.space.model.dto
+    com.goldenage.project.company.model.dto,
+    com.goldenage.project.notice.model.dto,
+    com.goldenage.project.marketing.model.dto,
+    com.goldenage.project.space.model.dto
 
 #mail
 

@@ -16,10 +16,12 @@ public class ProductDTO {
     private String pd_File_Main;
     private String company_name;
 
+    private String pd_ticketing;
+
     public ProductDTO() {
     }
 
-    public ProductDTO(int pd_num, String pd_name, Date pd_start_date, Date pd_end_date, String pd_place_name, String pd_rated, String pd_time, String pd_place_add, String pd_Ori_Main, String pd_File_Main, String company_name) {
+    public ProductDTO(int pd_num, String pd_name, Date pd_start_date, Date pd_end_date, String pd_place_name, String pd_rated, String pd_time, String pd_place_add, String pd_Ori_Main, String pd_File_Main, String company_name, String pd_ticketing) {
         this.pd_num = pd_num;
         this.pd_name = pd_name;
         this.pd_start_date = pd_start_date;
@@ -31,6 +33,7 @@ public class ProductDTO {
         this.pd_Ori_Main = pd_Ori_Main;
         this.pd_File_Main = pd_File_Main;
         this.company_name = company_name;
+        this.pd_ticketing = pd_ticketing;
     }
 
     public int getPd_num() {
@@ -121,6 +124,14 @@ public class ProductDTO {
         this.company_name = company_name;
     }
 
+    public String getPd_ticketing() {
+        return pd_ticketing;
+    }
+
+    public void setPd_ticketing(String pd_ticketing) {
+        this.pd_ticketing = pd_ticketing;
+    }
+
     @Override
     public String toString() {
         return "ProductDTO{" +
@@ -135,6 +146,7 @@ public class ProductDTO {
                 ", pd_Ori_Main='" + pd_Ori_Main + '\'' +
                 ", pd_File_Main='" + pd_File_Main + '\'' +
                 ", company_name='" + company_name + '\'' +
+                ", pd_ticketing='" + pd_ticketing + '\'' +
                 '}';
     }
 }
