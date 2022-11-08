@@ -45,7 +45,7 @@ public class Main {
         List<MarketingDTO> marketingList = marketingService.selectAllMarketing();
         mv.addObject("productDTOList", productDTOList);
         mv.addObject("marketingList", marketingList);
-        mv.setViewName("/index");
+        mv.setViewName("index");
 
         return mv;
 
