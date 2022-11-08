@@ -8,12 +8,19 @@ server:
       force: true
 
 #데이터베이스 설정
-spring:
-  datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://springboot-db.caaifqkrxubs.ap-northeast-2.rds.amazonaws.com:3306/golden
-    username: hell
-    password: Dlisvip5739!
+#spring:
+#  datasource:
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#    url: jdbc:mysql://springboot-db.caaifqkrxubs.ap-northeast-2.rds.amazonaws.com:3306/golden
+#    username: hell
+#    password: Dlisvip5739!
+
+  spring:
+    datasource:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://43.200.90.166:56424/GOLDENAGE
+      username: GOLDENAGE
+      password: C##GOLDENAGE
 
   #파일 업로드 시 첨부파일 크기 지정
   servlet:
