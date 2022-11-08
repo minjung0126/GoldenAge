@@ -35,7 +35,7 @@ public class Main {
    //     return "/index";
    // }
 
-    @GetMapping("/mainPage")
+    @GetMapping("/")
     public ModelAndView mainProductPageList(HttpServletRequest request, ModelAndView mv){
         System.out.println("index : 인덱스왓니");
 
@@ -43,7 +43,7 @@ public class Main {
         List<MarketingDTO> marketingList = marketingService.selectAllMarketing();
         mv.addObject("productDTOList", productDTOList);
         mv.addObject("marketingList", marketingList);
-        mv.setViewName("index");
+        mv.setViewName("mainPage");
 
         return mv;
 
