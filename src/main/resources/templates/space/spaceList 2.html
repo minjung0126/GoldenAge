@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        .container{
+            background-color: black;
+            background-image: none;
+            padding-top: 100px;
+        }
+    </style>
+</head>
+<body class="scroll" style="background-color: black; background-image: none;">
+<!-- header -->
+<div th:replace="common/header"></div>
+<!-- header end -->
+<div class="container">
+    <div class="contect">
+        <div style="display: inline;background: #ccc;font-family: 'Oswald', sans-serif !important;height: 240px;background: #232321;padding-top: 170px;">
+            <h3 style="color: #fff;border-bottom: 5px #ffb000 solid;padding-bottom: 8px;font-size: 3rem;margin: auto; text-align: center;">연습실 정보 수정</h3>
+        </div>
+        <br>
+        <table class="table" style="background-color: #282828; color: beige; text-align: center;">
+            <thead>
+            <tr>
+                <th>번호</th>
+                <th>장소명</th>
+                <th>주소</th>
+                <th></th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="list : ${ spaceList }">
+                <td th:text="${ list.spaceNum }"></td>
+                <td th:text="${ list.spaceName }"></td>
+                <td th:text="${ list.spaceAdd }"></td>
+                <td><button type="button" class="btn" style="color:#ffb000;" th:onclick="'location.href=\'/space/spaceUpdate?spaceNum='+ @{${list.spaceNum}} + '\''">수정하기</button></td>
+                <td><button type="button" class="btn" style="color:#ffb000;" th:onclick="'location.href=\'/space/delete?spaceNum='+ @{${list.spaceNum}} + '\''">삭제하기</button></td>
+            </tr>
+            </tbody>
+        </table>
+        <div>
+            <button type="button" class="btn" style="color:#ffb000;" th:onclick="'location.href=\'/space/spaceInsert\''">연습실 추가하기</button>
+        </div>
+    </div><!-- contect close -->
+</div><!-- container close -->
+<!-- S: footer -->
+<div th:include="common/footer.html"></div>
+<!-- E: footer -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+
+</html>

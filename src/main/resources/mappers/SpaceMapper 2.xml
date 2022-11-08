@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.goldenage.project.space.model.dao.SpaceMapper">
+
+    <resultMap id="spaceResultMap" type="SpaceDTO">
+        <id property="spaceNum" column="SPACE_NUM"/>
+        <result property="spaceName" column="SPACE_NAME"/>
+        <result property="spaceAdd" column="SPACE_ADD"/>
+        <result property="spaceContent" column="SPACE_CONTENT"/>
+        <result property="spaceWidth" column="SPACE_WIDTH"/>
+        <result property="spaceTime" column="SPACE_TIME"/>
+        <result property="spaceLink" column="SPACE_LINK"/>
+        <collection property="photo" ofType="SpacePhoDTO">
+            <result property="spaceNum" column="SPACE_NUM"/>
+            <result property="spaceFileNum" column="SPACE_FILE_NUM"/>
+            <result property="spaceOriName" column="SPACE_ORI_NAME"/>
+            <result property="spaceFileName" column="SPACE_FILE_NAME"/>
+        </collection>
+    </resultMap>
+
+    <resultMap id="spacePhoResultMap" type="SpacePhoDTO">
+        <id property="spaceFileNum" column="SPACE_FILE_NUM"/>
+        <result property="spaceNum" column="SPACE_NUM"/>
+        <result property="spaceOriName" column="SPACE_ORI_NAME"/>
+        <result property="spaceFileName" column="SPACE_FILE_NAME"/>
+    </resultMap>
+
+    <select id="selectSpaceList" resultMap="spaceResultMap">
+        SELECT
+            *
+        FROM SPACE
+    </select>
+
+    <insert id="insertSpace">
+        INSERT
+        INTO SPACE
+        (
+          SPACE_NUM
+        , SPACE_NAME
+        , SPACE_ADD
+        , SPACE_CONTENT
+        , SPACE_WIDTH
+        , SPACE_TIME
+        , SPACE_LINK
+        )
+        VALUES
+        (
+          SPACE_NUM
+        , #{ spaceName }
+        , #{ spaceAdd }
+        , #{ spaceContent }
+        , #{ spaceWidth }
+        , #{ spaceTime }
+        , #{ spaceLink }
+        )
+    </insert>
+
+    <insert id="insertSpacePhoto">
+        INSERT
+        INTO SPACE_FILE
+        (
+          SPACE_FILE_NUM
+        , SPACE_ORI_NAME
+        , SPACE_FILE_NAME
+        , SPACE_NUM
+        )
+        VALUES
+        (
+          SPACE_FILE_NUM
+        , #{ spaceOriName }
+        , #{ spaceFileName }
+        , #{ spaceNum }
+        )
+        <selectKey keyProperty="spaceNum" order="BEFORE" resultType="_int">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+    </insert>
+
+    <select id="selectNum" resultType="string">
+        SELECT LAST_INSERT_ID() AS SPACE_NUM
+    </select>
+
+    <delete id="deleteSpaceFile">
+        DELETE
+          FROM SPACE_FILE
+         WHERE SPACE_NUM = #{ spaceNum }
+    </delete>
+
+    <delete id="deleteSpace">
+        DELETE
+          FROM SPACE
+         WHERE SPACE_NUM = #{ spaceNum }
+    </delete>
+</mapper>
