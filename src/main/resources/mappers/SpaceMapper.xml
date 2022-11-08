@@ -13,7 +13,7 @@
         <result property="spaceTime" column="SPACE_TIME"/>
         <result property="spaceLink" column="SPACE_LINK"/>
         <collection property="photo" ofType="SpacePhoDTO">
-            <result property="spaceName" column="SPACE_NAME"/>
+            <result property="spaceNum" column="SPACE_NUM"/>
             <result property="spaceFileNum" column="SPACE_FILE_NUM"/>
             <result property="spaceOriName" column="SPACE_ORI_NAME"/>
             <result property="spaceFileName" column="SPACE_FILE_NAME"/>
@@ -22,7 +22,7 @@
 
     <resultMap id="spacePhoResultMap" type="SpacePhoDTO">
         <id property="spaceFileNum" column="SPACE_FILE_NUM"/>
-        <result property="spaceName" column="SPACE_NAME"/>
+        <result property="spaceNum" column="SPACE_NUM"/>
         <result property="spaceOriName" column="SPACE_ORI_NAME"/>
         <result property="spaceFileName" column="SPACE_FILE_NAME"/>
     </resultMap>
@@ -57,10 +57,6 @@
         )
     </insert>
 
-    <select id="selectNum" resultMap="spaceResultMap">
-        SELECT LAST_INSERT_ID() AS SPACE_NAME
-    </select>
-
     <insert id="insertSpacePhoto">
         INSERT
         INTO SPACE_FILE
@@ -77,7 +73,14 @@
         , #{ spaceFileName }
         , #{ spaceNum }
         )
+        <selectKey keyProperty="spaceNum" order="BEFORE" resultType="_int">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
     </insert>
+
+    <select id="selectNum" resultMap="spaceResultMap">
+        SELECT LAST_INSERT_ID() AS SPACE_NUM
+    </select>
 
     <delete id="deleteSpaceFile">
         DELETE

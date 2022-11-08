@@ -19,8 +19,6 @@ public interface SpaceService {
     int insertSpace(SpaceDTO space) throws SpaceInsertException;
 
 
-    String selectNum();
-
     // 연습실 사진 등록
     @Transactional
     int insertSpacePho(List<Map<String, String>> files);
@@ -28,4 +26,6 @@ public interface SpaceService {
     //연습실 삭제
     @Transactional
     int deleteSpace(int spaceNum) throws NoticeDeleteException, SpaceDeleteException;
+
+    String selectNum();
 }

@@ -56,6 +56,7 @@ public class SpaceController {
         return "space/spaceInsert";
     }
 
+    //관리자 연습실 추가하기
     @PostMapping("/spaceInsert")
     public String insertSpace(@ModelAttribute SpaceDTO space
             , @RequestParam(value="multiFiles", required = false) List<MultipartFile> multiFiles
@@ -64,6 +65,13 @@ public class SpaceController {
         SpacePhoDTO spacePho = new SpacePhoDTO();
 
         int result = spaceService.insertSpace(space);
+
+        if(result> 0){
+
+            space.setSpaceNum(Integer.parseInt(spaceService.selectNum()));
+
+            log.info("num 을 알려줘 " + space.getSpaceNum());
+        }
 
         String root = ResourceUtils.getURL("src/main/resources").getPath();
 
@@ -81,7 +89,6 @@ public class SpaceController {
                 String spaceOriName = "";
                 String ext = "";
                 String spaceFileName = "";
-                String spaceName = spaceService.selectNum();
 
                 spaceOriName = multiFiles.get(i).getOriginalFilename();
                 ext = spaceOriName.substring(spaceOriName.lastIndexOf("."));
@@ -90,7 +97,6 @@ public class SpaceController {
                 Map<String, String> file = new HashMap<>();
                 file.put("spaceOriName", spaceOriName);
                 file.put("spaceFileName", spaceFileName);
-                file.put("spaceName", spaceName);
 
                 files.add(file);
                 spaceService.insertSpacePho(files);
@@ -113,10 +119,7 @@ public class SpaceController {
                 }
         }else if(multiFiles.size() == 0){
 
-            String spaceName = spaceService.selectNum();
-
             spacePho.setSpaceFileName(null);
-            spacePho.setSpaceName(spaceName);
             spacePho.setSpaceOriName(null);
 
             spaceService.insertSpacePho((List<Map<String, String>>) spacePho);

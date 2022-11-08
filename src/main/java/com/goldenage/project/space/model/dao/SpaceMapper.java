@@ -20,6 +20,4 @@ public interface SpaceMapper {
     int insertSpacePhoto(Map<String, String> pho);
 
     String selectNum();
-
-    void selectName();
 }

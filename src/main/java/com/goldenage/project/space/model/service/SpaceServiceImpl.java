@@ -41,6 +41,7 @@ public class SpaceServiceImpl implements SpaceService{
 
         int result = spaceMapper.insertSpace(space);
 
+
         if(!(result > 0)){
 
             throw new SpaceInsertException("연습실 등록 실패!");
@@ -48,12 +49,6 @@ public class SpaceServiceImpl implements SpaceService{
         }
 
         return result;
-    }
-
-    @Override
-    public String selectNum() {
-
-        return spaceMapper.selectNum();
     }
 
     // 연습실 사진 등록
@@ -70,6 +65,7 @@ public class SpaceServiceImpl implements SpaceService{
 
         }
         log.info("잔디처럼 "+result);
+
         return result;
     }
 
@@ -90,7 +86,12 @@ public class SpaceServiceImpl implements SpaceService{
         return result;
     }
 
+    @Override
+    public String selectNum() {
 
+        String selectNum = spaceMapper.selectNum();
 
+        return selectNum;
+    }
 }
 
