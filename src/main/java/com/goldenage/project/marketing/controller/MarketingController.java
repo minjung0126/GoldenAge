@@ -123,7 +123,7 @@ public class MarketingController {
         rttr.addFlashAttribute("message", "게시물이 등록되었습니다.");
         rttr.addFlashAttribute("check", "success");
 
-        return "redirect:marketing/list";
+        return "redirect:/marketing/list";
     }
 
     @GetMapping("/detail/new/cast")
