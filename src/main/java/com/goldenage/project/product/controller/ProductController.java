@@ -25,7 +25,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
  * @author HeeChang
  * */
 @Controller
-@RequestMapping("/product")
+@RequestMapping("/product/*")
 public class ProductController {
 
     private final Logger log = LoggerFactory.getLogger(this.getClass());
@@ -50,7 +50,7 @@ public class ProductController {
         List<ProductDTO> productDTOList = productService.selectAllProduct();
 
         mv.addObject("productDTOList", productDTOList);
-        mv.setViewName("/product/productPage");
+        mv.setViewName("product/productPage");
 
         return mv;
     }
@@ -76,7 +76,7 @@ public class ProductController {
         mv.addObject("productDetail", productDetail);
         mv.addObject("productDetailDTOList", productDetailDTOList);
 
-        mv.setViewName("/product/detailPage");
+        mv.setViewName("product/detailPage");
 
         return mv;
     }
@@ -85,7 +85,7 @@ public class ProductController {
     @GetMapping("/product_detail/regist")
     public ModelAndView productDetailInsert(ModelAndView mv, HttpServletRequest request) {
 
-        mv.setViewName("/product/product_detail_new");
+        mv.setViewName("product/product_detail_new");
         return mv;
     }
 
@@ -133,7 +133,7 @@ public class ProductController {
             productService.insertPdInfo(productDTO);
         }
 
-        return "redirect:/product/productPage";
+        return "redirect:product/productPage";
 
     }
 
@@ -147,7 +147,7 @@ public class ProductController {
         mv.addObject("productDetail", productDetail);
         mv.addObject("productDetailDTOList", productDetailDTOList);
 
-        mv.setViewName("/product/detailPage_update");
+        mv.setViewName("product/detailPage_update");
 
         return mv;
 
@@ -202,14 +202,14 @@ public class ProductController {
             rttr.addFlashAttribute("message", "수정 성공!");
             rttr.addFlashAttribute("check", "success");
 
-            return "redirect:/product/productPage";
+            return "redirect:product/productPage";
 
     }
 
     @GetMapping("/detailPage/new/productPoster")
     public ModelAndView productDetailNewPoster(@ModelAttribute ProductDetailDTO productDetailDTO, ModelAndView mv, HttpServletRequest request){
 
-        mv.setViewName("/product/product_new_poster");
+        mv.setViewName("product/product_new_poster");
         return mv;
     }
 
@@ -264,7 +264,7 @@ public class ProductController {
         rttr.addFlashAttribute("message", "등록 성공");
         rttr.addFlashAttribute("check", "success");
 
-        return "redirect:/product/detailPage/update?pd_num=" + pd_num;
+        return "redirect:product/detailPage/update?pd_num=" + pd_num;
 
     }
 
@@ -274,7 +274,7 @@ public class ProductController {
         ProductDetailDTO productDetailDTO = productService.selectProductPoster(detail_file_num);
         log.info("detail_file_num : " + detail_file_num);
         mv.addObject("productDetailDTO", productDetailDTO);
-        mv.setViewName("/product/product_update_poster");
+        mv.setViewName("product/product_update_poster");
         
         log.info("여기까지 왔니");
         return mv;
@@ -334,7 +334,7 @@ public class ProductController {
         rttr.addFlashAttribute("message", "수정 성공!");
         rttr.addFlashAttribute("check", "success");
 
-        return "redirect:/product/detailPage/update?pd_num=" + pd_num;
+        return "redirect:product/detailPage/update?pd_num=" + pd_num;
 
     }
 
@@ -347,7 +347,7 @@ public class ProductController {
 
         rttr.addFlashAttribute("message", "삭제 성공");
 
-        return "redirect:/product/productPage";
+        return "redirect:product/productPage";
     }
 
     // detailPage_update 에서 상세페이지 삭제
@@ -362,7 +362,7 @@ public class ProductController {
         rttr.addFlashAttribute("message", "삭제 성공");
         rttr.addFlashAttribute("check", "success");
 
-        return "redirect:/product/detailPage/update?pd_num=" + pd_num;
+        return "redirect:product/detailPage/update?pd_num=" + pd_num;
 
     }
 
