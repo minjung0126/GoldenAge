@@ -37,14 +37,14 @@
                 <input type="hidden" name="noticeOriName" th:value="${ noticeDetail.noticeFile}">
                 <tr>
                     <th><strong>제목</strong></th>
-                    <td>
+                    <td class="align-left">
                         <input class="align-left" type="text" name="noticeName" style="width: 100%;" th:placeholder="${ noticeDetail.noticeName }"/>
                     </td>
                 </tr>
                 <tr>
                     <th>본문</th>
                     <td class="align-left">
-                        <textarea name="noticeContent" style="width: 100%; height: 500px;" th:placeholder="${ noticeDetail.noticeContent }"></textarea>
+                        <textarea name="noticeContent" style="width: 100%; height: 500px;" th:placeholder="${ noticeDetail.noticeContent }" th:text="${ noticeDetail.noticeContent }"></textarea>
                     </td>
                 </tr>
                 <tr>
