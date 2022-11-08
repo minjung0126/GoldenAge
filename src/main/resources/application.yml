@@ -11,43 +11,42 @@ server:
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://springboot-db.caaifqkrxubs.ap-northeast-2.rds.amazonaws.com:3306/golden
-    username: hell
-    password: Dlisvip5739!
-
-  #파일 업로드 시 첨부파일 크기 지정
-  servlet:
-    multipart:
-      max-file-size: 120MB
-      max-request-size: 120MB
-
-  # 타임리프 설정
+    url: jdbc:mysql://43.200.90.166:56424/GOLDENAGE
+    username: GOLDENAGE
+    password: C##GOLDENAGE
+  devtools:
+    livereload:
+      enabled: true
+  freemarker:
+    cache: false
   thymeleaf:
-    prefix: classpath:/templates/
-    suffix: .html
+    cache: false
 
-  # 작업 편의를 위해 추가한 devtool. 브라우저 새로 고침으로 정적 리소스 업데이트가 가능합니다.
-  spring:
+#파일 업로드 시 첨부파일 크기 지정
+servlet:
+  multipart:
+    max-file-size: 120MB
+    max-request-size: 120MB
+
+# 타임리프 설정
+thymeleaf:
+  prefix: classpath:/templates/
+  suffix: .html
+
+# 작업 편의를 위해 추가한 devtool. 브라우저 새로 고침으로 정적 리소스 업데이트가 가능합니다.
+
+# 파일, 이미지 업로드시 저장될 폴더 설정
+web:
+  resources:
+    static-locations: classpath:/upload/
+    image:
+      image-dir: src/main/resources
     devtools:
       livereload:
         enabled: true
-    freemarker:
-      cache: false
-    thymeleaf:
-      cache: false
-
-  # 파일, 이미지 업로드시 저장될 폴더 설정
-  web:
-    resources:
-      static-locations: classpath:/upload/
-      image:
-        image-dir: src/main/resources
-      devtools:
-        livereload:
+      remote:
+        restart:
           enabled: true
-        remote:
-          restart:
-            enabled: true
 
 #mybatis config
 mybatis:

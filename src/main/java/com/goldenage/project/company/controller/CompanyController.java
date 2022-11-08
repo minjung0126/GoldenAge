@@ -18,7 +18,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.servlet.http.HttpServletRequest;
 
 @Controller
-@RequestMapping("/company")
+@RequestMapping("/company/*")
 public class CompanyController {
 
     private final CompanyServiceImpl companyService;
@@ -38,7 +38,7 @@ public class CompanyController {
         CompanyDTO comInfo = companyService.selectComInfo();
 
         mv.addObject("comInfo",comInfo);
-        mv.setViewName("/company/company");
+        mv.setViewName("company/company");
 
         return mv;
     }
@@ -50,7 +50,7 @@ public class CompanyController {
         CompanyDTO comInfo = companyService.selectComInfos();
 
         mv.addObject("comInfo",comInfo);
-        mv.setViewName("/company/company_update");
+        mv.setViewName("company/company_update");
 
         return mv;
     }
@@ -67,7 +67,7 @@ public class CompanyController {
             rttr.addFlashAttribute("message", "회사정보 수정이 완료되었습니다..");
         }
 
-        mv.setViewName("redirect:/company/company");
+        mv.setViewName("redirect:company/company");
 
         return mv;
     }

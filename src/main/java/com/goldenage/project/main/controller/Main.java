@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -37,7 +38,7 @@ public class Main {
     @GetMapping("/")
     public ModelAndView mainProductPageList(HttpServletRequest request, ModelAndView mv){
         System.out.println("index : 인덱스왓니");
-
+        log.info("index : 인덱스");
         List<ProductDTO> productDTOList = productService.selectAllProduct();
         List<MarketingDTO> marketingList = marketingService.selectAllMarketing();
         mv.addObject("productDTOList", productDTOList);
