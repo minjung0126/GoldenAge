@@ -1,7 +1,6 @@
 package com.goldenage.project.space.model.dao;
 
 import com.goldenage.project.space.model.dto.SpaceDTO;
-import com.goldenage.project.space.model.dto.SpacePhoDTO;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;

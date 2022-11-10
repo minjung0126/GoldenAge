@@ -82,8 +82,9 @@ public class SpaceController {
             mkdir.mkdirs();
         }
 
+        log.info("사람을 " + multiFiles);
         if(multiFiles.size() > 0){
-            List<Map<String,String>> files = new ArrayList<>();
+            Map<String,String> files = new HashMap<>();
             for(int i = 0; i < multiFiles.size(); i++) {
 
                 String spaceOriName = "";
@@ -96,12 +97,10 @@ public class SpaceController {
                 spaceFileName = UUID.randomUUID().toString().replace("-", "") + ext;
                 spaceNum = space.getSpaceNum();
 
-                Map<String, String> file = new HashMap<>();
-                file.put("spaceOriName", spaceOriName);
-                file.put("spaceFileName", spaceFileName);
-                file.put("spaceNum", String.valueOf(spaceNum));
+                files.put("spaceOriName", spaceOriName);
+                files.put("spaceFileName", spaceFileName);
+                files.put("spaceNum", String.valueOf(spaceNum));
 
-                files.add(file);
                 spaceService.insertSpacePho(files);
             }
 
@@ -109,24 +108,31 @@ public class SpaceController {
 
                     for (int j = 0; j < multiFiles.size(); j++) {
 
-                        Map<String, String> pho = files.get(j);
+                        Map<String, String> pho = files;
                         multiFiles.get(j).transferTo(new File(filePath + "/" + pho.get("spaceFileName")));
                     }
                 } catch (IOException e) {
 
                     for (int j = 0; j < multiFiles.size(); j++) {
 
-                        Map<String, String> pho = files.get(j);
+                        Map<String, String> pho = files;
                         new File(filePath + "/" + pho.get("spaceFileName")).delete();
                     }
                 }
         }else if(multiFiles.size() == 0){
+            Map<String,String> files = new HashMap<>();
 
-            spacePho.setSpaceFileName(null);
-            spacePho.setSpaceOriName(null);
-            spacePho.setSpaceNum(space.getSpaceNum());
+            String spaceOriName = "";
+            String spaceFileName = "";
+            int spaceNum = 0;
 
-            spaceService.insertSpacePho((List<Map<String, String>>) spacePho);
+            spaceNum = space.getSpaceNum();
+
+            files.put("spaceOriName", spaceOriName);
+            files.put("spaceFileName", spaceFileName);
+            files.put("spaceNum", String.valueOf(spaceNum));
+
+            spaceService.insertSpacePho(files);
 
         }
         rttr.addFlashAttribute("message", "연습실 등록 성공!");
