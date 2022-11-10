@@ -25,8 +25,6 @@ spring:
     multipart:
       max-file-size: 120MB
       max-request-size: 120MB
-<<<<<<< HEAD
-=======
 
 #파일 업로드 시 첨부파일 크기 지정
 #servlet:
@@ -34,7 +32,6 @@ spring:
 #    max-file-size: 120MB
 #    max-request-size: 120MB
 #    enabled: true
->>>>>>> 71693f31f93db61350d7d9f5a72580abac8026c0
 
 # 타임리프 설정
 thymeleaf:
