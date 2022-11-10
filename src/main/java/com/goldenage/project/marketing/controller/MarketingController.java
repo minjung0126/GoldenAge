@@ -518,7 +518,7 @@ public class MarketingController {
 
         MkItemDTO item = marketingService.selectItem(itemFileNum);
         mv.addObject("item", item);
-        mv.setViewName("marketing_modify_item");
+        mv.setViewName("marketing/marketing_modify_item");
         return mv;
     }
 
