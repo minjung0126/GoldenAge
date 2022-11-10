@@ -58,7 +58,7 @@ public class SpaceServiceImpl implements SpaceService{
 
         int result = 0;
 
-        result += spaceMapper.insertSpacePhoto(files);
+        result = spaceMapper.insertSpacePhoto(files);
 
         return result;
     }
