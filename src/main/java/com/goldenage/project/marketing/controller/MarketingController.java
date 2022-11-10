@@ -22,7 +22,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Controller
-@RequestMapping("/marketing")
+@RequestMapping("/marketing/*")
 public class MarketingController {
 
     private final Logger log = LoggerFactory.getLogger(this.getClass());
@@ -42,7 +42,7 @@ public class MarketingController {
         List<MarketingDTO> marketingList = marketingService.selectAllMarketing();
 
         mv.addObject("marketingList", marketingList);
-        mv.setViewName("/marketing/marketing");
+        mv.setViewName("marketing/marketing");
 
         return mv;
     }
@@ -63,14 +63,14 @@ public class MarketingController {
         mv.addObject("mkMdList", mkMdList);
         mv.addObject("mkItemList", mkItemList);
 
-        mv.setViewName("/marketing/marketing_detail");
+        mv.setViewName("marketing/marketing_detail");
         return mv;
     }
 
     @GetMapping("/detail/regist")
     public ModelAndView marketingDetailNew(ModelAndView mv, HttpServletRequest request){
 
-        mv.setViewName("/marketing/marketing_detail_new");
+        mv.setViewName("marketing/marketing_detail_new");
         return mv;
     }
 
@@ -130,7 +130,7 @@ public class MarketingController {
     @GetMapping("/detail/new/cast")
     public ModelAndView marketingDetailNewCast(@ModelAttribute MkPosterDTO mkPoster, ModelAndView mv, HttpServletRequest request){
 
-        mv.setViewName("/marketing/marketing_new_cast");
+        mv.setViewName("marketing/marketing_new_cast");
         return mv;
     }
 
@@ -184,13 +184,13 @@ public class MarketingController {
         rttr.addFlashAttribute("message", "등록이 완료되었습니다.");
         rttr.addFlashAttribute("check", "success");
 
-        return "redirect:/marketing/detail/modify?mkNum=" + mkNum;
+        return "redirect:marketing/detail/modify?mkNum=" + mkNum;
     }
 
     @GetMapping("/detail/new/md")
     public ModelAndView marketingDetailNewMd(ModelAndView mv, HttpServletRequest request){
 
-        mv.setViewName("/marketing/marketing_new_md");
+        mv.setViewName("marketing/marketing_new_md");
         return mv;
     }
 
@@ -246,13 +246,13 @@ public class MarketingController {
         rttr.addFlashAttribute("message", "등록이 완료되었습니다.");
         rttr.addFlashAttribute("check", "success");
 
-        return "redirect:/marketing/detail/modify?mkNum=" + mkNum;
+        return "redirect:marketing/detail/modify?mkNum=" + mkNum;
     }
 
     @GetMapping("/detail/new/item")
     public ModelAndView marketingDetailNewItem(ModelAndView mv, HttpServletRequest request){
 
-        mv.setViewName("/marketing/marketing_new_item");
+        mv.setViewName("marketing/marketing_new_item");
         return mv;
     }
 
@@ -307,7 +307,7 @@ public class MarketingController {
         rttr.addFlashAttribute("message", "등록이 완료되었습니다.");
         rttr.addFlashAttribute("check", "success");
 
-        return "redirect:/marketing/detail/modify?mkNum=" + mkNum;
+        return "redirect:marketing/detail/modify?mkNum=" + mkNum;
     }
 
     @GetMapping("/detail/modify")
@@ -323,7 +323,7 @@ public class MarketingController {
         mv.addObject("mkMdList", mkMdList);
         mv.addObject("mkItemList", mkItemList);
 
-        mv.setViewName("/marketing/marketing_detail_modify");
+        mv.setViewName("marketing/marketing_detail_modify");
         return mv;
     }
 
@@ -375,7 +375,7 @@ public class MarketingController {
         rttr.addFlashAttribute("message", "게시물이 수정되었습니다.");
         rttr.addFlashAttribute("check", "success");
 
-        return "redirect:/marketing/list";
+        return "redirect:marketing/list";
     }
 
     @GetMapping("/detail/delete")
@@ -386,14 +386,14 @@ public class MarketingController {
         rttr.addFlashAttribute("message", "게시물이 삭제되었습니다.");
         rttr.addFlashAttribute("check", "success");
 
-        return "redirect:/marketing/list";
+        return "redirect:marketing/list";
     }
     @GetMapping("/detail/modify/cast")
     public ModelAndView marketingDetailModifyCast(ModelAndView mv, @RequestParam(value = "pFileNum", required = false) String pFileNum,HttpServletRequest request){
 
         MkPosterDTO poster = marketingService.selectPoster(pFileNum);
         mv.addObject("poster", poster);
-        mv.setViewName("/marketing/marketing_modify_cast");
+        mv.setViewName("marketing/marketing_modify_cast");
         return mv;
     }
 
@@ -447,7 +447,7 @@ public class MarketingController {
         rttr.addFlashAttribute("message", "수정이 완료되었습니다.");
         rttr.addFlashAttribute("check", "success");
 
-        return "redirect:/marketing/detail/modify?mkNum=" + mkNum;
+        return "redirect:marketing/detail/modify?mkNum=" + mkNum;
     }
 
     @GetMapping("/detail/modify/md")
@@ -455,7 +455,7 @@ public class MarketingController {
 
         MkMdDTO md = marketingService.selectMd(mdFileNum);
         mv.addObject("md", md);
-        mv.setViewName("/marketing/marketing_modify_md");
+        mv.setViewName("marketing/marketing_modify_md");
         return mv;
     }
 
@@ -509,7 +509,7 @@ public class MarketingController {
         rttr.addFlashAttribute("message", "수정이 완료되었습니다.");
         rttr.addFlashAttribute("check", "success");
 
-        return "redirect:/marketing/detail/modify?mkNum=" + mkNum;
+        return "redirect:marketing/detail/modify?mkNum=" + mkNum;
     }
 
     @GetMapping("/detail/modify/item")
@@ -517,7 +517,7 @@ public class MarketingController {
 
         MkItemDTO item = marketingService.selectItem(itemFileNum);
         mv.addObject("item", item);
-        mv.setViewName("/marketing/marketing_modify_item");
+        mv.setViewName("marketing_modify_item");
         return mv;
     }
 
@@ -571,7 +571,7 @@ public class MarketingController {
         rttr.addFlashAttribute("message", "수정이 완료되었습니다.");
         rttr.addFlashAttribute("check", "success");
 
-        return "redirect:/marketing/detail/modify?mkNum=" + mkNum;
+        return "redirect:marketing/detail/modify?mkNum=" + mkNum;
     }
 
     @GetMapping("/detail/delete/cast")
@@ -585,7 +585,7 @@ public class MarketingController {
         rttr.addFlashAttribute("message", "삭제가 완료되었습니다.");
         rttr.addFlashAttribute("check", "success");
 
-        return "redirect:/marketing/detail/modify?mkNum=" + mkNum;
+        return "redirect:marketing/detail/modify?mkNum=" + mkNum;
     }
 
     @GetMapping("/detail/delete/md")
@@ -599,7 +599,7 @@ public class MarketingController {
         rttr.addFlashAttribute("message", "삭제가 완료되었습니다.");
         rttr.addFlashAttribute("check", "success");
 
-        return "redirect:/marketing/detail/modify?mkNum=" + mkNum;
+        return "redirect:marketing/detail/modify?mkNum=" + mkNum;
     }
 
     @GetMapping("/detail/delete/item")
@@ -613,6 +613,6 @@ public class MarketingController {
         rttr.addFlashAttribute("message", "삭제가 완료되었습니다.");
         rttr.addFlashAttribute("check", "success");
 
-        return "redirect:/marketing/detail/modify?mkNum=" + mkNum;
+        return "redirect:marketing/detail/modify?mkNum=" + mkNum;
     }
 }

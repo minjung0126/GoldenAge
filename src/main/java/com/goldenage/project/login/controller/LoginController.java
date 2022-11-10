@@ -13,18 +13,18 @@ public class LoginController {
     @GetMapping("/loginPage")
     public String adminLoginPage(){
 
-        return "/admin/loginPage";
+        return "admin/loginPage";
     }
 
     @GetMapping("/password")
     public String findPassword(){
 
-        return "/admin/password";
+        return "admin/password";
     }
 
     @GetMapping("/failure")
     public String loginFailure(){
 
-        return "/common/denied";
+        return "common/denied";
     }
 }
