@@ -87,9 +87,9 @@ public class SpaceServiceImpl implements SpaceService{
     }
 
     @Override
-    public String selectNum() {
+    public int selectNum() {
 
-        String selectNum = spaceMapper.selectNum();
+        int selectNum = spaceMapper.selectNum();
 
         return selectNum;
     }

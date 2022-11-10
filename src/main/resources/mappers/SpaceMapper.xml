@@ -73,12 +73,9 @@
         , #{ spaceFileName }
         , #{ spaceNum }
         )
-        <selectKey keyProperty="spaceNum" order="BEFORE" resultType="_int">
-            SELECT LAST_INSERT_ID()
-        </selectKey>
     </insert>
 
-    <select id="selectNum" resultType="string">
+    <select id="selectNum" resultType="_int">
         SELECT LAST_INSERT_ID() AS SPACE_NUM
     </select>
 
