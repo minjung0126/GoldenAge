@@ -12,12 +12,6 @@
         <result property="spaceWidth" column="SPACE_WIDTH"/>
         <result property="spaceTime" column="SPACE_TIME"/>
         <result property="spaceLink" column="SPACE_LINK"/>
-        <collection property="photo" ofType="SpacePhoDTO">
-            <result property="spaceNum" column="SPACE_NUM"/>
-            <result property="spaceFileNum" column="SPACE_FILE_NUM"/>
-            <result property="spaceOriName" column="SPACE_ORI_NAME"/>
-            <result property="spaceFileName" column="SPACE_FILE_NAME"/>
-        </collection>
     </resultMap>
 
     <resultMap id="spacePhoResultMap" type="SpacePhoDTO">

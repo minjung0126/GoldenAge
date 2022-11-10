@@ -82,7 +82,8 @@ public class SpaceController {
             mkdir.mkdirs();
         }
 
-        log.info("사람을 " + multiFiles);
+        log.info("뭔데" + multiFiles.get(0).getOriginalFilename());
+        log.info("dmd?" + multiFiles.size());
         if(multiFiles.size() > 0){
             Map<String,String> files = new HashMap<>();
             for(int i = 0; i < multiFiles.size(); i++) {
@@ -95,6 +96,7 @@ public class SpaceController {
                 spaceOriName = multiFiles.get(i).getOriginalFilename();
                 ext = spaceOriName.substring(spaceOriName.lastIndexOf("."));
                 spaceFileName = UUID.randomUUID().toString().replace("-", "") + ext;
+
                 spaceNum = space.getSpaceNum();
 
                 files.put("spaceOriName", spaceOriName);
