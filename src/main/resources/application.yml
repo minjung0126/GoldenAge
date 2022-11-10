@@ -21,12 +21,17 @@ spring:
     cache: false
   thymeleaf:
     cache: false
+  servlet:
+    multipart:
+      max-file-size: 120MB
+      max-request-size: 120MB
 
 #파일 업로드 시 첨부파일 크기 지정
-servlet:
-  multipart:
-    max-file-size: 120MB
-    max-request-size: 120MB
+#servlet:
+#  multipart:
+#    max-file-size: 120MB
+#    max-request-size: 120MB
+#    enabled: true
 
 # 타임리프 설정
 thymeleaf:

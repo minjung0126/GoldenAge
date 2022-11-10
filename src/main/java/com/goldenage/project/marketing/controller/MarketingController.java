@@ -115,6 +115,7 @@ public class MarketingController {
                 file.transferTo(new File(filePath + mkdir.separator + changeName + ext));
             } catch (IOException e) {
                 e.printStackTrace();
+//                new File(filePath + "\\" + changeName + ext).delete();
                 new File(filePath + mkdir.separator + changeName + ext).delete();
             }
         } else {
@@ -172,10 +173,10 @@ public class MarketingController {
             marketingService.insertMkPoster(mkPoster);
 
             try {
-                file.transferTo(new File(filePath + "\\" + changeName + ext));
+                file.transferTo(new File(filePath + mkdir.separator + changeName + ext));
             } catch (IOException e) {
                 e.printStackTrace();
-                new File(filePath + "\\" + changeName + ext).delete();
+                new File(filePath + mkdir.separator + changeName + ext).delete();
             }
         } else {
             marketingService.insertMkPoster(mkPoster);
@@ -184,7 +185,7 @@ public class MarketingController {
         rttr.addFlashAttribute("message", "등록이 완료되었습니다.");
         rttr.addFlashAttribute("check", "success");
 
-        return "redirect:marketing/detail/modify?mkNum=" + mkNum;
+        return "redirect:/marketing/detail/modify?mkNum=" + mkNum;
     }
 
     @GetMapping("/detail/new/md")
@@ -234,10 +235,10 @@ public class MarketingController {
 
 
             try {
-                file.transferTo(new File(filePath + "\\" + changeName + ext));
+                file.transferTo(new File(filePath + mkdir.separator + changeName + ext));
             } catch (IOException e) {
                 e.printStackTrace();
-                new File(filePath + "\\" + changeName + ext).delete();
+                new File(filePath + mkdir.separator + changeName + ext).delete();
             }
         } else {
             marketingService.insertMkMd(mkMd);
@@ -246,7 +247,7 @@ public class MarketingController {
         rttr.addFlashAttribute("message", "등록이 완료되었습니다.");
         rttr.addFlashAttribute("check", "success");
 
-        return "redirect:marketing/detail/modify?mkNum=" + mkNum;
+        return "redirect:/marketing/detail/modify?mkNum=" + mkNum;
     }
 
     @GetMapping("/detail/new/item")
@@ -295,10 +296,10 @@ public class MarketingController {
             marketingService.insertMkItem(mkItem);
 
             try {
-                file.transferTo(new File(filePath + "\\" + changeName + ext));
+                file.transferTo(new File(filePath + mkdir.separator + changeName + ext));
             } catch (IOException e) {
                 e.printStackTrace();
-                new File(filePath + "\\" + changeName + ext).delete();
+                new File(filePath + mkdir.separator + changeName + ext).delete();
             }
         } else {
             marketingService.insertMkItem(mkItem);
@@ -307,7 +308,7 @@ public class MarketingController {
         rttr.addFlashAttribute("message", "등록이 완료되었습니다.");
         rttr.addFlashAttribute("check", "success");
 
-        return "redirect:marketing/detail/modify?mkNum=" + mkNum;
+        return "redirect:/marketing/detail/modify?mkNum=" + mkNum;
     }
 
     @GetMapping("/detail/modify")
@@ -364,18 +365,18 @@ public class MarketingController {
             marketingService.updateMkInfo(marketing);
 
             try {
-                file.transferTo(new File(filePath + "\\" + changeName + ext));
+                file.transferTo(new File(filePath + mkdir.separator + changeName + ext));
             } catch (IOException e) {
 
                 e.printStackTrace();
-                new File(filePath + "\\" + changeName + ext).delete();
+                new File(filePath + mkdir.separator + changeName + ext).delete();
             }
         }
 
         rttr.addFlashAttribute("message", "게시물이 수정되었습니다.");
         rttr.addFlashAttribute("check", "success");
 
-        return "redirect:marketing/list";
+        return "redirect:/marketing/list";
     }
 
     @GetMapping("/detail/delete")
@@ -386,7 +387,7 @@ public class MarketingController {
         rttr.addFlashAttribute("message", "게시물이 삭제되었습니다.");
         rttr.addFlashAttribute("check", "success");
 
-        return "redirect:marketing/list";
+        return "redirect:/marketing/list";
     }
     @GetMapping("/detail/modify/cast")
     public ModelAndView marketingDetailModifyCast(ModelAndView mv, @RequestParam(value = "pFileNum", required = false) String pFileNum,HttpServletRequest request){
@@ -436,18 +437,18 @@ public class MarketingController {
             marketingService.updateMkPoster(mkPoster);
 
             try {
-                file.transferTo(new File(filePath + "\\" + changeName + ext));
+                file.transferTo(new File(filePath + mkdir.separator + changeName + ext));
             } catch (IOException e) {
 
                 e.printStackTrace();
-                new File(filePath + "\\" + changeName + ext).delete();
+                new File(filePath + mkdir.separator + changeName + ext).delete();
             }
         }
 
         rttr.addFlashAttribute("message", "수정이 완료되었습니다.");
         rttr.addFlashAttribute("check", "success");
 
-        return "redirect:marketing/detail/modify?mkNum=" + mkNum;
+        return "redirect:/marketing/detail/modify?mkNum=" + mkNum;
     }
 
     @GetMapping("/detail/modify/md")
@@ -498,18 +499,18 @@ public class MarketingController {
             marketingService.updateMkMd(mkMd);
 
             try {
-                file.transferTo(new File(filePath + "\\" + changeName + ext));
+                file.transferTo(new File(filePath + mkdir.separator + changeName + ext));
             } catch (IOException e) {
 
                 e.printStackTrace();
-                new File(filePath + "\\" + changeName + ext).delete();
+                new File(filePath + mkdir.separator + changeName + ext).delete();
             }
         }
 
         rttr.addFlashAttribute("message", "수정이 완료되었습니다.");
         rttr.addFlashAttribute("check", "success");
 
-        return "redirect:marketing/detail/modify?mkNum=" + mkNum;
+        return "redirect:/marketing/detail/modify?mkNum=" + mkNum;
     }
 
     @GetMapping("/detail/modify/item")
@@ -560,18 +561,18 @@ public class MarketingController {
             marketingService.updateMkItem(mkItem);
 
             try {
-                file.transferTo(new File(filePath + "\\" + changeName + ext));
+                file.transferTo(new File(filePath + mkdir.separator + changeName + ext));
             } catch (IOException e) {
 
                 e.printStackTrace();
-                new File(filePath + "\\" + changeName + ext).delete();
+                new File(filePath + mkdir.separator + changeName + ext).delete();
             }
         }
 
         rttr.addFlashAttribute("message", "수정이 완료되었습니다.");
         rttr.addFlashAttribute("check", "success");
 
-        return "redirect:marketing/detail/modify?mkNum=" + mkNum;
+        return "redirect:/marketing/detail/modify?mkNum=" + mkNum;
     }
 
     @GetMapping("/detail/delete/cast")
@@ -585,7 +586,7 @@ public class MarketingController {
         rttr.addFlashAttribute("message", "삭제가 완료되었습니다.");
         rttr.addFlashAttribute("check", "success");
 
-        return "redirect:marketing/detail/modify?mkNum=" + mkNum;
+        return "redirect:/marketing/detail/modify?mkNum=" + mkNum;
     }
 
     @GetMapping("/detail/delete/md")
@@ -599,7 +600,7 @@ public class MarketingController {
         rttr.addFlashAttribute("message", "삭제가 완료되었습니다.");
         rttr.addFlashAttribute("check", "success");
 
-        return "redirect:marketing/detail/modify?mkNum=" + mkNum;
+        return "redirect:/marketing/detail/modify?mkNum=" + mkNum;
     }
 
     @GetMapping("/detail/delete/item")
@@ -613,6 +614,6 @@ public class MarketingController {
         rttr.addFlashAttribute("message", "삭제가 완료되었습니다.");
         rttr.addFlashAttribute("check", "success");
 
-        return "redirect:marketing/detail/modify?mkNum=" + mkNum;
+        return "redirect:/marketing/detail/modify?mkNum=" + mkNum;
     }
 }
