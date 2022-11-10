@@ -59,7 +59,7 @@ public class SpaceController {
     //관리자 연습실 추가하기
     @PostMapping("/spaceInsert")
     public String insertSpace(@ModelAttribute SpaceDTO space
-            , @RequestParam(value="multiFiles", required = false) List<MultipartFile> multiFiles
+            , @RequestParam(value="multiFiles") List<MultipartFile> multiFiles
             , RedirectAttributes rttr) throws Exception {
 
         SpacePhoDTO spacePho = new SpacePhoDTO();
@@ -81,6 +81,8 @@ public class SpaceController {
         if(!mkdir.exists()) {
             mkdir.mkdirs();
         }
+
+
 
         if(multiFiles.size() > 0){
             Map<String,String> files = new HashMap<>();
