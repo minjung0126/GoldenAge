@@ -56,14 +56,16 @@ public class SpaceServiceImpl implements SpaceService{
     @Transactional
     public int insertSpacePho(List<Map<String, String>> files) {
 
-        int result = 0;
+        int result = spaceMapper.insertSpacePhoto((Map<String, String>) files);
 
-        for(int i =0; i < files.size(); i++){
-
-            Map<String, String> pho = files.get(i);
-            result += spaceMapper.insertSpacePhoto(pho);
-
-        }
+//        log.info("뭘가요 왤까요"+ files.size());
+//        for(int i =0; i < files.size(); i++){
+//
+//            Map<String, String> pho = files.get(i);
+//            log.info("어디서잘못돌고있니" + pho);
+//            result += spaceMapper.insertSpacePhoto(pho);
+//
+//        }
         log.info("잔디처럼 "+result);
 
         return result;

@@ -102,7 +102,6 @@ public class SpaceController {
                 file.put("spaceNum", String.valueOf(spaceNum));
 
                 files.add(file);
-                log.info("넌 왜 그러니 ");
                 spaceService.insertSpacePho(files);
             }
 
@@ -150,9 +149,7 @@ public class SpaceController {
     }
 
 //    @GetMapping("/theater")
-//    public ModelAndView theaher(ModelAndView mv){
-//
-//
+//    public ModelAndView theaher(ModelAndView){
 //
 //        return "space/theater";
 //    }
