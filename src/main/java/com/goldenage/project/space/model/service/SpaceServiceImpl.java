@@ -54,17 +54,11 @@ public class SpaceServiceImpl implements SpaceService{
     // 연습실 사진 등록
     @Override
     @Transactional
-    public int insertSpacePho(List<Map<String, String>> files) {
+    public int insertSpacePho(Map<String, String> files) {
 
         int result = 0;
 
-        for(int i =0; i < files.size(); i++){
-
-            Map<String, String> pho = files.get(i);
-            result += spaceMapper.insertSpacePhoto(pho);
-
-        }
-        log.info("잔디처럼 "+result);
+        result += spaceMapper.insertSpacePhoto(files);
 
         return result;
     }

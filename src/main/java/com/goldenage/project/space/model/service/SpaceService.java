@@ -21,7 +21,7 @@ public interface SpaceService {
 
     // 연습실 사진 등록
     @Transactional
-    int insertSpacePho(List<Map<String, String>> files);
+    int insertSpacePho(Map<String, String> files);
 
     //연습실 삭제
     @Transactional
