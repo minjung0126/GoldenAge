@@ -111,10 +111,11 @@ public class MarketingController {
 
 
             try {
-                file.transferTo(new File(filePath + "\\" + changeName + ext));
+//                file.transferTo(new File(filePath + "\\" + changeName + ext));
+                file.transferTo(new File(filePath + mkdir.separator + changeName + ext));
             } catch (IOException e) {
                 e.printStackTrace();
-                new File(filePath + "\\" + changeName + ext).delete();
+                new File(filePath + mkdir.separator + changeName + ext).delete();
             }
         } else {
             marketingService.insertMkInfo(marketing);
