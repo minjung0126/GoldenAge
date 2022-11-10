@@ -21,6 +21,6 @@ public class WebConfig implements WebMvcConfigurer {
                 .addResourceLocations("classpath:/upload/");
 
         registry.addResourceHandler("/images/**")
-                .addResourceLocations("file:///home/ubuntu/apps/goldenage/build/libs/src/main/resources/static/");
+                .addResourceLocations("file:///home/ubuntu/apps/goldenage/build/libs/src/main/resources/static/images/");
     }
 }
