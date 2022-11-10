@@ -80,9 +80,9 @@ public class MarketingController {
         System.out.println("테스트용 : " + marketing);
         System.out.println("사진 테스트 : " + file);
 
-        String root = ResourceUtils.getURL("src/main/resources").getPath();
+//        String root = ResourceUtils.getURL("src/main/resources").getPath();
 
-        String filePath = root + "static/images/marketing";
+        String filePath = "static/images/marketing";
 
         log.info("루트ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ" + filePath);
 
