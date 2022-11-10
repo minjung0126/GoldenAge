@@ -146,7 +146,7 @@ public class MarketingController {
 
         String root = ResourceUtils.getURL("src/main/resources").getPath();
 
-        String filePath = root + "static/images/marketing/poster";
+        String filePath = root + "/static/images/marketing/poster";
 
         log.info("루트ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ" + filePath);
 
