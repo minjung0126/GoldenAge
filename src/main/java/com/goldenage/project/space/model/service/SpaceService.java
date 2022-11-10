@@ -27,5 +27,5 @@ public interface SpaceService {
     @Transactional
     int deleteSpace(int spaceNum) throws NoticeDeleteException, SpaceDeleteException;
 
-    String selectNum();
+    int selectNum();
 }

@@ -68,7 +68,7 @@ public class SpaceController {
 
         if(result> 0){
 
-            space.setSpaceNum(Integer.parseInt(spaceService.selectNum()));
+            space.setSpaceNum(spaceService.selectNum());
 
             log.info("num 을 알려줘 " + space.getSpaceNum());
         }
@@ -89,16 +89,20 @@ public class SpaceController {
                 String spaceOriName = "";
                 String ext = "";
                 String spaceFileName = "";
+                int spaceNum = 0;
 
                 spaceOriName = multiFiles.get(i).getOriginalFilename();
                 ext = spaceOriName.substring(spaceOriName.lastIndexOf("."));
                 spaceFileName = UUID.randomUUID().toString().replace("-", "") + ext;
+                spaceNum = space.getSpaceNum();
 
                 Map<String, String> file = new HashMap<>();
                 file.put("spaceOriName", spaceOriName);
                 file.put("spaceFileName", spaceFileName);
+                file.put("spaceNum", String.valueOf(spaceNum));
 
                 files.add(file);
+                log.info("넌 왜 그러니 ");
                 spaceService.insertSpacePho(files);
             }
 
@@ -121,6 +125,7 @@ public class SpaceController {
 
             spacePho.setSpaceFileName(null);
             spacePho.setSpaceOriName(null);
+            spacePho.setSpaceNum(space.getSpaceNum());
 
             spaceService.insertSpacePho((List<Map<String, String>>) spacePho);
 
@@ -144,10 +149,12 @@ public class SpaceController {
         return "redirect:/space/spaceList";
     }
 
-    @GetMapping("/theater")
-    public String theaher(){
-
-        return "space/theater";
-    }
+//    @GetMapping("/theater")
+//    public ModelAndView theaher(ModelAndView mv){
+//
+//
+//
+//        return "space/theater";
+//    }
 }
 
