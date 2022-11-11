@@ -111,11 +111,10 @@ public class MarketingController {
 
 
             try {
-//                file.transferTo(new File(filePath + "\\" + changeName + ext));
+
                 file.transferTo(new File(filePath + mkdir.separator + changeName + ext));
             } catch (IOException e) {
                 e.printStackTrace();
-//                new File(filePath + "\\" + changeName + ext).delete();
                 new File(filePath + mkdir.separator + changeName + ext).delete();
             }
         } else {
@@ -144,9 +143,9 @@ public class MarketingController {
         System.out.println("테스트용 : " + mkPoster);
         System.out.println("사진 테스트 : " + file);
 
-        String root = ResourceUtils.getURL("src/main/resources").getPath();
+        String root = ResourceUtils.getURL("upload").getPath();
 
-        String filePath = root + "static/images/marketing/poster";
+        String filePath = root + "marketing/poster";
 
         log.info("루트ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ" + filePath);
 
@@ -204,9 +203,9 @@ public class MarketingController {
         System.out.println("테스트용 : " + mkMd);
         System.out.println("사진 테스트 : " + file);
 
-        String root = ResourceUtils.getURL("src/main/resources").getPath();
+        String root = ResourceUtils.getURL("upload").getPath();
 
-        String filePath = root + "static/images/marketing/md";
+        String filePath = root + "marketing/md";
 
         log.info("루트ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ" + filePath);
 
@@ -266,9 +265,9 @@ public class MarketingController {
         System.out.println("테스트용 : " + mkItem);
         System.out.println("사진 테스트 : " + file);
 
-        String root = ResourceUtils.getURL("src/main/resources").getPath();
+        String root = ResourceUtils.getURL("upload").getPath();
 
-        String filePath = root + "static/images/marketing/item";
+        String filePath = root + "marketing/item";
 
         log.info("루트ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ" + filePath);
 
@@ -407,9 +406,7 @@ public class MarketingController {
         log.info("아이템넘버 : " + pFileNum);
         log.info("MarketingDTO file : " + file);
 
-        String root = ResourceUtils.getURL("src/main/resources").getPath();
-
-        String filePath = root + "static/images/marketing/poster";
+        String filePath = root + "marketing/poster";
 
 
         log.info("루트ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ" + filePath);
@@ -469,9 +466,9 @@ public class MarketingController {
         log.info("아이템넘버 : " + mdFileNum);
         log.info("MarketingDTO file : " + file);
 
-        String root = ResourceUtils.getURL("src/main/resources").getPath();
+        String root = ResourceUtils.getURL("upload").getPath();
 
-        String filePath = root + "static/images/marketing/md";
+        String filePath = root + "marketing/md";
 
 
         log.info("루트ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ" + filePath);
@@ -531,9 +528,9 @@ public class MarketingController {
         log.info("아이템넘버 : " + itemFileNum);
         log.info("MarketingDTO file : " + file);
 
-        String root = ResourceUtils.getURL("src/main/resources").getPath();
+        String root = ResourceUtils.getURL("upload").getPath();
 
-        String filePath = root + "static/images/marketing/item";
+        String filePath = root + "marketing/item";
 
 
         log.info("루트ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ" + filePath);
