@@ -162,7 +162,7 @@ public class SpaceController {
 //        int num = Integer.parseInt(request.getParameter("spaceNum"));
 //        log.info("num : " + num);
 
-        int spaceNum = 138;
+        int spaceNum = 139;
 
         List<SpaceDTO> spaceList = spaceService.selectSpaceListView();
         List<SpacePhoDTO> phoList = spaceService.selectPho(spaceNum);
