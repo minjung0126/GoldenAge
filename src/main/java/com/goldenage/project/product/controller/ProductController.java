@@ -96,9 +96,10 @@ public class ProductController {
         log.info("테스트용 : " + productDTO);
         log.info("사진 테스트 : " + file);
 
-        String root = ResourceUtils.getURL("src/main/resources").getPath();
 
-        String filePath = root + "static/images/product";
+        String root = ResourceUtils.getURL("upload").getPath();
+
+        String filePath = root + "product";
 
         log.info("root ---------------- " + filePath);
 
@@ -161,9 +162,9 @@ public class ProductController {
         log.info("파일 번호 : " + pd_num);
         log.info("ProductDetailDTO : " + file);
 
-        String root = ResourceUtils.getURL("src/main/resources").getPath();
+        String root = ResourceUtils.getURL("upload").getPath();
 
-        String filePath = root + "static/images/product";
+        String filePath = root + "product";
 
         log.info("root ---------------- " + filePath);
 
@@ -224,9 +225,9 @@ public class ProductController {
         log.info("테스트용 : " + productDetailDTO);
         log.info("사진 테스트 : " + file);
 
-        String root = ResourceUtils.getURL("src/main/resources").getPath();
+        String root = ResourceUtils.getURL("upload").getPath();
 
-        String filePath = root + "static/images/product/poster";
+        String filePath = root + "product/poster";
 
         log.info("root --------------- " + filePath);
 
@@ -290,9 +291,9 @@ public class ProductController {
         log.info("아이템 넘버 : " + detail_file_num);
         log.info("productDetailDTO file : " + file);
 
-        String root = ResourceUtils.getURL("src/main/resources").getPath();
+        String root = ResourceUtils.getURL("upload").getPath();
 
-        String filePath = root + "static/images/product/poster";
+        String filePath = root + "product/poster";
 
         log.info("루트 ------------- " + filePath);
 

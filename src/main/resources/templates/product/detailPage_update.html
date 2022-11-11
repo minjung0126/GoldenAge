@@ -269,7 +269,7 @@
                     <div class="col-lg-2 col-md-3" th:each="productDetailDTOList: ${ productDetailDTOList }">
                         <div class="blog-card">
                             <input type="hidden" th:value="${ productDetailDTOList.detail_file_num }" name="detail_file_num" id="detail_file_num" class="pFileNum">
-                            <img th:src="'/images/product/poster/' + ${ productDetailDTOList.detail_file_name }" src="/images/product/poster/" th:id="${ productDetailDTOList.detail_file_num }" alt="" class="blog-thumbnail cast" style="cursor: pointer" onclick="openWindow('cast', (this.id))">
+                            <img th:src="'/upload/product/poster/' + ${ productDetailDTOList.detail_file_name }" src="/images/product/poster/" th:id="${ productDetailDTOList.detail_file_num }" alt="" class="blog-thumbnail cast" style="cursor: pointer" onclick="openWindow('cast', (this.id))">
                         </div>
                     </div>
                 </div>
