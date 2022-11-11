@@ -406,6 +406,7 @@ public class MarketingController {
         log.info("아이템넘버 : " + pFileNum);
         log.info("MarketingDTO file : " + file);
 
+        String root = ResourceUtils.getURL("upload").getPath();
         String filePath = root + "marketing/poster";
 
 
