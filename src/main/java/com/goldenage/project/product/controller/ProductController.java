@@ -96,9 +96,10 @@ public class ProductController {
         log.info("테스트용 : " + productDTO);
         log.info("사진 테스트 : " + file);
 
-        String root = ResourceUtils.getURL("src/main/resources").getPath();
 
-        String filePath = root + "static/images/product";
+        String root = ResourceUtils.getURL("upload").getPath();
+
+        String filePath = root + "product";
 
         log.info("root ---------------- " + filePath);
 
@@ -124,16 +125,16 @@ public class ProductController {
             productService.insertPdInfo(productDTO);
 
             try {
-                file.transferTo(new File(filePath + "\\" + changeName + ext));
+                file.transferTo(new File(filePath + mkdir.separator + changeName + ext));
             } catch (IOException e) {
                 e.printStackTrace();
-                new File(filePath + "\\" + changeName + ext).delete();
+                new File(filePath + mkdir.separator + changeName + ext).delete();
             }
         } else {
             productService.insertPdInfo(productDTO);
         }
 
-        return "redirect:product/productPage";
+        return "redirect:/product/productPage";
 
     }
 
@@ -161,9 +162,9 @@ public class ProductController {
         log.info("파일 번호 : " + pd_num);
         log.info("ProductDetailDTO : " + file);
 
-        String root = ResourceUtils.getURL("src/main/resources").getPath();
+        String root = ResourceUtils.getURL("upload").getPath();
 
-        String filePath = root + "static/images/product";
+        String filePath = root + "product";
 
         log.info("root ---------------- " + filePath);
 
@@ -192,17 +193,17 @@ public class ProductController {
             productService.updateProductInfo(productDTO);
 
             try {
-                file.transferTo(new File(filePath + "\\" + changeName + ext));
+                file.transferTo(new File(filePath + mkdir.separator + changeName + ext));
             } catch (IOException e) {
                 e.printStackTrace();
-                new File(filePath + "\\" + changeName + ext).delete();
+                new File(filePath + mkdir.separator + changeName + ext).delete();
             }
 
         }
             rttr.addFlashAttribute("message", "수정 성공!");
             rttr.addFlashAttribute("check", "success");
 
-            return "redirect:product/productPage";
+            return "redirect:/product/productPage";
 
     }
 
@@ -224,9 +225,9 @@ public class ProductController {
         log.info("테스트용 : " + productDetailDTO);
         log.info("사진 테스트 : " + file);
 
-        String root = ResourceUtils.getURL("src/main/resources").getPath();
+        String root = ResourceUtils.getURL("upload").getPath();
 
-        String filePath = root + "static/images/product/poster";
+        String filePath = root + "product/poster";
 
         log.info("root --------------- " + filePath);
 
@@ -252,10 +253,10 @@ public class ProductController {
             productService.insertPdPoster(productDetailDTO);
 
             try {
-                file.transferTo(new File(filePath + "\\" + changeName + ext));
+                file.transferTo(new File(filePath + mkdir.separator + changeName + ext));
             } catch (IOException e){
                 e.printStackTrace();
-                new File(filePath + "\\" + changeName + ext).delete();
+                new File(filePath + mkdir.separator + changeName + ext).delete();
             }
             } else {
             productService.insertPdPoster(productDetailDTO);
@@ -264,7 +265,7 @@ public class ProductController {
         rttr.addFlashAttribute("message", "등록 성공");
         rttr.addFlashAttribute("check", "success");
 
-        return "redirect:product/detailPage/update?pd_num=" + pd_num;
+        return "redirect:/product/detailPage/update?pd_num=" + pd_num;
 
     }
 
@@ -290,9 +291,9 @@ public class ProductController {
         log.info("아이템 넘버 : " + detail_file_num);
         log.info("productDetailDTO file : " + file);
 
-        String root = ResourceUtils.getURL("src/main/resources").getPath();
+        String root = ResourceUtils.getURL("upload").getPath();
 
-        String filePath = root + "static/images/product/poster";
+        String filePath = root + "product/poster";
 
         log.info("루트 ------------- " + filePath);
 
@@ -322,11 +323,11 @@ public class ProductController {
 
             log.info("여기까지 왔니2");
             try {
-                file.transferTo(new File(filePath + "\\" + changeName + ext));
+                file.transferTo(new File(filePath + mkdir.separator + changeName + ext));
             } catch (IOException e) {
 
                 e.printStackTrace();
-                new File(filePath + "\\" + changeName + ext).delete();
+                new File(filePath + mkdir.separator + changeName + ext).delete();
             }
         }
         log.info("여기까지 왔니3");
@@ -334,7 +335,7 @@ public class ProductController {
         rttr.addFlashAttribute("message", "수정 성공!");
         rttr.addFlashAttribute("check", "success");
 
-        return "redirect:product/detailPage/update?pd_num=" + pd_num;
+        return "redirect:/product/detailPage/update?pd_num=" + pd_num;
 
     }
 
@@ -362,7 +363,7 @@ public class ProductController {
         rttr.addFlashAttribute("message", "삭제 성공");
         rttr.addFlashAttribute("check", "success");
 
-        return "redirect:product/detailPage/update?pd_num=" + pd_num;
+        return "redirect:/product/detailPage/update?pd_num=" + pd_num;
 
     }
 
