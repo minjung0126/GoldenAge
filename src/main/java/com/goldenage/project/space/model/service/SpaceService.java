@@ -32,4 +32,7 @@ public interface SpaceService {
     List<SpaceDTO> selectSpaceListView();
 
     List<SpacePhoDTO> selectPho(int spaceNum);
+
+    //연슶실 내용정보
+    SpaceDTO selectSpaceView(int spaceNum);
 }

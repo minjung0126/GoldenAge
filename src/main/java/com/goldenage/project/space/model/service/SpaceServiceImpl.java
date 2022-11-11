@@ -105,5 +105,14 @@ public class SpaceServiceImpl implements SpaceService{
 
         return phoList;
     }
+
+    //연슶실 내용정보
+    @Override
+    public SpaceDTO selectSpaceView(int spaceNum) {
+
+        SpaceDTO spaceView = spaceMapper.selectSpaceView(spaceNum);
+
+        return spaceView;
+    }
 }
 

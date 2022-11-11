@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html lang="en"
-  xmlns:th="http://www.thymeleaf.org">
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -13,7 +13,7 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <style>
     .container{background-image: none;background-color: #000;}
-    .main{height: auto;text-align: center;background-color: #232321; margin: 50px;padding: 50px 20px; color: #fff;}
+    .main{height: auto;text-align: center;background-color: #232321; margin: 50px;padding: 50px 20px; color: #fff;padding-top: 170px;}
     .main ul{list-style: none;}
     .contect{height: auto;text-align: center;background-color: #232321; margin: 50px;padding: 20px; color: #fff;}
     .container input {width: 500px; height: 30px; font-size: 20px;margin-left: 5px; border: 1px solid #000; position: relative;}
@@ -30,12 +30,12 @@
   <div class="main">
     <h3>연습실 사진 수정</h3>
     <input type="file" multiple>
-    <button type="submit" class="btn" type="button" style="color:gold; float: right;">수정하기</button>
+    <button type="submit" class="btn" style="color:gold; float: right;">수정하기</button>
   </div>
   <hr style="border-bottom: 2px #ffb000 solid; opacity: 1;">
   <div class="contect">
     <h3>연습실 정보 수정</h3>
-    <table class="row mt-7 mx-auto" style="padding-left: 20%; padding-right: 20%; padding-top: 1rem;" style="background-color: #fff">
+    <table class="row mt-7 mx-auto" style="padding-left: 20%; padding-right: 20%; padding-top: 1rem;background-color: #fff">
       <tr>
         <th>이름</th>
         <td><input type="text" placeholder="이름"></td>
@@ -62,8 +62,8 @@
       </tr>
     </table>
     <div>
-      <button type="button" class="btn" type="button" style="color:gold;" onclick="location.href='company.html'">취소하기</button>
-      <button type="submit" class="btn" type="button" style="color:gold;">수정하기</button>
+      <button type="button" class="btn" style="color:gold;" onclick="location.href='company.html'">취소하기</button>
+      <button type="submit" class="btn" style="color:gold;">수정하기</button>
     </div>
   </div><!-- contect close -->
 </div><!-- container close -->

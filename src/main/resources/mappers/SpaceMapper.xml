@@ -98,4 +98,12 @@
           FROM SPACE_FILE
          WHERE SPACE_NUM = #{ spaceNum }
     </select>
+
+    <select id="selectSpaceView" resultMap="spaceResultMap">
+        SELECT
+               *
+          FROM SPACE
+         WHERE SPACE_NUM = #{ spaceNum }
+    </select>
+
 </mapper>
