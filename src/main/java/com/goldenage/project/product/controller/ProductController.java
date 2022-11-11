@@ -134,7 +134,7 @@ public class ProductController {
             productService.insertPdInfo(productDTO);
         }
 
-        return "redirect:product/productPage";
+        return "redirect:/product/productPage";
 
     }
 
@@ -203,7 +203,7 @@ public class ProductController {
             rttr.addFlashAttribute("message", "수정 성공!");
             rttr.addFlashAttribute("check", "success");
 
-            return "redirect:product/productPage";
+            return "redirect:/product/productPage";
 
     }
 
@@ -265,7 +265,7 @@ public class ProductController {
         rttr.addFlashAttribute("message", "등록 성공");
         rttr.addFlashAttribute("check", "success");
 
-        return "redirect:product/detailPage/update?pd_num=" + pd_num;
+        return "redirect:/product/detailPage/update?pd_num=" + pd_num;
 
     }
 
@@ -335,7 +335,7 @@ public class ProductController {
         rttr.addFlashAttribute("message", "수정 성공!");
         rttr.addFlashAttribute("check", "success");
 
-        return "redirect:product/detailPage/update?pd_num=" + pd_num;
+        return "redirect:/product/detailPage/update?pd_num=" + pd_num;
 
     }
 
@@ -363,7 +363,7 @@ public class ProductController {
         rttr.addFlashAttribute("message", "삭제 성공");
         rttr.addFlashAttribute("check", "success");
 
-        return "redirect:product/detailPage/update?pd_num=" + pd_num;
+        return "redirect:/product/detailPage/update?pd_num=" + pd_num;
 
     }
 
