@@ -125,10 +125,10 @@ public class ProductController {
             productService.insertPdInfo(productDTO);
 
             try {
-                file.transferTo(new File(filePath + "\\" + changeName + ext));
+                file.transferTo(new File(filePath + mkdir.separator + changeName + ext));
             } catch (IOException e) {
                 e.printStackTrace();
-                new File(filePath + "\\" + changeName + ext).delete();
+                new File(filePath + mkdir.separator + changeName + ext).delete();
             }
         } else {
             productService.insertPdInfo(productDTO);
@@ -193,10 +193,10 @@ public class ProductController {
             productService.updateProductInfo(productDTO);
 
             try {
-                file.transferTo(new File(filePath + "\\" + changeName + ext));
+                file.transferTo(new File(filePath + mkdir.separator + changeName + ext));
             } catch (IOException e) {
                 e.printStackTrace();
-                new File(filePath + "\\" + changeName + ext).delete();
+                new File(filePath + mkdir.separator + changeName + ext).delete();
             }
 
         }
@@ -253,10 +253,10 @@ public class ProductController {
             productService.insertPdPoster(productDetailDTO);
 
             try {
-                file.transferTo(new File(filePath + "\\" + changeName + ext));
+                file.transferTo(new File(filePath + mkdir.separator + changeName + ext));
             } catch (IOException e){
                 e.printStackTrace();
-                new File(filePath + "\\" + changeName + ext).delete();
+                new File(filePath + mkdir.separator + changeName + ext).delete();
             }
             } else {
             productService.insertPdPoster(productDetailDTO);
@@ -323,11 +323,11 @@ public class ProductController {
 
             log.info("여기까지 왔니2");
             try {
-                file.transferTo(new File(filePath + "\\" + changeName + ext));
+                file.transferTo(new File(filePath + mkdir.separator + changeName + ext));
             } catch (IOException e) {
 
                 e.printStackTrace();
-                new File(filePath + "\\" + changeName + ext).delete();
+                new File(filePath + mkdir.separator + changeName + ext).delete();
             }
         }
         log.info("여기까지 왔니3");
