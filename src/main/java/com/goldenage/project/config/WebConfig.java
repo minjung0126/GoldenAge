@@ -18,8 +18,7 @@ public class WebConfig implements WebMvcConfigurer {
                 .addResourceLocations("classpath:/templates/", "classpath:/static/");
 
         registry.addResourceHandler("/images/**")
-                .addResourceLocations("file:///home/ubuntu/apps/goldenage/src/main/resources/static/",
-                                        "file:///home/ubuntu/apps/goldenage/src/main/resources/templates/");
+                .addResourceLocations("file:///home/ubuntu/apps/goldenage/src/main/resources/static/images/");
 
         registry.addResourceHandler("/upload/**")
                 .addResourceLocations("file:///home/ubuntu/apps/goldenage/build/libs/upload/");
