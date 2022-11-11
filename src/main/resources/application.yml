@@ -45,7 +45,7 @@ web:
   resources:
     static-locations: classpath:/upload/
     image:
-      image-dir: src/main/resources
+      image-dir: src/main/resources/
     devtools:
       livereload:
         enabled: true

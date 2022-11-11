@@ -408,7 +408,7 @@ public class MarketingController {
 
         String root = ResourceUtils.getURL("upload").getPath();
 
-        String filePath = root + "/marketing/poster";
+        String filePath = root + "marketing/poster";
 
 
         log.info("루트ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ" + filePath);
