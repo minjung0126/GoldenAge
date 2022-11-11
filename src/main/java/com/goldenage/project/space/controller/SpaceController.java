@@ -156,10 +156,22 @@ public class SpaceController {
         return "redirect:/space/spaceList";
     }
 
-//    @GetMapping("/theater")
-//    public ModelAndView theaher(ModelAndView){
-//
-//        return "space/theater";
-//    }
+    @GetMapping("/theater")
+    public ModelAndView theaher(ModelAndView mv,HttpServletRequest request){
+
+//        int num = Integer.parseInt(request.getParameter("spaceNum"));
+//        log.info("num : " + num);
+
+        int spaceNum = 138;
+
+        List<SpaceDTO> spaceList = spaceService.selectSpaceListView();
+        List<SpacePhoDTO> phoList = spaceService.selectPho(spaceNum);
+
+        mv.addObject("spaceList", spaceList);
+        mv.addObject("spacePhoList", phoList);
+        mv.setViewName("space/theater");
+
+        return mv;
+    }
 }
 

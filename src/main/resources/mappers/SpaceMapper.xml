@@ -84,4 +84,18 @@
           FROM SPACE
          WHERE SPACE_NUM = #{ spaceNum }
     </delete>
+
+    <select id="selectSpaceListView" resultMap="spaceResultMap">
+        SELECT
+               SPACE_NAME
+             , SPACE_NUM
+          FROM SPACE
+    </select>
+
+    <select id="selectPho" resultMap="spacePhoResultMap">
+        SELECT
+                *
+          FROM SPACE_FILE
+         WHERE SPACE_NUM = #{ spaceNum }
+    </select>
 </mapper>
