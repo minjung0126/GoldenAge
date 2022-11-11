@@ -221,7 +221,7 @@
     <div class="d-flex justify-content-center flex-wrap align-content-center" style="width:200px; height: 265px; border-radius: 5px;">
       <label class="input-file-button-regist" for="input-file-regist" style="margin-bottom: 0;">
         <!--                        <i class="fa fa-file-image-o fa-5x" aria-hidden="true" style="cursor: pointer; color: #ccc;"></i>-->
-        <img id="View" class="rounded" src="#" th:src="'/images/product/poster/' + ${ productDetailDTO.detail_file_name }" width="200px" height="265px">
+        <img id="View" class="rounded" src="#" th:src="'/upload/product/poster/' + ${ productDetailDTO.detail_file_name }" width="200px" height="265px">
         <input type="hidden" name="detail_file_num" th:value="${productDetailDTO.detail_file_num}">
         <input type="hidden" name="pd_num" th:value="${productDetailDTO.pd_num}">
       </label>
