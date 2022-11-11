@@ -82,7 +82,7 @@ public class MarketingController {
 
         String root = ResourceUtils.getURL("upload").getPath();
 
-        String filePath = root + "/marketing";
+        String filePath = root + "marketing";
 
         log.info("루트ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ" + filePath);
 
