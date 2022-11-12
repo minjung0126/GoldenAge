@@ -380,7 +380,9 @@ public class MarketingController {
     }
 
     @GetMapping("/detail/delete")
-    public String marketingDelete(@ModelAttribute MarketingDTO marketing, @RequestParam(value = "mkNum", required = false) String mkNum, @RequestParam(value="file", required = false) MultipartFile file, RedirectAttributes rttr) throws Exception{
+    public String marketingDelete(@RequestParam(value = "mkNum", required = false) String mkNum, @RequestParam(value="file", required = false) MultipartFile file, RedirectAttributes rttr) throws Exception{
+
+        MarketingDTO marketing = marketingService.selectOneMarketing(mkNum);
 
         log.info("marketing : " + marketing);
 //        int result = marketingService.deleteMkInfo(mkNum);
