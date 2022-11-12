@@ -75,4 +75,10 @@ public interface MarketingService {
 
     @Transactional
     int deleteMkItem(int itemFileNum) throws MkException;
+
+    List<MkPosterDTO> selectPosterMkNum(String mkNum);
+
+    List<MkMdDTO> selectMdMkNum(String mkNum);
+
+    List<MkItemDTO> selectItemMkNum(String mkNum);
 }

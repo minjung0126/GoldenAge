@@ -273,4 +273,25 @@
         FROM MK_ITEM
         WHERE ITEM_FILE_NUM = #{ itemFileNum }
     </delete>
+
+    <select id="selectPosterMkNum" resultMap="mkPosterResultMap">
+        SELECT
+               *
+          FROM MK_POSTER
+         WHERE MK_NUM = #{ mkNum }
+    </select>
+
+    <select id="selectMdMkNum" resultMap="mkMdResultMap">
+        SELECT
+               *
+          FROM MK_MD
+         WHERE MK_NUM = #{ mkNum }
+    </select>
+
+    <select id="selectItemMkNum" resultMap="mkItemResultMap">
+        SELECT
+               *
+          FROM MK_ITEM
+         WHERE MK_NUM = #{ mkNum }
+    </select>
 </mapper>

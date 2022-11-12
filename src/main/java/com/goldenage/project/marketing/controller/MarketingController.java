@@ -83,7 +83,7 @@ public class MarketingController {
 
         String root = ResourceUtils.getURL("upload").getPath();
 
-        String filePath = root + "marketing";
+        String filePath = root + "/marketing";
 
         log.info("루트ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ" + filePath);
 
@@ -390,15 +390,67 @@ public class MarketingController {
 
         if(result > 0){
 
-            String root = ResourceUtils.getURL("upload").getPath();
+            // 메인 포스터 이미지 삭제
+            String rootMain = ResourceUtils.getURL("upload").getPath();
 
-            String filePath = root + "marketing";
+            String filePathMain = rootMain + "marketing";
 
-            File mkdir = new File(filePath + File.separator + marketing.getMkFileMain());
+            File mkdirMain = new File(filePathMain + File.separator + marketing.getMkFileMain());
 
-            if(mkdir.exists()) {
+            if(mkdirMain.exists()) {
 
-                mkdir.delete();
+                mkdirMain.delete();
+            }
+
+            // CAST 이미지 삭제
+            List<MkPosterDTO> mkPosterList = marketingService.selectPosterMkNum(mkNum);
+
+            String rootCast = ResourceUtils.getURL("upload").getPath();
+
+            String filePathCast = rootCast + "marketing/poster";
+
+            for(int i = 0; i < mkPosterList.size(); i++){
+
+                File mkdirCast = new File(filePathCast + File.separator + mkPosterList.get(i).getpFileName());
+
+                if(mkdirCast.exists()) {
+
+                    mkdirCast.delete();
+                }
+            }
+
+            // MD 이미지 삭제
+            List<MkMdDTO> mkMdList = marketingService.selectMdMkNum(mkNum);
+
+            String rootMd = ResourceUtils.getURL("upload").getPath();
+
+            String filePathMd = rootMd + "marketing/md";
+
+            for(int i = 0; i < mkMdList.size(); i++){
+
+                File mkdirMd = new File(filePathMd + File.separator + mkMdList.get(i).getMdFileName());
+
+                if(mkdirMd.exists()) {
+
+                    mkdirMd.delete();
+                }
+            }
+
+            // ITEM 이미지 삭제
+            List<MkItemDTO> mkItemList = marketingService.selectItemMkNum(mkNum);
+
+            String rootItem = ResourceUtils.getURL("upload").getPath();
+
+            String filePathItem = rootItem + "marketing/item";
+
+            for(int i = 0; i < mkItemList.size(); i++){
+
+                File mkdirItem = new File(filePathItem + File.separator + mkItemList.get(i).getItemFileName());
+
+                if(mkdirItem.exists()) {
+
+                    mkdirItem.delete();
+                }
             }
 
         }

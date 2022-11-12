@@ -57,4 +57,10 @@ public interface MarketingMapper {
     int deleteMkMd(int mdFileNum);
 
     int deleteMkItem(int itemFileNum);
+
+    List<MkPosterDTO> selectPosterMkNum(String mkNum);
+
+    List<MkMdDTO> selectMdMkNum(String mkNum);
+
+    List<MkItemDTO> selectItemMkNum(String mkNum);
 }
