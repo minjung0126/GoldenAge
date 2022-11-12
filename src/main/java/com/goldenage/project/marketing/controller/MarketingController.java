@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
@@ -379,9 +380,25 @@ public class MarketingController {
     }
 
     @GetMapping("/detail/delete")
-    public String marketingDelete(@RequestParam(value="mkNum", required = false) String mkNum, RedirectAttributes rttr) throws Exception{
+    public String marketingDelete(@ModelAttribute MarketingDTO marketing, @RequestParam(value = "mkNum", required = false) String mkNum, @RequestParam(value="file", required = false) MultipartFile file, RedirectAttributes rttr) throws Exception{
 
-        marketingService.deleteMkInfo(mkNum);
+        log.info("marketing : " + marketing);
+//        int result = marketingService.deleteMkInfo(mkNum);
+//
+//        if(result > 0){
+//
+//            String root = ResourceUtils.getURL("upload").getPath();
+//
+//            String filePath = root + "marketing";
+//
+//            File mkdir = new File(filePath + File.separator + marketing.getMkFileMain());
+//
+//            if(mkdir.exists()) {
+//
+//                mkdir.delete();
+//            }
+//
+//        }
 
         rttr.addFlashAttribute("message", "게시물이 삭제되었습니다.");
         rttr.addFlashAttribute("check", "success");
