@@ -385,22 +385,23 @@ public class MarketingController {
         MarketingDTO marketing = marketingService.selectOneMarketing(mkNum);
 
         log.info("marketing : " + marketing);
-//        int result = marketingService.deleteMkInfo(mkNum);
-//
-//        if(result > 0){
-//
-//            String root = ResourceUtils.getURL("upload").getPath();
-//
-//            String filePath = root + "marketing";
-//
-//            File mkdir = new File(filePath + File.separator + marketing.getMkFileMain());
-//
-//            if(mkdir.exists()) {
-//
-//                mkdir.delete();
-//            }
-//
-//        }
+
+        int result = marketingService.deleteMkInfo(mkNum);
+
+        if(result > 0){
+
+            String root = ResourceUtils.getURL("upload").getPath();
+
+            String filePath = root + "marketing";
+
+            File mkdir = new File(filePath + File.separator + marketing.getMkFileMain());
+
+            if(mkdir.exists()) {
+
+                mkdir.delete();
+            }
+
+        }
 
         rttr.addFlashAttribute("message", "게시물이 삭제되었습니다.");
         rttr.addFlashAttribute("check", "success");
