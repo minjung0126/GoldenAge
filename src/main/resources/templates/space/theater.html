@@ -49,7 +49,7 @@
                 공간 선택
               </a>
               <ul class="dropdown-menu dropdown-menu-dark" >
-                <li th:each="list : ${ spaceList }"><a class="dropdown-item" href="#" th:text="${ list.spaceName }"></a><input type="hidden" th:hidden="${ list.spaceNum }"></li>
+                <li th:each="list : ${ spaceList }"><a class="dropdown-item" id="selectSpace" href="#" th:text="${ list.spaceName }"></a><input type="hidden" id="sNumber" th:hidden="${ list.spaceNum }"></li>
               </ul>
             </li>
           </ul>
@@ -110,5 +110,21 @@
 <!— S: footer —>
 <div th:include="common/footer.html"></div>
 <!— E: footer —>
+<script>
+  $('#selectSpace').click(function(){
+
+    $.ajax({
+      url : "/space/theater",
+      type : "get",
+      data : {"spaceNum": $('#sNumber').val()},
+      success : function (data){
+        alert("spaceNum");
+      },
+      error : function (){
+        alert("땡");
+      }
+    });
+  });
+</script>
 </body>
 </html>

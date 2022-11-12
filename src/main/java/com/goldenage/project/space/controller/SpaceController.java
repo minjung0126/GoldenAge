@@ -82,9 +82,7 @@ public class SpaceController {
             mkdir.mkdirs();
         }
 
-        log.info("뭔데" + multiFiles.get(0).getOriginalFilename());
-        log.info("dmd?" + multiFiles.size());
-        if(multiFiles.size() > 0){
+        if(multiFiles.get(0).isEmpty() == false){
             Map<String,String> files = new HashMap<>();
             for(int i = 0; i < multiFiles.size(); i++) {
 
@@ -121,7 +119,7 @@ public class SpaceController {
                         new File(filePath + "/" + pho.get("spaceFileName")).delete();
                     }
                 }
-        }else if(multiFiles.size() == 0){
+        }else if(multiFiles.get(0).isEmpty() == true){
             Map<String,String> files = new HashMap<>();
 
             String spaceOriName = "";
@@ -158,14 +156,12 @@ public class SpaceController {
 
     //사용자 연습실 뷰 화면
     @GetMapping("/theater")
-    public ModelAndView theaher(ModelAndView mv,HttpServletRequest request){
-
-//        int num = Integer.parseInt(request.getParameter("spaceNum"));
-//        log.info("num : " + num);
-
-        int spaceNum = 139;
+    public ModelAndView theaher(ModelAndView mv){
 
         List<SpaceDTO> spaceList = spaceService.selectSpaceListView();
+
+        int spaceNum = spaceList.get(0).getSpaceNum();
+
         List<SpacePhoDTO> phoList = spaceService.selectPho(spaceNum);
         SpaceDTO spaceView = spaceService.selectSpaceView(spaceNum);
 
