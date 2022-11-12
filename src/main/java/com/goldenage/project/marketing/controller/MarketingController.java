@@ -405,6 +405,8 @@ public class MarketingController {
             // CAST 이미지 삭제
             List<MkPosterDTO> mkPosterList = marketingService.selectPosterMkNum(mkNum);
 
+            log.info("mkPosterList : " + mkPosterList);
+
             String rootCast = ResourceUtils.getURL("upload").getPath();
 
             String filePathCast = rootCast + "marketing/poster";
