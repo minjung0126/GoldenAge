@@ -384,6 +384,10 @@ public class MarketingController {
 
         MarketingDTO marketing = marketingService.selectOneMarketing(mkNum);
 
+        List<MkPosterDTO> mkPosterList = marketingService.selectPosterMkNum(mkNum);
+        List<MkMdDTO> mkMdList = marketingService.selectMdMkNum(mkNum);
+        List<MkItemDTO> mkItemList = marketingService.selectItemMkNum(mkNum);
+
         log.info("marketing : " + marketing);
 
         int result = marketingService.deleteMkInfo(mkNum);
@@ -403,10 +407,6 @@ public class MarketingController {
             }
 
             // CAST 이미지 삭제
-            List<MkPosterDTO> mkPosterList = marketingService.selectPosterMkNum(mkNum);
-
-            log.info("mkPosterList : " + mkPosterList);
-
             String rootCast = ResourceUtils.getURL("upload").getPath();
 
             String filePathCast = rootCast + "marketing/poster";
@@ -422,8 +422,6 @@ public class MarketingController {
             }
 
             // MD 이미지 삭제
-            List<MkMdDTO> mkMdList = marketingService.selectMdMkNum(mkNum);
-
             String rootMd = ResourceUtils.getURL("upload").getPath();
 
             String filePathMd = rootMd + "marketing/md";
@@ -439,8 +437,6 @@ public class MarketingController {
             }
 
             // ITEM 이미지 삭제
-            List<MkItemDTO> mkItemList = marketingService.selectItemMkNum(mkNum);
-
             String rootItem = ResourceUtils.getURL("upload").getPath();
 
             String filePathItem = rootItem + "marketing/item";
