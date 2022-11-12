@@ -600,7 +600,25 @@ public class MarketingController {
         int mkNum = mkPoster.getMkNum();
         int pFileNum = mkPoster.getpFileNum();
 
-        marketingService.deleteMkPoster(pFileNum);
+        MkPosterDTO poster = marketingService.selectPoster(String.valueOf(pFileNum));
+
+        log.info("poster : " + poster);
+
+        int result = marketingService.deleteMkPoster(pFileNum);
+
+        if(result > 0) {
+
+            String root = ResourceUtils.getURL("upload").getPath();
+
+            String filePath = root + "marketing/poster";
+
+            File mkdir = new File(filePath + File.separator + poster.getpFileName());
+
+            if(mkdir.exists()) {
+
+                mkdir.delete();
+            }
+        }
 
         rttr.addFlashAttribute("message", "삭제가 완료되었습니다.");
         rttr.addFlashAttribute("check", "success");
@@ -614,7 +632,25 @@ public class MarketingController {
         int mkNum = mkMd.getMkNum();
         int mdFileNum = mkMd.getMdFileNum();
 
-        marketingService.deleteMkMd(mdFileNum);
+        MkMdDTO md = marketingService.selectMd(String.valueOf(mdFileNum));
+
+        log.info("md : " + md);
+
+        int result = marketingService.deleteMkMd(mdFileNum);
+
+        if(result > 0) {
+
+            String root = ResourceUtils.getURL("upload").getPath();
+
+            String filePath = root + "marketing/md";
+
+            File mkdir = new File(filePath + File.separator + md.getMdFileName());
+
+            if(mkdir.exists()) {
+
+                mkdir.delete();
+            }
+        }
 
         rttr.addFlashAttribute("message", "삭제가 완료되었습니다.");
         rttr.addFlashAttribute("check", "success");
@@ -628,7 +664,25 @@ public class MarketingController {
         int mkNum = mkItem.getMkNum();
         int itemFileNum = mkItem.getItemFileNum();
 
-        marketingService.deleteMkItem(itemFileNum);
+        MkItemDTO item = marketingService.selectItem(String.valueOf(itemFileNum));
+
+        log.info("item : " + item);
+
+        int result = marketingService.deleteMkItem(itemFileNum);
+
+        if(result > 0) {
+
+            String root = ResourceUtils.getURL("upload").getPath();
+
+            String filePath = root + "marketing/item";
+
+            File mkdir = new File(filePath + File.separator + item.getItemFileName());
+
+            if(mkdir.exists()) {
+
+                mkdir.delete();
+            }
+        }
 
         rttr.addFlashAttribute("message", "삭제가 완료되었습니다.");
         rttr.addFlashAttribute("check", "success");
