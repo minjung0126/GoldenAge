@@ -339,10 +339,11 @@ public class MarketingController {
 
         String filePath = root + "/marketing";
 
-
         log.info("루트ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ" + filePath);
 
         File mkdir = new File(filePath);
+
+        // 폴더가 없을 경우 폴더 생성
         if(!mkdir.exists()) {
             mkdir.mkdirs();
         }
@@ -352,9 +353,21 @@ public class MarketingController {
         String changeName = "";
 
         marketing.setMkNum(Integer.parseInt(mkNum));
-        marketingService.updateMkInfoNoFile(marketing);
 
+        // 파일이 변경된 경우
         if(file.getSize() > 0) {
+
+            // 이전에 있던 파일 삭제
+            MarketingDTO mk = marketingService.selectOneMarketing(mkNum);
+
+            File fileDel = new File(filePath + File.separator + mk.getMkFileMain());
+
+            if(fileDel.exists()) {
+
+                fileDel.delete();
+            }
+
+            // 변경된 파일 새로 업로드
             originFileName = file.getOriginalFilename();
             ext = originFileName.substring(originFileName.lastIndexOf("."));
             changeName = UUID.randomUUID().toString().replace("-", "");
@@ -366,11 +379,16 @@ public class MarketingController {
 
             try {
                 file.transferTo(new File(filePath + mkdir.separator + changeName + ext));
+
             } catch (IOException e) {
 
                 e.printStackTrace();
                 new File(filePath + mkdir.separator + changeName + ext).delete();
             }
+        } else {
+
+            // 파일이 변경되지 않은 경우
+            marketingService.updateMkInfoNoFile(marketing);
         }
 
         rttr.addFlashAttribute("message", "게시물이 수정되었습니다.");
@@ -458,6 +476,7 @@ public class MarketingController {
 
         return "redirect:/marketing/list";
     }
+
     @GetMapping("/detail/modify/cast")
     public ModelAndView marketingDetailModifyCast(ModelAndView mv, @RequestParam(value = "pFileNum", required = false) String pFileNum,HttpServletRequest request){
 
