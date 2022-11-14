@@ -112,8 +112,6 @@ public class EmailController {
         if(adminDTO != null){
 
             String dbAuthNum = adminDTO.getAuthNum();
-//            String dbId = adminDTO.getAdminId();
-//            String dbEmail = adminDTO.getAdminEmail();
 
             if(authNum.equals(dbAuthNum)){
 

@@ -4,6 +4,7 @@ import java.util.Random;
 
 public class AuthKey {
 
+    //인증번호 랜덤 생성
     public String makeAuthKey(){
 
         Random ran = new Random();
