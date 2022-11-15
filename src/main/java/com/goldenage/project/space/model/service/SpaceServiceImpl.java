@@ -4,6 +4,7 @@ import com.goldenage.project.exception.space.SpaceDeleteException;
 import com.goldenage.project.exception.space.SpaceInsertException;
 import com.goldenage.project.space.model.dao.SpaceMapper;
 import com.goldenage.project.space.model.dto.SpaceDTO;
+import com.goldenage.project.space.model.dto.SpacePhoDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,9 +57,7 @@ public class SpaceServiceImpl implements SpaceService{
     @Transactional
     public int insertSpacePho(Map<String, String> files) {
 
-        int result = 0;
-
-        result = spaceMapper.insertSpacePhoto(files);
+        int result = spaceMapper.insertSpacePhoto(files);
 
         return result;
     }
@@ -80,12 +79,40 @@ public class SpaceServiceImpl implements SpaceService{
         return result;
     }
 
+    //연습실 추가시 연습실 번호찾기
     @Override
     public int selectNum() {
 
         int selectNum = spaceMapper.selectNum();
 
         return selectNum;
+    }
+
+    //사용자 연습실 리스트 탭
+    @Override
+    public List<SpaceDTO> selectSpaceListView() {
+
+        List<SpaceDTO> spaceList = spaceMapper.selectSpaceListView();
+
+        return spaceList;
+    }
+
+    //사용자 연습실뷰 사진리스트
+    @Override
+    public List<SpacePhoDTO> selectPho(int spaceNum) {
+
+        List<SpacePhoDTO> phoList = spaceMapper.selectPho(spaceNum);
+
+        return phoList;
+    }
+
+    //연슶실 내용정보
+    @Override
+    public SpaceDTO selectSpaceView(int spaceNum) {
+
+        SpaceDTO spaceView = spaceMapper.selectSpaceView(spaceNum);
+
+        return spaceView;
     }
 }
 

@@ -11,12 +11,11 @@ public class SpaceDTO {
     private String spaceWidth; //연습실 크기
     private String spaceTime; //영업시간
     private String spaceLink; //연습실예약사이트
-    private List<SpacePhoDTO> photo; //연습실사진
 
     public SpaceDTO() {
     }
 
-    public SpaceDTO(int spaceNum, String spaceName, String spaceAdd, String spaceContent, String spaceWidth, String spaceTime, String spaceLink, List<SpacePhoDTO> photo) {
+    public SpaceDTO(int spaceNum, String spaceName, String spaceAdd, String spaceContent, String spaceWidth, String spaceTime, String spaceLink) {
         this.spaceNum = spaceNum;
         this.spaceName = spaceName;
         this.spaceAdd = spaceAdd;
@@ -24,7 +23,6 @@ public class SpaceDTO {
         this.spaceWidth = spaceWidth;
         this.spaceTime = spaceTime;
         this.spaceLink = spaceLink;
-        this.photo = photo;
     }
 
     public int getSpaceNum() {
@@ -83,14 +81,6 @@ public class SpaceDTO {
         this.spaceLink = spaceLink;
     }
 
-    public List<SpacePhoDTO> getPhoto() {
-        return photo;
-    }
-
-    public void setPhoto(List<SpacePhoDTO> photo) {
-        this.photo = photo;
-    }
-
     @Override
     public String toString() {
         return "SpaceDTO{" +
@@ -101,7 +91,6 @@ public class SpaceDTO {
                 ", spaceWidth='" + spaceWidth + '\'' +
                 ", spaceTime='" + spaceTime + '\'' +
                 ", spaceLink='" + spaceLink + '\'' +
-                ", photo=" + photo +
                 '}';
     }
 }

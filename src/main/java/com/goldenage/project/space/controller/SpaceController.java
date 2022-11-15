@@ -59,7 +59,7 @@ public class SpaceController {
     //관리자 연습실 추가하기
     @PostMapping("/spaceInsert")
     public String insertSpace(@ModelAttribute SpaceDTO space
-            , @RequestParam(value="multiFiles") List<MultipartFile> multiFiles
+            , @RequestParam(value="multiFiles", required = false) List<MultipartFile> multiFiles
             , RedirectAttributes rttr) throws Exception {
 
         SpacePhoDTO spacePho = new SpacePhoDTO();
@@ -82,9 +82,7 @@ public class SpaceController {
             mkdir.mkdirs();
         }
 
-
-
-        if(multiFiles.size() > 0){
+        if(multiFiles.get(0).isEmpty() == false){
             Map<String,String> files = new HashMap<>();
             for(int i = 0; i < multiFiles.size(); i++) {
 
@@ -96,13 +94,13 @@ public class SpaceController {
                 spaceOriName = multiFiles.get(i).getOriginalFilename();
                 ext = spaceOriName.substring(spaceOriName.lastIndexOf("."));
                 spaceFileName = UUID.randomUUID().toString().replace("-", "") + ext;
+
                 spaceNum = space.getSpaceNum();
 
                 files.put("spaceOriName", spaceOriName);
                 files.put("spaceFileName", spaceFileName);
                 files.put("spaceNum", String.valueOf(spaceNum));
 
-                log.info("넌 왜 그러니 ");
                 spaceService.insertSpacePho(files);
             }
 
@@ -121,13 +119,20 @@ public class SpaceController {
                         new File(filePath + "/" + pho.get("spaceFileName")).delete();
                     }
                 }
-        }else if(multiFiles.size() == 0){
+        }else if(multiFiles.get(0).isEmpty() == true){
+            Map<String,String> files = new HashMap<>();
 
-            spacePho.setSpaceFileName(null);
-            spacePho.setSpaceOriName(null);
-            spacePho.setSpaceNum(space.getSpaceNum());
+            String spaceOriName = "";
+            String spaceFileName = "";
+            int spaceNum = 0;
 
-            spaceService.insertSpacePho((Map<String, String>) spacePho);
+            spaceNum = space.getSpaceNum();
+
+            files.put("spaceOriName", spaceOriName);
+            files.put("spaceFileName", spaceFileName);
+            files.put("spaceNum", String.valueOf(spaceNum));
+
+            spaceService.insertSpacePho(files);
 
         }
         rttr.addFlashAttribute("message", "연습실 등록 성공!");
@@ -149,12 +154,55 @@ public class SpaceController {
         return "redirect:/space/spaceList";
     }
 
-//    @GetMapping("/theater")
-//    public ModelAndView theaher(ModelAndView mv){
-//
-//
-//
-//        return "space/theater";
-//    }
+    //사용자 연습실 뷰 화면
+    @GetMapping("/theater")
+    public ModelAndView theaher(ModelAndView mv){
+
+        List<SpaceDTO> spaceList = spaceService.selectSpaceListView();
+
+        int spaceNum = spaceList.get(0).getSpaceNum();
+
+        List<SpacePhoDTO> phoList = spaceService.selectPho(spaceNum);
+        SpaceDTO spaceView = spaceService.selectSpaceView(spaceNum);
+
+        mv.addObject("spaceList", spaceList);
+        mv.addObject("spacePhoList", phoList);
+        mv.addObject("spaceView", spaceView);
+        mv.setViewName("space/theater");
+
+        return mv;
+    }
+
+    @GetMapping("/theater/number")
+    public ModelAndView theaherNum(ModelAndView mv, HttpServletRequest request){
+
+        List<SpaceDTO> spaceList = spaceService.selectSpaceListView();
+
+        int spaceNum = Integer.parseInt(request.getParameter("spaceNum"));
+
+        log.info(spaceNum + "뭘가여");
+
+        List<SpacePhoDTO> phoList = spaceService.selectPho(spaceNum);
+        SpaceDTO spaceView = spaceService.selectSpaceView(spaceNum);
+
+        mv.addObject("spaceList", spaceList);
+        mv.addObject("spacePhoList", phoList);
+        mv.addObject("spaceView", spaceView);
+        mv.setViewName("space/theater");
+
+        return mv;
+    }
+
+    //관리자 연습실 수정하기
+    @GetMapping("/spaceUpdate")
+    public ModelAndView spaceUpDate(ModelAndView mv, HttpServletRequest request){
+
+        int num = Integer.parseInt(request.getParameter("spaceNum"));
+        log.info("num : " + num);
+
+        mv.setViewName("space/spaceUpdate");
+
+        return mv;
+    }
 }
 

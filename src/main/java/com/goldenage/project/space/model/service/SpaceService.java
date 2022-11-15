@@ -28,4 +28,11 @@ public interface SpaceService {
     int deleteSpace(int spaceNum) throws NoticeDeleteException, SpaceDeleteException;
 
     int selectNum();
+
+    List<SpaceDTO> selectSpaceListView();
+
+    List<SpacePhoDTO> selectPho(int spaceNum);
+
+    //연슶실 내용정보
+    SpaceDTO selectSpaceView(int spaceNum);
 }
