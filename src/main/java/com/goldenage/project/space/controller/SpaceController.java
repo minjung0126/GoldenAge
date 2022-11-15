@@ -238,7 +238,11 @@ public class SpaceController {
         mv.setViewName("/space/spacePhoUpdate");
 
         return mv;
-
     }
+
+//    @PostMapping("/space/pho/delete")
+//    public String spacePhoDelete(){
+//
+//    }
 }
 

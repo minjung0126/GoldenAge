@@ -354,10 +354,10 @@ public class MarketingController {
 
         marketing.setMkNum(Integer.parseInt(mkNum));
 
-        // 파일이 변경된 경우
+        // 1. 파일이 변경된 경우
         if(file.getSize() > 0) {
 
-            // 이전에 있던 파일 삭제
+            // 1-1. 이전에 있던 파일 삭제
             MarketingDTO mk = marketingService.selectOneMarketing(mkNum);
 
             File fileDel = new File(filePath + File.separator + mk.getMkFileMain());
@@ -367,7 +367,7 @@ public class MarketingController {
                 fileDel.delete();
             }
 
-            // 변경된 파일 새로 업로드
+            // 1-2. 변경된 파일 새로 업로드
             originFileName = file.getOriginalFilename();
             ext = originFileName.substring(originFileName.lastIndexOf("."));
             changeName = UUID.randomUUID().toString().replace("-", "");
@@ -387,7 +387,7 @@ public class MarketingController {
             }
         } else {
 
-            // 파일이 변경되지 않은 경우
+            // 2. 파일이 변경되지 않은 경우
             marketingService.updateMkInfoNoFile(marketing);
         }
 
@@ -499,10 +499,11 @@ public class MarketingController {
 
         String filePath = root + "marketing/poster";
 
-
         log.info("루트ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ" + filePath);
 
         File mkdir = new File(filePath);
+
+        // 폴더가 없을 경우 폴더 생성
         if(!mkdir.exists()) {
             mkdir.mkdirs();
         }
@@ -512,9 +513,21 @@ public class MarketingController {
         String changeName = "";
 
         mkPoster.setpFileNum(Integer.parseInt(pFileNum));
-        marketingService.updateMkPosterNoFile(mkPoster);
 
+        // 1. 파일이 변경된 경우
         if(file.getSize() > 0) {
+
+            // 1-1. 이전에 있던 파일 삭제
+            MkPosterDTO poster = marketingService.selectPoster(pFileNum);
+
+            File fileDel = new File(filePath + File.separator + poster.getpFileName());
+
+            if(fileDel.exists()) {
+
+                fileDel.delete();
+            }
+
+            // 1-2. 변경된 파일 새로 업로드
             originFileName = file.getOriginalFilename();
             ext = originFileName.substring(originFileName.lastIndexOf("."));
             changeName = UUID.randomUUID().toString().replace("-", "");
@@ -531,6 +544,11 @@ public class MarketingController {
                 e.printStackTrace();
                 new File(filePath + mkdir.separator + changeName + ext).delete();
             }
+
+        } else{
+
+            // 2. 파일이 변경되지 않은 경우
+            marketingService.updateMkPosterNoFile(mkPoster);
         }
 
         rttr.addFlashAttribute("message", "수정이 완료되었습니다.");
@@ -561,9 +579,9 @@ public class MarketingController {
 
         String filePath = root + "marketing/md";
 
-
         log.info("루트ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ" + filePath);
 
+        // 폴더가 없을 경우 폴더 생성
         File mkdir = new File(filePath);
         if(!mkdir.exists()) {
             mkdir.mkdirs();
@@ -574,9 +592,21 @@ public class MarketingController {
         String changeName = "";
 
         mkMd.setMdFileNum(Integer.parseInt(mdFileNum));
-        marketingService.updateMkMdNoFile(mkMd);
 
+        // 1. 파일이 변경된 경우
         if(file.getSize() > 0) {
+
+            // 1-1. 이전에 있던 파일 삭제
+            MkMdDTO md = marketingService.selectMd(mdFileNum);
+
+            File fileDel = new File(filePath + File.separator + md.getMdFileName());
+
+            if(fileDel.exists()) {
+
+                fileDel.delete();
+            }
+
+            // 1-2. 변경된 파일 새로 업로드
             originFileName = file.getOriginalFilename();
             ext = originFileName.substring(originFileName.lastIndexOf("."));
             changeName = UUID.randomUUID().toString().replace("-", "");
@@ -593,6 +623,11 @@ public class MarketingController {
                 e.printStackTrace();
                 new File(filePath + mkdir.separator + changeName + ext).delete();
             }
+
+        } else{
+
+            // 2. 파일이 변경되지 않은 경우
+            marketingService.updateMkMdNoFile(mkMd);
         }
 
         rttr.addFlashAttribute("message", "수정이 완료되었습니다.");
@@ -623,9 +658,9 @@ public class MarketingController {
 
         String filePath = root + "marketing/item";
 
-
         log.info("루트ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ" + filePath);
 
+        // 폴더가 없을 경우 폴더 생성
         File mkdir = new File(filePath);
         if(!mkdir.exists()) {
             mkdir.mkdirs();
@@ -636,9 +671,21 @@ public class MarketingController {
         String changeName = "";
 
         mkItem.setItemFileNum(Integer.parseInt(itemFileNum));
-        marketingService.updateMkItemNoFile(mkItem);
 
+        // 1. 파일이 변경된 경우
         if(file.getSize() > 0) {
+
+            // 1-1. 이전에 있던 파일 삭제
+            MkItemDTO item = marketingService.selectItem(itemFileNum);
+
+            File fileDel = new File(filePath + File.separator + item.getItemFileName());
+
+            if(fileDel.exists()){
+
+                fileDel.delete();
+            }
+
+            // 1-2. 변경된 파일 새로 업로드
             originFileName = file.getOriginalFilename();
             ext = originFileName.substring(originFileName.lastIndexOf("."));
             changeName = UUID.randomUUID().toString().replace("-", "");
@@ -655,6 +702,11 @@ public class MarketingController {
                 e.printStackTrace();
                 new File(filePath + mkdir.separator + changeName + ext).delete();
             }
+
+        } else {
+
+            // 2. 파일이 변경되지 않은 경우
+            marketingService.updateMkItemNoFile(mkItem);
         }
 
         rttr.addFlashAttribute("message", "수정이 완료되었습니다.");
