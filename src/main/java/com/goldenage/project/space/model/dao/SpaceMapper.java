@@ -26,4 +26,10 @@ public interface SpaceMapper {
     List<SpacePhoDTO> selectPho(int spaceNum);
 
     SpaceDTO selectSpaceView(int spaceNum);
+
+    SpaceDTO selectSpaceIntro(int spaceNum);
+
+    int updateSpace(SpaceDTO space);
+
+    List<SpacePhoDTO> selectSpacePho(int spaceNum);
 }

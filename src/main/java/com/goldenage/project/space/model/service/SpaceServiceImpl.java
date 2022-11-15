@@ -114,5 +114,33 @@ public class SpaceServiceImpl implements SpaceService{
 
         return spaceView;
     }
+
+    //연습실 내용 수정
+    @Override
+    public SpaceDTO selectSpaceIntro(int spaceNum) {
+
+        SpaceDTO spaceIntro = spaceMapper.selectSpaceIntro(spaceNum);
+
+        return spaceIntro;
+    }
+
+    //연습실 내용 수정
+    @Override
+    @Transactional
+    public int updateSpace(SpaceDTO space) {
+
+        int result = spaceMapper.updateSpace(space);
+
+        return result;
+    }
+
+    @Override
+    public List<SpacePhoDTO> selectSpacePho(int spaceNum) {
+
+        List<SpacePhoDTO> selectSpacePho = spaceMapper.selectSpacePho(spaceNum);
+
+        return selectSpacePho;
+
+    }
 }
 
