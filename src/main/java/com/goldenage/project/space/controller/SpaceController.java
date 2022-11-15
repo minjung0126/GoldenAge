@@ -241,16 +241,18 @@ public class SpaceController {
     }
 
     @GetMapping("/space/pho/delete")
-    public String spacePhoDelete(@ModelAttribute SpacePhoDTO spacePho,@RequestParam(value="spaceFileNum", required = false) int spaceFileNum){
-
-        int spaceNum = spacePho.getSpaceNum();
+    public String spacePhoDelete(@ModelAttribute SpacePhoDTO spacePho,
+                                 @RequestParam(value="spaceFileNum", required = false) int spaceFileNum,
+                                 @RequestParam(value="spaceNum", required = false) int spaceNum){
 
         log.info("파일넘버 " + spaceFileNum);
         log.info("연습실넘버 " + spaceNum);
 //
 //        int result = spaceService.deleteSpacePho(spaceFileNum);
 
-        return "redirect:/space/spacePhoUpdate?spaceNum=" + spaceNum;
+//        return "redirect:/space/spacePhoUpdate?spaceNum=" + spaceNum;
+
+        return "/space/spaceList";
     }
 }
 

@@ -68,7 +68,6 @@
             <br>
             <div class="row">
                 <div class="col-lg-2 col-md-3" th:each="spacePho: ${ spacePhoList }">
-                    <form method="get" id="form_delete" action="/space/pho/delete">
                     <div class="blog-card">
                         <input type="hidden" th:value="${ spacePho.spaceFileNum }" name="spaceFileNum" id="spaceFileNum" class="spaceFileNum">
                         <input type="hidden" th:value="${ spacePho.spaceNum }" name="spaceNum" id="spaceNum" class="spaceNum">
@@ -77,7 +76,6 @@
                     <div class="mt-4 mb-2 d-flex justify-content-center">
                         <button class="btn btn-light ms-2" id="btnDelete" type="button">삭제</button>
                     </div>
-                    </form>
                 </div>
                 <div class="col-lg-2 col-md-3">
                     <div class="border d-flex justify-content-center flex-wrap align-content-center blog-card" style="border-radius: 5px;">
@@ -91,7 +89,6 @@
                         <button class="btn btn-light ms-2" id="btnInsert" type="button">추가</button>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
@@ -105,7 +102,7 @@
             let msg2 = confirm('해당 항목을 삭제합니다.');
             if(msg2 == true){
 
-                $("#form_delete").submit();
+                $(".form_delete").submit();
             }
         } else{
             return false;
