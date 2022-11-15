@@ -170,7 +170,7 @@ public class SpaceController {
         mv.addObject("spaceList", spaceList);
         mv.addObject("spacePhoList", phoList);
         mv.addObject("spaceView", spaceView);
-        mv.setViewName("space/theater");
+        mv.setViewName("/space/theater");
 
         return mv;
     }
@@ -240,9 +240,18 @@ public class SpaceController {
         return mv;
     }
 
-//    @PostMapping("/space/pho/delete")
-//    public String spacePhoDelete(){
+    @GetMapping("/space/pho/delete")
+    public String spacePhoDelete(@ModelAttribute SpacePhoDTO spacePho){
+
+        int spaceFileNum = spacePho.getSpaceFileNum();
+        int spaceNum = spacePho.getSpaceNum();
+
+        log.info("파일넘버 " + spaceFileNum);
+        log.info("연습실넘버 " + spaceNum);
 //
-//    }
+//        int result = spaceService.deleteSpacePho(spaceFileNum);
+
+        return "redirect:/space/spacePhoUpdate?spaceNum=" + spaceNum;
+    }
 }
 
