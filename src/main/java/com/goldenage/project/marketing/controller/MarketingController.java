@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
@@ -80,9 +81,9 @@ public class MarketingController {
         System.out.println("테스트용 : " + marketing);
         System.out.println("사진 테스트 : " + file);
 
-        String root = ResourceUtils.getURL("src/main/resources").getPath();
+        String root = ResourceUtils.getURL("upload").getPath();
 
-        String filePath = root + "static/images/marketing";
+        String filePath = root + "/marketing";
 
         log.info("루트ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ" + filePath);
 
@@ -111,10 +112,11 @@ public class MarketingController {
 
 
             try {
-                file.transferTo(new File(filePath + "\\" + changeName + ext));
+
+                file.transferTo(new File(filePath + mkdir.separator + changeName + ext));
             } catch (IOException e) {
                 e.printStackTrace();
-                new File(filePath + "\\" + changeName + ext).delete();
+                new File(filePath + mkdir.separator + changeName + ext).delete();
             }
         } else {
             marketingService.insertMkInfo(marketing);
@@ -142,9 +144,9 @@ public class MarketingController {
         System.out.println("테스트용 : " + mkPoster);
         System.out.println("사진 테스트 : " + file);
 
-        String root = ResourceUtils.getURL("src/main/resources").getPath();
+        String root = ResourceUtils.getURL("upload").getPath();
 
-        String filePath = root + "static/images/marketing/poster";
+        String filePath = root + "marketing/poster";
 
         log.info("루트ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ" + filePath);
 
@@ -171,10 +173,10 @@ public class MarketingController {
             marketingService.insertMkPoster(mkPoster);
 
             try {
-                file.transferTo(new File(filePath + "\\" + changeName + ext));
+                file.transferTo(new File(filePath + mkdir.separator + changeName + ext));
             } catch (IOException e) {
                 e.printStackTrace();
-                new File(filePath + "\\" + changeName + ext).delete();
+                new File(filePath + mkdir.separator + changeName + ext).delete();
             }
         } else {
             marketingService.insertMkPoster(mkPoster);
@@ -183,7 +185,7 @@ public class MarketingController {
         rttr.addFlashAttribute("message", "등록이 완료되었습니다.");
         rttr.addFlashAttribute("check", "success");
 
-        return "redirect:marketing/detail/modify?mkNum=" + mkNum;
+        return "redirect:/marketing/detail/modify?mkNum=" + mkNum;
     }
 
     @GetMapping("/detail/new/md")
@@ -202,9 +204,9 @@ public class MarketingController {
         System.out.println("테스트용 : " + mkMd);
         System.out.println("사진 테스트 : " + file);
 
-        String root = ResourceUtils.getURL("src/main/resources").getPath();
+        String root = ResourceUtils.getURL("upload").getPath();
 
-        String filePath = root + "static/images/marketing/md";
+        String filePath = root + "marketing/md";
 
         log.info("루트ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ" + filePath);
 
@@ -233,10 +235,10 @@ public class MarketingController {
 
 
             try {
-                file.transferTo(new File(filePath + "\\" + changeName + ext));
+                file.transferTo(new File(filePath + mkdir.separator + changeName + ext));
             } catch (IOException e) {
                 e.printStackTrace();
-                new File(filePath + "\\" + changeName + ext).delete();
+                new File(filePath + mkdir.separator + changeName + ext).delete();
             }
         } else {
             marketingService.insertMkMd(mkMd);
@@ -245,7 +247,7 @@ public class MarketingController {
         rttr.addFlashAttribute("message", "등록이 완료되었습니다.");
         rttr.addFlashAttribute("check", "success");
 
-        return "redirect:marketing/detail/modify?mkNum=" + mkNum;
+        return "redirect:/marketing/detail/modify?mkNum=" + mkNum;
     }
 
     @GetMapping("/detail/new/item")
@@ -264,9 +266,9 @@ public class MarketingController {
         System.out.println("테스트용 : " + mkItem);
         System.out.println("사진 테스트 : " + file);
 
-        String root = ResourceUtils.getURL("src/main/resources").getPath();
+        String root = ResourceUtils.getURL("upload").getPath();
 
-        String filePath = root + "static/images/marketing/item";
+        String filePath = root + "marketing/item";
 
         log.info("루트ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ" + filePath);
 
@@ -294,10 +296,10 @@ public class MarketingController {
             marketingService.insertMkItem(mkItem);
 
             try {
-                file.transferTo(new File(filePath + "\\" + changeName + ext));
+                file.transferTo(new File(filePath + mkdir.separator + changeName + ext));
             } catch (IOException e) {
                 e.printStackTrace();
-                new File(filePath + "\\" + changeName + ext).delete();
+                new File(filePath + mkdir.separator + changeName + ext).delete();
             }
         } else {
             marketingService.insertMkItem(mkItem);
@@ -306,7 +308,7 @@ public class MarketingController {
         rttr.addFlashAttribute("message", "등록이 완료되었습니다.");
         rttr.addFlashAttribute("check", "success");
 
-        return "redirect:marketing/detail/modify?mkNum=" + mkNum;
+        return "redirect:/marketing/detail/modify?mkNum=" + mkNum;
     }
 
     @GetMapping("/detail/modify")
@@ -333,14 +335,15 @@ public class MarketingController {
         log.info("아이템넘버 : " + mkNum);
         log.info("MarketingDTO file : " + file);
 
-        String root = ResourceUtils.getURL("src/main/resources").getPath();
+        String root = ResourceUtils.getURL("upload").getPath();
 
-        String filePath = root + "static/images/marketing";
-
+        String filePath = root + "/marketing";
 
         log.info("루트ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ" + filePath);
 
         File mkdir = new File(filePath);
+
+        // 폴더가 없을 경우 폴더 생성
         if(!mkdir.exists()) {
             mkdir.mkdirs();
         }
@@ -350,9 +353,21 @@ public class MarketingController {
         String changeName = "";
 
         marketing.setMkNum(Integer.parseInt(mkNum));
-        marketingService.updateMkInfoNoFile(marketing);
 
+        // 1. 파일이 변경된 경우
         if(file.getSize() > 0) {
+
+            // 1-1. 이전에 있던 파일 삭제
+            MarketingDTO mk = marketingService.selectOneMarketing(mkNum);
+
+            File fileDel = new File(filePath + File.separator + mk.getMkFileMain());
+
+            if(fileDel.exists()) {
+
+                fileDel.delete();
+            }
+
+            // 1-2. 변경된 파일 새로 업로드
             originFileName = file.getOriginalFilename();
             ext = originFileName.substring(originFileName.lastIndexOf("."));
             changeName = UUID.randomUUID().toString().replace("-", "");
@@ -363,30 +378,105 @@ public class MarketingController {
             marketingService.updateMkInfo(marketing);
 
             try {
-                file.transferTo(new File(filePath + "\\" + changeName + ext));
+                file.transferTo(new File(filePath + mkdir.separator + changeName + ext));
+
             } catch (IOException e) {
 
                 e.printStackTrace();
-                new File(filePath + "\\" + changeName + ext).delete();
+                new File(filePath + mkdir.separator + changeName + ext).delete();
             }
+        } else {
+
+            // 2. 파일이 변경되지 않은 경우
+            marketingService.updateMkInfoNoFile(marketing);
         }
 
         rttr.addFlashAttribute("message", "게시물이 수정되었습니다.");
         rttr.addFlashAttribute("check", "success");
 
-        return "redirect:marketing/list";
+        return "redirect:/marketing/list";
     }
 
     @GetMapping("/detail/delete")
-    public String marketingDelete(@RequestParam(value="mkNum", required = false) String mkNum, RedirectAttributes rttr) throws Exception{
+    public String marketingDelete(@RequestParam(value = "mkNum", required = false) String mkNum, @RequestParam(value="file", required = false) MultipartFile file, RedirectAttributes rttr) throws Exception{
 
-        marketingService.deleteMkInfo(mkNum);
+        MarketingDTO marketing = marketingService.selectOneMarketing(mkNum);
+
+        List<MkPosterDTO> mkPosterList = marketingService.selectPosterMkNum(mkNum);
+        List<MkMdDTO> mkMdList = marketingService.selectMdMkNum(mkNum);
+        List<MkItemDTO> mkItemList = marketingService.selectItemMkNum(mkNum);
+
+        log.info("marketing : " + marketing);
+
+        int result = marketingService.deleteMkInfo(mkNum);
+
+        if(result > 0){
+
+            // 메인 포스터 이미지 삭제
+            String rootMain = ResourceUtils.getURL("upload").getPath();
+
+            String filePathMain = rootMain + "marketing";
+
+            File mkdirMain = new File(filePathMain + File.separator + marketing.getMkFileMain());
+
+            if(mkdirMain.exists()) {
+
+                mkdirMain.delete();
+            }
+
+            // CAST 이미지 삭제
+            String rootCast = ResourceUtils.getURL("upload").getPath();
+
+            String filePathCast = rootCast + "marketing/poster";
+
+            for(int i = 0; i < mkPosterList.size(); i++){
+
+                File mkdirCast = new File(filePathCast + File.separator + mkPosterList.get(i).getpFileName());
+
+                if(mkdirCast.exists()) {
+
+                    mkdirCast.delete();
+                }
+            }
+
+            // MD 이미지 삭제
+            String rootMd = ResourceUtils.getURL("upload").getPath();
+
+            String filePathMd = rootMd + "marketing/md";
+
+            for(int i = 0; i < mkMdList.size(); i++){
+
+                File mkdirMd = new File(filePathMd + File.separator + mkMdList.get(i).getMdFileName());
+
+                if(mkdirMd.exists()) {
+
+                    mkdirMd.delete();
+                }
+            }
+
+            // ITEM 이미지 삭제
+            String rootItem = ResourceUtils.getURL("upload").getPath();
+
+            String filePathItem = rootItem + "marketing/item";
+
+            for(int i = 0; i < mkItemList.size(); i++){
+
+                File mkdirItem = new File(filePathItem + File.separator + mkItemList.get(i).getItemFileName());
+
+                if(mkdirItem.exists()) {
+
+                    mkdirItem.delete();
+                }
+            }
+
+        }
 
         rttr.addFlashAttribute("message", "게시물이 삭제되었습니다.");
         rttr.addFlashAttribute("check", "success");
 
-        return "redirect:marketing/list";
+        return "redirect:/marketing/list";
     }
+
     @GetMapping("/detail/modify/cast")
     public ModelAndView marketingDetailModifyCast(ModelAndView mv, @RequestParam(value = "pFileNum", required = false) String pFileNum,HttpServletRequest request){
 
@@ -405,14 +495,15 @@ public class MarketingController {
         log.info("아이템넘버 : " + pFileNum);
         log.info("MarketingDTO file : " + file);
 
-        String root = ResourceUtils.getURL("src/main/resources").getPath();
+        String root = ResourceUtils.getURL("upload").getPath();
 
-        String filePath = root + "static/images/marketing/poster";
-
+        String filePath = root + "marketing/poster";
 
         log.info("루트ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ" + filePath);
 
         File mkdir = new File(filePath);
+
+        // 폴더가 없을 경우 폴더 생성
         if(!mkdir.exists()) {
             mkdir.mkdirs();
         }
@@ -422,9 +513,21 @@ public class MarketingController {
         String changeName = "";
 
         mkPoster.setpFileNum(Integer.parseInt(pFileNum));
-        marketingService.updateMkPosterNoFile(mkPoster);
 
+        // 1. 파일이 변경된 경우
         if(file.getSize() > 0) {
+
+            // 1-1. 이전에 있던 파일 삭제
+            MkPosterDTO poster = marketingService.selectPoster(pFileNum);
+
+            File fileDel = new File(filePath + File.separator + poster.getpFileName());
+
+            if(fileDel.exists()) {
+
+                fileDel.delete();
+            }
+
+            // 1-2. 변경된 파일 새로 업로드
             originFileName = file.getOriginalFilename();
             ext = originFileName.substring(originFileName.lastIndexOf("."));
             changeName = UUID.randomUUID().toString().replace("-", "");
@@ -435,18 +538,23 @@ public class MarketingController {
             marketingService.updateMkPoster(mkPoster);
 
             try {
-                file.transferTo(new File(filePath + "\\" + changeName + ext));
+                file.transferTo(new File(filePath + mkdir.separator + changeName + ext));
             } catch (IOException e) {
 
                 e.printStackTrace();
-                new File(filePath + "\\" + changeName + ext).delete();
+                new File(filePath + mkdir.separator + changeName + ext).delete();
             }
+
+        } else{
+
+            // 2. 파일이 변경되지 않은 경우
+            marketingService.updateMkPosterNoFile(mkPoster);
         }
 
         rttr.addFlashAttribute("message", "수정이 완료되었습니다.");
         rttr.addFlashAttribute("check", "success");
 
-        return "redirect:marketing/detail/modify?mkNum=" + mkNum;
+        return "redirect:/marketing/detail/modify?mkNum=" + mkNum;
     }
 
     @GetMapping("/detail/modify/md")
@@ -467,13 +575,13 @@ public class MarketingController {
         log.info("아이템넘버 : " + mdFileNum);
         log.info("MarketingDTO file : " + file);
 
-        String root = ResourceUtils.getURL("src/main/resources").getPath();
+        String root = ResourceUtils.getURL("upload").getPath();
 
-        String filePath = root + "static/images/marketing/md";
-
+        String filePath = root + "marketing/md";
 
         log.info("루트ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ" + filePath);
 
+        // 폴더가 없을 경우 폴더 생성
         File mkdir = new File(filePath);
         if(!mkdir.exists()) {
             mkdir.mkdirs();
@@ -484,9 +592,21 @@ public class MarketingController {
         String changeName = "";
 
         mkMd.setMdFileNum(Integer.parseInt(mdFileNum));
-        marketingService.updateMkMdNoFile(mkMd);
 
+        // 1. 파일이 변경된 경우
         if(file.getSize() > 0) {
+
+            // 1-1. 이전에 있던 파일 삭제
+            MkMdDTO md = marketingService.selectMd(mdFileNum);
+
+            File fileDel = new File(filePath + File.separator + md.getMdFileName());
+
+            if(fileDel.exists()) {
+
+                fileDel.delete();
+            }
+
+            // 1-2. 변경된 파일 새로 업로드
             originFileName = file.getOriginalFilename();
             ext = originFileName.substring(originFileName.lastIndexOf("."));
             changeName = UUID.randomUUID().toString().replace("-", "");
@@ -497,18 +617,23 @@ public class MarketingController {
             marketingService.updateMkMd(mkMd);
 
             try {
-                file.transferTo(new File(filePath + "\\" + changeName + ext));
+                file.transferTo(new File(filePath + mkdir.separator + changeName + ext));
             } catch (IOException e) {
 
                 e.printStackTrace();
-                new File(filePath + "\\" + changeName + ext).delete();
+                new File(filePath + mkdir.separator + changeName + ext).delete();
             }
+
+        } else{
+
+            // 2. 파일이 변경되지 않은 경우
+            marketingService.updateMkMdNoFile(mkMd);
         }
 
         rttr.addFlashAttribute("message", "수정이 완료되었습니다.");
         rttr.addFlashAttribute("check", "success");
 
-        return "redirect:marketing/detail/modify?mkNum=" + mkNum;
+        return "redirect:/marketing/detail/modify?mkNum=" + mkNum;
     }
 
     @GetMapping("/detail/modify/item")
@@ -516,7 +641,7 @@ public class MarketingController {
 
         MkItemDTO item = marketingService.selectItem(itemFileNum);
         mv.addObject("item", item);
-        mv.setViewName("marketing_modify_item");
+        mv.setViewName("marketing/marketing_modify_item");
         return mv;
     }
 
@@ -529,13 +654,13 @@ public class MarketingController {
         log.info("아이템넘버 : " + itemFileNum);
         log.info("MarketingDTO file : " + file);
 
-        String root = ResourceUtils.getURL("src/main/resources").getPath();
+        String root = ResourceUtils.getURL("upload").getPath();
 
-        String filePath = root + "static/images/marketing/item";
-
+        String filePath = root + "marketing/item";
 
         log.info("루트ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ" + filePath);
 
+        // 폴더가 없을 경우 폴더 생성
         File mkdir = new File(filePath);
         if(!mkdir.exists()) {
             mkdir.mkdirs();
@@ -546,9 +671,21 @@ public class MarketingController {
         String changeName = "";
 
         mkItem.setItemFileNum(Integer.parseInt(itemFileNum));
-        marketingService.updateMkItemNoFile(mkItem);
 
+        // 1. 파일이 변경된 경우
         if(file.getSize() > 0) {
+
+            // 1-1. 이전에 있던 파일 삭제
+            MkItemDTO item = marketingService.selectItem(itemFileNum);
+
+            File fileDel = new File(filePath + File.separator + item.getItemFileName());
+
+            if(fileDel.exists()){
+
+                fileDel.delete();
+            }
+
+            // 1-2. 변경된 파일 새로 업로드
             originFileName = file.getOriginalFilename();
             ext = originFileName.substring(originFileName.lastIndexOf("."));
             changeName = UUID.randomUUID().toString().replace("-", "");
@@ -559,18 +696,23 @@ public class MarketingController {
             marketingService.updateMkItem(mkItem);
 
             try {
-                file.transferTo(new File(filePath + "\\" + changeName + ext));
+                file.transferTo(new File(filePath + mkdir.separator + changeName + ext));
             } catch (IOException e) {
 
                 e.printStackTrace();
-                new File(filePath + "\\" + changeName + ext).delete();
+                new File(filePath + mkdir.separator + changeName + ext).delete();
             }
+
+        } else {
+
+            // 2. 파일이 변경되지 않은 경우
+            marketingService.updateMkItemNoFile(mkItem);
         }
 
         rttr.addFlashAttribute("message", "수정이 완료되었습니다.");
         rttr.addFlashAttribute("check", "success");
 
-        return "redirect:marketing/detail/modify?mkNum=" + mkNum;
+        return "redirect:/marketing/detail/modify?mkNum=" + mkNum;
     }
 
     @GetMapping("/detail/delete/cast")
@@ -579,12 +721,30 @@ public class MarketingController {
         int mkNum = mkPoster.getMkNum();
         int pFileNum = mkPoster.getpFileNum();
 
-        marketingService.deleteMkPoster(pFileNum);
+        MkPosterDTO poster = marketingService.selectPoster(String.valueOf(pFileNum));
+
+        log.info("poster : " + poster);
+
+        int result = marketingService.deleteMkPoster(pFileNum);
+
+        if(result > 0) {
+
+            String root = ResourceUtils.getURL("upload").getPath();
+
+            String filePath = root + "marketing/poster";
+
+            File mkdir = new File(filePath + File.separator + poster.getpFileName());
+
+            if(mkdir.exists()) {
+
+                mkdir.delete();
+            }
+        }
 
         rttr.addFlashAttribute("message", "삭제가 완료되었습니다.");
         rttr.addFlashAttribute("check", "success");
 
-        return "redirect:marketing/detail/modify?mkNum=" + mkNum;
+        return "redirect:/marketing/detail/modify?mkNum=" + mkNum;
     }
 
     @GetMapping("/detail/delete/md")
@@ -593,12 +753,30 @@ public class MarketingController {
         int mkNum = mkMd.getMkNum();
         int mdFileNum = mkMd.getMdFileNum();
 
-        marketingService.deleteMkMd(mdFileNum);
+        MkMdDTO md = marketingService.selectMd(String.valueOf(mdFileNum));
+
+        log.info("md : " + md);
+
+        int result = marketingService.deleteMkMd(mdFileNum);
+
+        if(result > 0) {
+
+            String root = ResourceUtils.getURL("upload").getPath();
+
+            String filePath = root + "marketing/md";
+
+            File mkdir = new File(filePath + File.separator + md.getMdFileName());
+
+            if(mkdir.exists()) {
+
+                mkdir.delete();
+            }
+        }
 
         rttr.addFlashAttribute("message", "삭제가 완료되었습니다.");
         rttr.addFlashAttribute("check", "success");
 
-        return "redirect:marketing/detail/modify?mkNum=" + mkNum;
+        return "redirect:/marketing/detail/modify?mkNum=" + mkNum;
     }
 
     @GetMapping("/detail/delete/item")
@@ -607,11 +785,29 @@ public class MarketingController {
         int mkNum = mkItem.getMkNum();
         int itemFileNum = mkItem.getItemFileNum();
 
-        marketingService.deleteMkItem(itemFileNum);
+        MkItemDTO item = marketingService.selectItem(String.valueOf(itemFileNum));
+
+        log.info("item : " + item);
+
+        int result = marketingService.deleteMkItem(itemFileNum);
+
+        if(result > 0) {
+
+            String root = ResourceUtils.getURL("upload").getPath();
+
+            String filePath = root + "marketing/item";
+
+            File mkdir = new File(filePath + File.separator + item.getItemFileName());
+
+            if(mkdir.exists()) {
+
+                mkdir.delete();
+            }
+        }
 
         rttr.addFlashAttribute("message", "삭제가 완료되었습니다.");
         rttr.addFlashAttribute("check", "success");
 
-        return "redirect:marketing/detail/modify?mkNum=" + mkNum;
+        return "redirect:/marketing/detail/modify?mkNum=" + mkNum;
     }
 }

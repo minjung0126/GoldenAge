@@ -91,14 +91,14 @@
         <div class="blog-card">
           <a href="#" class="justify-content-center d-flex align-items-center"><h5 class="text-white thumbnailtxt p-auto d-flex align-items-center">
             <input type="hidden" id="num" th:value="${ marketing.mkNum }"/>
-            <b th:text="${ marketing.mkName }">연극 &lt;헤르츠클란&gt;</b></h5><img th:src="'/images/marketing/' + ${ marketing.mkFileMain }" src="/images/marketing/p1.jpg" alt="" class="blog-thumbnail">
+            <b th:text="${ marketing.mkName }">연극 &lt;헤르츠클란&gt;</b></h5><img th:src="'/upload/marketing/' + ${ marketing.mkFileMain }" src="/images/marketing/p1.jpg" alt="" class="blog-thumbnail">
           </a>
         </div>
       </div>
     </div>
     <div class="d-flex justify-content-center mt-5" th:block sec:authorize="isAuthenticated()">
-      <div class="border px-5 py-2" style="display: inline; cursor: pointer">
-        <a href="/marketing/detail/regist" style="text-decoration: none;" class="text-white fs-5">등록하기</a>
+      <div class="border px-5 py-2" style="display: inline; cursor: pointer" onclick="location.href='/marketing/detail/regist'">
+        <a href="#" style="text-decoration: none;" class="text-white fs-5">등록하기</a>
       </div>
     </div>
   </div>

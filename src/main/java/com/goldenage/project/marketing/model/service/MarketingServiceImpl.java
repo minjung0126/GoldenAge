@@ -294,4 +294,25 @@ public class MarketingServiceImpl implements MarketingService {
 
         return result;
     }
+
+    @Override
+    public List<MkPosterDTO> selectPosterMkNum(String mkNum) {
+
+        List<MkPosterDTO> mkPosterList = marketingMapper.selectPosterMkNum(mkNum);
+        return mkPosterList;
+    }
+
+    @Override
+    public List<MkMdDTO> selectMdMkNum(String mkNum) {
+
+        List<MkMdDTO> mkMdList = marketingMapper.selectMdMkNum(mkNum);
+        return mkMdList;
+    }
+
+    @Override
+    public List<MkItemDTO> selectItemMkNum(String mkNum) {
+
+        List<MkItemDTO> mkItemList = marketingMapper.selectItemMkNum(mkNum);
+        return mkItemList;
+    }
 }
