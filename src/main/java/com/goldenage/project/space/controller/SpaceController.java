@@ -240,7 +240,7 @@ public class SpaceController {
         return mv;
     }
 
-    @PostMapping("/space/pho/delete")
+    @GetMapping("/space/pho/delete")
     public void spacePhoDelete(@ModelAttribute SpacePhoDTO spacePho,@RequestParam(value="spaceFileNum", required = false) int spaceFileNum){
 
         int spaceNum = spacePho.getSpaceNum();

@@ -68,7 +68,7 @@
             <br>
             <div class="row">
                 <div class="col-lg-2 col-md-3" th:each="spacePho: ${ spacePhoList }">
-                    <form method="post" class="form_delete" action="space/pho/delete">
+                    <form method="get" class="form_delete" action="space/pho/delete">
                     <div class="blog-card">
                         <input type="hidden" th:value="${ spacePho.spaceFileNum }" name="spaceFileNum" id="spaceFileNum" class="spaceFileNum">
                         <input type="hidden" th:value="${ spacePho.spaceNum }" name="spaceNum" id="spaceNum" class="spaceNum">
