@@ -235,7 +235,8 @@ public class SpaceController {
         log.info("spaceNum??" + spaceNum);
 
         mv.addObject("spacePhoList", spacePhoList);
-        mv.setViewName("/space/spacePhoUpdate");
+        mv.addObject("spaceNum",spaceNum);
+        mv.setViewName("space/spacePhoUpdate");
 
         return mv;
     }
@@ -297,7 +298,6 @@ public class SpaceController {
         }
 
         return "redirect:/space/spacePhoUpdate?spaceNum=" + spaceNum;
-
     }
 }
 
