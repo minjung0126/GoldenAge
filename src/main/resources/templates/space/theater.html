@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -106,6 +107,11 @@
       </tr>
     </table>
   </div>
+  <th:block sec:authorize="isAuthenticated()">
+    <div style="text-align: center; padding: 20px;">
+      <button class="btn" type="button" style="color:white; padding: 8px 25px 8px 25px; border: solid 1px white; border-radius: 3px; font-size: 1.5em;" th:onclick="'location.href=\'/space/spaceList\''">연습실목록</button>
+    </div>
+  </th:block>
 </div>
 <!— S: footer —>
 <div th:include="common/footer.html"></div>
