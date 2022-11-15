@@ -32,4 +32,8 @@ public interface SpaceMapper {
     int updateSpace(SpaceDTO space);
 
     List<SpacePhoDTO> selectSpacePho(int spaceNum);
+
+    int deleteSpacePho(int spaceFileNum);
+
+    int insertSpacePho(SpacePhoDTO spacePhoto);
 }

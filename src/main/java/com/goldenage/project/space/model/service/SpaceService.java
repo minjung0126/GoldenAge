@@ -42,4 +42,8 @@ public interface SpaceService {
     int updateSpace(SpaceDTO space);
 
     List<SpacePhoDTO> selectSpacePho(int spaceNum);
+
+    int deleteSpacePho(int spaceFileNum);
+
+    int insertSpacePhoto(SpacePhoDTO spacePhoto);
 }

@@ -142,6 +142,20 @@ public class SpaceServiceImpl implements SpaceService{
         return selectSpacePho;
 
     }
+    @Override
+    public int deleteSpacePho(int spaceFileNum) {
 
+        int result = spaceMapper.deleteSpacePho(spaceFileNum);
+
+        return result;
+    }
+
+    @Override
+    public int insertSpacePhoto(SpacePhoDTO spacePhoto) {
+
+        int result = spaceMapper.insertSpacePho(spacePhoto);
+
+        return result;
+    }
 }
 

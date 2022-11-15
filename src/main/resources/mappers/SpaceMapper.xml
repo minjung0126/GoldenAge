@@ -145,4 +145,28 @@
         FROM SPACE_FILE
         WHERE SPACE_NUM = #{ spaceNum }
     </select>
+
+    <delete id="deleteSpacePho">
+        DELETE
+        FROM SPACE_FILE
+        WHERE SPACE_FILE_NUM = #{ spaceFileNum }
+    </delete>
+
+    <insert id="insertSpacePho">
+        INSERT
+        INTO SPACE_FILE
+        (
+          SPACE_FILE_NUM
+        , SPACE_ORI_NAME
+        , SPACE_FILE_NAME
+        , SPACE_NUM
+        )
+        VALUES
+        (
+          SPACE_FILE_NUM
+        , #{ spaceOriName }
+        , #{ spaceFileName }
+        , #{ spaceNum }
+        )
+    </insert>
 </mapper>

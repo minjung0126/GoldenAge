@@ -240,6 +240,7 @@ public class SpaceController {
         return mv;
     }
 
+    //연습실 사진 한개 삭제
     @GetMapping("/space/pho/delete")
     public String spacePhoDelete(@ModelAttribute SpacePhoDTO spacePho,
                                  @RequestParam(value="spaceFileNum", required = false) int spaceFileNum,
@@ -247,12 +248,56 @@ public class SpaceController {
 
         log.info("파일넘버 " + spaceFileNum);
         log.info("연습실넘버 " + spaceNum);
-//
-//        int result = spaceService.deleteSpacePho(spaceFileNum);
 
-//        return "redirect:/space/spacePhoUpdate?spaceNum=" + spaceNum;
+        int result = spaceService.deleteSpacePho(spaceFileNum);
 
-        return "/space/spaceList";
+        log.info("화기이이이익 " + result);
+
+        return "redirect:/space/spacePhoUpdate?spaceNum=" + spaceNum;
+    }
+
+    @PostMapping("/space/pho/insert")
+    public String spacePhoInsert(@ModelAttribute SpacePhoDTO spacePho,
+                                 @RequestParam(value="file", required=false) MultipartFile file,
+                                 @RequestParam(value="spaceNum", required = false) int spaceNum) throws FileNotFoundException {
+
+        SpacePhoDTO spacePhoto = new SpacePhoDTO();
+
+        String root = ResourceUtils.getURL("src/main/resources").getPath();
+
+        String filePath = root + "static/uploadFiles";
+
+        File mkdir = new File(filePath);
+        if(!mkdir.exists()) {
+            mkdir.mkdirs();
+        }
+        String spaceOriName = "";
+        String ext = "";
+        String spaceFileName = "";
+
+        if(file.getSize() > 0){
+            spaceOriName = file.getOriginalFilename();
+            ext = spaceOriName.substring(spaceOriName.lastIndexOf("."));
+            spaceFileName = UUID.randomUUID().toString().replace("-", "") + ext;
+
+            spacePhoto.setSpaceOriName(spaceOriName);
+            spacePhoto.setSpaceFileName(spaceFileName + ext);
+            spacePhoto.setSpaceNum(spaceNum);
+
+            spaceService.insertSpacePhoto(spacePhoto);
+
+            try {
+
+                file.transferTo(new File(filePath + "/" + spaceFileName + ext));
+            } catch (IOException e) {
+
+                e.printStackTrace();
+                new File(filePath + "/" + spaceFileName + ext).delete();
+            }
+        }
+
+        return "redirect:/space/spacePhoUpdate?spaceNum=" + spaceNum;
+
     }
 }
 
