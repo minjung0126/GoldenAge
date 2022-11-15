@@ -35,4 +35,11 @@ public interface SpaceService {
 
     //연슶실 내용정보
     SpaceDTO selectSpaceView(int spaceNum);
+
+    SpaceDTO selectSpaceIntro(int spaceNum);
+
+    @Transactional
+    int updateSpace(SpaceDTO space);
+
+    List<SpacePhoDTO> selectSpacePho(int spaceNum);
 }

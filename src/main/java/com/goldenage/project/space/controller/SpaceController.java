@@ -2,6 +2,8 @@ package com.goldenage.project.space.controller;
 
 import com.goldenage.project.exception.notice.NoticeDeleteException;
 import com.goldenage.project.exception.space.SpaceDeleteException;
+import com.goldenage.project.exception.space.SpaceUpdateException;
+import com.goldenage.project.notice.model.dto.NoticeDTO;
 import com.goldenage.project.space.model.dto.SpaceDTO;
 import com.goldenage.project.space.model.dto.SpacePhoDTO;
 import com.goldenage.project.space.model.service.SpaceServiceImpl;
@@ -168,7 +170,7 @@ public class SpaceController {
         mv.addObject("spaceList", spaceList);
         mv.addObject("spacePhoList", phoList);
         mv.addObject("spaceView", spaceView);
-        mv.setViewName("space/theater");
+        mv.setViewName("/space/theater");
 
         return mv;
     }
@@ -193,16 +195,62 @@ public class SpaceController {
         return mv;
     }
 
-    //관리자 연습실 수정하기
+    //관리자 연습실 내용 수정하기
     @GetMapping("/spaceUpdate")
     public ModelAndView spaceUpDate(ModelAndView mv, HttpServletRequest request){
 
-        int num = Integer.parseInt(request.getParameter("spaceNum"));
-        log.info("num : " + num);
+        int spaceNum = Integer.parseInt(request.getParameter("spaceNum"));
 
-        mv.setViewName("space/spaceUpdate");
+        SpaceDTO spaceIntro = spaceService.selectSpaceIntro(spaceNum);
+        log.info("뭐지이 " + spaceNum);
+
+        mv.addObject("spaceIntro", spaceIntro);
+        mv.setViewName("/space/spaceUpdate");
 
         return mv;
+    }
+
+    //연습실 내용 수정
+    @PostMapping("/spaceUpdate")
+    public String spaceUpdate(@ModelAttribute SpaceDTO space,
+                              RedirectAttributes rttr)throws SpaceUpdateException{
+
+        int result = spaceService.updateSpace(space);
+        log.info("뭐지이 " + space);
+        log.info("result a뭘ㅈ;ㅇ "+ result);
+
+        if(result > 0){
+            rttr.addFlashAttribute("message", "연습실 수정 성공!");
+        }
+
+        return "redirect:/space/spaceList";
+    }
+
+    @GetMapping("/spacePhoUpdate")
+    public ModelAndView spacePhoUpDate(ModelAndView mv,HttpServletRequest request){
+
+        int spaceNum = Integer.parseInt(request.getParameter("spaceNum"));
+
+        List<SpacePhoDTO> spacePhoList = spaceService.selectSpacePho(spaceNum);
+        log.info("spaceNum??" + spaceNum);
+
+        mv.addObject("spacePhoList", spacePhoList);
+        mv.setViewName("/space/spacePhoUpdate");
+
+        return mv;
+    }
+
+    @PostMapping("/space/pho/delete")
+    public void spacePhoDelete(@ModelAttribute SpacePhoDTO spacePho,@RequestParam(value="spaceFileNum", required = false) int spaceFileNum){
+
+        int spaceNum = spacePho.getSpaceNum();
+
+        log.info("파일넘버 " + spaceFileNum);
+        log.info("연습실넘버 " + spaceNum);
+//
+//        int result = spaceService.deleteSpacePho(spaceFileNum);
+
+//        return "redirect:/space/spacePhoUpdate?spaceNum=" + spaceNum;
     }
 }
 

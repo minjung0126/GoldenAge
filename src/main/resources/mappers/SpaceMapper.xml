@@ -106,4 +106,43 @@
          WHERE SPACE_NUM = #{ spaceNum }
     </select>
 
+    <select id="selectSpaceIntro" resultMap="spaceResultMap">
+        SELECT
+            *
+         FROM SPACE
+        WHERE SPACE_NUM = #{ spaceNum }
+    </select>
+
+    <update id="updateSpace">
+        UPDATE
+               SPACE
+        <trim prefix="SET" prefixOverrides=",">
+            <if test="spaceName != null and spaceName != ''">
+                , SPACE_NAME = #{ spaceName }
+            </if>
+            <if test="spaceAdd != null and spaceAdd != ''">
+                , SPACE_ADD = #{ spaceAdd }
+            </if>
+            <if test="spaceWidth != null and spaceWidth != ''">
+                , SPACE_WIDTH = #{ spaceWidth }
+            </if>
+            <if test="spaceTime != null and spaceTime != ''">
+                , SPACE_TIME = #{ spaceTime }
+            </if>
+            <if test="spaceContent != null and spaceContent != ''">
+                , SPACE_CONTENT = #{ spaceContent }
+            </if>
+            <if test="spaceLink != null and spaceLink != ''">
+                , SPACE_LINK = #{ spaceLink }
+            </if>
+        </trim>
+        WHERE SPACE_NUM = #{ spaceNum }
+    </update>
+
+    <select id="selectSpacePho" resultMap="spacePhoResultMap">
+        SELECT
+            *
+        FROM SPACE_FILE
+        WHERE SPACE_NUM = #{ spaceNum }
+    </select>
 </mapper>
