@@ -71,7 +71,8 @@
                     <form method="get" id="form_delete" action="/space/pho/delete">
                     <div class="blog-card">
                         <input type="hidden" th:value="${ spacePho.spaceFileNum }" name="spaceFileNum" id="spaceFileNum" class="spaceFileNum">
-                        <img th:src="'/images/space/' + ${ spacePho.spaceFileName }" th:id="${ spacePho.spaceFileNum }" alt="" class="blog-thumbnail pho" style="cursor: pointer" onclick="openWindow('cast', (this.id))">
+                        <input type="hidden" th:value="${ spacePho.spaceNum }" name="spaceNum" id="spaceNum" class="spaceNum">
+                        <img th:src="'/images/space/' + ${ spacePho.spaceFileName }" th:id="${ spacePho.spaceFileNum }" alt="" class="blog-thumbnail pho" style="cursor: pointer">
                     </div>
                     <div class="mt-4 mb-2 d-flex justify-content-center">
                         <button class="btn btn-light ms-2" id="btnDelete" type="button">삭제</button>
