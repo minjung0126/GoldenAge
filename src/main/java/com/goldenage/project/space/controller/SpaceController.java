@@ -241,9 +241,8 @@ public class SpaceController {
     }
 
     @GetMapping("/space/pho/delete")
-    public String spacePhoDelete(@ModelAttribute SpacePhoDTO spacePho){
+    public String spacePhoDelete(@ModelAttribute SpacePhoDTO spacePho,@RequestParam(value="spaceFileNum", required = false) int spaceFileNum){
 
-        int spaceFileNum = spacePho.getSpaceFileNum();
         int spaceNum = spacePho.getSpaceNum();
 
         log.info("파일넘버 " + spaceFileNum);
