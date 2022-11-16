@@ -205,7 +205,7 @@ public class SpaceController {
         log.info("뭐지이 " + spaceNum);
 
         mv.addObject("spaceIntro", spaceIntro);
-        mv.setViewName("/space/spaceUpdate");
+        mv.setViewName("space/spaceUpdate");
 
         return mv;
     }
