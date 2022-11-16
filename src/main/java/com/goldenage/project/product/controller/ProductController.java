@@ -365,7 +365,7 @@ public class ProductController {
 
         rttr.addFlashAttribute("message", "삭제 성공");
 
-        return "redirect:product/productPage";
+        return "redirect:/product/productPage";
     }
 
     // detailPage_update 에서 상세페이지 삭제
