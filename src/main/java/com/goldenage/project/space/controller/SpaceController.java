@@ -106,21 +106,19 @@ public class SpaceController {
                 spaceService.insertSpacePho(files);
             }
 
-                try {
+            try {
 
-                    for (int j = 0; j < multiFiles.size(); j++) {
+                for (int j = 0; j < multiFiles.size(); j++) {
 
-                        Map<String, String> pho = files;
-                        multiFiles.get(j).transferTo(new File(filePath + mkdir.separator + pho.get("spaceFileName")));
-                    }
-                } catch (IOException e) {
-
-                    for (int j = 0; j < multiFiles.size(); j++) {
-
-                        Map<String, String> pho = files;
-                        new File(filePath + mkdir.separator + pho.get("spaceFileName")).delete();
-                    }
+                    multiFiles.get(j).transferTo(new File(filePath + mkdir.separator + files.get("spaceFileName")));
                 }
+            } catch (IOException e) {
+
+                for (int j = 0; j < multiFiles.size(); j++) {
+
+                    new File(filePath + mkdir.separator + files.get("spaceFileName")).delete();
+                }
+            }
         }else if(multiFiles.get(0).isEmpty() == true){
             Map<String,String> files = new HashMap<>();
 
