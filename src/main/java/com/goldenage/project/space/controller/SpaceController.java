@@ -170,7 +170,7 @@ public class SpaceController {
         mv.addObject("spaceList", spaceList);
         mv.addObject("spacePhoList", phoList);
         mv.addObject("spaceView", spaceView);
-        mv.setViewName("/space/theater");
+        mv.setViewName("space/theater");
 
         return mv;
     }
@@ -205,7 +205,7 @@ public class SpaceController {
         log.info("뭐지이 " + spaceNum);
 
         mv.addObject("spaceIntro", spaceIntro);
-        mv.setViewName("/space/spaceUpdate");
+        mv.setViewName("space/spaceUpdate");
 
         return mv;
     }
