@@ -97,6 +97,7 @@ public class ProductController {
         log.info("사진 테스트 : " + file);
 
 
+
         String root = ResourceUtils.getURL("upload").getPath();
 
         String filePath = root + "product";
