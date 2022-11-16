@@ -112,6 +112,8 @@ public class SpaceController {
 
                         Map<String, String> pho = files;
                         multiFiles.get(j).transferTo(new File(filePath + mkdir.separator + pho.get("spaceFileName")));
+                        log.info("j야 어디까지 왔니 " + j);
+                        log.info("pho야 어디까지 왔니 " + pho);
                     }
                 } catch (IOException e) {
 
@@ -119,6 +121,8 @@ public class SpaceController {
 
                         Map<String, String> pho = files;
                         new File(filePath + mkdir.separator + pho.get("spaceFileName")).delete();
+                        log.info("j야 어디까지 왔니2 " + j);
+                        log.info("pho야 어디까지 왔니2 " + pho);
                     }
                 }
         }else if(multiFiles.get(0).isEmpty() == true){
