@@ -107,11 +107,11 @@ public class SpaceController {
 
                 try {
 
-                        multiFiles.get(i).transferTo(new File(filePath + mkdir.separator + files.get("spaceFileName")));
+                    multiFiles.get(i).transferTo(new File(filePath + mkdir.separator + files.get("spaceFileName")));
 
                 } catch (IOException e) {
 
-                        new File(filePath + mkdir.separator + files.get("spaceFileName")).delete();
+                    new File(filePath + mkdir.separator + files.get("spaceFileName")).delete();
 
                 }
             }
