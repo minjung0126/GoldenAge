@@ -144,8 +144,8 @@ public class SpaceController {
 
         int spaceNum = Integer.parseInt(request.getParameter("spaceNum"));
 
-        int result = spaceService.deleteSpace(spaceNum);
         List<SpacePhoDTO> phoList = spaceService.selectPho(spaceNum);
+        int result = spaceService.deleteSpace(spaceNum);
 
         if(result > 0) {
 
