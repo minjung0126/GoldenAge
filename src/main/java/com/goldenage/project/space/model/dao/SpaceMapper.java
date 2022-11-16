@@ -19,5 +19,21 @@ public interface SpaceMapper {
 
     int insertSpacePhoto(Map<String, String> pho);
 
-    String selectNum();
+    int selectNum();
+
+    List<SpaceDTO> selectSpaceListView();
+
+    List<SpacePhoDTO> selectPho(int spaceNum);
+
+    SpaceDTO selectSpaceView(int spaceNum);
+
+    SpaceDTO selectSpaceIntro(int spaceNum);
+
+    int updateSpace(SpaceDTO space);
+
+    List<SpacePhoDTO> selectSpacePho(int spaceNum);
+
+    int deleteSpacePho(int spaceFileNum);
+
+    int insertSpacePho(SpacePhoDTO spacePhoto);
 }

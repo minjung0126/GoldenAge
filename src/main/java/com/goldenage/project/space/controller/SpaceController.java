@@ -2,6 +2,8 @@ package com.goldenage.project.space.controller;
 
 import com.goldenage.project.exception.notice.NoticeDeleteException;
 import com.goldenage.project.exception.space.SpaceDeleteException;
+import com.goldenage.project.exception.space.SpaceUpdateException;
+import com.goldenage.project.notice.model.dto.NoticeDTO;
 import com.goldenage.project.space.model.dto.SpaceDTO;
 import com.goldenage.project.space.model.dto.SpacePhoDTO;
 import com.goldenage.project.space.model.service.SpaceServiceImpl;
@@ -68,7 +70,7 @@ public class SpaceController {
 
         if(result> 0){
 
-            space.setSpaceNum(Integer.parseInt(spaceService.selectNum()));
+            space.setSpaceNum(spaceService.selectNum());
 
             log.info("num 을 알려줘 " + space.getSpaceNum());
         }
@@ -82,23 +84,25 @@ public class SpaceController {
             mkdir.mkdirs();
         }
 
-        if(multiFiles.size() > 0){
-            List<Map<String,String>> files = new ArrayList<>();
+        if(multiFiles.get(0).isEmpty() == false){
+            Map<String,String> files = new HashMap<>();
             for(int i = 0; i < multiFiles.size(); i++) {
 
                 String spaceOriName = "";
                 String ext = "";
                 String spaceFileName = "";
+                int spaceNum = 0;
 
                 spaceOriName = multiFiles.get(i).getOriginalFilename();
                 ext = spaceOriName.substring(spaceOriName.lastIndexOf("."));
                 spaceFileName = UUID.randomUUID().toString().replace("-", "") + ext;
 
-                Map<String, String> file = new HashMap<>();
-                file.put("spaceOriName", spaceOriName);
-                file.put("spaceFileName", spaceFileName);
+                spaceNum = space.getSpaceNum();
 
-                files.add(file);
+                files.put("spaceOriName", spaceOriName);
+                files.put("spaceFileName", spaceFileName);
+                files.put("spaceNum", String.valueOf(spaceNum));
+
                 spaceService.insertSpacePho(files);
             }
 
@@ -106,23 +110,31 @@ public class SpaceController {
 
                     for (int j = 0; j < multiFiles.size(); j++) {
 
-                        Map<String, String> pho = files.get(j);
+                        Map<String, String> pho = files;
                         multiFiles.get(j).transferTo(new File(filePath + "/" + pho.get("spaceFileName")));
                     }
                 } catch (IOException e) {
 
                     for (int j = 0; j < multiFiles.size(); j++) {
 
-                        Map<String, String> pho = files.get(j);
+                        Map<String, String> pho = files;
                         new File(filePath + "/" + pho.get("spaceFileName")).delete();
                     }
                 }
-        }else if(multiFiles.size() == 0){
+        }else if(multiFiles.get(0).isEmpty() == true){
+            Map<String,String> files = new HashMap<>();
 
-            spacePho.setSpaceFileName(null);
-            spacePho.setSpaceOriName(null);
+            String spaceOriName = "";
+            String spaceFileName = "";
+            int spaceNum = 0;
 
-            spaceService.insertSpacePho((List<Map<String, String>>) spacePho);
+            spaceNum = space.getSpaceNum();
+
+            files.put("spaceOriName", spaceOriName);
+            files.put("spaceFileName", spaceFileName);
+            files.put("spaceNum", String.valueOf(spaceNum));
+
+            spaceService.insertSpacePho(files);
 
         }
         rttr.addFlashAttribute("message", "연습실 등록 성공!");
@@ -144,10 +156,148 @@ public class SpaceController {
         return "redirect:/space/spaceList";
     }
 
+    //사용자 연습실 뷰 화면
     @GetMapping("/theater")
-    public String theaher(){
+    public ModelAndView theaher(ModelAndView mv){
 
-        return "space/theater";
+        List<SpaceDTO> spaceList = spaceService.selectSpaceListView();
+
+        int spaceNum = spaceList.get(0).getSpaceNum();
+
+        List<SpacePhoDTO> phoList = spaceService.selectPho(spaceNum);
+        SpaceDTO spaceView = spaceService.selectSpaceView(spaceNum);
+
+        mv.addObject("spaceList", spaceList);
+        mv.addObject("spacePhoList", phoList);
+        mv.addObject("spaceView", spaceView);
+        mv.setViewName("/space/theater");
+
+        return mv;
+    }
+
+    @GetMapping("/theater/number")
+    public ModelAndView theaherNum(ModelAndView mv, HttpServletRequest request){
+
+        List<SpaceDTO> spaceList = spaceService.selectSpaceListView();
+
+        int spaceNum = Integer.parseInt(request.getParameter("spaceNum"));
+
+        log.info(spaceNum + "뭘가여");
+
+        List<SpacePhoDTO> phoList = spaceService.selectPho(spaceNum);
+        SpaceDTO spaceView = spaceService.selectSpaceView(spaceNum);
+
+        mv.addObject("spaceList", spaceList);
+        mv.addObject("spacePhoList", phoList);
+        mv.addObject("spaceView", spaceView);
+        mv.setViewName("space/theater");
+
+        return mv;
+    }
+
+    //관리자 연습실 내용 수정하기
+    @GetMapping("/spaceUpdate")
+    public ModelAndView spaceUpDate(ModelAndView mv, HttpServletRequest request){
+
+        int spaceNum = Integer.parseInt(request.getParameter("spaceNum"));
+
+        SpaceDTO spaceIntro = spaceService.selectSpaceIntro(spaceNum);
+        log.info("뭐지이 " + spaceNum);
+
+        mv.addObject("spaceIntro", spaceIntro);
+        mv.setViewName("/space/spaceUpdate");
+
+        return mv;
+    }
+
+    //연습실 내용 수정
+    @PostMapping("/spaceUpdate")
+    public String spaceUpdate(@ModelAttribute SpaceDTO space,
+                              RedirectAttributes rttr)throws SpaceUpdateException{
+
+        int result = spaceService.updateSpace(space);
+        log.info("뭐지이 " + space);
+        log.info("result a뭘ㅈ;ㅇ "+ result);
+
+        if(result > 0){
+            rttr.addFlashAttribute("message", "연습실 수정 성공!");
+        }
+
+        return "redirect:/space/spaceList";
+    }
+
+    @GetMapping("/spacePhoUpdate")
+    public ModelAndView spacePhoUpDate(ModelAndView mv,HttpServletRequest request){
+
+        int spaceNum = Integer.parseInt(request.getParameter("spaceNum"));
+
+        List<SpacePhoDTO> spacePhoList = spaceService.selectSpacePho(spaceNum);
+        log.info("spaceNum??" + spaceNum);
+
+        mv.addObject("spacePhoList", spacePhoList);
+        mv.addObject("spaceNum",spaceNum);
+        mv.setViewName("space/spacePhoUpdate");
+
+        return mv;
+    }
+
+    //연습실 사진 한개 삭제
+    @GetMapping("/space/pho/delete")
+    public String spacePhoDelete(@ModelAttribute SpacePhoDTO spacePho,
+                                 @RequestParam(value="spaceFileNum", required = false) int spaceFileNum,
+                                 @RequestParam(value="spaceNum", required = false) int spaceNum){
+
+        log.info("파일넘버 " + spaceFileNum);
+        log.info("연습실넘버 " + spaceNum);
+
+        int result = spaceService.deleteSpacePho(spaceFileNum);
+
+        log.info("화기이이이익 " + result);
+
+        return "redirect:/space/spacePhoUpdate?spaceNum=" + spaceNum;
+    }
+
+    @PostMapping("/space/pho/insert")
+    public String spacePhoInsert(@ModelAttribute SpacePhoDTO spacePho,
+                                 @RequestParam(value="file", required=false) MultipartFile file,
+                                 @RequestParam(value="spaceNum", required = false) int spaceNum) throws FileNotFoundException {
+
+        SpacePhoDTO spacePhoto = new SpacePhoDTO();
+
+        String root = ResourceUtils.getURL("src/main/resources").getPath();
+
+        String filePath = root + "static/uploadFiles";
+
+        File mkdir = new File(filePath);
+        if(!mkdir.exists()) {
+            mkdir.mkdirs();
+        }
+        String spaceOriName = "";
+        String ext = "";
+        String spaceFileName = "";
+
+        if(file.getSize() > 0){
+            spaceOriName = file.getOriginalFilename();
+            ext = spaceOriName.substring(spaceOriName.lastIndexOf("."));
+            spaceFileName = UUID.randomUUID().toString().replace("-", "") + ext;
+
+            spacePhoto.setSpaceOriName(spaceOriName);
+            spacePhoto.setSpaceFileName(spaceFileName + ext);
+            spacePhoto.setSpaceNum(spaceNum);
+
+            spaceService.insertSpacePhoto(spacePhoto);
+
+            try {
+
+                file.transferTo(new File(filePath + "/" + spaceFileName + ext));
+            } catch (IOException e) {
+
+                e.printStackTrace();
+                new File(filePath + "/" + spaceFileName + ext).delete();
+            }
+        }
+
+        return "redirect:/space/spacePhoUpdate?spaceNum=" + spaceNum;
     }
 }
 
