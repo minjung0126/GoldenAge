@@ -72,7 +72,7 @@
                     <div class="blog-card">
                         <input type="hidden" th:value="${ spacePho.spaceFileNum }" name="spaceFileNum" id="spaceFileNum" class="spaceFileNum">
                         <input type="hidden" th:value="${ spacePho.spaceNum }" name="spaceNum" id="spaceNum" class="spaceNum">
-                        <img th:src="'/images/space/' + ${ spacePho.spaceFileName }" th:id="${ spacePho.spaceFileNum }" alt="" class="blog-thumbnail pho" style="cursor: pointer">
+                        <img th:src="'/upload/space/' + ${ spacePho.spaceFileName }" th:id="${ spacePho.spaceFileNum }" alt="" class="blog-thumbnail pho" style="cursor: pointer">
                     </div>
                     <div class="mt-4 mb-2 d-flex justify-content-center">
                         <button class="btn btnDelete btn-light ms-2" type="button">삭제</button>
@@ -116,6 +116,7 @@
     $(".btnInsert").on('click', function (){
 
         let msg = confirm('추가하시겠습니까?');
+
 
         if(msg == true){
             let msg2 = confirm('해당 항목을 추가합니다.');
