@@ -344,7 +344,23 @@ public class ProductController {
     @GetMapping("/detailPage/delete")
     public String productDetailDelete(@RequestParam(value="pd_num", required = false) String pd_num, RedirectAttributes rttr) throws Exception{
 
-        productService.deleteProductInfo(pd_num);
+        ProductDTO product = productService.selectOneProduct(pd_num);
+
+        int result = productService.deleteProductInfo(pd_num);
+
+        if(result > 0) {
+
+            String root = ResourceUtils.getURL("upload").getPath();
+
+            String filePath = root + "product";
+
+            File mkdir = new File(filePath + File.separator + product.getPd_File_Main());
+
+            if(mkdir.exists()) {
+
+                mkdir.delete();
+            }
+        }
 
         rttr.addFlashAttribute("message", "삭제 성공");
 
@@ -358,7 +374,23 @@ public class ProductController {
         int pd_num = productDetailDTO.getPd_num();
         int detail_file_num = productDetailDTO.getDetail_file_num();
 
-        productService.deleteProductPoster(detail_file_num);
+        ProductDetailDTO productDetail = productService.selectProductPoster(String.valueOf(detail_file_num));
+
+        int result = productService.deleteProductPoster(detail_file_num);
+
+        if(result > 0) {
+
+            String root = ResourceUtils.getURL("upload").getPath();
+
+            String filePath = root + "product/poster";
+
+            File mkdir = new File(filePath + File.separator + productDetail.getDetail_file_name());
+
+            if(mkdir.exists()) {
+
+                mkdir.delete();
+            }
+        }
 
         rttr.addFlashAttribute("message", "삭제 성공");
         rttr.addFlashAttribute("check", "success");
