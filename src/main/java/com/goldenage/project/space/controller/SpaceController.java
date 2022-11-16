@@ -104,26 +104,22 @@ public class SpaceController {
                 files.put("spaceNum", String.valueOf(spaceNum));
 
                 spaceService.insertSpacePho(files);
-            }
+                log.info("fIles??" + files);
 
-            try {
+                try {
 
-                for (int j = 0; j < multiFiles.size(); j++) {
-                        Map<String, String> pho = files;
-                        multiFiles.get(j).transferTo(new File(filePath + mkdir.separator + pho.get("spaceFileName")));
-                        log.info("j야 어디까지 왔니 " + j);
-                        log.info("pho야 어디까지 왔니 " + pho);
-                    }
+                        multiFiles.get(i).transferTo(new File(filePath + mkdir.separator + files.get("spaceFileName")));
+                        log.info("j야 어디까지 왔니 " + i);
+                        log.info("files야 어디까지 왔니 " + files);
                 } catch (IOException e) {
 
-                for (int j = 0; j < multiFiles.size(); j++) {
+                        new File(filePath + mkdir.separator + files.get("spaceFileName")).delete();
+                        log.info("j야 어디까지 왔니2 " + i);
+                        log.info("pho야 어디까지 왔니2 " + files);
 
-                    Map<String, String> pho = files;
-                    new File(filePath + mkdir.separator + pho.get("spaceFileName")).delete();
-                    log.info("j야 어디까지 왔니2 " + j);
-                    log.info("pho야 어디까지 왔니2 " + pho);
                 }
             }
+
         }else if(multiFiles.get(0).isEmpty() == true){
             Map<String,String> files = new HashMap<>();
 
