@@ -37,6 +37,7 @@
                    , N.NOTICE_NO
                    , N.NOTICE_NAME
                    , N.NOTICE_REGIST_DATE
+                   , N.NOTICE_COUNT
                 FROM NOTICE N
                 ,(SELECT @RNUM:=0)AS R
                WHERE 1=1
