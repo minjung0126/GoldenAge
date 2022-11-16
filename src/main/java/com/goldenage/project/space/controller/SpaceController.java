@@ -105,26 +105,17 @@ public class SpaceController {
 
                 spaceService.insertSpacePho(files);
 
-                try{
+                try {
+
                     multiFiles.get(i).transferTo(new File(filePath + mkdir.separator + files.get("spaceFileName")));
-                } catch (IOException e){
+
+                } catch (IOException e) {
+
                     new File(filePath + mkdir.separator + files.get("spaceFileName")).delete();
+
                 }
             }
 
-            try {
-
-                for (int j = 0; j < multiFiles.size(); j++) {
-
-                    multiFiles.get(j).transferTo(new File(filePath + mkdir.separator + files.get("spaceFileName")));
-                }
-            } catch (IOException e) {
-
-                for (int j = 0; j < multiFiles.size(); j++) {
-
-                    new File(filePath + mkdir.separator + files.get("spaceFileName")).delete();
-                }
-            }
         }else if(multiFiles.get(0).isEmpty() == true){
             Map<String,String> files = new HashMap<>();
 
@@ -149,11 +140,30 @@ public class SpaceController {
 
     //연습실 삭제
     @GetMapping("/delete")
-    public String spaceDelete(HttpServletRequest request, RedirectAttributes rttr) throws SpaceDeleteException {
+    public String spaceDelete(HttpServletRequest request, RedirectAttributes rttr) throws SpaceDeleteException, FileNotFoundException {
 
         int spaceNum = Integer.parseInt(request.getParameter("spaceNum"));
 
         int result = spaceService.deleteSpace(spaceNum);
+        List<SpacePhoDTO> phoList = spaceService.selectPho(spaceNum);
+
+        if(result > 0) {
+
+            // 연습실 이미지 삭제
+            String root = ResourceUtils.getURL("upload").getPath();
+
+            String filePath = root + "/space";
+
+            for(int i = 0; i < phoList.size(); i++){
+
+                File mkdirCast = new File(filePath + File.separator + phoList.get(i).getSpaceFileName());
+
+                if(mkdirCast.exists()) {
+
+                    mkdirCast.delete();
+                }
+            }
+        }
 
         rttr.addFlashAttribute("message", "연습실 삭제 성공!");
 
