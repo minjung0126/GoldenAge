@@ -106,10 +106,9 @@ public class SpaceController {
                 spaceService.insertSpacePho(files);
             }
 
-                try {
+            try {
 
-                    for (int j = 0; j < multiFiles.size(); j++) {
-
+                for (int j = 0; j < multiFiles.size(); j++) {
                         Map<String, String> pho = files;
                         multiFiles.get(j).transferTo(new File(filePath + mkdir.separator + pho.get("spaceFileName")));
                         log.info("j야 어디까지 왔니 " + j);
@@ -117,14 +116,14 @@ public class SpaceController {
                     }
                 } catch (IOException e) {
 
-                    for (int j = 0; j < multiFiles.size(); j++) {
+                for (int j = 0; j < multiFiles.size(); j++) {
 
-                        Map<String, String> pho = files;
-                        new File(filePath + mkdir.separator + pho.get("spaceFileName")).delete();
-                        log.info("j야 어디까지 왔니2 " + j);
-                        log.info("pho야 어디까지 왔니2 " + pho);
-                    }
+                    Map<String, String> pho = files;
+                    new File(filePath + mkdir.separator + pho.get("spaceFileName")).delete();
+                    log.info("j야 어디까지 왔니2 " + j);
+                    log.info("pho야 어디까지 왔니2 " + pho);
                 }
+            }
         }else if(multiFiles.get(0).isEmpty() == true){
             Map<String,String> files = new HashMap<>();
 
