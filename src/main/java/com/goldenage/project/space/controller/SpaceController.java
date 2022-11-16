@@ -170,7 +170,7 @@ public class SpaceController {
         mv.addObject("spaceList", spaceList);
         mv.addObject("spacePhoList", phoList);
         mv.addObject("spaceView", spaceView);
-        mv.setViewName("/space/theater");
+        mv.setViewName("space/theater");
 
         return mv;
     }
