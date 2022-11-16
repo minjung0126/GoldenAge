@@ -12,12 +12,6 @@
         <result property="spaceWidth" column="SPACE_WIDTH"/>
         <result property="spaceTime" column="SPACE_TIME"/>
         <result property="spaceLink" column="SPACE_LINK"/>
-        <collection property="photo" ofType="SpacePhoDTO">
-            <result property="spaceNum" column="SPACE_NUM"/>
-            <result property="spaceFileNum" column="SPACE_FILE_NUM"/>
-            <result property="spaceOriName" column="SPACE_ORI_NAME"/>
-            <result property="spaceFileName" column="SPACE_FILE_NAME"/>
-        </collection>
     </resultMap>
 
     <resultMap id="spacePhoResultMap" type="SpacePhoDTO">
@@ -73,12 +67,9 @@
         , #{ spaceFileName }
         , #{ spaceNum }
         )
-        <selectKey keyProperty="spaceNum" order="BEFORE" resultType="_int">
-            SELECT LAST_INSERT_ID()
-        </selectKey>
     </insert>
 
-    <select id="selectNum" resultType="string">
+    <select id="selectNum" resultType="_int">
         SELECT LAST_INSERT_ID() AS SPACE_NUM
     </select>
 
@@ -93,4 +84,89 @@
           FROM SPACE
          WHERE SPACE_NUM = #{ spaceNum }
     </delete>
+
+    <select id="selectSpaceListView" resultMap="spaceResultMap">
+        SELECT
+               SPACE_NAME
+             , SPACE_NUM
+          FROM SPACE
+    </select>
+
+    <select id="selectPho" resultMap="spacePhoResultMap">
+        SELECT
+                *
+          FROM SPACE_FILE
+         WHERE SPACE_NUM = #{ spaceNum }
+    </select>
+
+    <select id="selectSpaceView" resultMap="spaceResultMap">
+        SELECT
+               *
+          FROM SPACE
+         WHERE SPACE_NUM = #{ spaceNum }
+    </select>
+
+    <select id="selectSpaceIntro" resultMap="spaceResultMap">
+        SELECT
+            *
+         FROM SPACE
+        WHERE SPACE_NUM = #{ spaceNum }
+    </select>
+
+    <update id="updateSpace">
+        UPDATE
+               SPACE
+        <trim prefix="SET" prefixOverrides=",">
+            <if test="spaceName != null and spaceName != ''">
+                , SPACE_NAME = #{ spaceName }
+            </if>
+            <if test="spaceAdd != null and spaceAdd != ''">
+                , SPACE_ADD = #{ spaceAdd }
+            </if>
+            <if test="spaceWidth != null and spaceWidth != ''">
+                , SPACE_WIDTH = #{ spaceWidth }
+            </if>
+            <if test="spaceTime != null and spaceTime != ''">
+                , SPACE_TIME = #{ spaceTime }
+            </if>
+            <if test="spaceContent != null and spaceContent != ''">
+                , SPACE_CONTENT = #{ spaceContent }
+            </if>
+            <if test="spaceLink != null and spaceLink != ''">
+                , SPACE_LINK = #{ spaceLink }
+            </if>
+        </trim>
+        WHERE SPACE_NUM = #{ spaceNum }
+    </update>
+
+    <select id="selectSpacePho" resultMap="spacePhoResultMap">
+        SELECT
+            *
+        FROM SPACE_FILE
+        WHERE SPACE_NUM = #{ spaceNum }
+    </select>
+
+    <delete id="deleteSpacePho">
+        DELETE
+        FROM SPACE_FILE
+        WHERE SPACE_FILE_NUM = #{ spaceFileNum }
+    </delete>
+
+    <insert id="insertSpacePho">
+        INSERT
+        INTO SPACE_FILE
+        (
+          SPACE_FILE_NUM
+        , SPACE_ORI_NAME
+        , SPACE_FILE_NAME
+        , SPACE_NUM
+        )
+        VALUES
+        (
+          SPACE_FILE_NUM
+        , #{ spaceOriName }
+        , #{ spaceFileName }
+        , #{ spaceNum }
+        )
+    </insert>
 </mapper>

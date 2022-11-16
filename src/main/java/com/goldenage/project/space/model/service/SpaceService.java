@@ -21,11 +21,29 @@ public interface SpaceService {
 
     // 연습실 사진 등록
     @Transactional
-    int insertSpacePho(List<Map<String, String>> files);
+    int insertSpacePho(Map<String, String> files);
 
     //연습실 삭제
     @Transactional
     int deleteSpace(int spaceNum) throws NoticeDeleteException, SpaceDeleteException;
 
-    String selectNum();
+    int selectNum();
+
+    List<SpaceDTO> selectSpaceListView();
+
+    List<SpacePhoDTO> selectPho(int spaceNum);
+
+    //연슶실 내용정보
+    SpaceDTO selectSpaceView(int spaceNum);
+
+    SpaceDTO selectSpaceIntro(int spaceNum);
+
+    @Transactional
+    int updateSpace(SpaceDTO space);
+
+    List<SpacePhoDTO> selectSpacePho(int spaceNum);
+
+    int deleteSpacePho(int spaceFileNum);
+
+    int insertSpacePhoto(SpacePhoDTO spacePhoto);
 }

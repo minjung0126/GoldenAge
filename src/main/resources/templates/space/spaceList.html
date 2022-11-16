@@ -36,6 +36,7 @@
                 <th>주소</th>
                 <th></th>
                 <th></th>
+                <th></th>
             </tr>
             </thead>
             <tbody>
@@ -43,8 +44,9 @@
                 <td th:text="${ list.spaceNum }"></td>
                 <td th:text="${ list.spaceName }"></td>
                 <td th:text="${ list.spaceAdd }"></td>
-                <td><button type="button" class="btn" style="color:#ffb000;" th:onclick="'location.href=\'/space/spaceUpdate?spaceNum='+ @{${list.spaceNum}} + '\''">수정하기</button></td>
-                <td><button type="button" class="btn" style="color:#ffb000;" th:onclick="'location.href=\'/space/delete?spaceNum='+ @{${list.spaceNum}} + '\''">삭제하기</button></td>
+                <td><button type="button" class="btn" style="color:#ffb000;" th:onclick="'location.href=\'/space/spaceUpdate?spaceNum='+ @{${list.spaceNum}} + '\''">내용수정</button></td>
+                <td><button type="button" class="btn" style="color:#ffb000;" th:onclick="'location.href=\'/space/spacePhoUpdate?spaceNum='+ @{${list.spaceNum}} + '\''">사진수정</button></td>
+                <td><button type="button" class="btn" style="color:#ffb000;" th:onclick="'location.href=\'/space/delete?spaceNum='+ @{${list.spaceNum}} + '\''">삭제</button></td>
             </tr>
             </tbody>
         </table>
