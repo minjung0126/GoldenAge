@@ -309,3 +309,4 @@ public class SpaceController {
         return "redirect:/space/spacePhoUpdate?spaceNum=" + spaceNum;
     }
 }
+
