@@ -75,9 +75,9 @@ public class SpaceController {
             log.info("num 을 알려줘 " + space.getSpaceNum());
         }
 
-        String root = ResourceUtils.getURL("src/main/resources").getPath();
+        String root = ResourceUtils.getURL("upload").getPath();
 
-        String filePath = root + "static/images/space";
+        String filePath = root + "/space";
 
         File mkdir = new File(filePath);
         if(!mkdir.exists()) {
@@ -111,14 +111,14 @@ public class SpaceController {
                     for (int j = 0; j < multiFiles.size(); j++) {
 
                         Map<String, String> pho = files;
-                        multiFiles.get(j).transferTo(new File(filePath + "/" + pho.get("spaceFileName")));
+                        multiFiles.get(j).transferTo(new File(filePath + mkdir.separator + pho.get("spaceFileName")));
                     }
                 } catch (IOException e) {
 
                     for (int j = 0; j < multiFiles.size(); j++) {
 
                         Map<String, String> pho = files;
-                        new File(filePath + "/" + pho.get("spaceFileName")).delete();
+                        new File(filePath + mkdir.separator + pho.get("spaceFileName")).delete();
                     }
                 }
         }else if(multiFiles.get(0).isEmpty() == true){
@@ -216,8 +216,6 @@ public class SpaceController {
                               RedirectAttributes rttr)throws SpaceUpdateException{
 
         int result = spaceService.updateSpace(space);
-        log.info("뭐지이 " + space);
-        log.info("result a뭘ㅈ;ㅇ "+ result);
 
         if(result > 0){
             rttr.addFlashAttribute("message", "연습실 수정 성공!");
@@ -247,12 +245,9 @@ public class SpaceController {
                                  @RequestParam(value="spaceFileNum", required = false) int spaceFileNum,
                                  @RequestParam(value="spaceNum", required = false) int spaceNum){
 
-        log.info("파일넘버 " + spaceFileNum);
-        log.info("연습실넘버 " + spaceNum);
 
         int result = spaceService.deleteSpacePho(spaceFileNum);
 
-        log.info("화기이이이익 " + result);
 
         return "redirect:/space/spacePhoUpdate?spaceNum=" + spaceNum;
     }
@@ -264,9 +259,9 @@ public class SpaceController {
 
         SpacePhoDTO spacePhoto = new SpacePhoDTO();
 
-        String root = ResourceUtils.getURL("src/main/resources").getPath();
+        String root = ResourceUtils.getURL("upload").getPath();
 
-        String filePath = root + "static/uploadFiles";
+        String filePath = root + "/space";
 
         File mkdir = new File(filePath);
         if(!mkdir.exists()) {
@@ -289,11 +284,11 @@ public class SpaceController {
 
             try {
 
-                file.transferTo(new File(filePath + "/" + spaceFileName + ext));
+                file.transferTo(new File(filePath + mkdir.separator + spaceFileName + ext));
             } catch (IOException e) {
 
                 e.printStackTrace();
-                new File(filePath + "/" + spaceFileName + ext).delete();
+                new File(filePath + mkdir.separator + spaceFileName + ext).delete();
             }
         }
 
