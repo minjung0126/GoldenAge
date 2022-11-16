@@ -85,7 +85,7 @@
           <br>
           <div style="color: white; padding-bottom: 5px">
             <span style="padding-right: 10px">첨부파일</span>
-            <a th:href="|/uploadFiles/${ noticeDetail.noticeFile.getNoticeFileName() }|" th:text="${ noticeDetail.noticeFile.getNoticeOriName() }" download></a>
+            <a th:href="|/upload/uploadFiles/${ noticeDetail.noticeFile.getNoticeFileName() }|" th:text="${ noticeDetail.noticeFile.getNoticeOriName() }" download></a>
           </div>
           <div style="color: white; overflow: hidden; height: 24px;">
             <span style="padding-right: 10px;">본문링크</span>

@@ -112,9 +112,9 @@ public class NoticeController {
 
         int result = noticeService.noticeInsert(notice);
 
-        String root = ResourceUtils.getURL("src/main/resources").getPath();
+        String root = ResourceUtils.getURL("upload").getPath();
 
-        String filePath = root + "static/uploadFiles";
+        String filePath = root + "/uploadFiles";
 
         File mkdir = new File(filePath);
         if(!mkdir.exists()) {
@@ -140,11 +140,11 @@ public class NoticeController {
 
             try {
 
-                file.transferTo(new File(filePath + "/" + noticeFileName + ext));
+                file.transferTo(new File(filePath + mkdir.separator + noticeFileName + ext));
             } catch (IOException e) {
 
                 e.printStackTrace();
-                new File(filePath + "/" + noticeFileName + ext).delete();
+                new File(filePath + mkdir.separator + noticeFileName + ext).delete();
             }
         }else if(file.getSize() == 0){
 
@@ -183,9 +183,9 @@ public class NoticeController {
                                @RequestParam(value="file", required=false) MultipartFile file,
                                RedirectAttributes rttr) throws Exception {
 
-        String root = ResourceUtils.getURL("src/main/resources").getPath();
+        String root = ResourceUtils.getURL("upload").getPath();
 
-        String filePath = root + "static/uploadFiles";
+        String filePath = root + "/uploadFiles";
 
         File mkdir = new File(filePath);
         if(!mkdir.exists()) {
@@ -237,11 +237,11 @@ public class NoticeController {
             }
 
             try {
-                file.transferTo(new File(filePath + "/" + noticeFileName));
+                file.transferTo(new File(filePath + mkdir.separator + noticeFileName));
             } catch (IOException e) {
 
                 e.printStackTrace();
-                new File(filePath + "/" + noticeFileName).delete();
+                new File(filePath + mkdir.separator + noticeFileName).delete();
             }
         }
 
