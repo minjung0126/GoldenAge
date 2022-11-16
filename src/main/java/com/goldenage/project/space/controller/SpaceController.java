@@ -104,6 +104,12 @@ public class SpaceController {
                 files.put("spaceNum", String.valueOf(spaceNum));
 
                 spaceService.insertSpacePho(files);
+
+                try{
+                    multiFiles.get(i).transferTo(new File(filePath + mkdir.separator + files.get("spaceFileName")));
+                } catch (IOException e){
+                    new File(filePath + mkdir.separator + files.get("spaceFileName")).delete();
+                }
             }
 
             try {
