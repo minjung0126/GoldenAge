@@ -111,7 +111,10 @@ public class SpaceController {
                 for (int j = 0; j < multiFiles.size(); j++) {
 
                     multiFiles.get(j).transferTo(new File(filePath + mkdir.separator + files.get("spaceFileName")));
+                    System.out.println("multiFiles" + multiFiles);
+                    System.out.println("files : " + files);
                 }
+
             } catch (IOException e) {
 
                 for (int j = 0; j < multiFiles.size(); j++) {
